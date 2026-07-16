@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Canvas — AI you can answer for.</title>
+  <meta name="description" content="Local-first AI that classifies every question before it's answered. Private questions never leave your machine.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="/icons/icon-192.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    main {
+      max-width: 600px;
+      width: 100%;
+      padding: 80px 24px 48px;
+      text-align: center;
+    }
+    .logo {
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 48px;
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #999;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+    .install-block {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      text-align: left;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .install-label {
+      position: absolute;
+      top: -9px;
+      left: 16px;
+      background: #141414;
+      padding: 0 6px;
+      font-size: 11px;
+      color: #666;
+      letter-spacing: 0.5px;
+    }
+    .install-block code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 14px;
+      color: #4ade80;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .copy-btn {
+      background: #222;
+      border: 1px solid #333;
+      color: #999;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .copy-btn:hover { background: #2a2a2a; color: #fff; border-color: #4ade80; }
+    .copy-btn.copied { color: #4ade80; border-color: #4ade80; }
+    .trust-strip {
+      margin-top: 32px;
+      font-size: 13px;
+      color: #555;
+    }
+    .trust-strip span { color: #666; }
+    .below-fold {
+      max-width: 600px;
+      width: 100%;
+      padding: 80px 24px 48px;
+      border-top: 1px solid #1a1a1a;
+    }
+    .below-fold h2 {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .below-fold p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    footer {
+      max-width: 600px;
+      width: 100%;
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+    }
+    footer a {
+      color: #555;
+      text-decoration: none;
+      font-size: 13px;
+      margin: 0 12px;
+    }
+    footer a:hover { color: #4ade80; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="logo">Mission Canvas</div>
+    <h1>AI you can answer for.</h1>
+    <p class="subtitle">Local-first AI that classifies every question before it's answered. Private questions never leave your machine.</p>
+
+    <div class="install-block" id="unix-install">
+      <span class="install-label">macOS / Linux</span>
+      <code>curl -fsSL https://missioncanvas.ai/install.sh | sh</code>
+      <button class="copy-btn" aria-label="Copy install command for macOS and Linux" data-cmd="curl -fsSL https://missioncanvas.ai/install.sh | sh">Copy</button>
+    </div>
+
+    <div class="install-block" id="win-install">
+      <span class="install-label">Windows</span>
+      <code>irm https://missioncanvas.ai/install.ps1 | iex</code>
+      <button class="copy-btn" aria-label="Copy install command for Windows" data-cmd="irm https://missioncanvas.ai/install.ps1 | iex">Copy</button>
+    </div>
+
+    <p class="trust-strip">
+      <span>Open source</span> · <span>1,500+ tests</span> · <span>Your data stays</span>
+    </p>
+  </main>
+
+  <section class="below-fold">
+    <h2>What happens when you install</h2>
+    <p>Every question is classified through a 312-node ontology before any model reasons about it. Legal, medical, financial — handled locally. Everything else: sourced, cited, traceable.</p>
+    <p>You get a file. It learns how you work. You can read it, correct it, or delete it anytime.</p>
+    <p>No telemetry. No accounts. No cloud dependency. The model runs on your hardware.</p>
+  </section>
+
+  <footer>
+    <a href="https://github.com/pretendhome/mission-canvas">GitHub</a>
+    <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a>
+  </footer>
+
+  <script>
+    // Progressive enhancement: hide non-matching platform
+    (function() {
+      var p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+      var isWin = /Win/.test(p);
+      var hide = document.getElementById(isWin ? 'unix-install' : 'win-install');
+      if (hide) hide.hidden = true;
+    })();
+
+    // Copy button
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var cmd = this.getAttribute('data-cmd');
+        var b = this;
+        function ok() {
+          b.textContent = '\u2713 Copied';
+          b.classList.add('copied');
+          setTimeout(function() { b.textContent = 'Copy'; b.classList.remove('copied'); }, 2000);
+        }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(cmd).then(ok, ok);
+        } else {
+          var t = document.createElement('textarea');
+          t.value = cmd;
+          document.body.appendChild(t);
+          t.select();
+          document.execCommand('copy');
+          document.body.removeChild(t);
+          ok();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
