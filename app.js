@@ -48,11 +48,13 @@ heroItems.forEach((el, i) => {
     if (isWin) {
       primary.textContent = 'Download for Windows';
       primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe';
-      secondary.textContent = 'Download for macOS';
+      secondary.textContent = 'Download for Mac/Linux';
       secondary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg';
-    } else if (!isMac) {
-      primary.textContent = 'Download for Linux';
-      primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';
+    } else {
+      primary.textContent = 'Download for Mac/Linux';
+      primary.href = isMac
+        ? 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg'
+        : 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';
     }
   }
   configure('btn-primary-dl', 'btn-secondary-dl');
@@ -124,6 +126,7 @@ heroItems.forEach((el, i) => {
 
   function reset() {
     content.classList.remove('mc-demo-resetting');
+    content.style.opacity = '1';
     input.classList.remove('typing');
     responseArea?.classList.remove('streaming');
     if (placeholder) placeholder.style.display = '';
@@ -199,5 +202,5 @@ heroItems.forEach((el, i) => {
     return;
   }
 
-  at(1200, play);
+  at(250, play);
 })();

@@ -545,19 +545,24 @@ ul, ol { list-style: none; }
 .mc-demo-brand {
   position: relative;
   z-index: 1;
-  width: min(100%, 760px);
+  left: 50%;
+  width: min(132%, 940px);
   margin-inline: auto;
   overflow: hidden;
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  transform: translateX(-50%);
 }
 
 .mc-demo-brand img {
   width: 100%;
-  height: clamp(150px, 17vw, 220px);
+  max-width: none;
+  height: clamp(180px, 20vw, 260px);
   object-fit: cover;
-  object-position: center 36%;
+  object-position: center 43%;
+  transform: scale(1.18) translateY(-4%);
+  transform-origin: center 43%;
 }
 
 .mc-demo-window {
@@ -664,6 +669,8 @@ ul, ol { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  opacity: 1;
+  transition: opacity 220ms ease;
 }
 
 .mc-demo-workspace {
@@ -869,11 +876,7 @@ ul, ol { list-style: none; }
 }
 
 .mc-demo-resetting {
-  animation: mc-demo-reset 500ms ease forwards;
-}
-
-@keyframes mc-demo-reset {
-  to { opacity: 0; }
+  opacity: 0;
 }
 
 .demo-trace-item {
