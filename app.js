@@ -47,12 +47,12 @@ heroItems.forEach((el, i) => {
     if (!primary || !secondary) return;
     if (isWin) {
       primary.textContent = 'Download for Windows';
-      primary.href = 'https://github.com/pretendhome/mission-canvas/releases/latest/download/MissionCanvas-Setup.exe';
+      primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe';
       secondary.textContent = 'Download for macOS';
-      secondary.href = 'https://github.com/pretendhome/mission-canvas/releases/latest/download/MissionCanvas.dmg';
+      secondary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg';
     } else if (!isMac) {
       primary.textContent = 'Download for Linux';
-      primary.href = 'https://github.com/pretendhome/mission-canvas/releases/latest/download/MissionCanvas.AppImage';
+      primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';
     }
   }
   configure('btn-primary-dl', 'btn-secondary-dl');
