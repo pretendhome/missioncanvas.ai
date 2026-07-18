@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mission Canvas — AI you can answer for.</title>
-  <meta name="description" content="One interface for your email, calendar, files, and client work — connected to AI that runs on your machine." />
+  <meta name="description" content="One interface for your email, calendar, files, and client work — connected to AI on your local PC." />
   <meta property="og:title" content="Mission Canvas — AI you can answer for." />
-  <meta property="og:description" content="One interface for your email, calendar, files, and client work — connected to AI that runs on your machine." />
+  <meta property="og:description" content="One interface for your email, calendar, files, and client work — connected to AI on your local PC." />
   <meta property="og:image" content="https://missioncanvas.ai/og.png" />
   <meta name="theme-color" content="#0d0d0b" />
 
@@ -66,8 +66,7 @@
 
         <p class="hero-sub fade-in">
           One interface for your email, calendar, files, and client work —
-          connected to AI that runs on your machine and never shares
-          what you don't want shared.
+          connected to AI on your local PC. It shares nothing unless you say so.
         </p>
 
         <div class="hero-ctas fade-in">
@@ -81,12 +80,12 @@
               Download for Windows
             </a>
           </div>
-          <span class="hero-trust fade-in">Free · Runs locally · No account required</span>
+          <span class="hero-trust fade-in">Free · Local PC · No account</span>
           <span class="mobile-download-note">Download on your computer to get started</span>
         </div>
 
         <p class="hero-trust fade-in">
-          Not even us can see your data. And you can verify that anytime.
+          Not even us can see your data. Every answer shows what happened.
         </p>
 
       </div>
@@ -120,12 +119,12 @@
         <div class="trust-items">
           <div class="trust-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Socket-level egress firewall</span>
+            <span>Network calls are blocked at the socket.</span>
           </div>
           <div class="trust-divider" aria-hidden="true"></div>
           <div class="trust-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Every decision is explainable</span>
+            <span>Every route has a record.</span>
           </div>
           <div class="trust-divider" aria-hidden="true"></div>
           <div class="trust-item">
@@ -135,7 +134,7 @@
           <div class="trust-divider" aria-hidden="true"></div>
           <div class="trust-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>No telemetry. No accounts.</span>
+            <span>No telemetry. No account.</span>
           </div>
         </div>
       </div>
@@ -149,17 +148,17 @@
           The model is always<br/>the last step.
         </h2>
         <p class="section-sub fade-in">
-          Every other AI tool sends your query to a model and hopes for the best.
-          Mission Canvas classifies your intent, retrieves evidence-tiered knowledge,
-          and applies governance rules — before any model fires.
+          Most AI tools send your query straight to a model.
+          MC sorts the work first. Then it gathers evidence,
+          checks the rules, and only then calls a model.
         </p>
 
         <div class="pipeline" aria-label="9-step governed pipeline">
           <div class="pipeline-step fade-in" data-step="0">
             <div class="step-num">SCAN</div>
             <div class="step-body">
-              <h3>Entry gate</h3>
-              <p>PII and PHI detected and stripped before classification. Fail-closed.</p>
+              <h3>Check the input</h3>
+              <p>PII and PHI are detected before classification. If the gate is unsure, it closes.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -167,8 +166,8 @@
           <div class="pipeline-step fade-in" data-step="1">
             <div class="step-num">CLASSIFY</div>
             <div class="step-body">
-              <h3>Ontology routing</h3>
-              <p>312-node ontology. Keyword → BM25 → LLM fallback. Confidence scored.</p>
+              <h3>Sort the question</h3>
+              <p>312-node ontology. Keyword → BM25 → LLM fallback. Every route gets a score.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -176,8 +175,8 @@
           <div class="pipeline-step fade-in step-highlight" data-step="2">
             <div class="step-num">GOVERN</div>
             <div class="step-body">
-              <h3>Architectural enforcement</h3>
-              <p>Sensitive domains block external calls. Not a config. A structural gate.</p>
+              <h3>Enforce the boundary</h3>
+              <p>Legal, medical, and financial work block external calls. That rule is in the path.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -185,8 +184,8 @@
           <div class="pipeline-step fade-in" data-step="3">
             <div class="step-num">RETRIEVE</div>
             <div class="step-body">
-              <h3>Evidence-tiered knowledge</h3>
-              <p>219+ knowledge entries. Freshness-scored. Stale entries filtered before REASON.</p>
+              <h3>Gather the evidence</h3>
+              <p>219+ knowledge entries. Freshness scored. Stale entries are filtered before REASON.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -194,8 +193,8 @@
           <div class="pipeline-step fade-in step-terminal" data-step="4">
             <div class="step-num">REASON</div>
             <div class="step-body">
-              <h3>Model fires last</h3>
-              <p>Full structured context assembled. Local or cloud — based on governance, not cost.</p>
+              <h3>Call the model last</h3>
+              <p>MC builds the context first. Local or cloud depends on the boundary, not cost.</p>
             </div>
           </div>
         </div>
@@ -203,7 +202,7 @@
         <div class="pipeline-footer fade-in">
           <div class="chip chip-always">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            STORE always fires — every query produces an immutable path record
+            STORE always fires — every query gets an immutable path record
           </div>
         </div>
       </div>
@@ -214,7 +213,7 @@
       <div class="container">
         <div class="section-label fade-in">Who it's for</div>
         <h2 class="section-headline fade-in">
-          Work that demands<br/>to stay private.
+          Work you cannot<br/>paste into ChatGPT.
         </h2>
 
         <div class="cases-grid">
@@ -229,9 +228,8 @@
             </div>
             <h3>Legal</h3>
             <p>
-              A federal court ruled in February 2026 that using a cloud AI to process
-              privileged communications can void attorney-client privilege.
-              Mission Canvas routes all legal queries locally — by architecture, not contract.
+              A federal court ruled in February 2026 that cloud AI can void privilege.
+              MC routes legal work on your PC. That boundary is code, not a promise.
             </p>
             <div class="case-proof">
               <span class="proof-label">After <em>United States v. Heppner</em> (SDNY, Feb 2026)</span>
@@ -248,9 +246,8 @@
             </div>
             <h3>Healthcare</h3>
             <p>
-              HIPAA 2026 (effective August 2, 2026) requires an audit log for every AI interaction
-              involving PHI. Mission Canvas produces an immutable path record for every query —
-              automatically, without configuration.
+              HIPAA 2026 takes effect August 2, 2026.
+              PHI decisions need audit trails. MC records the path for every query.
             </p>
             <div class="case-proof">
               <span class="proof-label">HIPAA 2026 Final Rule — AI audit trails required for PHI decisions</span>
@@ -267,9 +264,8 @@
             </div>
             <h3>Financial services</h3>
             <p>
-              Fiduciary duty requires you to advise based on the client's situation, not the model's
-              training data. Mission Canvas retrieves your client's actual files and your firm's
-              knowledge before the model reasons.
+              Fiduciary work starts with the client's facts.
+              MC pulls the client's files and your firm's knowledge before the model reasons.
             </p>
             <div class="case-proof">
               <span class="proof-label">Conflict detection built into the fiduciary lens</span>
@@ -286,9 +282,8 @@
             </div>
             <h3>Personal work</h3>
             <p>
-              Write an email to your doctor and it pulls from your medical files, writes in your
-              personal tone, and keeps every piece of health data on your machine. You didn't
-              configure any of that.
+              Write your doctor. MC can use your medical files and your tone.
+              Health data stays on your PC. You do not configure a workflow.
             </p>
             <div class="case-proof">
               <span class="proof-label">Your lens learns from your actual patterns</span>
@@ -307,31 +302,30 @@
             <div class="section-label">The intelligence</div>
             <h2>Three things that meet at inference.</h2>
             <p>
-              No other tool combines these three at once: your professional context,
-              your personal patterns, and your actual data — meeting at the point of
-              inference, governed so the right information reaches the right destination
-              and nothing else leaves your computer unless you say it can.
+              MC combines your professional context, your personal patterns,
+              and your actual files at the moment of inference.
+              The boundary decides what can leave your PC.
             </p>
             <ul class="tri-list" role="list">
               <li>
                 <span class="tri-icon tri-icon-canvas">⬡</span>
                 <div>
                   <strong>Canvas</strong>
-                  <span>Your professional context. Legal canvas, healthcare canvas, personal canvas. 25 bundled domains.</span>
+                  <span>The rules for your field. Legal, healthcare, personal work. 25 bundled domains.</span>
                 </div>
               </li>
               <li>
                 <span class="tri-icon tri-icon-lens">◎</span>
                 <div>
                   <strong>Lens</strong>
-                  <span>Your personal patterns. How you write, what you care about, your active domains. Grows from real use.</span>
+                  <span>How you work. Your tone, priorities, domains, and sensitive zones. It grows from use.</span>
                 </div>
               </li>
               <li>
                 <span class="tri-icon tri-icon-files">▦</span>
                 <div>
                   <strong>File map</strong>
-                  <span>Your actual data. Directory structure, not contents. MC knows where things live — what should stay local.</span>
+                  <span>Your folders, not your file contents. MC learns where things live and what should stay put.</span>
                 </div>
               </li>
             </ul>
@@ -382,15 +376,15 @@
         <div class="section-label fade-in">What you see</div>
         <h2 class="section-headline fade-in">Every answer shows its work.</h2>
         <p class="section-sub fade-in">
-          The governance chips appear with every answer. Where the query went,
-          what model reasoned, whether anything left the machine.
-          You asked what you asked — and now you know exactly what happened.
+          Every answer carries its route.
+          You see the node, model, sources, and whether anything left your PC.
+          No black box. No guessing.
         </p>
 
         <div class="chip-demo-cards fade-in">
 
           <div class="chip-demo-card">
-            <div class="chip-demo-query">"Draft a response to the Acme escalation using the contract terms from my legal folder."</div>
+            <div class="chip-demo-query">"Draft a response to Acme using the contract terms in my legal folder."</div>
             <div class="chip-demo-chips">
               <span class="chip chip-local">🔒 LOCAL ONLY</span>
               <span class="chip chip-node">MC-LEGAL-004</span>
@@ -399,12 +393,12 @@
             </div>
             <div class="chip-demo-why">
               <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Classified as contract review. Client data detected — external routing blocked. Fiduciary lens active. Pulled 3 contract clause entries from knowledge library.</span>
+              <span class="chip-demo-why-text">MC classified this as contract review. Client data was present, so external routing was blocked. The fiduciary lens stayed active. MC pulled 3 contract clause entries.</span>
             </div>
           </div>
 
           <div class="chip-demo-card">
-            <div class="chip-demo-query">"What's the HIPAA audit trail requirement for AI-assisted PHI decisions?"</div>
+            <div class="chip-demo-query">"What audit trail does HIPAA require for AI-assisted PHI decisions?"</div>
             <div class="chip-demo-chips">
               <span class="chip chip-local">🔒 LOCAL ONLY</span>
               <span class="chip chip-node">MC-HC-002</span>
@@ -413,12 +407,12 @@
             </div>
             <div class="chip-demo-why">
               <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Classified as compliance assessment. PHI policy domain — blocks_external enforced. Retrieved HIPAA 2026 final rule (Tier 1 source). Confidence 0.91.</span>
+              <span class="chip-demo-why-text">MC classified this as compliance assessment. PHI policy rules enforced blocks_external. It retrieved the HIPAA 2026 final rule, a Tier 1 source. Confidence 0.91.</span>
             </div>
           </div>
 
           <div class="chip-demo-card">
-            <div class="chip-demo-query">"What are the current Fed rate expectations for the next two meetings?"</div>
+            <div class="chip-demo-query">"What does the market expect from the Fed at the next two meetings?"</div>
             <div class="chip-demo-chips">
               <span class="chip chip-external">⬡ EXTERNAL</span>
               <span class="chip chip-node">MC-FIN-003</span>
@@ -427,7 +421,7 @@
             </div>
             <div class="chip-demo-why">
               <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Public market data query. No sensitive content detected. Routed to external research. Query rebuilt from classification — your words replaced by node semantics.</span>
+              <span class="chip-demo-why-text">This was public market data. MC found no sensitive content, so it used external research. The outgoing query was rebuilt from the node, not your wording.</span>
             </div>
           </div>
 
@@ -442,9 +436,9 @@
           <div class="os-text">
             <h2>Read the code that governs your data.</h2>
             <p>
-              Mission Canvas is AGPL-3.0 open source. Every governance rule,
-              every routing decision, every gate — readable, auditable, forkable.
-              You don't have to trust our word. You can read the code.
+              Mission Canvas is AGPL-3.0 open source.
+              You can read every rule, route, and gate.
+              You do not have to trust our word.
             </p>
             <div class="os-ctas">
               <a href="https://github.com/pretendhome/mission-canvas" class="btn btn-primary" target="_blank" rel="noopener">
@@ -488,46 +482,46 @@
     <section class="journey" aria-label="User journey">
       <div class="container">
         <div class="section-label fade-in">The journey</div>
-        <h2 class="section-headline fade-in">From zero to sovereign<br/>in five minutes.</h2>
+        <h2 class="section-headline fade-in">From install to first answer<br/>in five minutes.</h2>
 
         <div class="journey-steps">
           <div class="journey-step fade-in">
             <div class="journey-num">01</div>
             <div class="journey-content">
-              <h3>Install</h3>
-              <p>One curl command. No account. No email. A local model downloads. Your first canvas loads.</p>
+              <h3>Install MC</h3>
+              <p>Run one command. No account. No email. A local model downloads. Your first canvas loads.</p>
               <div class="journey-time">2 minutes</div>
             </div>
           </div>
           <div class="journey-step fade-in">
             <div class="journey-num">02</div>
             <div class="journey-content">
-              <h3>First query</h3>
-              <p>Ask anything. The governance chips appear: where it went, what answered, whether anything left the machine.</p>
+              <h3>Ask once</h3>
+              <p>The chips show the route, model, and whether anything left your PC.</p>
               <div class="journey-time">30 seconds</div>
             </div>
           </div>
           <div class="journey-step fade-in">
             <div class="journey-num">03</div>
             <div class="journey-content">
-              <h3>Grant file access</h3>
-              <p>MC maps your directory structure — folder names, not file contents. Now it knows where your things live.</p>
+              <h3>Map your files</h3>
+              <p>MC reads folder names, not file contents. Now it knows where your work lives.</p>
               <div class="journey-time">5 minutes</div>
             </div>
           </div>
           <div class="journey-step fade-in">
             <div class="journey-num">04</div>
             <div class="journey-content">
-              <h3>The lens grows</h3>
-              <p>Over 50 queries, MC learns your domains, your patterns, your sensitive zones. The triangulation becomes real.</p>
+              <h3>Your lens grows</h3>
+              <p>After 50 queries, MC knows your domains, patterns, and sensitive zones.</p>
               <div class="journey-time">Weeks 1–4</div>
             </div>
           </div>
           <div class="journey-step fade-in">
             <div class="journey-num">05</div>
             <div class="journey-content">
-              <h3>The portal</h3>
-              <p>"Draft a response to the Acme escalation using the contract terms from my legal folder." One sentence. MC does the rest.</p>
+              <h3>Use the portal</h3>
+              <p>"Draft a response to Acme using the contract terms in my legal folder." One sentence. MC has the context.</p>
               <div class="journey-time">Months 2–6</div>
             </div>
           </div>
@@ -541,8 +535,7 @@
         <div class="final-cta-inner fade-in">
           <h2>Everything MC knows lives in files you can read, correct, or delete.</h2>
           <p>
-            Free. Open source. Local-first. No account required.
-            Everything MC knows lives in files you can read, correct, or delete.
+            Free. Open source. Runs on your PC. No account.
           </p>
           <div class="final-cta-install">
             <div class="download-buttons" style="justify-content: center;">
@@ -557,7 +550,7 @@
             </div>
             <span class="mobile-download-note">Download on your computer to get started</span>
           </div>
-          <p class="final-byline">AI you can answer for.</p>
+          <p class="final-byline">AI that never leaves the room.</p>
         </div>
       </div>
     </section>
@@ -570,7 +563,7 @@
       <div class="footer-inner">
         <div class="footer-brand">
           <span class="footer-logo">Mission Canvas</span>
-          <span class="footer-tagline">Local-first AI for private work.</span>
+          <span class="footer-tagline">AI for work you cannot leak.</span>
         </div>
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="https://github.com/pretendhome/mission-canvas" target="_blank" rel="noopener">GitHub</a>

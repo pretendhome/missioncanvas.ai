@@ -51,7 +51,7 @@ heroItems.forEach((el, i) => {
       secondary.textContent = 'Download for macOS';
       secondary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg';
     } else if (!isMac) {
-      primary.textContent = 'Download for Linux';
+      primary.textContent = 'Download Mac/Linux';
       primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';
     }
   }

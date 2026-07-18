@@ -629,8 +629,8 @@ ul, ol { list-style: none; }
 .trust-bar {
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding-block: var(--space-6);
-  background: var(--color-surface);
+  padding-block: var(--space-4);
+  background: transparent;
 }
 .trust-items {
   display: flex;
