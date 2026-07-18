@@ -87,137 +87,118 @@ heroItems.forEach((el, i) => {
   }
 })();
 
-// ── Demo window animation ─────────────────────────────────────────
-(function demoAnimation() {
-  const DEMOS = [
-    {
-      prompt: "Draft a response to the Acme escalation using the contract terms from my legal folder.",
-      chips: [
-        { text: '🔒 LOCAL ONLY', cls: 'chip chip-local' },
-        { text: 'MC-LEGAL-004', cls: 'chip chip-node' },
-        { text: 'legal lens', cls: 'chip chip-lens' },
-        { text: '3 sources', cls: 'chip chip-sources' },
-      ],
-      answer: "Based on Section 12.4 of the Master Services Agreement (March 2024), Acme's 72-hour SLA window began on July 14. The escalation clause requires written acknowledgment within 4 business hours of receipt. I've drafted the response using the indemnification language from Exhibit B...",
-      trace: ['SCAN:pass', 'CLASSIFY:contract_review', 'TRAVERSE:legal→fiduciary', 'BLOCKS_EXTERNAL:true', 'KL:3_entries', 'REASON:local', 'STORE:path_record'],
-    },
-    {
-      prompt: "What are the HIPAA audit requirements for AI decisions involving patient data?",
-      chips: [
-        { text: '🔒 LOCAL ONLY', cls: 'chip chip-local' },
-        { text: 'MC-HC-002', cls: 'chip chip-node' },
-        { text: 'clinical lens', cls: 'chip chip-lens' },
-        { text: '5 sources', cls: 'chip chip-sources' },
-      ],
-      answer: "Under HIPAA 2026 Final Rule (effective August 2, 2026), any AI-assisted decision involving PHI requires an immutable audit log — including model identity, query hash, and consent status. Mission Canvas generates this automatically on every query. Confidence: 0.91...",
-      trace: ['SCAN:PHI_detected', 'CLASSIFY:phi_data_mapping', 'BLOCKS_EXTERNAL:true', 'TIER:1_source', 'KL:5_entries', 'REASON:local', 'STORE:path_record'],
-    },
-    {
-      prompt: "What does the market expect from the Fed at the next two meetings?",
-      chips: [
-        { text: '⬡ EXTERNAL', cls: 'chip chip-external' },
-        { text: 'MC-FIN-003', cls: 'chip chip-node' },
-        { text: 'research mode', cls: 'chip chip-lens' },
-        { text: '4 sources', cls: 'chip chip-sources' },
-      ],
-      answer: "Fed funds futures as of July 17 imply an 84% probability of a hold at the July 30 meeting, with a 25bp cut priced at ~67% for September. CME FedWatch shows the market has repriced significantly since June CPI...",
-      trace: ['SCAN:pass', 'CLASSIFY:market_data', 'BLOCKS_EXTERNAL:false', 'ROUTE:external_research', 'KL:4_entries', 'REASON:cloud', 'STORE:path_record'],
-    },
-  ];
+// ── Hero product demo animation ──────────────────────────────────
+(function missionCanvasHeroDemo() {
+  const query =
+    'Draft a response to the Acme contract dispute using our terms from the Henderson file';
+  const answer =
+    'Based on the indemnification clause in §4.2 of the Henderson MSA and the three prior communications regarding delivery timelines, the recommended response addresses both the liability cap and the performance remedy...';
 
-  const promptEl    = document.getElementById('demoPrompt');
-  const cursorEl    = document.getElementById('demoCursor');
-  const chipsEl     = document.getElementById('demoChips');
-  const answerEl    = document.getElementById('demoAnswer');
-  const traceEl     = document.getElementById('demoTrace');
+  const cycleMs = 18000;
+  const timers = [];
+  const content = document.getElementById('mcDemoContent');
+  const input = document.getElementById('mcDemoInput');
+  const placeholder = document.getElementById('mcDemoPlaceholder');
+  const queryEl = document.getElementById('mcDemoQuery');
+  const responseArea = document.getElementById('mcResponseArea');
+  const responseText = document.getElementById('mcResponseText');
+  const sources = document.getElementById('mcSources');
+  const proof = document.getElementById('mcProof');
+  const chips = [
+    document.getElementById('mcChipOne'),
+    document.getElementById('mcChipTwo'),
+    document.getElementById('mcChipThree'),
+  ].filter(Boolean);
 
-  if (!promptEl) return;
+  if (!content || !input || !queryEl || !responseText) return;
 
-  let currentDemo = 0;
-  let animating = false;
-
-  async function sleep(ms) {
-    return new Promise(r => setTimeout(r, ms));
+  function at(delay, fn) {
+    timers.push(window.setTimeout(fn, delay));
   }
 
-  async function typeText(el, text, speed = 28) {
-    el.textContent = '';
-    for (const char of text) {
-      el.textContent += char;
-      await sleep(speed + Math.random() * 20);
+  function clearTimers() {
+    while (timers.length) {
+      window.clearTimeout(timers.pop());
     }
   }
 
-  async function revealText(el, text, chunkSize = 4) {
-    el.textContent = '';
-    const words = text.split(' ');
-    for (let i = 0; i < words.length; i += chunkSize) {
-      el.textContent += words.slice(i, i + chunkSize).join(' ') + ' ';
-      await sleep(60);
-    }
+  function reset() {
+    content.classList.remove('mc-demo-resetting');
+    input.classList.remove('typing');
+    responseArea?.classList.remove('streaming');
+    if (placeholder) placeholder.style.display = '';
+    queryEl.textContent = '';
+    responseText.textContent = '';
+    chips.forEach((chip) => chip.classList.remove('visible'));
+    sources?.classList.remove('visible');
+    proof?.classList.remove('visible');
   }
 
-  async function runDemo(demo) {
-    if (animating) return;
-    animating = true;
+  function typeQuery() {
+    input.classList.add('typing');
+    if (placeholder) placeholder.style.display = 'none';
+    queryEl.textContent = '';
 
-    // Reset
-    promptEl.textContent = '';
-    chipsEl.innerHTML = '';
-    answerEl.textContent = '';
-    traceEl.innerHTML = '';
-    if (cursorEl) cursorEl.style.display = 'inline';
-
-    // Type the prompt
-    await typeText(promptEl, demo.prompt, 22);
-
-    await sleep(400);
-
-    // Hide cursor, show "thinking" state
-    if (cursorEl) cursorEl.style.display = 'none';
-    await sleep(300);
-
-    // Add governance chips one by one
-    for (const chip of demo.chips) {
-      const span = document.createElement('span');
-      span.className = chip.cls;
-      span.textContent = chip.text;
-      span.style.opacity = '0';
-      span.style.transform = 'scale(0.85)';
-      span.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-      chipsEl.appendChild(span);
-      await sleep(30);
-      requestAnimationFrame(() => {
-        span.style.opacity = '1';
-        span.style.transform = 'scale(1)';
+    const stepMs = 4000 / query.length;
+    [...query].forEach((char, index) => {
+      at(index * stepMs, () => {
+        queryEl.textContent += char;
       });
-      await sleep(180);
-    }
+    });
 
-    await sleep(200);
-
-    // Stream the answer
-    await revealText(answerEl, demo.answer, 3);
-
-    await sleep(300);
-
-    // Show pipeline trace items
-    for (const t of demo.trace) {
-      const div = document.createElement('span');
-      div.className = 'demo-trace-item';
-      div.textContent = t;
-      traceEl.appendChild(div);
-      await sleep(80);
-    }
-
-    await sleep(3500);
-    animating = false;
-
-    // Next demo
-    currentDemo = (currentDemo + 1) % DEMOS.length;
-    runDemo(DEMOS[currentDemo]);
+    at(4000, () => input.classList.remove('typing'));
   }
 
-  // Start after hero is visible
-  setTimeout(() => runDemo(DEMOS[0]), 1200);
+  function streamAnswer() {
+    responseArea?.classList.add('streaming');
+    responseText.textContent = '';
+
+    const tokens = answer.split(/(\s+)/);
+    const wordMs = 1000 / 15;
+    let wordIndex = 0;
+
+    tokens.forEach((token) => {
+      const isSpace = /^\s+$/.test(token);
+      const delay = wordIndex * wordMs;
+      at(delay, () => {
+        responseText.textContent += token;
+      });
+      if (!isSpace) wordIndex += 1;
+    });
+
+    at(Math.min(5000, wordIndex * wordMs + 250), () => {
+      responseArea?.classList.remove('streaming');
+    });
+  }
+
+  function showCompleteState() {
+    if (placeholder) placeholder.style.display = 'none';
+    queryEl.textContent = query;
+    responseText.textContent = answer;
+    chips.forEach((chip) => chip.classList.add('visible'));
+    sources?.classList.add('visible');
+    proof?.classList.add('visible');
+  }
+
+  function play() {
+    clearTimers();
+    reset();
+
+    typeQuery();
+    chips.forEach((chip, index) => {
+      at(4000 + index * 300, () => chip.classList.add('visible'));
+    });
+    at(6000, () => sources?.classList.add('visible'));
+    at(9000, streamAnswer);
+    at(14000, () => proof?.classList.add('visible'));
+    at(17500, () => content.classList.add('mc-demo-resetting'));
+    at(cycleMs, play);
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    showCompleteState();
+    return;
+  }
+
+  at(1200, play);
 })();
