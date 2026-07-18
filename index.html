@@ -93,27 +93,62 @@
 
       </div>
 
-      <!-- Animated governance demo -->
+      <!-- Animated product demo -->
       <div class="pipeline-demo fade-in" aria-hidden="true">
-        <div style="text-align: center; margin-bottom: 20px;">
-          <img src="mc-with-fade.png" alt="Mission Canvas" height="120" />
-        </div>
-        <div class="demo-window">
-          <div class="demo-titlebar">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-            <span class="demo-title">Mission Canvas</span>
-          </div>
-          <div class="demo-body">
-            <div class="demo-prompt-row">
-              <span class="demo-prompt-label">You</span>
-              <span class="demo-prompt-text" id="demoPrompt"></span>
-              <span class="demo-cursor" id="demoCursor">▋</span>
+        <div class="mc-demo-window">
+          <div class="mc-demo-titlebar">
+            <div class="mc-demo-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
             </div>
-            <div class="demo-chips" id="demoChips"></div>
-            <div class="demo-answer" id="demoAnswer"></div>
-            <div class="demo-trace" id="demoTrace"></div>
+            <span class="mc-demo-title">Mission Canvas</span>
+          </div>
+          <div class="mc-demo-app">
+            <div class="mc-demo-sidebar">
+              <span class="mc-side-icon mc-side-mail"></span>
+              <span class="mc-side-icon mc-side-calendar"></span>
+              <span class="mc-side-icon mc-side-check"></span>
+              <span class="mc-side-icon mc-side-chat"></span>
+            </div>
+            <div class="mc-demo-content" id="mcDemoContent">
+              <div class="mc-demo-workspace">
+                <div class="mc-demo-chips">
+                  <span class="mc-gov-chip mc-chip-amber" id="mcChipOne">MC-LEGAL-004 · Contract Review</span>
+                  <span class="mc-gov-chip mc-chip-green" id="mcChipTwo">LOCAL</span>
+                  <span class="mc-gov-chip mc-chip-red" id="mcChipThree">Privileged — external blocked</span>
+                </div>
+
+                <div class="mc-demo-main">
+                  <div class="mc-demo-response" id="mcResponseArea">
+                    <p><span id="mcResponseText"></span><span class="mc-stream-caret" aria-hidden="true"></span></p>
+                    <div class="mc-demo-proof" id="mcProof">3 sources · 0 external calls · Local model · 2.1s</div>
+                  </div>
+
+                  <div class="mc-demo-sources" id="mcSources">
+                    <div class="mc-sources-title">Sources pulled:</div>
+                    <div class="mc-source-line">
+                      <span class="mc-source-icon"></span>
+                      <span>Henderson_v_Acme_2025.pdf</span>
+                    </div>
+                    <div class="mc-source-line">
+                      <span class="mc-source-icon"></span>
+                      <span>Master_Services_Agreement.docx</span>
+                    </div>
+                    <div class="mc-source-line">
+                      <span class="mc-source-icon mc-source-mail"></span>
+                      <span>Prior correspondence (3 emails)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mc-demo-input" id="mcDemoInput">
+                <span class="mc-demo-placeholder" id="mcDemoPlaceholder">Ask Mission Canvas...</span>
+                <span class="mc-demo-query" id="mcDemoQuery"></span>
+                <span class="mc-input-caret" aria-hidden="true"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
