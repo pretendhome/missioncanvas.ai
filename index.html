@@ -1,89 +1,106 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mission Canvas - AI you can answer for.</title>
-  <meta name="description" content="One workspace for professional AI over your email, calendar, files, and client work - running on your machine.">
+  <meta name="description" content="Mission Canvas connects professional work to AI that runs on your machine.">
   <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="icon.svg">
   <style>
     *{box-sizing:border-box}html,body{margin:0;background:#0a0a0a;color:#e0e0e0}
-    body{min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
-    main{width:min(100%,640px);margin:0 auto;padding:72px 24px 40px}
-    section,footer{border-top:1px solid #1a1a1a;padding:86px 0}
-    .hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 0 84px;border-top:0}
-    .mark{display:grid;place-items:center;width:36px;height:36px;margin-bottom:46px;border:1px solid #262626;border-radius:8px;color:#fff;font-size:12px;font-weight:700}
-    h1,h2{margin:0;color:#fff;font-weight:650;letter-spacing:0}h1{max-width:620px;font-size:clamp(44px,9vw,72px);line-height:1.04}
-    h2{margin-bottom:18px;font-size:26px;line-height:1.2}p{margin:0;color:#e0e0e0;font-size:18px}
-    .subtitle{max-width:590px;margin-top:24px;color:#b8b8b8;font-size:22px;line-height:1.45}
-    .downloads{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:42px}
-    .download{display:inline-flex;min-height:56px;align-items:center;justify-content:center;padding:0 28px;border-radius:12px;background:#4ade80;color:#08110b;font-size:17px;font-weight:700;text-decoration:none}
-    .download:hover{background:#65ec94}.mobile-note{display:none}.trust-strip{margin-top:18px;color:#888;font-size:15px}.story+.story{margin-top:32px}
-    .flow{display:grid;grid-template-columns:1fr auto 1.2fr auto 1fr;align-items:center;gap:14px;margin:6px 0 30px;padding:24px 20px;border:1px solid #1a1a1a;border-radius:8px;color:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;line-height:1.45}
-    .flow small{display:block;margin-top:2px;color:#888;font-size:13px}.arrow{color:#4ade80}.close{text-align:center;padding-bottom:72px}.close .downloads{margin-top:0}.close p{margin-top:32px;color:#b8b8b8}
-    footer{padding:34px 0 0;text-align:center;color:#888;font-size:14px}footer a{color:#888;text-decoration:none}footer a:hover{color:#4ade80}
-    .js .download{display:none}.js .download.active{display:inline-flex}
-    @media(max-width:640px){
-      main{padding:44px 22px 32px}section{padding:72px 0}.hero{min-height:auto;padding:34px 0 74px}.mark{margin-bottom:38px}
-      h1{font-size:42px}h2{font-size:23px}p{font-size:17px}.subtitle{font-size:19px}.js .downloads .download{display:none}
-      .js .mobile-note{display:inline-flex;min-height:56px;align-items:center;justify-content:center;padding:0 22px;border:1px solid #24482f;border-radius:12px;color:#4ade80;font-size:16px;font-weight:700}
-      .flow{grid-template-columns:1fr;gap:10px;text-align:center}.arrow{transform:rotate(90deg)}
+    body{min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
+    a{color:inherit}.wrap{width:min(100%,1080px);margin:0 auto;padding:0 24px}
+    section{padding:80px 0}.hero{padding:64px 0 72px;text-align:center}
+    .logo-badge{display:inline-flex;align-items:center;justify-content:center;width:min(78vw,220px);margin-bottom:46px;padding:16px 18px;background:#fff;border-radius:14px;box-shadow:0 22px 70px rgba(255,255,255,.08)}
+    .logo-badge img{display:block;width:100%;height:auto}h1,h2,h3,p{margin:0}
+    h1{color:#fff;font-size:clamp(48px,8vw,92px);line-height:.98;font-weight:720;letter-spacing:0}
+    .subtitle{max-width:720px;margin:24px auto 0;color:#b8b8b8;font-size:clamp(19px,2.4vw,25px)}
+    #hero-mockup{max-width:800px;margin:54px auto 0;border:1px solid #2a2a2a;border-radius:12px;background:#141414;text-align:left;box-shadow:0 30px 90px rgba(0,0,0,.45);overflow:hidden}
+    .window-bar{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-bottom:1px solid #252525;color:#666;font-size:13px}
+    .dot{width:10px;height:10px;border-radius:50%;background:#ef4444}.dot:nth-child(2){background:#f59e0b}.dot:nth-child(3){background:#4ade80}.title{margin-left:8px}
+    .mock-body{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;padding:28px}
+    .query{padding:18px 20px;border:1px solid #2a2a2a;border-radius:10px;background:#101010;color:#fff;font-size:18px;line-height:1.45}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.chip{padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
+    .amber{background:rgba(245,158,11,.13);color:#f59e0b;border:1px solid rgba(245,158,11,.35)}.green{background:rgba(74,222,128,.13);color:#4ade80;border:1px solid rgba(74,222,128,.35)}.red{background:rgba(239,68,68,.13);color:#ef4444;border:1px solid rgba(239,68,68,.35)}
+    .response{margin-top:18px;color:#d8d8d8;font-size:16px}.side{border-left:1px solid #252525;padding-left:22px}.side h3{color:#fff;font-size:14px;margin-bottom:12px}
+    .sources{list-style:none;margin:0;padding:0;color:#999;font-size:14px}.sources li{padding:10px 0;border-bottom:1px solid #242424}.summary{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;padding-top:18px;border-top:1px solid #252525;color:#888;font-size:13px}
+    .download-buttons{display:flex;justify-content:center;gap:14px;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 32px;border-radius:8px;font-weight:750;text-decoration:none}
+    .btn-primary{background:#4ade80;color:#071109}.btn-secondary{border:1px solid #3a3a3a;color:#e0e0e0;background:transparent}.btn-primary:hover{background:#65ec94}.btn-secondary:hover{border-color:#4ade80;color:#fff}
+    .hero-meta,.mobile-note{margin-top:16px;color:#888;font-size:15px}.mobile-note{display:none}
+    .trust-divider{display:flex;align-items:center;gap:20px;padding:62px 0;color:#666;text-align:center;font-size:16px}.trust-divider:before,.trust-divider:after{content:"";height:1px;flex:1;background:#1a1a1a}
+    .identity{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{min-height:250px;padding:32px;border:1px solid #2a2a2a;border-radius:12px;background:#141414;transition:border-color .18s,transform .18s}
+    .card:hover{border-color:#3a3a3a;transform:translateY(-3px)}.icon{font-size:34px}.card h2{margin-top:22px;color:#fff;font-size:24px}.card p{margin-top:14px;color:#999;font-size:17px}
+    .flow{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:36px;border:1px solid #2a2a2a;border-radius:12px;background:#141414}.node{flex:1;color:#fff;font-size:22px;font-weight:700}.node small{display:block;margin-top:8px;color:#888;font-size:16px;font-weight:500}.arrow{color:#4ade80;font-size:36px;line-height:1}
+    .local-line{margin-top:28px;text-align:center;color:#e0e0e0;font-size:21px}.cta{text-align:center}.cta-copy{margin-top:24px;color:#888;font-size:18px}
+    footer{padding:10px 0 70px;text-align:center;color:#666;font-size:14px}footer a{text-decoration:none;color:#888}footer a:hover{color:#4ade80}
+    @media(max-width:760px){
+      .wrap{padding:0 20px}.hero{padding-top:44px}section{padding:64px 0}.logo-badge{margin-bottom:34px}.mock-body{grid-template-columns:1fr;padding:20px}.side{border-left:0;border-top:1px solid #252525;padding:18px 0 0}
+      .download-buttons{flex-direction:column}.btn{width:100%}.mobile .btn{background:transparent;color:#e0e0e0;border:1px solid #3a3a3a}.mobile .mobile-note{display:block}.identity{grid-template-columns:1fr}.card{min-height:auto}
+      .trust-divider{padding:52px 0}.flow{flex-direction:column;text-align:center;padding:28px}.arrow{transform:rotate(90deg)}.local-line{font-size:18px}
     }
   </style>
-  <script>document.documentElement.className='js';</script>
 </head>
 <body>
   <main>
-    <section class="hero" aria-labelledby="headline">
-      <div class="mark" aria-label="Mission Canvas logo">MC</div>
-      <h1 id="headline">AI you can answer for.</h1>
-      <p class="subtitle">Your email, calendar, files, and client work — in one AI workspace that runs on your machine.</p>
-      <div class="downloads" aria-label="Downloads">
-        <a class="download platform-mac" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
-        <a class="download platform-win" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
-        <a class="download platform-linux" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage">Download for Linux</a>
-        <span class="mobile-note">Available for Mac, Windows, and Linux</span>
+    <section class="hero wrap">
+      <div class="logo-badge"><img src="logo-mc.png" alt="Mission Canvas"></div>
+      <h1>AI you can answer for.</h1>
+      <p class="subtitle">Your email, calendar, files, and client work — connected to AI that runs on your machine.</p>
+      <div id="hero-mockup" aria-label="Mission Canvas app preview">
+        <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="title">Mission Canvas</span></div>
+        <div class="mock-body">
+          <div>
+            <div class="query">Draft a response to the Acme contract dispute using our terms from the Henderson file</div>
+            <div class="chips"><span class="chip amber">MC-LEGAL-004 · Contract Review</span><span class="chip green">LOCAL</span><span class="chip red">Privileged — external blocked</span></div>
+            <p class="response">Based on the indemnification clause in §4.2, your strongest response is to separate the service-credit issue from the termination claim...</p>
+          </div>
+          <aside class="side">
+            <h3>Sources</h3>
+            <ul class="sources"><li>Henderson PDF</li><li>MSA doc</li><li>3 emails</li></ul>
+          </aside>
+          <div class="summary"><span>3 sources</span><span>·</span><span>0 external calls</span><span>·</span><span>Local model</span><span>·</span><span>2.1s</span></div>
+        </div>
       </div>
-      <p class="trust-strip">Free&nbsp;&nbsp;·&nbsp;&nbsp;Runs locally&nbsp;&nbsp;·&nbsp;&nbsp;No account</p>
-    </section>
-    <section aria-labelledby="trust">
-      <h2 id="trust">Everything stays on your machine.</h2>
-      <p>MC can reason across your emails, documents, financial records, and client files. They never leave unless you say so — and you can verify that anytime. Not even us can see your data.</p>
-    </section>
-    <section aria-label="Professional examples">
-      <p class="story">A lawyer drafts a brief. MC cross-references contract files and weeks of research — without a privileged fact leaving the machine.</p>
-      <p class="story">A teacher starts the morning. MC surfaces which students need follow-up, from observations and learner notes only they can see.</p>
-      <p class="story">An MSP triages 50 tickets. MC parses, prioritizes, and syncs to the PSA — no client data crosses contexts.</p>
-    </section>
-    <section aria-labelledby="how">
-      <h2 id="how">How it works</h2>
-      <div class="flow" aria-label="You ask, MC sorts the work before AI touches it, answer plus record nothing leaked">
-        <span>You ask</span><span class="arrow">──→</span>
-        <span>MC sorts the work<small>before AI<br>touches it</small></span>
-        <span class="arrow">──→</span><span>Answer + record<small>right place<br>nothing leaked</small></span>
+      <div class="download-buttons">
+        <a class="btn btn-primary" id="btn-mac" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
+        <a class="btn btn-secondary" id="btn-win" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
       </div>
-      <p>Every question is sorted before AI answers it. Legal stays local. Medical stays local. Financial stays local. Everything else: sourced, cited, traceable — with a record you can show.</p>
+      <p class="mobile-note">Download on your computer</p>
+      <p class="hero-meta">Free · Runs locally · No account</p>
     </section>
-    <section class="close" aria-label="Download Mission Canvas">
-      <div class="downloads" aria-label="Downloads">
-        <a class="download platform-mac" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
-        <a class="download platform-win" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
-        <a class="download platform-linux" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage">Download for Linux</a>
-        <span class="mobile-note">Available for Mac, Windows, and Linux</span>
+    <div class="trust-divider wrap">Everything stays on your machine. Not even us can see it.</div>
+    <section class="wrap identity">
+      <article class="card"><div class="icon">⚖</div><h2>Legal</h2><p>Draft briefs from case files. Nothing privileged leaves the machine.</p></article>
+      <article class="card"><div class="icon">🏥</div><h2>Healthcare</h2><p>Clinical Q&amp;A with patient data that never leaves.</p></article>
+      <article class="card"><div class="icon">🎫</div><h2>IT Services</h2><p>Triage 50 client tickets without mixing their data.</p></article>
+    </section>
+    <section class="wrap">
+      <div class="flow">
+        <div class="node">You ask</div><div class="arrow">→</div>
+        <div class="node">MC sorts before<small>AI touches it</small></div><div class="arrow">→</div>
+        <div class="node">Right answer<small>right place<br>nothing leaked</small></div>
       </div>
-      <p>Everything MC knows lives in files you can read, correct, or delete.</p>
+      <p class="local-line">Legal stays local. Medical stays local. Financial stays local.</p>
     </section>
-    <footer>
-      <a href="https://github.com/pretendhome/mission-canvas">GitHub</a>
-      &nbsp;·&nbsp; <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a>
-      &nbsp;·&nbsp; <a href="https://github.com/pretendhome/mission-canvas/blob/main/LICENSE">AGPL-3.0</a>
-    </footer>
+    <section class="wrap cta">
+      <div class="download-buttons">
+        <a class="btn btn-primary" id="btn-mac-2" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
+        <a class="btn btn-secondary" id="btn-win-2" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
+      </div>
+      <p class="mobile-note">Download on your computer</p>
+      <p class="cta-copy">Everything MC knows lives in files you can read, correct, or delete.</p>
+    </section>
   </main>
+  <footer class="wrap"><a href="https://github.com/pretendhome/mission-canvas">GitHub</a> · <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a> · <a href="https://github.com/pretendhome/mission-canvas/blob/main/LICENSE">AGPL-3.0</a></footer>
   <script>
     (function(){
       var p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';
-      var target=/Win/.test(p)?'win':(/Mac/.test(p)?'mac':'linux');
-      document.querySelectorAll('.platform-'+target).forEach(function(link){link.classList.add('active');});
+      var isWin=/Win/.test(p),isMac=/Mac/.test(p),isMobile=/Android|iPhone|iPad|iPod/.test(navigator.userAgent)||innerWidth<760;
+      var mac=[document.getElementById('btn-mac'),document.getElementById('btn-mac-2')],win=[document.getElementById('btn-win'),document.getElementById('btn-win-2')];
+      if(isMobile){document.body.classList.add('mobile');return;}
+      if(isWin){mac.forEach(function(b){b.className='btn btn-secondary'});win.forEach(function(b){b.className='btn btn-primary'});}
+      if(!isMac&&!isWin){mac.forEach(function(b){b.textContent='Download for Linux';b.href='https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';b.className='btn btn-primary'});win.forEach(function(b){b.className='btn btn-secondary'});}
     })();
   </script>
 </body>
