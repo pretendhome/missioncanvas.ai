@@ -1,107 +1,588 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mission Canvas - AI you can answer for.</title>
-  <meta name="description" content="Mission Canvas connects professional work to AI that runs on your machine.">
-  <meta name="theme-color" content="#0a0a0a">
-  <link rel="icon" href="icon.svg">
-  <style>
-    *{box-sizing:border-box}html,body{margin:0;background:#0a0a0a;color:#e0e0e0}
-    body{min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
-    a{color:inherit}.wrap{width:min(100%,1080px);margin:0 auto;padding:0 24px}
-    section{padding:80px 0}.hero{padding:64px 0 72px;text-align:center}
-    .logo-badge{display:inline-flex;align-items:center;justify-content:center;width:min(78vw,220px);margin-bottom:46px;padding:16px 18px;background:#fff;border-radius:14px;box-shadow:0 22px 70px rgba(255,255,255,.08)}
-    .logo-badge img{display:block;width:100%;height:auto}h1,h2,h3,p{margin:0}
-    h1{color:#fff;font-size:clamp(48px,8vw,92px);line-height:.98;font-weight:720;letter-spacing:0}
-    .subtitle{max-width:720px;margin:24px auto 0;color:#b8b8b8;font-size:clamp(19px,2.4vw,25px)}
-    #hero-mockup{max-width:800px;margin:54px auto 0;border:1px solid #2a2a2a;border-radius:12px;background:#141414;text-align:left;box-shadow:0 30px 90px rgba(0,0,0,.45);overflow:hidden}
-    .window-bar{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-bottom:1px solid #252525;color:#666;font-size:13px}
-    .dot{width:10px;height:10px;border-radius:50%;background:#ef4444}.dot:nth-child(2){background:#f59e0b}.dot:nth-child(3){background:#4ade80}.title{margin-left:8px}
-    .mock-body{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;padding:28px}
-    .query{padding:18px 20px;border:1px solid #2a2a2a;border-radius:10px;background:#101010;color:#fff;font-size:18px;line-height:1.45}
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.chip{padding:7px 10px;border-radius:999px;font-size:12px;font-weight:700}
-    .amber{background:rgba(245,158,11,.13);color:#f59e0b;border:1px solid rgba(245,158,11,.35)}.green{background:rgba(74,222,128,.13);color:#4ade80;border:1px solid rgba(74,222,128,.35)}.red{background:rgba(239,68,68,.13);color:#ef4444;border:1px solid rgba(239,68,68,.35)}
-    .response{margin-top:18px;color:#d8d8d8;font-size:16px}.side{border-left:1px solid #252525;padding-left:22px}.side h3{color:#fff;font-size:14px;margin-bottom:12px}
-    .sources{list-style:none;margin:0;padding:0;color:#999;font-size:14px}.sources li{padding:10px 0;border-bottom:1px solid #242424}.summary{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px;padding-top:18px;border-top:1px solid #252525;color:#888;font-size:13px}
-    .download-buttons{display:flex;justify-content:center;gap:14px;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 32px;border-radius:8px;font-weight:750;text-decoration:none}
-    .btn-primary{background:#4ade80;color:#071109}.btn-secondary{border:1px solid #3a3a3a;color:#e0e0e0;background:transparent}.btn-primary:hover{background:#65ec94}.btn-secondary:hover{border-color:#4ade80;color:#fff}
-    .hero-meta,.mobile-note{margin-top:16px;color:#888;font-size:15px}.mobile-note{display:none}
-    .trust-divider{display:flex;align-items:center;gap:20px;padding:62px 0;color:#666;text-align:center;font-size:16px}.trust-divider:before,.trust-divider:after{content:"";height:1px;flex:1;background:#1a1a1a}
-    .identity{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{min-height:250px;padding:32px;border:1px solid #2a2a2a;border-radius:12px;background:#141414;transition:border-color .18s,transform .18s}
-    .card:hover{border-color:#3a3a3a;transform:translateY(-3px)}.icon{font-size:34px}.card h2{margin-top:22px;color:#fff;font-size:24px}.card p{margin-top:14px;color:#999;font-size:17px}
-    .flow{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:36px;border:1px solid #2a2a2a;border-radius:12px;background:#141414}.node{flex:1;color:#fff;font-size:22px;font-weight:700}.node small{display:block;margin-top:8px;color:#888;font-size:16px;font-weight:500}.arrow{color:#4ade80;font-size:36px;line-height:1}
-    .local-line{margin-top:28px;text-align:center;color:#e0e0e0;font-size:21px}.cta{text-align:center}.cta-copy{margin-top:24px;color:#888;font-size:18px}
-    footer{padding:10px 0 70px;text-align:center;color:#666;font-size:14px}footer a{text-decoration:none;color:#888}footer a:hover{color:#4ade80}
-    @media(max-width:760px){
-      .wrap{padding:0 20px}.hero{padding-top:44px}section{padding:64px 0}.logo-badge{margin-bottom:34px}.mock-body{grid-template-columns:1fr;padding:20px}.side{border-left:0;border-top:1px solid #252525;padding:18px 0 0}
-      .download-buttons{flex-direction:column}.btn{width:100%}.mobile .btn{background:transparent;color:#e0e0e0;border:1px solid #3a3a3a}.mobile .mobile-note{display:block}.identity{grid-template-columns:1fr}.card{min-height:auto}
-      .trust-divider{padding:52px 0}.flow{flex-direction:column;text-align:center;padding:28px}.arrow{transform:rotate(90deg)}.local-line{font-size:18px}
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Canvas — AI you can answer for.</title>
+  <meta name="description" content="One interface for your email, calendar, files, and client work — connected to AI that runs on your machine." />
+  <meta property="og:title" content="Mission Canvas — AI you can answer for." />
+  <meta property="og:description" content="One interface for your email, calendar, files, and client work — connected to AI that runs on your machine." />
+  <meta property="og:image" content="https://missioncanvas.ai/og.png" />
+  <meta name="theme-color" content="#0d0d0b" />
+
+  <!-- Fonts: Cabinet Grotesk (display) + Satoshi (body) — precise, modern, not generic -->
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <!-- JetBrains Mono for terminal/code elements -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Mission Canvas home">
+        <img src="logo-mc.png" alt="Mission Canvas" height="28" />
+        <span>Mission Canvas</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="https://github.com/pretendhome/mission-canvas" target="_blank" rel="noopener">GitHub</a>
+        <a href="#docs">Docs</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button data-theme-toggle aria-label="Switch to light mode" class="theme-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#final-cta" class="btn btn-primary btn-sm">Download</a>
+      </div>
+    </div>
+  </header>
+
   <main>
-    <section class="hero wrap">
-      <div class="logo-badge"><img src="logo-mc.png" alt="Mission Canvas"></div>
-      <h1>AI you can answer for.</h1>
-      <p class="subtitle">Your email, calendar, files, and client work — connected to AI that runs on your machine.</p>
-      <div id="hero-mockup" aria-label="Mission Canvas app preview">
-        <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="title">Mission Canvas</span></div>
-        <div class="mock-body">
-          <div>
-            <div class="query">Draft a response to the Acme contract dispute using our terms from the Henderson file</div>
-            <div class="chips"><span class="chip amber">MC-LEGAL-004 · Contract Review</span><span class="chip green">LOCAL</span><span class="chip red">Privileged — external blocked</span></div>
-            <p class="response">Based on the indemnification clause in §4.2, your strongest response is to separate the service-credit issue from the termination claim...</p>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-inner">
+
+        <div class="hero-eyebrow fade-in">
+          <span class="chip chip-local">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+            Local-first
+          </span>
+          <span class="chip chip-open">Open source</span>
+        </div>
+
+        <h1 class="hero-headline fade-in">
+          AI you can<br/>
+          <em>answer for.</em>
+        </h1>
+
+        <p class="hero-sub fade-in">
+          One interface for your email, calendar, files, and client work —
+          connected to AI that runs on your machine and never shares
+          what you don't want shared.
+        </p>
+
+        <div class="hero-ctas fade-in">
+          <div class="download-buttons">
+            <a class="btn btn-download btn-primary" id="btn-primary-dl"
+               href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">
+              Download for macOS
+            </a>
+            <a class="btn btn-download btn-ghost" id="btn-secondary-dl"
+               href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">
+              Download for Windows
+            </a>
           </div>
-          <aside class="side">
-            <h3>Sources</h3>
-            <ul class="sources"><li>Henderson PDF</li><li>MSA doc</li><li>3 emails</li></ul>
-          </aside>
-          <div class="summary"><span>3 sources</span><span>·</span><span>0 external calls</span><span>·</span><span>Local model</span><span>·</span><span>2.1s</span></div>
+          <span class="hero-trust fade-in">Free · Runs locally · No account required</span>
+          <span class="mobile-download-note">Download on your computer to get started</span>
+        </div>
+
+        <p class="hero-trust fade-in">
+          Not even us can see your data. And you can verify that anytime.
+        </p>
+
+      </div>
+
+      <!-- Animated governance demo -->
+      <div class="pipeline-demo fade-in" aria-hidden="true">
+        <div class="demo-window">
+          <div class="demo-titlebar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="demo-title">Mission Canvas</span>
+          </div>
+          <div class="demo-body">
+            <div class="demo-prompt-row">
+              <span class="demo-prompt-label">You</span>
+              <span class="demo-prompt-text" id="demoPrompt"></span>
+              <span class="demo-cursor" id="demoCursor">▋</span>
+            </div>
+            <div class="demo-chips" id="demoChips"></div>
+            <div class="demo-answer" id="demoAnswer"></div>
+            <div class="demo-trace" id="demoTrace"></div>
+          </div>
         </div>
       </div>
-      <div class="download-buttons">
-        <a class="btn btn-primary" id="btn-mac" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
-        <a class="btn btn-secondary" id="btn-win" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="trust-bar" aria-label="Trust signals">
+      <div class="container">
+        <div class="trust-items">
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Socket-level egress firewall</span>
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Every decision is explainable</span>
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>2,353 tests. All passing.</span>
+          </div>
+          <div class="trust-divider" aria-hidden="true"></div>
+          <div class="trust-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>No telemetry. No accounts.</span>
+          </div>
+        </div>
       </div>
-      <p class="mobile-note">Download on your computer</p>
-      <p class="hero-meta">Free · Runs locally · No account</p>
     </section>
-    <div class="trust-divider wrap">Everything stays on your machine. Not even us can see it.</div>
-    <section class="wrap identity">
-      <article class="card"><div class="icon">⚖</div><h2>Legal</h2><p>Draft briefs from case files. Nothing privileged leaves the machine.</p></article>
-      <article class="card"><div class="icon">🏥</div><h2>Healthcare</h2><p>Clinical Q&amp;A with patient data that never leaves.</p></article>
-      <article class="card"><div class="icon">🎫</div><h2>IT Services</h2><p>Triage 50 client tickets without mixing their data.</p></article>
-    </section>
-    <section class="wrap">
-      <div class="flow">
-        <div class="node">You ask</div><div class="arrow">→</div>
-        <div class="node">MC sorts before<small>AI touches it</small></div><div class="arrow">→</div>
-        <div class="node">Right answer<small>right place<br>nothing leaked</small></div>
+
+    <!-- HOW IT WORKS — the pipeline -->
+    <section class="how-it-works" id="how-it-works" aria-label="How it works">
+      <div class="container">
+        <div class="section-label fade-in">How it works</div>
+        <h2 class="section-headline fade-in">
+          The model is always<br/>the last step.
+        </h2>
+        <p class="section-sub fade-in">
+          Every other AI tool sends your query to a model and hopes for the best.
+          Mission Canvas classifies your intent, retrieves evidence-tiered knowledge,
+          and applies governance rules — before any model fires.
+        </p>
+
+        <div class="pipeline" aria-label="9-step governed pipeline">
+          <div class="pipeline-step fade-in" data-step="0">
+            <div class="step-num">SCAN</div>
+            <div class="step-body">
+              <h3>Entry gate</h3>
+              <p>PII and PHI detected and stripped before classification. Fail-closed.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
+
+          <div class="pipeline-step fade-in" data-step="1">
+            <div class="step-num">CLASSIFY</div>
+            <div class="step-body">
+              <h3>Ontology routing</h3>
+              <p>312-node ontology. Keyword → BM25 → LLM fallback. Confidence scored.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
+
+          <div class="pipeline-step fade-in step-highlight" data-step="2">
+            <div class="step-num">GOVERN</div>
+            <div class="step-body">
+              <h3>Architectural enforcement</h3>
+              <p>Sensitive domains block external calls. Not a config. A structural gate.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
+
+          <div class="pipeline-step fade-in" data-step="3">
+            <div class="step-num">RETRIEVE</div>
+            <div class="step-body">
+              <h3>Evidence-tiered knowledge</h3>
+              <p>219+ knowledge entries. Freshness-scored. Stale entries filtered before REASON.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
+
+          <div class="pipeline-step fade-in step-terminal" data-step="4">
+            <div class="step-num">REASON</div>
+            <div class="step-body">
+              <h3>Model fires last</h3>
+              <p>Full structured context assembled. Local or cloud — based on governance, not cost.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-footer fade-in">
+          <div class="chip chip-always">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            STORE always fires — every query produces an immutable path record
+          </div>
+        </div>
       </div>
-      <p class="local-line">Legal stays local. Medical stays local. Financial stays local.</p>
     </section>
-    <section class="wrap cta">
-      <div class="download-buttons">
-        <a class="btn btn-primary" id="btn-mac-2" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">Download for macOS</a>
-        <a class="btn btn-secondary" id="btn-win-2" href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">Download for Windows</a>
+
+    <!-- USE CASES — the Harvey moment: you see yourself -->
+    <section class="use-cases" id="use-cases" aria-label="Who uses Mission Canvas">
+      <div class="container">
+        <div class="section-label fade-in">Who it's for</div>
+        <h2 class="section-headline fade-in">
+          Work that demands<br/>to stay private.
+        </h2>
+
+        <div class="cases-grid">
+
+          <div class="case-card fade-in" data-domain="legal">
+            <div class="case-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="case-chips">
+              <span class="chip chip-local chip-sm">LOCAL ONLY</span>
+              <span class="chip chip-node chip-sm">MC-LEGAL-004</span>
+            </div>
+            <h3>Legal</h3>
+            <p>
+              A federal court ruled in February 2026 that using a cloud AI to process
+              privileged communications can void attorney-client privilege.
+              Mission Canvas routes all legal queries locally — by architecture, not contract.
+            </p>
+            <div class="case-proof">
+              <span class="proof-label">After <em>United States v. Heppner</em> (SDNY, Feb 2026)</span>
+            </div>
+          </div>
+
+          <div class="case-card fade-in" data-domain="healthcare">
+            <div class="case-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="case-chips">
+              <span class="chip chip-local chip-sm">LOCAL ONLY</span>
+              <span class="chip chip-node chip-sm">MC-HC-001</span>
+            </div>
+            <h3>Healthcare</h3>
+            <p>
+              HIPAA 2026 (effective August 2, 2026) requires an audit log for every AI interaction
+              involving PHI. Mission Canvas produces an immutable path record for every query —
+              automatically, without configuration.
+            </p>
+            <div class="case-proof">
+              <span class="proof-label">HIPAA 2026 Final Rule — AI audit trails required for PHI decisions</span>
+            </div>
+          </div>
+
+          <div class="case-card fade-in" data-domain="finance">
+            <div class="case-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="case-chips">
+              <span class="chip chip-local chip-sm">FIDUCIARY LENS</span>
+              <span class="chip chip-node chip-sm">MC-FIN-005</span>
+            </div>
+            <h3>Financial services</h3>
+            <p>
+              Fiduciary duty requires you to advise based on the client's situation, not the model's
+              training data. Mission Canvas retrieves your client's actual files and your firm's
+              knowledge before the model reasons.
+            </p>
+            <div class="case-proof">
+              <span class="proof-label">Conflict detection built into the fiduciary lens</span>
+            </div>
+          </div>
+
+          <div class="case-card fade-in" data-domain="personal">
+            <div class="case-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            </div>
+            <div class="case-chips">
+              <span class="chip chip-local chip-sm">PERSONAL CANVAS</span>
+              <span class="chip chip-node chip-sm">FILE MAP</span>
+            </div>
+            <h3>Personal work</h3>
+            <p>
+              Write an email to your doctor and it pulls from your medical files, writes in your
+              personal tone, and keeps every piece of health data on your machine. You didn't
+              configure any of that.
+            </p>
+            <div class="case-proof">
+              <span class="proof-label">Your lens learns from your actual patterns</span>
+            </div>
+          </div>
+
+        </div>
       </div>
-      <p class="mobile-note">Download on your computer</p>
-      <p class="cta-copy">Everything MC knows lives in files you can read, correct, or delete.</p>
     </section>
+
+    <!-- THE TRIANGULATION — the product's core idea -->
+    <section class="triangulation" aria-label="The three-part intelligence system">
+      <div class="container">
+        <div class="tri-layout">
+          <div class="tri-text fade-in">
+            <div class="section-label">The intelligence</div>
+            <h2>Three things that meet at inference.</h2>
+            <p>
+              No other tool combines these three at once: your professional context,
+              your personal patterns, and your actual data — meeting at the point of
+              inference, governed so the right information reaches the right destination
+              and nothing else leaves your computer unless you say it can.
+            </p>
+            <ul class="tri-list" role="list">
+              <li>
+                <span class="tri-icon tri-icon-canvas">⬡</span>
+                <div>
+                  <strong>Canvas</strong>
+                  <span>Your professional context. Legal canvas, healthcare canvas, personal canvas. 25 bundled domains.</span>
+                </div>
+              </li>
+              <li>
+                <span class="tri-icon tri-icon-lens">◎</span>
+                <div>
+                  <strong>Lens</strong>
+                  <span>Your personal patterns. How you write, what you care about, your active domains. Grows from real use.</span>
+                </div>
+              </li>
+              <li>
+                <span class="tri-icon tri-icon-files">▦</span>
+                <div>
+                  <strong>File map</strong>
+                  <span>Your actual data. Directory structure, not contents. MC knows where things live — what should stay local.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tri-diagram fade-in" aria-hidden="true">
+            <svg viewBox="0 0 400 360" width="100%" max-width="400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Triangle connecting the three -->
+              <polygon points="200,40 50,300 350,300" stroke="var(--color-border)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
+
+              <!-- Canvas node -->
+              <circle cx="200" cy="40" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
+              <text x="200" y="35" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">CANVAS</text>
+              <text x="200" y="50" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">25 domains</text>
+
+              <!-- Lens node -->
+              <circle cx="50" cy="300" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
+              <text x="50" y="295" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">LENS</text>
+              <text x="50" y="310" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">your patterns</text>
+
+              <!-- File map node -->
+              <circle cx="350" cy="300" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
+              <text x="350" y="295" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">FILE MAP</text>
+              <text x="350" y="310" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">your data</text>
+
+              <!-- Center inference point -->
+              <circle cx="200" cy="210" r="24" fill="var(--color-primary)" opacity="0.12"/>
+              <circle cx="200" cy="210" r="8" fill="var(--color-primary)"/>
+              <text x="200" y="248" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="10" font-weight="600" fill="var(--color-primary)">INFERENCE</text>
+
+              <!-- Connection lines to center -->
+              <line x1="200" y1="76" x2="200" y2="186" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+              <line x1="83" y1="276" x2="175" y2="222" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+              <line x1="317" y1="276" x2="225" y2="222" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
+
+              <!-- Governed annotation -->
+              <rect x="134" y="136" width="132" height="26" rx="4" fill="var(--color-surface-offset)" stroke="var(--color-border)" stroke-width="1"/>
+              <text x="200" y="153" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--color-text-muted)">governed · local-first</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT YOU SEE -->
+    <section class="governance-chips-demo" aria-label="Governance transparency">
+      <div class="container">
+        <div class="section-label fade-in">What you see</div>
+        <h2 class="section-headline fade-in">Every answer shows its work.</h2>
+        <p class="section-sub fade-in">
+          The governance chips appear with every answer. Where the query went,
+          what model reasoned, whether anything left the machine.
+          You asked what you asked — and now you know exactly what happened.
+        </p>
+
+        <div class="chip-demo-cards fade-in">
+
+          <div class="chip-demo-card">
+            <div class="chip-demo-query">"Draft a response to the Acme escalation using the contract terms from my legal folder."</div>
+            <div class="chip-demo-chips">
+              <span class="chip chip-local">🔒 LOCAL ONLY</span>
+              <span class="chip chip-node">MC-LEGAL-004</span>
+              <span class="chip chip-lens">legal lens</span>
+              <span class="chip chip-sources">3 sources</span>
+            </div>
+            <div class="chip-demo-why">
+              <span class="chip-demo-why-label">mc why</span>
+              <span class="chip-demo-why-text">Classified as contract review. Client data detected — external routing blocked. Fiduciary lens active. Pulled 3 contract clause entries from knowledge library.</span>
+            </div>
+          </div>
+
+          <div class="chip-demo-card">
+            <div class="chip-demo-query">"What's the HIPAA audit trail requirement for AI-assisted PHI decisions?"</div>
+            <div class="chip-demo-chips">
+              <span class="chip chip-local">🔒 LOCAL ONLY</span>
+              <span class="chip chip-node">MC-HC-002</span>
+              <span class="chip chip-lens">clinical lens</span>
+              <span class="chip chip-sources">5 sources</span>
+            </div>
+            <div class="chip-demo-why">
+              <span class="chip-demo-why-label">mc why</span>
+              <span class="chip-demo-why-text">Classified as compliance assessment. PHI policy domain — blocks_external enforced. Retrieved HIPAA 2026 final rule (Tier 1 source). Confidence 0.91.</span>
+            </div>
+          </div>
+
+          <div class="chip-demo-card">
+            <div class="chip-demo-query">"What are the current Fed rate expectations for the next two meetings?"</div>
+            <div class="chip-demo-chips">
+              <span class="chip chip-external">⬡ EXTERNAL</span>
+              <span class="chip chip-node">MC-FIN-003</span>
+              <span class="chip chip-lens">research mode</span>
+              <span class="chip chip-sources">4 sources</span>
+            </div>
+            <div class="chip-demo-why">
+              <span class="chip-demo-why-label">mc why</span>
+              <span class="chip-demo-why-text">Public market data query. No sensitive content detected. Routed to external research. Query rebuilt from classification — your words replaced by node semantics.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OPEN SOURCE TRUST — the Obsidian "not even us" moment -->
+    <section class="open-source" aria-label="Open source trust">
+      <div class="container">
+        <div class="open-source-inner fade-in">
+          <div class="os-text">
+            <h2>Read the code that governs your data.</h2>
+            <p>
+              Mission Canvas is AGPL-3.0 open source. Every governance rule,
+              every routing decision, every gate — readable, auditable, forkable.
+              You don't have to trust our word. You can read the code.
+            </p>
+            <div class="os-ctas">
+              <a href="https://github.com/pretendhome/mission-canvas" class="btn btn-primary" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                View on GitHub
+              </a>
+              <a href="#docs" class="btn btn-ghost">Read the docs →</a>
+            </div>
+            <p class="os-stat">
+              312 ontology nodes · 219+ knowledge entries · 2,353 tests passing
+            </p>
+          </div>
+          <div class="os-code-block">
+            <div class="code-header">
+              <span class="code-file">src/pipeline.py</span>
+              <span class="code-badge">The OS</span>
+            </div>
+            <pre class="code-pre"><code><span class="code-comment"># No skipping. No shortcuts.</span>
+<span class="code-comment"># The pipeline IS the OS.</span>
+
+<span class="code-kw">def</span> <span class="code-fn">run</span>(query):
+  query = <span class="code-fn">scan</span>(query)       <span class="code-comment"># gate: PII</span>
+  node  = <span class="code-fn">classify</span>(query)  <span class="code-comment"># ontology</span>
+  path  = <span class="code-fn">traverse</span>(node)   <span class="code-comment"># graph walk</span>
+  kl    = <span class="code-fn">retrieve</span>(node)   <span class="code-comment"># evidence</span>
+  ctx   = <span class="code-fn">context</span>(kl)      <span class="code-comment"># assemble</span>
+
+  <span class="code-kw">if</span> node.blocks_external:
+    answer = <span class="code-fn">reason_local</span>(ctx)  <span class="code-comment"># ALWAYS</span>
+  <span class="code-kw">else</span>:
+    answer = <span class="code-fn">reason</span>(ctx)        <span class="code-comment"># model last</span>
+
+  <span class="code-fn">store</span>(answer)  <span class="code-comment"># path record: always</span>
+  <span class="code-kw">return</span> answer</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY — from stranger to power user -->
+    <section class="journey" aria-label="User journey">
+      <div class="container">
+        <div class="section-label fade-in">The journey</div>
+        <h2 class="section-headline fade-in">From zero to sovereign<br/>in five minutes.</h2>
+
+        <div class="journey-steps">
+          <div class="journey-step fade-in">
+            <div class="journey-num">01</div>
+            <div class="journey-content">
+              <h3>Install</h3>
+              <p>One curl command. No account. No email. A local model downloads. Your first canvas loads.</p>
+              <div class="journey-time">2 minutes</div>
+            </div>
+          </div>
+          <div class="journey-step fade-in">
+            <div class="journey-num">02</div>
+            <div class="journey-content">
+              <h3>First query</h3>
+              <p>Ask anything. The governance chips appear: where it went, what answered, whether anything left the machine.</p>
+              <div class="journey-time">30 seconds</div>
+            </div>
+          </div>
+          <div class="journey-step fade-in">
+            <div class="journey-num">03</div>
+            <div class="journey-content">
+              <h3>Grant file access</h3>
+              <p>MC maps your directory structure — folder names, not file contents. Now it knows where your things live.</p>
+              <div class="journey-time">5 minutes</div>
+            </div>
+          </div>
+          <div class="journey-step fade-in">
+            <div class="journey-num">04</div>
+            <div class="journey-content">
+              <h3>The lens grows</h3>
+              <p>Over 50 queries, MC learns your domains, your patterns, your sensitive zones. The triangulation becomes real.</p>
+              <div class="journey-time">Weeks 1–4</div>
+            </div>
+          </div>
+          <div class="journey-step fade-in">
+            <div class="journey-num">05</div>
+            <div class="journey-content">
+              <h3>The portal</h3>
+              <p>"Draft a response to the Acme escalation using the contract terms from my legal folder." One sentence. MC does the rest.</p>
+              <div class="journey-time">Months 2–6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" id="final-cta" aria-label="Get started">
+      <div class="container">
+        <div class="final-cta-inner fade-in">
+          <h2>Everything MC knows lives in files you can read, correct, or delete.</h2>
+          <p>
+            Free. Open source. Local-first. No account required.
+            Everything MC knows lives in files you can read, correct, or delete.
+          </p>
+          <div class="final-cta-install">
+            <div class="download-buttons" style="justify-content: center;">
+              <a class="btn btn-download btn-primary" id="btn-primary-dl-2"
+                 href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg">
+                Download for macOS
+              </a>
+              <a class="btn btn-download btn-ghost" id="btn-secondary-dl-2"
+                 href="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe">
+                Download for Windows
+              </a>
+            </div>
+            <span class="mobile-download-note">Download on your computer to get started</span>
+          </div>
+          <p class="final-byline">AI you can answer for.</p>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <footer class="wrap"><a href="https://github.com/pretendhome/mission-canvas">GitHub</a> · <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a> · <a href="https://github.com/pretendhome/mission-canvas/blob/main/LICENSE">AGPL-3.0</a></footer>
-  <script>
-    (function(){
-      var p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';
-      var isWin=/Win/.test(p),isMac=/Mac/.test(p),isMobile=/Android|iPhone|iPad|iPod/.test(navigator.userAgent)||innerWidth<760;
-      var mac=[document.getElementById('btn-mac'),document.getElementById('btn-mac-2')],win=[document.getElementById('btn-win'),document.getElementById('btn-win-2')];
-      if(isMobile){document.body.classList.add('mobile');return;}
-      if(isWin){mac.forEach(function(b){b.className='btn btn-secondary'});win.forEach(function(b){b.className='btn btn-primary'});}
-      if(!isMac&&!isWin){mac.forEach(function(b){b.textContent='Download for Linux';b.href='https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';b.className='btn btn-primary'});win.forEach(function(b){b.className='btn btn-secondary'});}
-    })();
-  </script>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">Mission Canvas</span>
+          <span class="footer-tagline">Local-first AI for private work.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="https://github.com/pretendhome/mission-canvas" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a>
+          <a href="mailto:hello@missioncanvas.ai">Contact</a>
+        </nav>
+        <div class="footer-dev"><code>curl -fsSL missioncanvas.ai/install.sh | sh</code></div>
+        <p class="footer-copy">AGPL-3.0 · © 2026 Mission Canvas, Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
