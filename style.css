@@ -399,15 +399,15 @@ ul, ol { list-style: none; }
    HERO
    ============================================================ */
 .hero {
-  min-height: 90vh;
+  min-height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-12);
-  align-items: center;
+  align-items: start;
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--container-pad);
-  padding-block: var(--space-24) var(--space-20);
+  padding-block: var(--space-8) var(--space-20);
 }
 
 .hero-inner {
@@ -519,6 +519,35 @@ ul, ol { list-style: none; }
   padding-top: var(--space-2);
 }
 
+/* ── Hero banner — graffiti logo centered at top of page ── */
+.hero-banner {
+  text-align: center;
+  padding-top: calc(56px + var(--space-8));  /* clear the fixed nav */
+  padding-bottom: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.hero-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-banner-img {
+  max-width: min(90vw, 560px);
+  height: auto;
+  margin-inline: auto;
+}
+
+/* ── Install command blocks (curl / irm / docker) ── */
+.install-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  width: 100%;
+  max-width: 520px;
+}
+
 /* ============================================================
    PIPELINE DEMO WINDOW
    ============================================================ */
@@ -558,10 +587,10 @@ ul, ol { list-style: none; }
 .mc-demo-brand img {
   width: 100%;
   max-width: none;
-  height: clamp(180px, 20vw, 260px);
+  height: clamp(200px, 24vw, 310px);
   object-fit: cover;
   object-position: center 43%;
-  transform: scale(1.18) translateY(-4%);
+  transform: scale(1.18) translateY(-6%);
   transform-origin: center 43%;
 }
 
@@ -615,7 +644,7 @@ ul, ol { list-style: none; }
 .mc-demo-app {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
-  min-height: 350px;
+  min-height: 520px;
   background: color-mix(in srgb, var(--color-surface) 92%, #0d1117);
 }
 

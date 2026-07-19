@@ -3,11 +3,15 @@
 */
 
 // ── Hero entrance animation ──────────────────────────────────────
+// Banner fades in first, then hero items stagger after
+const banner = document.querySelector('.hero-banner.fade-in');
+if (banner) setTimeout(() => banner.classList.add('visible'), 80);
+
 const heroItems = document.querySelectorAll('.hero .fade-in');
 heroItems.forEach((el, i) => {
   setTimeout(() => {
     el.classList.add('visible');
-  }, 100 + i * 120);
+  }, 300 + i * 120);
 });
 
 // ── Nav: hide on scroll down, show on scroll up ──────────────────
@@ -33,6 +37,21 @@ heroItems.forEach((el, i) => {
     }
   }, { passive: true });
 })();
+
+// ── Install block copy buttons ───────────────────────────────────
+document.querySelectorAll('.install-cmd').forEach(function(block) {
+  var copyBtn = block.querySelector('.copy-btn');
+  function doCopy() {
+    var cmd = block.getAttribute('data-cmd');
+    if (!cmd) return;
+    navigator.clipboard.writeText(cmd).then(function() {
+      copyBtn.classList.add('copied');
+      setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
+    });
+  }
+  if (copyBtn) copyBtn.addEventListener('click', function(e) { e.stopPropagation(); doCopy(); });
+  block.addEventListener('click', doCopy);
+});
 
 // ── OS-specific download labels ───────────────────────────────────
 (function osDetect() {
