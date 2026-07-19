@@ -14,6 +14,27 @@ heroItems.forEach((el, i) => {
   }, 300 + i * 120);
 });
 
+// ── Lightweight event counter (localStorage, no external service) ─
+// Tracks: download clicks + install command copies.
+// Read anytime: JSON.parse(localStorage.getItem('mc_events'))
+(function mcTrackInit() {
+  window.mcTrack = function(action, label) {
+    try {
+      var events = JSON.parse(localStorage.getItem('mc_events') || '[]');
+      events.push({ action: action, label: label, ts: new Date().toISOString() });
+      localStorage.setItem('mc_events', JSON.stringify(events));
+    } catch(e) { /* quota or private mode — silent */ }
+  };
+
+  // Download buttons
+  document.querySelectorAll('.btn-download').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var label = /Windows/.test(btn.textContent) ? 'windows' : /Mac/.test(btn.textContent) ? 'mac' : 'linux';
+      mcTrack('download', label);
+    });
+  });
+})();
+
 // ── Nav: hide on scroll down, show on scroll up ──────────────────
 (function navScrollBehavior() {
   const nav = document.getElementById('nav');
@@ -48,6 +69,7 @@ document.querySelectorAll('.install-cmd').forEach(function(block) {
       copyBtn.classList.add('copied');
       setTimeout(function() { copyBtn.classList.remove('copied'); }, 2000);
     });
+    mcTrack('copy', cmd.split(' ')[0]); // curl, irm, or docker
   }
   if (copyBtn) copyBtn.addEventListener('click', function(e) { e.stopPropagation(); doCopy(); });
   block.addEventListener('click', doCopy);
