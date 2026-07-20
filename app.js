@@ -87,32 +87,9 @@ document.querySelectorAll('.install-cmd').forEach(function(block) {
   block.addEventListener('click', doCopy);
 });
 
-// ── OS-specific download labels ───────────────────────────────────
-(function osDetect() {
-  var p = (navigator.userAgentData && navigator.userAgentData.platform)
-    || navigator.platform || '';
-  var isWin = /Win/.test(p);
-  var isMac = /Mac/.test(p);
-
-  function configure(primaryId, secondaryId) {
-    var primary = document.getElementById(primaryId);
-    var secondary = document.getElementById(secondaryId);
-    if (!primary || !secondary) return;
-    if (isWin) {
-      primary.textContent = 'Download for Windows';
-      primary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas-Setup.exe';
-      secondary.textContent = 'Download for Mac/Linux';
-      secondary.href = 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg';
-    } else {
-      primary.textContent = 'Download for Mac/Linux';
-      primary.href = isMac
-        ? 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.dmg'
-        : 'https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/MissionCanvas.AppImage';
-    }
-  }
-  configure('btn-primary-dl', 'btn-secondary-dl');
-  configure('btn-primary-dl-2', 'btn-secondary-dl-2');
-})();
+// ── OS-specific download: Linux users get AppImage instead of DMG ──
+// (Platform detection at top of file handles the href swap.
+//  HTML buttons already carry pinned tag URLs to the correct repo.)
 
 // ── Theme toggle ──────────────────────────────────────────────────
 (function themeInit() {
