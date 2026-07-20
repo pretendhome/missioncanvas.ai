@@ -16,6 +16,88 @@ Write-Host "  ✓ Detected: windows-$arch" -ForegroundColor Green
 
 $installDir = "$env:USERPROFILE\.mission-canvas"
 
+# Native launcher — reboot never requires a terminal after this.
+# Ported from lingua-viva/learning-architecture install.ps1 (Gap 2b pattern).
+function Install-NativeLauncher {
+    $launchDir = "$env:USERPROFILE\.mission-canvas"
+    New-Item -ItemType Directory -Force -Path $launchDir | Out-Null
+
+    # Create a hidden launcher .bat that the shortcut will point to
+    $batPath = "$launchDir\mc-launch.bat"
+    @"
+@echo off
+setlocal
+set PORT=7891
+set HEALTH_URL=http://127.0.0.1:%PORT%/api/health
+set UI_URL=http://127.0.0.1:%PORT%
+
+:: Check if already running
+curl -fsS --max-time 2 "%HEALTH_URL%" >nul 2>&1
+if %ERRORLEVEL% equ 0 (
+    start "" "%UI_URL%"
+    exit /b 0
+)
+
+:: Start the server
+if exist "$launchDir\mc.exe" (
+    start "" /B "$launchDir\mc.exe" serve %PORT%
+) else if exist "$launchDir\src\mc_cli.py" (
+    start "" /B python "$launchDir\src\mc_cli.py" serve %PORT%
+) else (
+    echo Mission Canvas not found — try re-running the installer.
+    pause
+    exit /b 1
+)
+
+:: Poll until ready
+set /a tries=0
+:waitloop
+if %tries% geq 30 goto timeout
+timeout /t 1 /nobreak >nul
+curl -fsS --max-time 2 "%HEALTH_URL%" >nul 2>&1
+if %ERRORLEVEL% equ 0 goto ready
+set /a tries+=1
+goto waitloop
+
+:ready
+start "" "%UI_URL%"
+exit /b 0
+
+:timeout
+echo Mission Canvas didn't start in time.
+exit /b 1
+"@ | Out-File -FilePath $batPath -Encoding ASCII
+
+    # Create Desktop shortcut
+    try {
+        $shell = New-Object -ComObject WScript.Shell
+        $desktop = $shell.SpecialFolders("Desktop")
+        $lnk = $shell.CreateShortcut("$desktop\Mission Canvas.lnk")
+        $lnk.TargetPath = $batPath
+        $lnk.WorkingDirectory = $launchDir
+        $lnk.Description = "Mission Canvas — Governed AI for professionals"
+        $lnk.WindowStyle = 7  # minimized
+        $lnk.Save()
+        Write-Host "  ✓ Desktop shortcut created" -ForegroundColor Green
+    } catch {
+        Write-Host "  ⚠ Couldn't create desktop shortcut" -ForegroundColor Yellow
+    }
+
+    # Create Start Menu shortcut
+    try {
+        $startMenu = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs"
+        $lnk2 = $shell.CreateShortcut("$startMenu\Mission Canvas.lnk")
+        $lnk2.TargetPath = $batPath
+        $lnk2.WorkingDirectory = $launchDir
+        $lnk2.Description = "Mission Canvas — Governed AI for professionals"
+        $lnk2.WindowStyle = 7
+        $lnk2.Save()
+        Write-Host "  ✓ Start Menu shortcut created (search 'Mission Canvas')" -ForegroundColor Green
+    } catch {
+        Write-Host "  ⚠ Couldn't create Start Menu shortcut" -ForegroundColor Yellow
+    }
+}
+
 function Check-Ollama {
     try {
         ollama --version 2>&1 | Out-Null
@@ -91,13 +173,16 @@ if ($binarySuccess) {
             -ErrorAction SilentlyContinue
     } catch {}
 
+    # Native launcher — reboot never requires a terminal after this
+    Install-NativeLauncher
+
     Write-Host ""
     Write-Host "  ╔══════════════════════════════════════════╗" -ForegroundColor Cyan
     Write-Host "  ║   Installation complete!                 ║" -ForegroundColor Cyan
     Write-Host "  ╠══════════════════════════════════════════╣" -ForegroundColor Cyan
     Write-Host "  ║   Web UI:   http://localhost:7891         ║" -ForegroundColor Cyan
     Write-Host "  ║   CLI:      opened in a new window        ║" -ForegroundColor Cyan
-    Write-Host "  ║   Status:   mc status                    ║" -ForegroundColor Cyan
+    Write-Host "  ║   Relaunch: search "Mission Canvas"      ║" -ForegroundColor Cyan
     Write-Host "  ╚══════════════════════════════════════════╝" -ForegroundColor Cyan
     Write-Host ""
     exit 0
@@ -173,12 +258,31 @@ try {
 }
 
 # Auto-start server (source mode)
-Write-Host "  → Starting API server..." -ForegroundColor Cyan
+Write-Host "  → Starting web server on http://localhost:7891 ..." -ForegroundColor Cyan
 try {
     Start-Process -FilePath "python" -ArgumentList "src/api_server.py" -WindowStyle Hidden -ErrorAction SilentlyContinue
 } catch {}
 
+# Poll until ready, then open browser
+$ready = $false
+for ($i = 0; $i -lt 30; $i++) {
+    try {
+        Invoke-WebRequest -Uri "http://127.0.0.1:7891/" -UseBasicParsing -TimeoutSec 2 | Out-Null
+        $ready = $true
+        break
+    } catch { Start-Sleep -Seconds 1 }
+}
+if ($ready) {
+    Write-Host "  ✓ Web UI is live" -ForegroundColor Green
+    Start-Process "http://localhost:7891"
+} else {
+    Write-Host "  ⚠ Server didn't start in time — open http://localhost:7891 manually" -ForegroundColor Yellow
+}
+
 Pop-Location
+
+# Native launcher — reboot never requires a terminal after this
+Install-NativeLauncher
 
 Write-Host ""
 Write-Host "  ╔══════════════════════════════════════════╗" -ForegroundColor Cyan
@@ -187,5 +291,6 @@ Write-Host "  ╠═════════════════════
 Write-Host "  ║  Start:  cd $installDir                  ║" -ForegroundColor Cyan
 Write-Host "  ║          python src/mc_cli.py shell      ║" -ForegroundColor Cyan
 Write-Host "  ║  Web UI: http://localhost:7891            ║" -ForegroundColor Cyan
+Write-Host "  ║  Relaunch: search "Mission Canvas"       ║" -ForegroundColor Cyan
 Write-Host "  ╚══════════════════════════════════════════╝" -ForegroundColor Cyan
 Write-Host ""

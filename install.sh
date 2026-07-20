@@ -2,7 +2,14 @@
 # Mission Canvas — One Command Install
 # Usage: curl -fsSL https://missioncanvas.ai/install.sh | sh
 # Tries binary first, falls back to source install if no release exists.
+#
+# docs/install.sh (served at missioncanvas.ai/install.sh — docs/ is the
+# GitHub Pages root) is a byte-for-byte copy of this file. Edit here, then:
+#   cp install.sh docs/install.sh
+# tests/test_install_surface.py fails the build if the two drift.
 set -e
+
+INSTALL_START=$(date +%s)
 
 echo ""
 echo "  ╔══════════════════════════════════════════╗"
@@ -29,9 +36,8 @@ esac
 
 echo "  ✓ Detected: ${PLATFORM}-${ARCH}"
 
-# Create directories
-mkdir -p "${HOME}/.mission-canvas/config"
-mkdir -p "${HOME}/.local/bin"
+# Directories are created where each path needs them — the failure messages
+# below promise "Nothing was changed", and that has to stay literally true.
 
 # Pull Ollama model if ollama command is installed
 pull_ollama() {
@@ -51,20 +57,156 @@ pull_ollama() {
   if curl -s http://127.0.0.1:11434/api/tags 2>/dev/null | grep -q "qwen2.5"; then
     echo "  ✓ qwen2.5:7b already available"
   else
-    echo "  → Pulling Ollama qwen2.5:7b model..."
+    echo "  → Downloading your local model (qwen2.5:7b, ~4.7GB) — this takes a"
+    echo "    few minutes the first time. The install itself is quick; this"
+    echo "    download is the part that varies with your connection."
     ollama pull qwen2.5:7b || true
   fi
 }
 
+# Native launcher so restarting after reboot never requires a terminal.
+# Ported from lingua-viva/learning-architecture install.sh (Gap 2b pattern,
+# proven in Still I Rise v1.0.0). Idempotent: checks port 7891 for an
+# already-running Mission Canvas before starting a second instance.
+install_native_launcher() {
+  mkdir -p "${HOME}/.local/bin" "${HOME}/.mission-canvas"
+  cat > "${HOME}/.local/bin/mc-launch" << 'LAUNCHEOF'
+#!/bin/sh
+# Mission Canvas — native launcher. Double-clickable via a desktop icon;
+# never opens a terminal for the user. Checks whether port 7891 is already
+# serving Mission Canvas before starting a second instance.
+PORT=7891
+HEALTH_URL="http://127.0.0.1:${PORT}/api/health"
+UI_URL="http://127.0.0.1:${PORT}"
+LOG="${HOME}/.mission-canvas/launch.log"
+mkdir -p "${HOME}/.mission-canvas"
+
+open_browser() {
+  if command -v xdg-open >/dev/null 2>&1; then xdg-open "$UI_URL" >/dev/null 2>&1 &
+  elif command -v open >/dev/null 2>&1; then open "$UI_URL" >/dev/null 2>&1 &
+  fi
+}
+
+notify() {
+  echo "$(date): $1" >> "$LOG"
+  if command -v notify-send >/dev/null 2>&1; then notify-send "Mission Canvas" "$1" >/dev/null 2>&1 || true; fi
+  if command -v osascript >/dev/null 2>&1; then osascript -e "display notification \"$1\" with title \"Mission Canvas\"" >/dev/null 2>&1 || true; fi
+}
+
+# Already running (ours)? Just open the browser — don't start a second server.
+RESPONSE=$(curl -fsS --max-time 2 "$HEALTH_URL" 2>/dev/null || echo "")
+if [ -n "$RESPONSE" ]; then
+  case "$RESPONSE" in
+    *'"healthy"'*|*'"status"'*)
+      notify "Mission Canvas is already running — opening your browser."
+      open_browser
+      exit 0
+      ;;
+    *)
+      notify "Port ${PORT} is in use by another program — close it and try again."
+      exit 1
+      ;;
+  esac
+fi
+
+# Port occupied by something that doesn't speak our health check? Fail loudly.
+if command -v nc >/dev/null 2>&1 && nc -z 127.0.0.1 "$PORT" 2>/dev/null; then
+  notify "Port ${PORT} is in use by another program — close it and try again."
+  exit 1
+fi
+
+# Port is free — start the server.
+if command -v mc >/dev/null 2>&1; then
+  mc serve "$PORT" >/dev/null 2>&1 &
+elif [ -f "${HOME}/.mission-canvas/src/mc_cli.py" ]; then
+  ( cd "${HOME}/.mission-canvas" && python3 -m src.web "$PORT" >/dev/null 2>&1 & )
+else
+  notify "Couldn't find the Mission Canvas install — try re-running the installer."
+  exit 1
+fi
+
+i=0
+while [ "$i" -lt 30 ]; do
+  if curl -fsS --max-time 2 "$HEALTH_URL" >/dev/null 2>&1; then break; fi
+  i=$((i + 1)); sleep 1
+done
+
+if [ "$i" -lt 30 ]; then
+  open_browser
+else
+  notify "Mission Canvas didn't start in time — try again in a moment."
+  exit 1
+fi
+LAUNCHEOF
+  chmod +x "${HOME}/.local/bin/mc-launch"
+
+  case "$OS" in
+    linux)
+      APPS_DIR="${HOME}/.local/share/applications"
+      mkdir -p "$APPS_DIR"
+      cat > "${APPS_DIR}/mission-canvas.desktop" << DESKTOPEOF
+[Desktop Entry]
+Type=Application
+Name=Mission Canvas
+Comment=Governed AI for professionals
+Exec=${HOME}/.local/bin/mc-launch
+Terminal=false
+Categories=Office;Development;
+DESKTOPEOF
+      chmod +x "${APPS_DIR}/mission-canvas.desktop"
+      echo "  ✓ Desktop launcher installed (search \"Mission Canvas\" in your app menu)"
+      ;;
+    darwin)
+      APP_DIR="${HOME}/Applications/Mission Canvas.app"
+      mkdir -p "${APP_DIR}/Contents/MacOS"
+      cat > "${APP_DIR}/Contents/MacOS/mission-canvas" << 'APPEOF'
+#!/bin/sh
+exec "$HOME/.local/bin/mc-launch"
+APPEOF
+      chmod +x "${APP_DIR}/Contents/MacOS/mission-canvas"
+      cat > "${APP_DIR}/Contents/Info.plist" << 'PLISTEOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>CFBundleName</key><string>Mission Canvas</string>
+  <key>CFBundleExecutable</key><string>mission-canvas</string>
+  <key>CFBundleIdentifier</key><string>ai.missioncanvas.app</string>
+  <key>CFBundlePackageType</key><string>APPL</string>
+  <key>CFBundleShortVersionString</key><string>2.2</string>
+</dict>
+</plist>
+PLISTEOF
+      echo "  ✓ App installed to ~/Applications/Mission Canvas.app"
+      echo "    (first open: right-click → Open, to clear the Gatekeeper unsigned-app warning)"
+      ;;
+  esac
+}
+
 # ── Try binary install first ──
+# Release resolution: desktop-app releases (tags desktop-v*) live in the same
+# repo, so "releases/latest" can point at a release whose assets this script
+# can't use (MissionCanvas-Setup.exe etc. instead of mc-*). Resolve the newest
+# CLI release (tag v*) from the release list; fall back to "latest" only when
+# the release list itself is unreachable.
 BINARY="mc-${PLATFORM}-${ARCH}"
-VERSION="latest"
-URL="https://github.com/pretendhome/mission-canvas/releases/latest/download/${BINARY}"
-echo "  → Downloading binary..."
+RELEASES_API="https://api.github.com/repos/pretendhome/mission-canvas/releases?per_page=20"
+CLI_TAG=$(curl -fsSL "$RELEASES_API" 2>/dev/null \
+  | grep -o '"tag_name"[[:space:]]*:[[:space:]]*"v[0-9][^"]*"' \
+  | head -1 \
+  | sed 's/.*"\(v[0-9][^"]*\)"/\1/')
+if [ -n "$CLI_TAG" ]; then
+  URL="https://github.com/pretendhome/mission-canvas/releases/download/${CLI_TAG}/${BINARY}"
+  echo "  → Downloading Mission Canvas (${CLI_TAG})..."
+else
+  URL="https://github.com/pretendhome/mission-canvas/releases/latest/download/${BINARY}"
+  echo "  → Downloading Mission Canvas..."
+fi
 TMPFILE=$(mktemp)
 if curl -fsSL "$URL" -o "$TMPFILE" 2>/dev/null && [ -s "$TMPFILE" ]; then
   chmod +x "$TMPFILE"
   INSTALL_DIR="${HOME}/.local/bin"
+  mkdir -p "$INSTALL_DIR"
   mv "$TMPFILE" "$INSTALL_DIR/mc"
   echo "  ✓ Installed mc to $INSTALL_DIR/mc"
   
@@ -136,13 +278,6 @@ PROVEOF
     echo "  ⚠ Web server didn't come up in time — start it later with 'mc serve'"
   fi
 
-  # Copy canvas templates for mc canvas list-templates
-  if [ -d "$INSTALL_DIR/dev/examples" ]; then
-    mkdir -p "$HOME/.mission-canvas/templates"
-    cp -r "$INSTALL_DIR/dev/examples/"*-canvas "$HOME/.mission-canvas/templates/" 2>/dev/null
-    echo "  → Canvas templates installed to ~/.mission-canvas/templates/"
-  fi
-
   # Run health check — show actual result
   echo "  → Running health check..."
   if "$INSTALL_DIR/mc" health 2>&1 | grep -q "PASS\|Health:.*100"; then
@@ -151,42 +286,73 @@ PROVEOF
     echo "  ⚠ Health check incomplete (run 'mc health' in a new terminal)"
   fi
 
-  # Install log summary
+  # Native launcher — reboot never requires a terminal after this
+  install_native_launcher
+
+  # Install log summary — Duration makes the "2 minutes" promise measurable
+  INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
   mkdir -p "$HOME/.mission-canvas"
   {
     echo "=== Install completed: $(date) ==="
     echo "OS: $(uname -a)"
     echo "Binary: $INSTALL_DIR/mc"
+    echo "Release: ${CLI_TAG:-latest}"
+    echo "Duration: ${INSTALL_SECS}s"
     echo "Ollama: $(command -v ollama 2>/dev/null || echo 'not found')"
     echo "Model: $(curl -s http://127.0.0.1:11434/api/tags 2>/dev/null | grep -o 'qwen2.5[^"]*' | head -1 || echo 'unknown')"
   } >> "$HOME/.mission-canvas/install.log"
 
+  echo ""
+  echo "  ✓ Ready in ${INSTALL_SECS} seconds"
   echo ""
   echo "  ╔══════════════════════════════════════════╗"
   echo "  ║   Installation complete!                 ║"
   echo "  ╠══════════════════════════════════════════╣"
   echo "  ║   Web UI:  http://localhost:7891          ║"
   echo "  ║   CLI:     mc shell (open new terminal)   ║"
+  echo "  ║   Relaunch: search \"Mission Canvas\"      ║"
   echo "  ╚══════════════════════════════════════════╝"
   echo ""
   exit 0
 fi
 rm -f "$TMPFILE" 2>/dev/null
-echo "  ⚠ Binary not available — falling back to source install"
 
 # ── Source install (fallback) ──
-echo "  → Installing from source..."
+# The aspiration bar: nobody should have to know what Python or git are.
+# Every message below says what happened and what to do next, in plain
+# words — no requirement dumps, no stack traces.
+
+# Blocked/offline internet must produce a plain answer, not a git error dump.
+if ! curl -fsS --max-time 10 "https://github.com" >/dev/null 2>&1; then
+  echo ""
+  echo "  ✗ It looks like this computer can't reach the internet right now"
+  echo "    (or github.com is blocked on this network). Nothing was changed."
+  echo "    → Check your connection, then run the same install command again."
+  exit 1
+fi
+
+echo "  ⚠ The quick download isn't available right now — setting up the full"
+echo "    version instead. Still automatic; it just takes a few minutes longer."
 
 # Check Python
 if ! python3 -c 'import sys; exit(0 if sys.version_info >= (3,10) else 1)' 2>/dev/null; then
-  echo "  ✗ Python 3.10+ required. Install from https://python.org"
+  echo ""
+  echo "  ✗ This computer is missing a tool the full setup needs (Python 3.10"
+  echo "    or newer). Nothing was changed. Two easy ways forward:"
+  echo "    → Get the ready-to-run app at https://missioncanvas.ai"
+  echo "    → Or install Python from https://python.org, then run this same"
+  echo "      install command again."
   exit 1
 fi
 echo "  ✓ Python $(python3 --version 2>&1 | cut -d' ' -f2)"
 
 # Check Git
 if ! git --version >/dev/null 2>&1; then
-  echo "  ✗ Git required."
+  echo ""
+  echo "  ✗ This computer is missing a tool the full setup needs (git)."
+  echo "    Nothing was changed."
+  echo "    → Install it from https://git-scm.com/downloads, then run this"
+  echo "      same install command again."
   exit 1
 fi
 echo "  ✓ Git"
@@ -220,6 +386,7 @@ fi
 # Make mc command available
 if [ -f "$INSTALL_DIR/mc" ]; then
   chmod +x "$INSTALL_DIR/mc"
+  mkdir -p "${HOME}/.local/bin"
   ln -sf "$INSTALL_DIR/mc" "${HOME}/.local/bin/mc" 2>/dev/null || true
 fi
 
@@ -246,11 +413,27 @@ if [ "$i" -lt 30 ]; then
   fi
 fi
 
+# Native launcher — reboot never requires a terminal after this
+install_native_launcher
+
+# Install log summary — Duration makes the "2 minutes" promise measurable
+INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
+mkdir -p "$HOME/.mission-canvas"
+{
+  echo "=== Install completed (source): $(date) ==="
+  echo "OS: $(uname -a)"
+  echo "Duration: ${INSTALL_SECS}s"
+  echo "Ollama: $(command -v ollama 2>/dev/null || echo 'not found')"
+} >> "$HOME/.mission-canvas/install.log"
+
+echo ""
+echo "  ✓ Ready in ${INSTALL_SECS} seconds"
 echo ""
 echo "  ╔══════════════════════════════════════════╗"
 echo "  ║   Installation complete!                 ║"
 echo "  ╠══════════════════════════════════════════╣"
 echo "  ║   Web UI:  http://localhost:7891          ║"
 echo "  ║   CLI:     cd $INSTALL_DIR && python3 src/mc_cli.py shell"
+echo "  ║   Relaunch: search \"Mission Canvas\"      ║"
 echo "  ╚══════════════════════════════════════════╝"
 echo ""
