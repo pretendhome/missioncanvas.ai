@@ -1,6 +1,18 @@
 /* Mission Canvas — Landing Page JS
-   Handles: hero fade-in, demo animation, copy button, theme toggle, nav scroll-hide
+   Handles: hero fade-in, demo animation, copy button, theme toggle, nav scroll-hide,
+   platform-aware download buttons
 */
+
+// ── Platform detection: swap Mac/Linux download href ────────────
+(function platformDetect() {
+  var p = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  var isLinux = /Linux/.test(p);
+  if (isLinux) {
+    document.querySelectorAll('[id^="btn-dl-unix"]').forEach(function(btn) {
+      btn.href = btn.href.replace('MissionCanvas.dmg', 'MissionCanvas.AppImage');
+    });
+  }
+})();
 
 // ── Hero entrance animation ──────────────────────────────────────
 // Banner fades in first, then hero items stagger after
