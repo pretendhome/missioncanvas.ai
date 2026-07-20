@@ -178,7 +178,6 @@ APPEOF
 </plist>
 PLISTEOF
       echo "  ✓ App installed to ~/Applications/Mission Canvas.app"
-      echo "    (first open: right-click → Open, to clear the Gatekeeper unsigned-app warning)"
       ;;
   esac
 }
@@ -289,7 +288,12 @@ PROVEOF
   # Native launcher — reboot never requires a terminal after this
   install_native_launcher
 
-  # Install log summary — Duration makes the "2 minutes" promise measurable
+  # Install log summary — Duration makes the "2 minutes" promise measurable.
+  # Ollama/Model are NOT logged here: on a cold install the wizard installs
+  # Ollama AFTER this script exits. The wizard appends its own completion
+  # line ("[wizard] ollama install: completed") when it finishes. Logging
+  # Ollama status here produces "not found" on every cold install, which
+  # misleads support engineers reading the log top-down.
   INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
   mkdir -p "$HOME/.mission-canvas"
   {
@@ -298,8 +302,6 @@ PROVEOF
     echo "Binary: $INSTALL_DIR/mc"
     echo "Release: ${CLI_TAG:-latest}"
     echo "Duration: ${INSTALL_SECS}s"
-    echo "Ollama: $(command -v ollama 2>/dev/null || echo 'not found')"
-    echo "Model: $(curl -s http://127.0.0.1:11434/api/tags 2>/dev/null | grep -o 'qwen2.5[^"]*' | head -1 || echo 'unknown')"
   } >> "$HOME/.mission-canvas/install.log"
 
   echo ""
@@ -416,14 +418,14 @@ fi
 # Native launcher — reboot never requires a terminal after this
 install_native_launcher
 
-# Install log summary — Duration makes the "2 minutes" promise measurable
+# Install log summary — same rationale as binary path: Ollama/Model
+# are not logged here because the wizard installs them after this exits.
 INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
 mkdir -p "$HOME/.mission-canvas"
 {
   echo "=== Install completed (source): $(date) ==="
   echo "OS: $(uname -a)"
   echo "Duration: ${INSTALL_SECS}s"
-  echo "Ollama: $(command -v ollama 2>/dev/null || echo 'not found')"
 } >> "$HOME/.mission-canvas/install.log"
 
 echo ""
