@@ -95,6 +95,24 @@
           </div>
 
           <span class="mobile-download-note">Download on your computer to get started</span>
+
+          <div class="terminal-install" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <div class="install-cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install.sh | sh" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">macOS / Linux:</span>
+              <code style="font-family: monospace; color: #fff;">curl -fsSL https://missioncanvas.ai/install.sh | sh</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+            <div class="install-cmd" data-cmd="irm https://missioncanvas.ai/install.ps1 | iex" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">Windows:</span>
+              <code style="font-family: monospace; color: #fff;">irm https://missioncanvas.ai/install.ps1 | iex</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+            <div class="install-cmd" data-cmd="docker compose up" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">Docker Compose:</span>
+              <code style="font-family: monospace; color: #fff;">docker compose up</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+          </div>
         </div>
 
       </div>
