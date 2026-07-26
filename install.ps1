@@ -110,9 +110,29 @@ function Check-Ollama {
 
 # ── Try binary install first ──
 $binary = "mc-windows-${arch}.exe"
-$url = "https://github.com/pretendhome/mission-canvas/releases/latest/download/$binary"
 
-Write-Host "  → Attempting binary download..." -ForegroundColor Cyan
+# Release resolution: desktop-app releases (tags desktop-v*) live in the same
+# repo, so we resolve the newest CLI release (tag v*) from the release list
+# and avoid desktop-v* tags.
+$releasesApi = "https://api.github.com/repos/pretendhome/mission-canvas/releases?per_page=20"
+$cliTag = ""
+try {
+    $response = Invoke-RestMethod -Uri $releasesApi -UseBasicParsing -ErrorAction Stop
+    foreach ($release in $response) {
+        if ($release.tag_name -like "v*") {
+            $cliTag = $release.tag_name
+            break
+        }
+    }
+} catch {}
+
+if ($cliTag) {
+    $url = "https://github.com/pretendhome/mission-canvas/releases/download/$cliTag/$binary"
+    Write-Host "  → Downloading Mission Canvas ($cliTag)..." -ForegroundColor Cyan
+} else {
+    $url = "https://github.com/pretendhome/mission-canvas/releases/latest/download/$binary"
+    Write-Host "  → Attempting binary download..." -ForegroundColor Cyan
+}
 New-Item -ItemType Directory -Force -Path $installDir | Out-Null
 
 $binarySuccess = $false

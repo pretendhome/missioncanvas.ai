@@ -53,14 +53,24 @@ pull_ollama() {
     esac
     return
   fi
-  # Check if model already present
-  if curl -s http://127.0.0.1:11434/api/tags 2>/dev/null | grep -q "qwen2.5"; then
-    echo "  ✓ qwen2.5:7b already available"
+  # Hardware-adaptive model selection: query MC server for tier if available,
+  # otherwise fall back to safe CPU-viable default (qwen2.5:3b).
+  MODEL="qwen2.5:3b"
+  TIER=$(curl -s http://127.0.0.1:7891/api/ollama/status 2>/dev/null | grep -o '"hardware_tier":"[^"]*"' | head -1 | cut -d'"' -f4)
+  case "$TIER" in
+    strong_gpu) MODEL="qwen3:14b" ;;
+    mid_gpu)    MODEL="qwen3:8b" ;;
+    weak_gpu)   MODEL="qwen2.5:3b" ;;
+    cpu_only)   MODEL="qwen2.5:3b" ;;
+  esac
+  # Check if chosen model (or any variant) is already present
+  if curl -s http://127.0.0.1:11434/api/tags 2>/dev/null | grep -q "${MODEL%%:*}"; then
+    echo "  ✓ $MODEL already available"
   else
-    echo "  → Downloading your local model (qwen2.5:7b, ~4.7GB) — this takes a"
+    echo "  → Downloading your local model ($MODEL) — this takes a"
     echo "    few minutes the first time. The install itself is quick; this"
     echo "    download is the part that varies with your connection."
-    ollama pull qwen2.5:7b || true
+    ollama pull "$MODEL" || true
   fi
 }
 
