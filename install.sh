@@ -103,6 +103,45 @@ notify() {
   if command -v osascript >/dev/null 2>&1; then osascript -e "display notification \"$1\" with title \"Mission Canvas\"" >/dev/null 2>&1 || true; fi
 }
 
+# Desktop AppImage fallback (Linux, DL-69/DL-70). AppImages need libfuse.so.2
+# to self-mount; on FUSE-less machines they die with
+# "dlopen(): error loading libfuse.so.2". Fallback: extract once with
+# --appimage-extract, then launch (and on later runs reuse) squashfs-root/AppRun.
+launch_appimage() {
+  [ "$(uname -s)" = "Linux" ] || return 1
+  EXTRACT_BASE="${HOME}/.mission-canvas/appimage"
+  # Extracted on a previous FUSE-less run? Reuse it — no re-extract needed.
+  if [ -x "${EXTRACT_BASE}/squashfs-root/AppRun" ]; then
+    notify "Starting Mission Canvas (extracted AppImage)."
+    "${EXTRACT_BASE}/squashfs-root/AppRun" >>"$LOG" 2>&1 &
+    return 0
+  fi
+  APPIMG=""
+  for c in "${HOME}/.mission-canvas/MissionCanvas.AppImage" \
+           "${HOME}/Applications/MissionCanvas.AppImage" \
+           "${HOME}/Downloads/MissionCanvas.AppImage" \
+           "${HOME}/Downloads"/Mission*Canvas*.AppImage; do
+    if [ -f "$c" ]; then APPIMG="$c"; break; fi
+  done
+  [ -n "$APPIMG" ] || return 1
+  chmod +x "$APPIMG" 2>/dev/null || true
+  # FUSE present? The AppImage can self-mount — run it directly.
+  if ldconfig -p 2>/dev/null | grep -q 'libfuse\.so\.2'; then
+    notify "Starting Mission Canvas."
+    "$APPIMG" >>"$LOG" 2>&1 &
+    return 0
+  fi
+  # No FUSE — extract once, then launch the extracted AppRun.
+  notify "FUSE not available — extracting the app (one-time step)."
+  mkdir -p "$EXTRACT_BASE"
+  ( cd "$EXTRACT_BASE" && "$APPIMG" --appimage-extract >>"$LOG" 2>&1 )
+  if [ -x "${EXTRACT_BASE}/squashfs-root/AppRun" ]; then
+    "${EXTRACT_BASE}/squashfs-root/AppRun" >>"$LOG" 2>&1 &
+    return 0
+  fi
+  return 1
+}
+
 # Already running (ours)? Just open the browser — don't start a second server.
 RESPONSE=$(curl -fsS --max-time 2 "$HEALTH_URL" 2>/dev/null || echo "")
 if [ -n "$RESPONSE" ]; then
@@ -131,6 +170,11 @@ if command -v mc >/dev/null 2>&1; then
 elif [ -f "${HOME}/.mission-canvas/src/mc_cli.py" ]; then
   ( cd "${HOME}/.mission-canvas" && python3 -m src.web "$PORT" >/dev/null 2>&1 & )
 else
+  # No CLI/web install — fall back to the desktop AppImage if one is present.
+  # The desktop app serves its own window; no port-7891 health wait applies.
+  if launch_appimage; then
+    exit 0
+  fi
   notify "Couldn't find the Mission Canvas install — try re-running the installer."
   exit 1
 fi
