@@ -72,6 +72,8 @@ pull_ollama() {
     echo "    download is the part that varies with your connection."
     ollama pull "$MODEL" || true
   fi
+  mkdir -p "$HOME/.mission-canvas"
+  python3 -c "import json, pathlib; p = pathlib.Path('$HOME/.mission-canvas/providers.json'); d = json.loads(p.read_text()) if p.exists() else {}; d['ollama_model'] = '$MODEL'; p.write_text(json.dumps(d, indent=2))" 2>/dev/null || true
 }
 
 # Native launcher so restarting after reboot never requires a terminal.
@@ -168,7 +170,7 @@ fi
 if command -v mc >/dev/null 2>&1; then
   mc serve "$PORT" >/dev/null 2>&1 &
 elif [ -f "${HOME}/.mission-canvas/src/mc_cli.py" ]; then
-  ( cd "${HOME}/.mission-canvas" && python3 -m src.web "$PORT" >/dev/null 2>&1 & )
+  ( cd "${HOME}/.mission-canvas" && python3 -m src.api_server "$PORT" >/dev/null 2>&1 & )
 else
   # No CLI/web install — fall back to the desktop AppImage if one is present.
   # The desktop app serves its own window; no port-7891 health wait applies.
@@ -269,11 +271,11 @@ if curl -fsSL "$URL" -o "$TMPFILE" 2>/dev/null && [ -s "$TMPFILE" ]; then
   if command -v ollama >/dev/null 2>&1 && curl -s http://127.0.0.1:11434/api/tags >/dev/null 2>&1; then
     mkdir -p "$HOME/.mission-canvas/config"
     if [ ! -f "$HOME/.mission-canvas/config/providers.json" ]; then
-      cat > "$HOME/.mission-canvas/config/providers.json" << 'PROVEOF'
+      cat > "$HOME/.mission-canvas/config/providers.json" << PROVEOF
 {
   "providers": {
     "ollama": {
-      "model": "qwen2.5:7b",
+      "model": "${MODEL:-qwen2.5:3b}",
       "verified": true
     }
   },
@@ -281,7 +283,7 @@ if curl -fsSL "$URL" -o "$TMPFILE" 2>/dev/null && [ -s "$TMPFILE" ]; then
 }
 PROVEOF
       chmod 600 "$HOME/.mission-canvas/config/providers.json"
-      echo "  ✓ Connected to Ollama / qwen2.5:7b"
+      echo "  ✓ Connected to Ollama / ${MODEL:-qwen2.5:3b}"
     fi
   fi
 
@@ -391,9 +393,9 @@ echo "  ⚠ The quick download isn't available right now — setting up the full
 echo "    version instead. Still automatic; it just takes a few minutes longer."
 
 # Check Python
-if ! python3 -c 'import sys; exit(0 if sys.version_info >= (3,10) else 1)' 2>/dev/null; then
+if ! python3 -c 'import sys; exit(0 if sys.version_info >= (3,11) else 1)' 2>/dev/null; then
   echo ""
-  echo "  ✗ This computer is missing a tool the full setup needs (Python 3.10"
+  echo "  ✗ This computer is missing a tool the full setup needs (Python 3.11"
   echo "    or newer). Nothing was changed. Two easy ways forward:"
   echo "    → Get the ready-to-run app at https://missioncanvas.ai"
   echo "    → Or install Python from https://python.org, then run this same"
@@ -427,11 +429,14 @@ echo "  ✓ Source ready"
 # Install Python deps (with PEP 668 break packages)
 echo "  → Installing dependencies..."
 cd "$INSTALL_DIR"
-pip3 install --quiet --break-system-packages pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null || \
-  pip3 install --quiet pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null || \
-  python3 -m pip install --quiet --break-system-packages pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null || \
-  echo "  ⚠ pip install failed"
-echo "  ✓ Dependencies"
+if pip3 install --quiet --break-system-packages pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null || \
+   pip3 install --quiet pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null || \
+   python3 -m pip install --quiet --break-system-packages pyyaml redis fastapi uvicorn websockets pytest httpx 2>/dev/null; then
+  echo "  ✓ Dependencies"
+else
+  echo "  ✗ Dependency install failed"
+  exit 1
+fi
 
 # Install Node.js deps if node is installed
 if command -v node >/dev/null 2>&1 && [ -d "runtime" ]; then
