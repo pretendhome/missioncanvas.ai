@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=20260726" />
+  <link rel="stylesheet" href="style.css?v=20260811" />
 </head>
 <body>
 
@@ -32,7 +32,7 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Mission Canvas home">
         <span class="nav-logo-mark" aria-hidden="true">
-          <img src="mission-canvas-white-on-black.png?v=20260726" alt="" />
+          <img src="logo-mc.png?v=20260811" alt="" />
         </span>
         <span>Mission Canvas</span>
       </a>
@@ -40,8 +40,8 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#how-it-works">How it works</a>
         <a href="#use-cases">Use cases</a>
-        <a href="https://github.com/pretendhome/mission-canvas" target="_blank" rel="noopener">GitHub</a>
-        <a href="#docs">Docs</a>
+        <a href="#voice">Voice</a>
+        <a href="#services">Services</a>
       </nav>
 
       <div class="nav-actions">
@@ -57,7 +57,7 @@
 
     <!-- HERO BANNER — centered graffiti logo at top of page -->
     <div class="hero-banner fade-in">
-      <img src="mc-with-fade.png?v=20260726" alt="Mission Canvas" class="hero-banner-img" />
+      <img src="mc-with-fade.png?v=20260811" alt="Mission Canvas" class="hero-banner-img" />
     </div>
 
     <!-- HERO -->
@@ -69,7 +69,6 @@
             <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
             Local-first
           </span>
-          <span class="chip chip-open">Open source</span>
         </div>
 
         <h1 class="hero-headline fade-in">
@@ -83,20 +82,29 @@
         </p>
 
         <div class="hero-ctas fade-in">
+          <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">Download the app</p>
           <div class="download-buttons" id="download-buttons">
-            <a class="btn btn-download btn-primary" id="btn-dl-unix"
-               href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.dmg">
-              Download for Mac / Linux
+            <a class="btn btn-download btn-primary" id="btn-dl-mac"
+               href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.dmg"
+               data-platform="mac">
+              Mac
             </a>
-            <a class="btn btn-download btn-ghost" id="btn-dl-win"
-               href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas-Setup.exe">
-              Download for Windows
+            <a class="btn btn-download btn-primary" id="btn-dl-win"
+               href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas-Setup.exe"
+               data-platform="windows">
+              Windows
+            </a>
+            <a class="btn btn-download btn-primary" id="btn-dl-linux"
+               href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.AppImage"
+               data-platform="linux">
+              Linux
             </a>
           </div>
 
           <span class="mobile-download-note">Download on your computer to get started</span>
 
-          <div class="terminal-install" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+          <div class="terminal-install" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; width: 100%; max-width: 520px;">
+            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">For developers — install the CLI</p>
             <div class="install-cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install.sh | sh" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
               <span style="font-size: 0.85rem; color: #888;">macOS / Linux:</span>
               <code style="font-family: monospace; color: #fff;">curl -fsSL https://missioncanvas.ai/install.sh | sh</code>
@@ -194,7 +202,7 @@
           <div class="trust-divider" aria-hidden="true"></div>
           <div class="trust-item">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>2,506 tests. All passing.</span>
+            <span>Governed pipeline. No shortcuts.</span>
           </div>
           <div class="trust-divider" aria-hidden="true"></div>
           <div class="trust-item">
@@ -230,7 +238,7 @@
             <div class="step-num">CLASSIFY</div>
             <div class="step-body">
               <h3>Sort the question</h3>
-              <p>312-node ontology. Keyword → BM25 → LLM fallback. Every route gets a score.</p>
+              <p>320-node ontology. Keyword → BM25 → LLM fallback. Every route gets a score.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -248,7 +256,7 @@
             <div class="step-num">RETRIEVE</div>
             <div class="step-body">
               <h3>Gather the evidence</h3>
-              <p>219+ knowledge entries. Freshness scored. Stale entries filtered before REASON.</p>
+              <p>Knowledge entries pulled and freshness-scored. Stale entries filtered before REASON.</p>
             </div>
           </div>
           <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
@@ -484,49 +492,143 @@
       </div>
     </section>
 
-    <!-- OPEN SOURCE TRUST — the Obsidian "not even us" moment -->
-    <section class="open-source" aria-label="Open source trust">
+    <!-- VOICE — Tessitura framework -->
+    <section class="voice-section" id="voice" aria-label="Voice">
       <div class="container">
         <div class="open-source-inner fade-in">
           <div class="os-text">
-            <h2>Read the code that governs your data.</h2>
+            <h2>AI you can talk to.<br/><em>A voice you can customize.</em></h2>
             <p>
-              Mission Canvas is AGPL-3.0 open source. You can read every rule, route, and gate. You do not have to trust our word.
+              Mission Canvas shapes every response to match the professional voice of the person it serves — tone, pace, formality, and domain vocabulary. We call this Tessitura: a voice framework that learns from real use, not a prompt template.
             </p>
             <div class="os-ctas">
-              <a href="https://github.com/pretendhome/mission-canvas" class="btn btn-primary" target="_blank" rel="noopener">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                View on GitHub
+              <a href="https://pretendhome.github.io/palette/portfolio.html" class="btn btn-primary" target="_blank" rel="noopener">
+                Voice design portfolio
               </a>
-              <a href="#docs" class="btn btn-ghost">Read the docs →</a>
+              <a href="https://pretendhome.github.io/palette/voice-demo/" class="btn btn-ghost" target="_blank" rel="noopener">
+                A/B Tessitura demo
+              </a>
+            </div>
+            <div class="os-ctas" style="margin-top: var(--space-3);">
+              <a href="https://pretendhome.github.io/palette/voice-demo/bot.html" class="btn btn-ghost" target="_blank" rel="noopener">
+                Live voice agent
+              </a>
+              <a href="https://pretendhome.github.io/palette/voice-workbench/" class="btn btn-ghost" target="_blank" rel="noopener">
+                Voice evaluation workbench
+              </a>
             </div>
             <p class="os-stat">
-              312 ontology nodes · 219+ knowledge entries · 2,506 tests passing
+              Tessitura framework · 56 professional lenses · Voice-first interaction
             </p>
           </div>
           <div class="os-code-block">
             <div class="code-header">
-              <span class="code-file">src/pipeline.py</span>
-              <span class="code-badge">The OS</span>
+              <span class="code-file">tessitura</span>
+              <span class="code-badge">Voice</span>
             </div>
-            <pre class="code-pre"><code><span class="code-comment"># No skipping. No shortcuts.</span>
-<span class="code-comment"># The pipeline IS the OS.</span>
+            <pre class="code-pre"><code><span class="code-comment"># Same question. Different person.</span>
+<span class="code-comment"># Same facts. Different voice.</span>
 
-<span class="code-kw">def</span> <span class="code-fn">run</span>(query):
-  query = <span class="code-fn">scan</span>(query)       <span class="code-comment"># gate: PII</span>
-  node  = <span class="code-fn">classify</span>(query)  <span class="code-comment"># ontology</span>
-  path  = <span class="code-fn">traverse</span>(node)   <span class="code-comment"># graph walk</span>
-  kl    = <span class="code-fn">retrieve</span>(node)   <span class="code-comment"># evidence</span>
-  ctx   = <span class="code-fn">context</span>(kl)      <span class="code-comment"># assemble</span>
+<span class="code-kw">lens</span>: litigation_partner
+<span class="code-fn">tone</span>: direct, adversarial-ready
+<span class="code-fn">pace</span>: fast, no hedging
+<span class="code-fn">vocab</span>: "exposure", "position", "remedy"
 
-  <span class="code-kw">if</span> node.blocks_external:
-    answer = <span class="code-fn">reason_local</span>(ctx)  <span class="code-comment"># ALWAYS</span>
-  <span class="code-kw">else</span>:
-    answer = <span class="code-fn">reason</span>(ctx)        <span class="code-comment"># model last</span>
+<span class="code-kw">lens</span>: compliance_officer
+<span class="code-fn">tone</span>: measured, documentation-first
+<span class="code-fn">pace</span>: thorough, caveats included
+<span class="code-fn">vocab</span>: "obligation", "control", "finding"
 
-  <span class="code-fn">store</span>(answer)  <span class="code-comment"># path record: always</span>
-  <span class="code-kw">return</span> answer</code></pre>
+<span class="code-comment"># The governance is identical.</span>
+<span class="code-comment"># The voice is theirs.</span></code></pre>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES — consulting offers -->
+    <section class="services" id="services" aria-label="Services">
+      <div class="container">
+        <div class="section-label fade-in">Services</div>
+        <h2 class="section-headline fade-in">
+          We audit your AI exposure<br/>before your regulator does.
+        </h2>
+        <p class="section-sub fade-in">
+          Mission Canvas is a product and a professional service. We run the governed pipeline against your actual workflows and deliver a defensible answer — not a slide deck.
+        </p>
+
+        <div class="cases-grid">
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$2K–$5K</span>
+              <span class="chip chip-sources chip-sm">1 DAY</span>
+            </div>
+            <h3>AI Safety Workshop</h3>
+            <p>
+              Half-day session for your leadership team. Where your data goes, what your competitors are doing, and what your real exposure looks like. Live demos. Written summary.
+            </p>
+          </div>
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$5K–$25K</span>
+              <span class="chip chip-sources chip-sm">5–20 DAYS</span>
+            </div>
+            <h3>AI Governance Audit</h3>
+            <p>
+              We classify your workflows, measure grounding integrity, map data exposure, and deliver a board-ready report. Your data never leaves a local machine.
+            </p>
+          </div>
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$5K–$10K</span>
+              <span class="chip chip-sources chip-sm">5–10 DAYS</span>
+            </div>
+            <h3>Sensitive Data Mapping</h3>
+            <p>
+              We classify your document corpus by sensitivity tier. What's safe for external AI, what must stay local, what should never touch AI at all.
+            </p>
+          </div>
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$3K–$8K</span>
+              <span class="chip chip-sources chip-sm">5–10 DAYS</span>
+            </div>
+            <h3>AI Policy Development</h3>
+            <p>
+              We write your internal AI usage policy — grounded in your actual workflows, not a template. Written so your General Counsel can adopt it directly.
+            </p>
+          </div>
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$5K–$15K</span>
+              <span class="chip chip-sources chip-sm">10–15 DAYS</span>
+            </div>
+            <h3>AI Vendor Evaluation</h3>
+            <p>
+              We score AI platforms against your requirements using research across 230+ companies. An honest assessment of what each vendor does vs. what they claim.
+            </p>
+          </div>
+
+          <div class="case-card fade-in">
+            <div class="case-chips">
+              <span class="chip chip-node chip-sm">$5K–$10K/mo</span>
+              <span class="chip chip-sources chip-sm">ONGOING</span>
+            </div>
+            <h3>Fractional Chief AI Officer</h3>
+            <p>
+              We embed 10–15 hours/week as your AI governance lead. Leadership meetings, initiative reviews, policy ownership, vendor management. A full-time CAIO at a fraction of the cost.
+            </p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: var(--space-10);">
+          <a href="mailto:info@missioncanvas.ai" class="btn btn-primary">Get in touch</a>
         </div>
       </div>
     </section>
@@ -536,7 +638,6 @@
       <div class="container">
         <div class="section-label fade-in">The journey</div>
         <h2 class="section-headline fade-in">From install to first answer<br/>in five minutes.</h2>
-
 
         <div class="journey-steps">
           <div class="journey-step fade-in">
@@ -589,21 +690,49 @@
         <div class="final-cta-inner fade-in">
           <h2>Everything MC knows lives in files you can read, correct, or delete.</h2>
           <p>
-            Free. Open source. Runs on your machine. No account.
+            Runs on your machine. No account. No telemetry.
           </p>
           <div class="final-cta-install">
+            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0 0 var(--space-3) 0;">Download the app</p>
             <div class="download-buttons" style="justify-content: center;">
-              <a class="btn btn-download btn-primary" id="btn-dl-unix-2"
-                 href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.dmg">
-                Download for Mac / Linux
+              <a class="btn btn-download btn-primary" id="btn-dl-mac-2"
+                 href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.dmg"
+                 data-platform="mac">
+                Mac
               </a>
-              <a class="btn btn-download btn-ghost" id="btn-dl-win-2"
-                 href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas-Setup.exe">
-                Download for Windows
+              <a class="btn btn-download btn-primary" id="btn-dl-win-2"
+                 href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas-Setup.exe"
+                 data-platform="windows">
+                Windows
+              </a>
+              <a class="btn btn-download btn-primary" id="btn-dl-linux-2"
+                 href="https://github.com/pretendhome/mission-canvas/releases/download/desktop-v0.2.35/MissionCanvas.AppImage"
+                 data-platform="linux">
+                Linux
               </a>
             </div>
             <span class="mobile-download-note">Download on your computer to get started</span>
           </div>
+
+          <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; width: 100%; max-width: 520px;">
+            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">For developers — install the CLI</p>
+            <div class="install-cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install.sh | sh" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">macOS / Linux:</span>
+              <code style="font-family: monospace; color: #fff;">curl -fsSL https://missioncanvas.ai/install.sh | sh</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+            <div class="install-cmd" data-cmd="irm https://missioncanvas.ai/install.ps1 | iex" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">Windows:</span>
+              <code style="font-family: monospace; color: #fff;">irm https://missioncanvas.ai/install.ps1 | iex</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+            <div class="install-cmd" data-cmd="docker compose up" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
+              <span style="font-size: 0.85rem; color: #888;">Docker Compose:</span>
+              <code style="font-family: monospace; color: #fff;">docker compose up</code>
+              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
+            </div>
+          </div>
+
           <p class="final-byline">AI that never leaves the room.</p>
         </div>
       </div>
@@ -620,16 +749,16 @@
           <span class="footer-tagline">AI for work you cannot leak.</span>
         </div>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="https://github.com/pretendhome/mission-canvas" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://github.com/pretendhome/mission-canvas/wiki">Docs</a>
-          <a href="mailto:hello@missioncanvas.ai">Contact</a>
+          <a href="#services">Services</a>
+          <a href="#voice">Voice</a>
+          <a href="mailto:info@missioncanvas.ai">Contact</a>
         </nav>
-        <div class="footer-dev"><code>Free · Local-first · No account required</code></div>
-        <p class="footer-copy">AGPL-3.0 · © 2026 Mission Canvas, Inc.</p>
+        <div class="footer-dev"><code>Local-first · No account required</code></div>
+        <p class="footer-copy">© 2026 Mission Canvas, Inc.</p>
       </div>
     </div>
   </footer>
 
-  <script src="app.js?v=20260726" defer></script>
+  <script src="app.js?v=20260811" defer></script>
 </body>
 </html>
