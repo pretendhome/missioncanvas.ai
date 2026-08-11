@@ -114,7 +114,7 @@ $binary = "mc-windows-${arch}.exe"
 # Release resolution: desktop-app releases (tags desktop-v*) live in the same
 # repo, so we resolve the newest CLI release (tag v*) from the release list
 # and avoid desktop-v* tags.
-$releasesApi = "https://api.github.com/repos/pretendhome/mission-canvas/releases?per_page=20"
+$releasesApi = "https://api.github.com/repos/pretendhome/missioncanvas.ai/releases?per_page=20"
 $cliTag = ""
 try {
     $response = Invoke-RestMethod -Uri $releasesApi -UseBasicParsing -ErrorAction Stop
@@ -127,10 +127,10 @@ try {
 } catch {}
 
 if ($cliTag) {
-    $url = "https://github.com/pretendhome/mission-canvas/releases/download/$cliTag/$binary"
+    $url = "https://github.com/pretendhome/missioncanvas.ai/releases/download/$cliTag/$binary"
     Write-Host "  → Downloading Mission Canvas ($cliTag)..." -ForegroundColor Cyan
 } else {
-    $url = "https://github.com/pretendhome/mission-canvas/releases/latest/download/$binary"
+    $url = "https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/$binary"
     Write-Host "  → Attempting binary download..." -ForegroundColor Cyan
 }
 New-Item -ItemType Directory -Force -Path $installDir | Out-Null
@@ -236,8 +236,8 @@ try {
 
 # Clone or Update
 if (-not (Test-Path "$installDir\.git")) {
-    Write-Host "  → Cloning Mission Canvas..." -ForegroundColor Cyan
-    git clone https://github.com/pretendhome/mission-canvas.git "$installDir"
+    Write-Host "  ✗ Binary download failed. Please download manually from https://missioncanvas.ai" -ForegroundColor Red
+    exit 1
 } else {
     Write-Host "  → Updating existing clone..." -ForegroundColor Cyan
     Push-Location "$installDir"

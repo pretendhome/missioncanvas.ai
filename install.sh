@@ -245,16 +245,16 @@ PLISTEOF
 # CLI release (tag v*) from the release list; fall back to "latest" only when
 # the release list itself is unreachable.
 BINARY="mc-${PLATFORM}-${ARCH}"
-RELEASES_API="https://api.github.com/repos/pretendhome/mission-canvas/releases?per_page=20"
+RELEASES_API="https://api.github.com/repos/pretendhome/missioncanvas.ai/releases?per_page=20"
 CLI_TAG=$(curl -fsSL "$RELEASES_API" 2>/dev/null \
   | grep -o '"tag_name"[[:space:]]*:[[:space:]]*"v[0-9][^"]*"' \
   | head -1 \
   | sed 's/.*"\(v[0-9][^"]*\)"/\1/')
 if [ -n "$CLI_TAG" ]; then
-  URL="https://github.com/pretendhome/mission-canvas/releases/download/${CLI_TAG}/${BINARY}"
+  URL="https://github.com/pretendhome/missioncanvas.ai/releases/download/${CLI_TAG}/${BINARY}"
   echo "  → Downloading Mission Canvas (${CLI_TAG})..."
 else
-  URL="https://github.com/pretendhome/mission-canvas/releases/latest/download/${BINARY}"
+  URL="https://github.com/pretendhome/missioncanvas.ai/releases/latest/download/${BINARY}"
   echo "  → Downloading Mission Canvas..."
 fi
 TMPFILE=$(mktemp)
@@ -421,8 +421,8 @@ if [ -d "$INSTALL_DIR/.git" ]; then
   echo "  → Updating existing install..."
   (cd "$INSTALL_DIR" && git pull --quiet 2>/dev/null) || true
 else
-  echo "  → Cloning Mission Canvas..."
-  git clone --quiet --depth 1 https://github.com/pretendhome/mission-canvas.git "$INSTALL_DIR"
+  echo "  ✗ Binary download failed. Please download manually from https://missioncanvas.ai"
+  exit 1
 fi
 echo "  ✓ Source ready"
 
@@ -457,44 +457,23 @@ pull_ollama
 echo ""
 python3 "$INSTALL_DIR/src/mc_cli.py" health 2>/dev/null || echo "  (Run 'mc health' to verify)"
 
-# Auto-start API server (source mode — api_server.py is on disk)
-echo "  → Starting web server on http://localhost:7891 ..."
+# Auto-start API server and open browser
+echo "  → Starting Mission Canvas web UI..."
 python3 src/api_server.py >/dev/null 2>&1 &
+MC_PID=$!
+sleep 2
+open_browser
 
-# Poll until the server binds, then open the UI
-i=0
-while [ "$i" -lt 30 ]; do
-  if curl -fsS "http://127.0.0.1:7891/" >/dev/null 2>&1; then break; fi
-  i=$((i + 1)); sleep 1
-done
-if [ "$i" -lt 30 ]; then
-  echo "  ✓ Web UI is live"
-  if command -v xdg-open >/dev/null 2>&1; then xdg-open "http://localhost:7891" >/dev/null 2>&1 &
-  elif command -v open >/dev/null 2>&1; then open "http://localhost:7891" >/dev/null 2>&1 &
-  fi
-fi
-
-# Native launcher — reboot never requires a terminal after this
-install_native_launcher
-
-# Install log summary — same rationale as binary path: Ollama/Model
-# are not logged here because the wizard installs them after this exits.
-INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
-mkdir -p "$HOME/.mission-canvas"
-{
-  echo "=== Install completed (source): $(date) ==="
-  echo "OS: $(uname -a)"
-  echo "Duration: ${INSTALL_SECS}s"
-} >> "$HOME/.mission-canvas/install.log"
-
-echo ""
-echo "  ✓ Ready in ${INSTALL_SECS} seconds"
 echo ""
 echo "  ╔══════════════════════════════════════════╗"
-echo "  ║   Installation complete!                 ║"
+echo "  ║   Mission Canvas is running!             ║"
 echo "  ╠══════════════════════════════════════════╣"
-echo "  ║   Web UI:  http://localhost:7891          ║"
-echo "  ║   CLI:     cd $INSTALL_DIR && python3 src/mc_cli.py shell"
-echo "  ║   Relaunch: search \"Mission Canvas\"      ║"
+echo "  ║                                          ║"
+echo "  ║  → http://localhost:7891 (open in browser)"
+echo "  ║                                          ║"
+echo "  ║  Stop:  kill $MC_PID                     ║"
+echo "  ║  Restart: cd ~/.mission-canvas           ║"
+echo "  ║           python3 src/api_server.py      ║"
+echo "  ║                                          ║"
 echo "  ╚══════════════════════════════════════════╝"
 echo ""
