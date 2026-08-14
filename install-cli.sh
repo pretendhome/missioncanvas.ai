@@ -5,7 +5,7 @@
 # This installs the MC command-line tool ONLY.
 # No web server. No desktop app. No browser. Just the CLI.
 #
-# Requirements: Python 3.11+, git, curl
+# Requirements: Python 3.11+, curl
 # Optional: Ollama (for local inference)
 set -e
 
@@ -29,7 +29,7 @@ check_command() {
 }
 
 check_command python3 "Install Python 3.11+: https://python.org"
-check_command git "Install git: https://git-scm.com"
+check_command curl "Install curl: https://curl.se"
 
 PYTHON_VER=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 PYTHON_MAJOR=$(echo "$PYTHON_VER" | cut -d. -f1)
@@ -43,32 +43,63 @@ echo "  ✓ Python $PYTHON_VER"
 # ── Install ─────────────────────────────────────────────────────────────────
 
 INSTALL_DIR="${MC_INSTALL_DIR:-${HOME}/.mission-canvas/cli}"
+REPO="pretendhome/missioncanvas.ai"
+TAG="releases/latest"
 
-if [ -d "$INSTALL_DIR/.git" ]; then
-  echo "  → Updating existing install..."
-  (cd "$INSTALL_DIR" && git pull --quiet 2>/dev/null) || true
+# Detect platform
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m)
+case "$OS-$ARCH" in
+  linux-x86_64)   ASSET="mc-linux-x86_64" ;;
+  darwin-arm64)   ASSET="mc-darwin-arm64" ;;
+  darwin-x86_64)  ASSET="mc-darwin-arm64" ;;  # Rosetta fallback
+  *)
+    echo "  ✗ Unsupported platform: $OS-$ARCH"
+    echo "    Download manually from https://missioncanvas.ai"
+    exit 1 ;;
+esac
+
+mkdir -p "$INSTALL_DIR"
+
+# Download or update the CLI binary
+DOWNLOAD_URL="https://github.com/${REPO}/${TAG}/download/${ASSET}"
+echo "  → Downloading mc for $OS/$ARCH..."
+if curl -fsSL -o "$INSTALL_DIR/mc" "$DOWNLOAD_URL"; then
+  chmod +x "$INSTALL_DIR/mc"
+  echo "  ✓ CLI binary ready"
 else
-  echo "  ✗ Installation failed. Please download manually from https://missioncanvas.ai"
-  exit 1
-fi
-echo "  ✓ Source ready"
+  # Fallback: try git clone for developer install
+  if [ -d "$INSTALL_DIR/.git" ]; then
+    echo "  → Updating existing git install..."
+    (cd "$INSTALL_DIR" && git pull --quiet 2>/dev/null) || true
+    echo "  ✓ Source ready (git)"
+  elif command -v git >/dev/null 2>&1; then
+    echo "  → Binary download failed. Trying git clone..."
+    git clone --quiet --depth 1 https://github.com/pretendhome/mission-canvas.git "$INSTALL_DIR" 2>/dev/null
+    if [ $? -eq 0 ]; then
+      echo "  ✓ Source ready (git clone)"
+    else
+      echo "  ✗ Installation failed. Please download manually from https://missioncanvas.ai"
+      exit 1
+    fi
+  else
+    echo "  ✗ Installation failed. Please download manually from https://missioncanvas.ai"
+    exit 1
+  fi
 
-# ── Dependencies ────────────────────────────────────────────────────────────
-
-echo "  → Installing dependencies..."
-cd "$INSTALL_DIR"
-
-# CLI needs fewer deps than the full app — no fastapi/uvicorn/jinja2 required
-CLI_DEPS="pyyaml httpx cryptography"
-
-if pip3 install --quiet --break-system-packages $CLI_DEPS 2>/dev/null || \
-   pip3 install --quiet $CLI_DEPS 2>/dev/null || \
-   python3 -m pip install --quiet --break-system-packages $CLI_DEPS 2>/dev/null; then
-  echo "  ✓ Dependencies"
-else
-  echo "  ✗ Dependency install failed"
-  echo "    Try: pip3 install pyyaml httpx cryptography"
-  exit 1
+  # Git-based install needs Python dependencies
+  echo "  → Installing dependencies..."
+  cd "$INSTALL_DIR"
+  CLI_DEPS="pyyaml httpx cryptography"
+  if pip3 install --quiet --break-system-packages $CLI_DEPS 2>/dev/null || \
+     pip3 install --quiet $CLI_DEPS 2>/dev/null || \
+     python3 -m pip install --quiet --break-system-packages $CLI_DEPS 2>/dev/null; then
+    echo "  ✓ Dependencies"
+  else
+    echo "  ✗ Dependency install failed"
+    echo "    Try: pip3 install pyyaml httpx cryptography"
+    exit 1
+  fi
 fi
 
 # ── mc on PATH ──────────────────────────────────────────────────────────────
