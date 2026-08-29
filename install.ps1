@@ -180,7 +180,16 @@ if ($binarySuccess) {
 
     if ($up) {
         Write-Host "  ✓ Web UI is live" -ForegroundColor Green
-        Start-Process "http://localhost:7891"            # open the web UI in the browser
+        # Opening a URL needs a registered http:// handler. A machine without
+        # one (CI runner, Server Core, a stripped install) throws here, and
+        # with $ErrorActionPreference = "Stop" that killed the whole installer
+        # AFTER claiming the web UI was live — no banner, no shortcuts, no
+        # launcher. Convenience must never abort an otherwise-good install.
+        try {
+            Start-Process "http://localhost:7891" -ErrorAction Stop
+        } catch {
+            Write-Host "  → Open http://localhost:7891 in your browser" -ForegroundColor Cyan
+        }
     } else {
         Write-Host "  ⚠ Web server didn't come up in time — start it later with 'mc start'" -ForegroundColor Yellow
     }
@@ -294,7 +303,13 @@ for ($i = 0; $i -lt 30; $i++) {
 }
 if ($ready) {
     Write-Host "  ✓ Web UI is live" -ForegroundColor Green
-    Start-Process "http://localhost:7891"
+    # Same hazard as the binary path above — never let opening a browser abort
+    # a completed install.
+    try {
+        Start-Process "http://localhost:7891" -ErrorAction Stop
+    } catch {
+        Write-Host "  → Open http://localhost:7891 in your browser" -ForegroundColor Cyan
+    }
 } else {
     Write-Host "  ⚠ Server didn't start in time — open http://localhost:7891 manually" -ForegroundColor Yellow
 }

@@ -457,23 +457,44 @@ pull_ollama
 echo ""
 python3 "$INSTALL_DIR/src/mc_cli.py" health 2>/dev/null || echo "  (Run 'mc health' to verify)"
 
-# Auto-start API server and open browser
-echo "  → Starting Mission Canvas web UI..."
+# Auto-start API server (source mode — api_server.py is on disk)
+echo "  → Starting web server on http://localhost:7891 ..."
 python3 src/api_server.py >/dev/null 2>&1 &
-MC_PID=$!
-sleep 2
-open_browser
+
+# Poll until the server binds, then open the UI
+i=0
+while [ "$i" -lt 30 ]; do
+  if curl -fsS "http://127.0.0.1:7891/" >/dev/null 2>&1; then break; fi
+  i=$((i + 1)); sleep 1
+done
+if [ "$i" -lt 30 ]; then
+  echo "  ✓ Web UI is live"
+  if command -v xdg-open >/dev/null 2>&1; then xdg-open "http://localhost:7891" >/dev/null 2>&1 &
+  elif command -v open >/dev/null 2>&1; then open "http://localhost:7891" >/dev/null 2>&1 &
+  fi
+fi
+
+# Native launcher — reboot never requires a terminal after this
+install_native_launcher
+
+# Install log summary — same rationale as binary path: Ollama/Model
+# are not logged here because the wizard installs them after this exits.
+INSTALL_SECS=$(( $(date +%s) - INSTALL_START ))
+mkdir -p "$HOME/.mission-canvas"
+{
+  echo "=== Install completed (source): $(date) ==="
+  echo "OS: $(uname -a)"
+  echo "Duration: ${INSTALL_SECS}s"
+} >> "$HOME/.mission-canvas/install.log"
 
 echo ""
+echo "  ✓ Ready in ${INSTALL_SECS} seconds"
+echo ""
 echo "  ╔══════════════════════════════════════════╗"
-echo "  ║   Mission Canvas is running!             ║"
+echo "  ║   Installation complete!                 ║"
 echo "  ╠══════════════════════════════════════════╣"
-echo "  ║                                          ║"
-echo "  ║  → http://localhost:7891 (open in browser)"
-echo "  ║                                          ║"
-echo "  ║  Stop:  kill $MC_PID                     ║"
-echo "  ║  Restart: cd ~/.mission-canvas           ║"
-echo "  ║           python3 src/api_server.py      ║"
-echo "  ║                                          ║"
+echo "  ║   Web UI:  http://localhost:7891          ║"
+echo "  ║   CLI:     cd $INSTALL_DIR && python3 src/mc_cli.py shell"
+echo "  ║   Relaunch: search \"Mission Canvas\"      ║"
 echo "  ╚══════════════════════════════════════════╝"
 echo ""
