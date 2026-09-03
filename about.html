@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About Mission Canvas — Local-First AI for Work That Cannot Leave the Room</title>
+  <meta name="description" content="Mission Canvas builds local-first, governed AI workflows for healthcare, legal, financial services, and government — work that cannot move to the cloud. Our mission, vision, and north star." />
+  <link rel="canonical" href="https://missioncanvas.ai/about.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mission Canvas" />
+  <meta property="og:url" content="https://missioncanvas.ai/about.html" />
+  <meta property="og:title" content="About Mission Canvas — Local-First AI for Work That Cannot Leave the Room" />
+  <meta property="og:description" content="AI should amplify human expertise, not replace it. How Mission Canvas designs governed, explainable AI workflows for healthcare and other regulated work." />
+  <meta property="og:image" content="https://missioncanvas.ai/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Mission Canvas" />
+  <meta name="twitter:description" content="AI should amplify human expertise, not replace it. Local-first, governed, explainable AI for work that cannot leave the room." />
+  <meta name="twitter:image" content="https://missioncanvas.ai/og.png" />
+
+  <meta name="theme-color" content="#0d0d0b" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/icons/icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/style.css?v=20260811" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mission Canvas, Inc.",
+    "url": "https://missioncanvas.ai",
+    "logo": "https://missioncanvas.ai/logo-mc.png",
+    "email": "info@missioncanvas.ai",
+    "foundingDate": "2026-09-01",
+    "description": "Mission Canvas builds local-first, governed AI workflows for regulated work. Classification runs before the model, sensitive domains are routed to hardware the customer controls, and every answer carries an audit record.",
+    "knowsAbout": [
+      "Local-first AI",
+      "AI governance",
+      "Explainable AI",
+      "Healthcare AI workflows",
+      "Legal AI and privilege",
+      "AI compliance and audit trails"
+    ],
+    "sameAs": ["https://github.com/pretendhome"]
+  }
+  </script>
+
+  <style>
+    /* About page — layout only. All color, type, and spacing tokens come
+       from /style.css so this page tracks the site theme and the toggle. */
+    .about-hero { padding: 168px 0 72px; }
+    .about-hero .about-eyebrow {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--color-primary); margin-bottom: 20px;
+    }
+    .about-hero h1 {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: var(--text-3xl); line-height: 1.04;
+      letter-spacing: -.02em; margin-bottom: 24px; max-width: 17ch;
+    }
+    .about-lede {
+      font-size: var(--text-lg); line-height: 1.5;
+      color: var(--color-text-muted); max-width: 60ch;
+    }
+
+    .about-section { padding: 72px 0; border-top: 1px solid var(--color-border); }
+    .about-section h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-2xl); line-height: 1.12;
+      letter-spacing: -.015em; margin-bottom: 20px; max-width: 22ch;
+    }
+    .about-section h3 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-base); margin-bottom: 8px;
+    }
+    .about-section p {
+      font-size: var(--text-base); line-height: 1.65;
+      color: var(--color-text-muted); max-width: 64ch;
+    }
+    .about-section p + p { margin-top: 16px; }
+    .about-section p strong { color: var(--color-text); font-weight: 700; }
+
+    .about-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--color-text-faint); margin-bottom: 16px;
+    }
+
+    .about-grid {
+      display: grid; gap: 16px; margin-top: 36px;
+      grid-template-columns: repeat(auto-fit, minmax(248px, 1fr));
+    }
+    .about-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 12px; padding: 22px 22px 24px;
+    }
+    .about-card p { font-size: var(--text-sm); line-height: 1.6; max-width: none; }
+
+    .about-fragments {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; max-width: 64ch;
+    }
+    .about-fragment {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      padding: 6px 12px; border-radius: 999px;
+      border: 1px solid var(--color-border-strong); color: var(--color-text-muted);
+    }
+
+    /* Healthcare gets the emphasis treatment — it is the lead vertical. */
+    .about-healthcare { background: var(--color-surface); }
+    .about-healthcare .about-card { background: var(--color-surface-offset); }
+
+    .about-verticals {
+      display: grid; gap: 14px; margin-top: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
+    .about-vertical { border-left: 2px solid var(--color-primary); padding: 4px 0 4px 16px; }
+    .about-vertical h3 { margin-bottom: 4px; font-size: var(--text-sm); }
+    .about-vertical p { font-size: var(--text-sm); line-height: 1.55; max-width: none; }
+
+    .about-northstar { border-top: 1px solid var(--color-border); padding: 88px 0 96px; text-align: center; }
+    .about-northstar blockquote {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); line-height: 1.4; letter-spacing: -.01em;
+      max-width: 30ch; margin: 20px auto 0; color: var(--color-text);
+    }
+
+    .about-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+
+    @media (max-width: 640px) {
+      .about-hero { padding: 128px 0 56px; }
+      .about-section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Mission Canvas home">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <img src="/logo-mc.png?v=20260811" alt="" />
+        </span>
+        <span>Mission Canvas</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/#how-it-works">How it works</a>
+        <a href="/#use-cases">Use cases</a>
+        <a href="/#voice">Voice</a>
+        <a href="/about.html" aria-current="page">About</a>
+        <a href="/apps/">Apps</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button data-theme-toggle aria-label="Switch to light mode" class="theme-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="/#final-cta" class="btn btn-primary btn-sm">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-eyebrow">About Mission Canvas</div>
+        <h1 id="about-title">Designing the future of human&ndash;AI collaboration.</h1>
+        <p class="about-lede">
+          Mission Canvas exists to help every person and every organization design, understand, and
+          continuously improve the work that matters most &mdash; through AI they can actually answer for.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="about-section" aria-labelledby="mission-title">
+      <div class="container">
+        <div class="about-label">Our mission</div>
+        <h2 id="mission-title">AI should not replace human expertise. It should amplify it.</h2>
+        <p>
+          We are building toward a world where intelligent systems help people spend less time searching,
+          organizing, and repeating work &mdash; and more time creating, solving problems, caring for
+          others, and making decisions that matter.
+        </p>
+        <p>
+          <strong>From AI that you visit to AI that executes the work around you.</strong> Requests run on
+          hardware the customer controls, with governed handoffs to frontier models only when they add
+          value. The user decides what runs where, what information leaves, which models are used, and why.
+        </p>
+      </div>
+    </section>
+
+    <!-- Vision -->
+    <section class="about-section" aria-labelledby="vision-title">
+      <div class="container">
+        <div class="about-label">Our vision</div>
+        <h2 id="vision-title">Every important workflow should be visible, improvable, and trusted.</h2>
+        <p>
+          Spreadsheets transformed finance. Computer-aided design transformed engineering. Mission Canvas
+          aims to do the same for knowledge work &mdash; a system where people can see how work flows,
+          understand how decisions were made, and improve those workflows over time.
+        </p>
+        <p>
+          Whether someone is organizing their personal life, running a small business, managing a hospital,
+          or coordinating a global enterprise, the requirement is the same. <strong>AI should not be a
+          black box. It should be explainable, governed, collaborative, and trusted.</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- What we believe -->
+    <section class="about-section" aria-labelledby="believe-title">
+      <div class="container">
+        <div class="about-label">What we believe</div>
+        <h2 id="believe-title">Knowledge work deserves the innovation manufacturing already got.</h2>
+        <p>
+          Today, the knowledge an organization depends on is scattered across systems that do not talk to
+          each other. People spend hours every day looking for information they already have.
+        </p>
+
+        <div class="about-fragments" role="list" aria-label="Where knowledge is fragmented today">
+          <span class="about-fragment" role="listitem">Email</span>
+          <span class="about-fragment" role="listitem">Calendars</span>
+          <span class="about-fragment" role="listitem">Documents</span>
+          <span class="about-fragment" role="listitem">Cloud storage</span>
+          <span class="about-fragment" role="listitem">Messaging</span>
+          <span class="about-fragment" role="listitem">Databases</span>
+          <span class="about-fragment" role="listitem">Business applications</span>
+          <span class="about-fragment" role="listitem">Personal notes</span>
+        </div>
+
+        <p style="margin-top:28px;">
+          Mission Canvas connects that knowledge into a living system so people and organizations can
+          think more clearly, work together more effectively, and continuously improve. We believe every
+          organization should <strong>own its workflows rather than rent its intelligence</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Long-term goals -->
+    <section class="about-section" aria-labelledby="goals-title">
+      <div class="container">
+        <div class="about-label">Our long-term goals</div>
+        <h2 id="goals-title">What we are building toward.</h2>
+        <p>These are the outcomes we are working to prove, not results we are claiming today.</p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Give people their time back</h3>
+            <p>Cut repetitive knowledge work substantially, so attention goes to creativity, relationships, and higher-value decisions.</p>
+          </div>
+          <div class="about-card">
+            <h3>Make AI understandable</h3>
+            <p>Replace black-box AI with systems that are transparent, explainable, auditable, and straightforward to trust.</p>
+          </div>
+          <div class="about-card">
+            <h3>Connect human knowledge</h3>
+            <p>Turn disconnected information into organizational intelligence that can be searched, visualized, improved, and shared.</p>
+          </div>
+          <div class="about-card">
+            <h3>Preserve institutional memory</h3>
+            <p>Capture workflows, decisions, and best practices before they disappear through turnover or retirement.</p>
+          </div>
+          <div class="about-card">
+            <h3>Democratize AI</h3>
+            <p>Let anyone design an intelligent workflow &mdash; not only developers and data scientists.</p>
+          </div>
+          <div class="about-card">
+            <h3>Improve collaboration</h3>
+            <p>Let teams build, share, reuse, and continuously improve AI-powered workflows together.</p>
+          </div>
+          <div class="about-card">
+            <h3>Build responsible AI</h3>
+            <p>Prioritize transparency, governance, privacy, security, and human oversight. Technology should earn trust, not demand it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Healthcare -->
+    <section class="about-section about-healthcare" aria-labelledby="healthcare-title">
+      <div class="container">
+        <div class="about-label">Transforming healthcare</div>
+        <h2 id="healthcare-title">Clinicians spend too much time on administration and not enough on patients.</h2>
+        <p>
+          Healthcare is one of the largest opportunities for responsible AI, and one of the hardest places
+          to deploy it. Patient information cannot be pasted into a public model, and since 2 August 2026,
+          interactions involving protected health information require audit logging.
+        </p>
+        <p>
+          <strong>That is the problem Mission Canvas was built for.</strong> Sensitive domains are routed
+          to a local model by rules compiled into the system, and every answer carries a record of the path
+          it took. Mission Canvas helps healthcare organizations redesign administrative and clinical
+          workflows that improve care while reducing unnecessary cost.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Reduce administrative burden</h3>
+            <p>Automate repetitive documentation, scheduling, referrals, prior authorization, and operational workflows.</p>
+          </div>
+          <div class="about-card">
+            <h3>Reduce clinician burnout</h3>
+            <p>Let physicians, nurses, and care teams spend more time with patients and less time navigating fragmented systems.</p>
+          </div>
+          <div class="about-card">
+            <h3>Improve patient outcomes</h3>
+            <p>Support earlier diagnosis, better care coordination, fewer errors, and more consistent follow-up.</p>
+          </div>
+          <div class="about-card">
+            <h3>Expand access to AI</h3>
+            <p>Bring enterprise-grade AI workflow capability to community hospitals, rural health systems, federally qualified health centers, specialty clinics, and independent practices &mdash; without requiring an enterprise engineering team.</p>
+          </div>
+          <div class="about-card">
+            <h3>Improve affordability</h3>
+            <p>Increase operational efficiency so more resources go to patient care rather than administrative overhead.</p>
+          </div>
+          <div class="about-card">
+            <h3>Accelerate medical innovation</h3>
+            <p>Help researchers and healthcare leaders spend less time assembling information and more time testing better models of care.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Other industries -->
+    <section class="about-section" aria-labelledby="industries-title">
+      <div class="container">
+        <div class="about-label">Expanding across industries</div>
+        <h2 id="industries-title">The same boundary applies wherever complex knowledge lives.</h2>
+
+        <div class="about-verticals">
+          <div class="about-vertical">
+            <h3>Legal</h3>
+            <p>Research, document preparation, and case management inside a boundary that keeps privileged work local.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Financial services</h3>
+            <p>Explainable, governed workflows that improve decisions while meeting regulatory expectations.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Government</h3>
+            <p>Better public services through transparent, accountable AI.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Education</h3>
+            <p>Less administration, more teaching and mentoring.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Life sciences</h3>
+            <p>Research, regulatory compliance, and clinical operations on connected knowledge.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Manufacturing</h3>
+            <p>Optimize operations, improve quality, and capture institutional expertise.</p>
+          </div>
+          <div class="about-vertical">
+            <h3>Aerospace and defense</h3>
+            <p>Mission-critical operations with auditable AI that keeps humans in control.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Looking ahead -->
+    <section class="about-section" aria-labelledby="ahead-title">
+      <div class="container">
+        <div class="about-label">Looking ahead</div>
+        <h2 id="ahead-title">We are not simply building AI software.</h2>
+        <p>
+          We are building infrastructure for a different way of working. A future where people and AI
+          collaborate naturally. Where knowledge is connected instead of fragmented. Where organizations
+          learn continuously instead of repeatedly starting over. Where intelligent workflows become
+          reusable assets that improve over time.
+        </p>
+        <p>Our aspirations are deliberately large:</p>
+        <p>
+          Save billions of hours of knowledge work. Enable millions of people to build AI-powered workflows
+          without writing code. Become the largest library of reusable workflow intelligence. Help
+          healthcare become more affordable, accessible, and effective. Preserve institutional knowledge
+          for future generations. Establish a standard for transparent, trustworthy, collaborative AI.
+        </p>
+      </div>
+    </section>
+
+    <!-- North star -->
+    <section class="about-northstar" aria-labelledby="northstar-title">
+      <div class="container">
+        <div class="about-label" id="northstar-title">Our north star</div>
+        <blockquote>
+          Mission Canvas empowers people and organizations to design better work through transparent,
+          collaborative, continuously improving AI &mdash; so that human creativity, expertise, and
+          compassion can be focused where they matter most.
+        </blockquote>
+        <div class="about-cta" style="justify-content:center;">
+          <a href="/#final-cta" class="btn btn-primary">Download the app</a>
+          <a href="/#how-it-works" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">Mission Canvas</span>
+          <span class="footer-tagline">AI for work you cannot leak.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="/about.html">About</a>
+          <a href="/#services">Services</a>
+          <a href="/#voice">Voice</a>
+          <a href="mailto:info@missioncanvas.ai">Contact</a>
+        </nav>
+        <div class="footer-dev"><code>Local-first &middot; No account required</code></div>
+        <p class="footer-copy">&copy; 2026 Mission Canvas, Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/app.js?v=20260811" defer></script>
+</body>
+</html>
