@@ -261,3 +261,13 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* Run note under the Mission Canvas download row */
+.run-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+  max-width: 420px;
+}
+.run-note code { font-size: 11px; padding: 0 4px; border-radius: 3px; background: rgba(127,127,127,0.15); }
