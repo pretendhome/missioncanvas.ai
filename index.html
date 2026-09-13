@@ -108,7 +108,7 @@
             <ul>
               <li><strong>Mac</strong> — open <code>MissionCanvas.dmg</code> and drag Mission Canvas into Applications. The app is signed and notarized. If macOS still says it can't be verified, right-click the app and choose <em>Open</em>.</li>
               <li><strong>Windows</strong> — run <code>MissionCanvas-Setup.exe</code>. The installer is not yet code-signed, so SmartScreen shows "Windows protected your PC": click <em>More info</em>, then <em>Run anyway</em>.</li>
-              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>.</li>
+              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>. On Ubuntu 24.04 the app may quit at once with a "SUID sandbox" error; start it as <code>~/Downloads/MissionCanvas.AppImage --no-sandbox</code>.</li>
             </ul>
           </div>
 
@@ -716,7 +716,7 @@
             <ul>
               <li><strong>Mac</strong> — open <code>MissionCanvas.dmg</code> and drag Mission Canvas into Applications. The app is signed and notarized. If macOS still says it can't be verified, right-click the app and choose <em>Open</em>.</li>
               <li><strong>Windows</strong> — run <code>MissionCanvas-Setup.exe</code>. The installer is not yet code-signed, so SmartScreen shows "Windows protected your PC": click <em>More info</em>, then <em>Run anyway</em>.</li>
-              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>.</li>
+              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>. On Ubuntu 24.04 the app may quit at once with a "SUID sandbox" error; start it as <code>~/Downloads/MissionCanvas.AppImage --no-sandbox</code>.</li>
             </ul>
           </div>
 
