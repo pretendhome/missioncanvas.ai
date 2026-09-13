@@ -262,12 +262,8 @@ a {
   }
 }
 
-/* Run note under the Mission Canvas download row */
-.run-note {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
-  max-width: 420px;
-}
-.run-note code { font-size: 11px; padding: 0 4px; border-radius: 3px; background: rgba(127,127,127,0.15); }
+/* "After it downloads" — run instructions for every app on the page */
+.run-notes ul { margin: 0; padding-left: 1.2em; max-width: 720px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.run-notes li { margin: 6px 0; }
+.run-notes li strong { color: var(--text); }
+.run-notes code { font-size: 13px; padding: 1px 5px; border-radius: 4px; background: rgba(127,127,127,0.14); word-break: break-all; }

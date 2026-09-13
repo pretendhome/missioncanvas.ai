@@ -45,7 +45,6 @@
             <a href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.2.56/MissionCanvas-Setup.exe">Windows</a>
             <a href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.2.56/MissionCanvas.AppImage">Linux</a>
           </div>
-          <p class="run-note">Mac: open the .dmg and drag to Applications. Windows: SmartScreen → <em>More info</em> → <em>Run anyway</em>. Linux: <code>chmod +x MissionCanvas.AppImage</code> before running (Ubuntu 22.04+: install <code>libfuse2</code>).</p>
         </article>
 
         <article class="app-tile">
@@ -94,6 +93,15 @@
           </div>
         </article>
       </div>
+    </section>
+
+    <section class="shelf run-notes" aria-labelledby="run-title">
+      <h2 id="run-title">After it downloads</h2>
+      <ul>
+        <li><strong>Mac</strong> — open the <code>.dmg</code> and drag the app into Applications. Mission Canvas is signed and notarized. If macOS still says the app can't be verified, right-click it and choose <em>Open</em>.</li>
+        <li><strong>Windows</strong> — run the <code>-Setup.exe</code> installer. It is not yet code-signed, so SmartScreen shows "Windows protected your PC": click <em>More info</em>, then <em>Run anyway</em>.</li>
+        <li><strong>Linux</strong> — the <code>.AppImage</code> downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code> (same for the other apps, with their file name). On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>.</li>
+      </ul>
     </section>
   </main>
 </body>
