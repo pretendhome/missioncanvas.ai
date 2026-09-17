@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mical Neill — Voice Agent Design Portfolio</title>
+  <title>Mission Canvas — Voice Agent Design Portfolio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     :root {
@@ -25,7 +25,8 @@
 
     .nav { position: sticky; top: 0; z-index: 100; background: rgba(250,248,245,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0 32px; }
     .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
-    .nav-name { font-weight: 700; font-size: 0.9rem; }
+    .nav-name { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+    .nav-name img { height: 24px; width: 24px; object-fit: contain; }
     .nav-links { display: flex; gap: 20px; list-style: none; }
     .nav-links a { text-decoration: none; color: var(--text-soft); font-size: 0.78rem; font-weight: 500; transition: color 0.15s; }
     .nav-links a:hover { color: var(--accent); }
@@ -104,14 +105,13 @@
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-name">Mical Neill</div>
+    <div class="nav-name"><img src="/logo-mc.png" alt="" /> Mission Canvas</div>
     <ul class="nav-links">
       <li><a href="#voice-quality">Voice Quality</a></li>
       <li><a href="#evaluation">Evaluation</a></li>
       <li><a href="#multilingual">Multilingual</a></li>
       <li><a href="#enabling-teams">Enabling Teams</a></li>
       <li><a href="#personas">Personas</a></li>
-      <li><a href="#journey">Journey</a></li>
       <li><a href="voice-demo/" class="live">Tessitura Demo &rarr;</a></li>
     </ul>
   </div>
@@ -139,7 +139,7 @@
 <!-- 1. VOICE QUALITY — JD: "Improve breadth and depth of voice quality" -->
 <section class="section" id="voice-quality">
   <div class="s-label">Voice Quality &mdash; Evaluate, Compare, Iterate</div>
-  <div class="s-title">Finding Minted's Tessitura</div>
+  <div class="s-title">Finding ACME's Tessitura</div>
   <p class="s-desc">
     I evaluated two voice models for a customer support scenario. Both had the same structural failure: the voice left the brand's tessitura on every emotional moment. Short empathy phrases rushed at informational speed. Closing lines spiked +46% in pitch &mdash; a persona break. The model had no signal that the content was emotionally weighted. I found the tessitura, mapped 5 states within it, and measured the improvement.
   </p>
@@ -163,7 +163,7 @@
     </div>
     <div class="card">
       <h3>The Design</h3>
-      <p>5-state pacing model within Minted's tessitura (0.83&ndash;1.30 speedAlpha). Each state is a measured point within the brand's emotional range: Acceptance at the deepest point, Resolution at the center, Boundary firm but still warm, Confirmation slowest for detail capture, Close matching the opening. Going outside that band is the vocal equivalent of straining.</p>
+      <p>5-state pacing model within ACME's tessitura (0.83&ndash;1.30 speedAlpha). Each state is a measured point within the brand's emotional range: Acceptance at the deepest point, Resolution at the center, Boundary firm but still warm, Confirmation slowest for detail capture, Close matching the opening. Going outside that band is the vocal equivalent of straining.</p>
       <a href="voice-demo/" class="card-link">Play the A/B comparison &rarr;</a>
     </div>
     <div class="card">
@@ -308,7 +308,7 @@
     </div>
     <div class="card">
       <h3>Voice Audition: Finding the Tessitura Match</h3>
-      <p>Does this voice's natural tessitura overlap with the brand's? Can it slow down without sounding sleepy? Be firm without sounding cold? Hold persona from opening to close? Cove passed for Minted because its natural range overlaps with the brand's. A brighter voice could technically hit the same notes &mdash; but it would be singing outside its tessitura.</p>
+      <p>Does this voice's natural tessitura overlap with the brand's? Can it slow down without sounding sleepy? Be firm without sounding cold? Hold persona from opening to close? Cove passed for ACME because its natural range overlaps with the brand's. A brighter voice could technically hit the same notes &mdash; but it would be singing outside its tessitura.</p>
     </div>
     <div class="card">
       <h3>OKA &mdash; Voice-First Learning</h3>
@@ -326,64 +326,6 @@
       <h3>Live Bot V2 &mdash; Customer Response Signals</h3>
       <p>Adds the other side: tracks customer word count, sentiment, and closing delta. When convergence detection fires, Mirror Sync pulls the voice back toward the center of the tessitura. Not just designing how the agent sounds &mdash; measuring whether the design kept it in range.</p>
       <a href="voice-demo/bot.html" class="card-link">Open live demo &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<!-- JOURNEY -->
-<section class="section" id="journey">
-  <div class="s-label">Career Arc</div>
-  <div class="s-title">The same problem, evolving tools</div>
-  <p class="s-desc">How meaning maps across systems &mdash; cultural, linguistic, and technical. 20 years of solving it.</p>
-
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-year">2006</div>
-      <div>
-        <div class="tl-title">University Lecturer &mdash; Paris</div>
-        <div class="tl-place">Sciences Po &middot; Nanterre &middot; Ecole des Metiers du Livre</div>
-        <div class="tl-desc">Designed immersive curricula across 4 institutions in 3 languages. MA Comparative Linguistics, Paris-Sorbonne. Built a publishing simulation where students learned English without knowing they were studying language.</div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2013</div>
-      <div>
-        <div class="tl-title">Amazon &mdash; Knowledge Engineer</div>
-        <div class="tl-place">Milan &amp; San Francisco</div>
-        <div class="tl-desc">Built knowledge classification systems across 4 countries in 4 languages. Led Kaizen program &mdash; an L2 employee's idea won the company-wide Think Big competition. Creating the environment for innovation matters more than being the innovator.</div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2019</div>
-      <div>
-        <div class="tl-title">Amazon Alexa &mdash; Voice Quality &amp; Knowledge Architecture</div>
-        <div class="tl-place">San Francisco</div>
-        <div class="tl-desc">Evaluated voice quality across 47 providers for automotive POI data in 13 locales. Found that what engineers were solving with vector databases was a cultural mapping problem. Fixed the taxonomy, not the model &mdash; one of the biggest quality improvements the system had seen.</div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2023</div>
-      <div>
-        <div class="tl-title">Amazon AGI &mdash; AI Evaluation Design</div>
-        <div class="tl-place">San Francisco</div>
-        <div class="tl-desc">Designed structured evaluation frameworks and inter-rater reliability studies for AI model output. The measure-refine-measure loop that ensures systems do what they claim.</div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2024</div>
-      <div>
-        <div class="tl-title">AWS &mdash; Learning Architect &amp; Systems Lead</div>
-        <div class="tl-place">San Francisco</div>
-        <div class="tl-desc">Built Ask Pathfinder &mdash; knowledge retrieval for 12,000+ users/month. Taxonomy reclassification improved retrieval 28% without changing the model. 250+ sessions/year. Builder of builders at enterprise scale.</div>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">2025</div>
-      <div>
-        <div class="tl-title">Independent &mdash; Voice Agent Design &amp; Multi-Agent Systems</div>
-        <div class="tl-place">San Francisco</div>
-        <div class="tl-desc">Built a multi-agent intelligence system with voice evaluation workbench, a voice-first adaptive learning companion, and the tessitura-based pacing case study &mdash; from diagnosis to working prototype with measured results. Every brand has a tessitura. I built the tools to find it.</div>
-      </div>
     </div>
   </div>
 </section>
@@ -435,7 +377,7 @@
 </section>
 
 <footer class="footer">
-  <p>Mical Neill &middot; San Francisco &middot; English (native) &middot; French (fluent) &middot; Italian (fluent) &middot; Spanish (proficient)</p>
+  <p>Mission Canvas &middot; San Francisco &middot; English (native) &middot; French (fluent) &middot; Italian (fluent) &middot; Spanish (proficient)</p>
   <p style="margin-top:6px;"><a href="https://github.com/pretendhome/palette">github.com/pretendhome/palette</a></p>
 </footer>
 
