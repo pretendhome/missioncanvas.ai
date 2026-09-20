@@ -126,7 +126,10 @@ echo "Pushed. Waiting for GitHub Pages to serve $TAG ..."
 for i in $(seq 1 24); do
   body=$(curl -sf -H 'Cache-Control: no-cache' https://missioncanvas.ai/ || true)
   if grep -q "$TAG" <<< "$body"; then
-    echo "OK: missioncanvas.ai is serving $TAG (after ~$((i*10))s)"; exit 0
+    echo "OK: missioncanvas.ai is serving $TAG (after ~$((i*10))s)"
+    echo
+    echo "Now confirm the build still does what the page says:  bin/verify-claims.sh"
+    exit 0
   fi
   seen=$(grep -o 'desktop-v[0-9A-Za-z.\-]*' <<< "$body" | sort -u | tr '\n' ' ' || true)
   echo "  [$i/24] not yet — site shows: ${seen:-<none>}"
