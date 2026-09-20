@@ -44,7 +44,6 @@ echo "  ✓ Python $PYTHON_VER"
 
 INSTALL_DIR="${MC_INSTALL_DIR:-${HOME}/.mission-canvas/cli}"
 REPO="pretendhome/missioncanvas.ai"
-TAG="releases/latest"
 
 # Detect platform
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -62,7 +61,23 @@ esac
 mkdir -p "$INSTALL_DIR"
 
 # Download or update the CLI binary
-DOWNLOAD_URL="https://github.com/${REPO}/${TAG}/download/${ASSET}"
+# Release resolution: the desktop app's releases (tags desktop-v*) live in this
+# same repo, so "releases/latest" can resolve to a release that carries none of
+# the mc-* binaries. On 2026-09-20 it resolved to a Tropical IT release and all
+# three of these downloads 404'd, which broke the install command printed on
+# missioncanvas.ai. install.sh already resolves the CLI train explicitly; this
+# script was missed. Resolve the newest CLI release (tag v*), and fall back to
+# "latest" only when the release list itself cannot be reached.
+RELEASES_API="https://api.github.com/repos/${REPO}/releases?per_page=20"
+CLI_TAG=$(curl -fsSL "$RELEASES_API" 2>/dev/null \
+  | grep -o '"tag_name"[[:space:]]*:[[:space:]]*"v[0-9][^"]*"' \
+  | head -1 \
+  | sed 's/.*"\(v[0-9][^"]*\)"/\1/')
+if [ -n "$CLI_TAG" ]; then
+  DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${CLI_TAG}/${ASSET}"
+else
+  DOWNLOAD_URL="https://github.com/${REPO}/releases/latest/download/${ASSET}"
+fi
 echo "  → Downloading mc for $OS/$ARCH..."
 if curl -fsSL -o "$INSTALL_DIR/mc" "$DOWNLOAD_URL"; then
   chmod +x "$INSTALL_DIR/mc"
