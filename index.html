@@ -7,762 +7,509 @@
   <meta http-equiv="pragma" content="no-cache" />
   <meta http-equiv="expires" content="0" />
   <title>Mission Canvas — AI you can answer for.</title>
-  <meta name="description" content="One interface for your email, calendar, files, and client work — connected to AI on your local PC." />
+  <meta name="description" content="We build the one application your business actually needs, on your own machines, and it shows its work. Palette is the free plug-and-play app for trying the system first." />
   <meta property="og:title" content="Mission Canvas — AI you can answer for." />
-  <meta property="og:description" content="One interface for your email, calendar, files, and client work — connected to AI on your local PC." />
+  <meta property="og:description" content="We build the one application your business actually needs, on your own machines, and it shows its work. Palette is the free plug-and-play app for trying the system first." />
   <meta property="og:image" content="https://missioncanvas.ai/og.png" />
+  <meta property="og:url" content="https://missioncanvas.ai/" />
   <meta name="theme-color" content="#0d0d0b" />
   <link rel="icon" href="/icon.svg" type="image/svg+xml" />
   <link rel="alternate icon" href="/icons/icon-192.png" type="image/png" />
   <link rel="apple-touch-icon" href="/icons/icon-192.png" />
 
-  <!-- Fonts: Cabinet Grotesk (display) + Satoshi (body) — precise, modern, not generic -->
   <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
-  <!-- JetBrains Mono for terminal/code elements -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=20260811" />
+  <style>
+  :root{
+    --bg:#0d0d0b; --surface:#141412; --surface-2:#1c1c19;
+    --line:rgba(255,255,255,.09); --line-strong:rgba(255,255,255,.17);
+    --text:#eeede8; --muted:#b0afa7; --faint:#86857e;
+    --teal:#63b3bb; --teal-deep:#4f9fa8; --teal-dim:rgba(99,179,187,.13);
+    --amber:#f0a84a; --green:#3ec275;
+    --fd:'Cabinet Grotesk',system-ui,sans-serif;
+    --fb:'Satoshi',system-ui,sans-serif;
+    --fm:'JetBrains Mono','Fira Code',monospace;
+    --gut:clamp(20px,4vw,56px);
+    --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--fb);
+       font-size:clamp(15px,1.5vw,17px);line-height:1.6;-webkit-font-smoothing:antialiased;
+       overflow-x:hidden}
+  h1,h2,h3{font-family:var(--fd);font-weight:800;line-height:1.05;margin:0;letter-spacing:-.02em}
+  p{margin:0}
+  a{color:var(--teal);text-decoration:none}
+  a:hover{color:#8fd0d6}
+  .wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+  .eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(13,13,11,.86);
+       backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--max);margin:0 auto;padding:14px var(--gut);
+          display:flex;align-items:center;gap:28px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--text);font-family:var(--fd);
+         font-weight:800;font-size:16px;letter-spacing:-.01em;flex-shrink:0}
+  .brand img{width:26px;height:26px;display:block}
+  .spine{display:flex;gap:26px;flex-grow:1;flex-wrap:wrap}
+  .spine a{font-family:var(--fm);font-size:12px;color:var(--muted);letter-spacing:.02em;
+           white-space:nowrap;padding:4px 0}
+  .spine a:hover{color:var(--text)}
+  .spine .n{color:var(--teal-deep);margin-right:6px}
+  .nav-cta{flex-shrink:0;background:var(--teal);color:#08201f;font-family:var(--fd);font-weight:700;
+           font-size:13px;padding:10px 18px;border-radius:7px;white-space:nowrap}
+  .nav-cta:hover{background:#7cc3ca;color:#08201f}
+  .nav-apps{font-family:var(--fm);font-size:12px;color:var(--muted);flex-shrink:0;white-space:nowrap}
+
+  /* HERO */
+  .hero{padding:clamp(56px,9vw,104px) 0 0}
+  .hero h1{font-size:clamp(44px,7.4vw,88px);max-width:14ch}
+  .hero-sub{margin-top:24px;max-width:56ch;font-size:clamp(16px,1.8vw,20px);color:var(--muted)}
+  .hero-sub b{color:var(--text);font-weight:500}
+  .hero-cta{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+       font-family:var(--fd);font-weight:700;font-size:15px;padding:13px 22px;border-radius:8px;
+       border:1px solid transparent;cursor:pointer;min-height:46px}
+  .btn-primary{background:var(--teal);color:#08201f}
+  .btn-primary:hover{background:#7cc3ca;color:#08201f}
+  .btn-ghost{border-color:var(--line-strong);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+  /* DIAGRAM */
+  .fig{margin-top:clamp(40px,6vw,64px)}
+  .fig-frame{border:1px solid var(--line);border-radius:14px;background:
+       linear-gradient(180deg,var(--surface) 0%,#101010 100%);padding:clamp(20px,3vw,32px)}
+  .fig-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:22px;flex-wrap:wrap}
+  .pipe{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+  .stage{border:1px solid var(--line);border-radius:10px;padding:14px 12px;background:#0f0f0e;
+         position:relative;overflow:hidden}
+  .stage .k{font-family:var(--fm);font-size:10px;letter-spacing:.14em;color:var(--faint)}
+  .stage .t{font-family:var(--fd);font-weight:700;font-size:14px;margin-top:6px;line-height:1.2}
+  .stage .d{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}
+  .stage::after{content:"";position:absolute;inset:0;border-radius:10px;
+       border:1px solid var(--teal);opacity:0;pointer-events:none}
+  .stage.lit::after{opacity:1}
+  .stage.lit{background:var(--teal-dim)}
+  .stage.lit .k{color:var(--teal)}
+  @media(prefers-reduced-motion:no-preference){
+    .stage::after{transition:opacity .45s ease}
+    .stage{transition:background .45s ease}
+  }
+  .fig-foot{margin-top:18px;display:flex;gap:18px;flex-wrap:wrap;
+            font-family:var(--fm);font-size:11px;color:var(--faint)}
+  .fig-foot span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+
+  /* PALETTE STRIP — the product moment */
+  .palette{margin-top:clamp(28px,4vw,40px);border:1px solid rgba(99,179,187,.42);border-radius:14px;
+           background:linear-gradient(180deg,rgba(99,179,187,.10),rgba(99,179,187,.03));
+           padding:clamp(24px,3.4vw,38px)}
+  .palette-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(24px,4vw,52px);align-items:start}
+  .palette h2{font-size:clamp(26px,3.4vw,38px);max-width:18ch}
+  .palette .lead{margin-top:14px;color:var(--muted);max-width:52ch}
+  .palette .lead b{color:var(--text);font-weight:500}
+  .dl{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .dl .btn{font-size:14px;padding:12px 20px}
+  .dl .btn.yours{outline:2px solid var(--teal);outline-offset:3px}
+  .dl .btn.yours::after{content:"your system";font-family:var(--fm);font-size:9px;
+       letter-spacing:.1em;opacity:.75;margin-left:8px;text-transform:uppercase}
+  .meta{margin-top:14px;font-family:var(--fm);font-size:11px;color:var(--faint);line-height:1.8}
+  .sep{border-left:1px solid rgba(99,179,187,.3);padding-left:clamp(20px,3vw,32px)}
+  .sep h3{font-size:15px;font-weight:700;margin-bottom:10px}
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  .steps li{counter-increment:s;position:relative;padding-left:30px;margin-bottom:12px;
+            font-size:14px;color:var(--muted);line-height:1.5}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;
+       border-radius:50%;border:1px solid var(--teal-deep);color:var(--teal);
+       font-family:var(--fm);font-size:10px;display:flex;align-items:center;justify-content:center}
+  .caveat{margin-top:18px;padding-top:16px;border-top:1px solid rgba(99,179,187,.25);
+          font-size:13px;color:var(--muted);line-height:1.55}
+
+  /* SECTIONS */
+  .sec{padding:clamp(64px,9vw,112px) 0}
+  .sec-head{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+  .sec-num{font-family:var(--fm);font-size:12px;color:var(--teal-deep);letter-spacing:.12em}
+  .sec h2{font-size:clamp(30px,4.6vw,54px);max-width:20ch}
+  .sec-lead{margin-top:20px;max-width:60ch;color:var(--muted);font-size:clamp(16px,1.7vw,19px)}
+  .grid{display:grid;gap:16px;margin-top:clamp(32px,5vw,52px)}
+  .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:22px}
+  .card .k{font-family:var(--fm);font-size:10px;letter-spacing:.14em;color:var(--faint)}
+  .card h3{font-size:18px;margin-top:10px}
+  .card p{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.55}
+  .card .out{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);
+             font-family:var(--fm);font-size:11px;color:var(--teal-deep)}
+  .tag{display:inline-block;font-family:var(--fm);font-size:10px;letter-spacing:.1em;
+       padding:3px 9px;border-radius:4px;border:1px solid var(--line-strong);color:var(--faint)}
+  .tag.now{color:var(--green);border-color:rgba(62,194,117,.4)}
+  .tag.soon{color:var(--amber);border-color:rgba(240,168,74,.35)}
+  .cite{margin-top:14px;font-size:12px;color:var(--faint);line-height:1.5}
+
+  /* PROOF */
+  .proof-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px}
+  .proof-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);
+              padding:20px;display:flex;flex-direction:column;gap:8px}
+  .proof-card .who{font-family:var(--fd);font-weight:700;font-size:17px}
+  .proof-card .what{font-size:13px;color:var(--muted);line-height:1.5}
+
+  /* CLI */
+  .cli{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:clamp(20px,3vw,30px)}
+  .cmd{display:flex;gap:14px;align-items:center;background:#0a0a09;border:1px solid var(--line);
+       border-radius:7px;padding:11px 14px;margin-top:12px;flex-wrap:wrap}
+  .cmd .os{font-family:var(--fm);font-size:11px;color:var(--faint);min-width:96px}
+  .cmd code{font-family:var(--fm);font-size:13px;color:var(--text);flex-grow:1;word-break:break-all}
+  .copy{background:var(--surface-2);color:var(--text);border:1px solid var(--line-strong);
+        border-radius:5px;padding:6px 12px;font-family:var(--fm);font-size:11px;cursor:pointer;min-height:32px}
+  .copy:hover{border-color:var(--teal);color:var(--teal)}
+
+  /* CLOSE */
+  .close{padding:clamp(64px,9vw,112px) 0}
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+  .door{border:1px solid var(--line);border-radius:14px;padding:clamp(24px,3vw,34px);background:var(--surface)}
+  .door.lead{border-color:rgba(99,179,187,.45);background:linear-gradient(180deg,rgba(99,179,187,.09),transparent)}
+  .door h3{font-size:22px}
+  .door p{margin-top:12px;color:var(--muted);font-size:14.5px;line-height:1.55}
+  .door .btn{margin-top:22px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:44px 0 60px;margin-top:20px}
+  .foot-in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  .foot-links{display:flex;gap:22px;flex-wrap:wrap;font-size:13px}
+  .foot-links a{color:var(--muted)}
+  .foot-links a:hover{color:var(--teal)}
+  .foot-note{font-family:var(--fm);font-size:11px;color:var(--faint);line-height:1.8}
+
+  @media(max-width:980px){
+    .pipe{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .palette-grid{grid-template-columns:1fr}
+    .sep{border-left:0;border-top:1px solid rgba(99,179,187,.3);padding-left:0;padding-top:24px}
+    .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .g3,.proof-row{grid-template-columns:1fr}
+    .doors{grid-template-columns:1fr}
+    .spine{display:none}
+  }
+  @media(max-width:560px){
+    .pipe{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .g4,.g2{grid-template-columns:1fr}
+  }
+  </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Mission Canvas home">
-        <span class="nav-logo-mark" aria-hidden="true">
-          <img src="logo-mc.png?v=20260811" alt="" />
-        </span>
-        <span>Mission Canvas</span>
-      </a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="Mission Canvas home">
+      <img src="logo-mc.png?v=20260811" alt="" />
+      <span>Mission Canvas</span>
+    </a>
+    <nav class="spine" aria-label="Primary">
+      <a href="#how"><span class="n">01</span>How it works</a>
+      <a href="#method"><span class="n">02</span>Method</a>
+      <a href="#canvases"><span class="n">03</span>Canvases</a>
+      <a href="#agentic"><span class="n">04</span>Agentic OS</a>
+    </nav>
+    <a class="nav-apps" href="/apps/">Apps</a>
+    <a class="nav-cta" href="mailto:info@missioncanvas.ai?subject=Book%20an%20audit">Book an audit</a>
+  </div>
+</header>
 
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#how-it-works">How it works</a>
-        <a href="#use-cases">Use cases</a>
-        <a href="#voice">Voice</a>
-        <a href="#services">Services</a>
-        <a href="/about.html">About</a>
-        <a href="/apps/">Apps</a>
-      </nav>
+<main>
 
-      <div class="nav-actions">
-        <button data-theme-toggle aria-label="Switch to light mode" class="theme-toggle">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <a href="#final-cta" class="btn btn-primary btn-sm">Download</a>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Local-first &middot; Voice-first &middot; Governed</p>
+      <h1>AI you can answer for.</h1>
+      <p class="hero-sub">
+        Stop renting software that does a hundred things. We build the one application your
+        business actually needs, on hardware you already own, from a private map of how your
+        company really works. <b>Every answer carries its own record: what it read, what touched
+        it, and what never left the building.</b>
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:info@missioncanvas.ai?subject=Book%20an%20audit">Book an audit</a>
+        <a class="btn btn-ghost" href="#palette">See it running first</a>
+      </div>
+
+      <div class="fig">
+        <div class="fig-frame">
+          <div class="fig-top">
+            <p class="eyebrow">Fig. 01 &mdash; the model is always the last step</p>
+            <p class="eyebrow" style="color:var(--teal-deep)">329-node ontology</p>
+          </div>
+          <div class="pipe" id="pipe">
+            <div class="stage lit"><div class="k">SCAN</div><div class="t">Check the input</div><div class="d">Personal and health identifiers stripped before anything is classified. Unsure, and the gate closes.</div></div>
+            <div class="stage"><div class="k">CLASSIFY</div><div class="t">Sort the question</div><div class="d">Keyword, then ranked search, then a model only if needed. Every route is scored.</div></div>
+            <div class="stage"><div class="k">GOVERN</div><div class="t">Enforce the boundary</div><div class="d">Sensitive work blocks outbound calls. A structural gate, not a setting someone can flip.</div></div>
+            <div class="stage"><div class="k">RETRIEVE</div><div class="t">Gather the evidence</div><div class="d">Knowledge pulled and scored for freshness. Stale entries never reach the model.</div></div>
+            <div class="stage"><div class="k">REASON</div><div class="t">Call the model last</div><div class="d">Full context assembled first. Local or frontier, decided by governance, not by cost.</div></div>
+            <div class="stage"><div class="k">STORE</div><div class="t">Keep the receipt</div><div class="d">Always fires. Every query leaves a path record you can read back.</div></div>
+          </div>
+          <div class="fig-foot">
+            <span><i class="dot" style="background:var(--green)"></i>Network calls blocked at the socket</span>
+            <span><i class="dot" style="background:var(--teal)"></i>Every route has a record</span>
+            <span><i class="dot" style="background:var(--faint)"></i>No telemetry. No account.</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="palette" id="palette" aria-label="Palette, the plug-and-play app">
+        <div class="palette-grid">
+          <div>
+            <p class="eyebrow" style="color:var(--teal)">The part you can have tonight</p>
+            <h2 style="margin-top:12px">This is Palette.</h2>
+            <p class="lead">
+              Palette is the plug-and-play app for trying the system out, and it is free.
+              <b>Point it at a folder and watch it build the map</b>, on your machine, with nothing
+              uploaded. It is how you find out this is real before you talk to anybody.
+              What we build with you is a different thing: your own application, shaped to your
+              business, and yours to keep.
+            </p>
+            <div class="dl">
+              <a class="btn btn-primary" data-platform="mac"
+                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.dmg">Mac</a>
+              <a class="btn btn-primary" data-platform="windows"
+                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas-Setup.exe">Windows</a>
+              <a class="btn btn-primary" data-platform="linux"
+                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.AppImage">Linux</a>
+            </div>
+            <p class="meta" id="yours-note">
+              Early build &middot; free &middot; no account &middot; nothing leaves the machine<br />
+              Mac is signed and notarised. Windows is not yet signed, so SmartScreen will warn you once.
+            </p>
+          </div>
+          <div class="sep">
+            <h3>What happens when you open it</h3>
+            <ol class="steps">
+              <li>You tell it something in your own words. Type it, or hold the microphone.</li>
+              <li>It proposes structured facts. You accept or correct each one.</li>
+              <li>It produces a brief assembled only from the facts you accepted.</li>
+              <li>Click any claim to land on the exact sentence in the source it came from.</li>
+            </ol>
+            <p class="caveat">
+              A side panel reports what it has and has not got, including when it has no model and
+              no mailbox connected. A system that will tell you it is empty is a system that cannot
+              quietly make things up.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Most AI tools send your question straight to a model.</h2></div>
+      <p class="sec-lead">
+        Mission Canvas sorts the work first, gathers the evidence, checks the rules, and only then
+        calls a model. That order is the whole difference. It is what makes an answer something you
+        can hand to a regulator, a client, or a judge.
+      </p>
+      <div class="grid g2">
+        <div class="card">
+          <div class="k">LOCAL ONLY</div>
+          <h3>Work you cannot paste into a chatbot</h3>
+          <p>In February 2026 a federal court held that a defendant's exchanges with a public AI
+          platform were neither privileged nor work product, and expressly left open whether a
+          non-public tool differs. Legal work routes to your machine. That boundary is code.</p>
+          <p class="cite">After United States v. Heppner, S.D.N.Y., February 2026</p>
+        </div>
+        <div class="card">
+          <div class="k">AUDIT TRAIL</div>
+          <h3>Decisions that have to be explainable later</h3>
+          <p>The 2026 HIPAA rule took effect on 2 August 2026 and expects an audit trail behind
+          decisions touching protected health information. Mission Canvas records the path for
+          every query, without anyone configuring it.</p>
+          <p class="cite">HIPAA 2026 Final Rule, effective 2 August 2026</p>
+        </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main>
+  <hr class="rule" />
 
-    <!-- HERO BANNER — centered graffiti logo at top of page -->
-    <div class="hero-banner fade-in">
-      <img src="mc-with-fade.png?v=20260811" alt="Mission Canvas" class="hero-banner-img" />
-    </div>
-
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <div class="hero-inner">
-
-        <div class="hero-eyebrow fade-in">
-          <span class="chip chip-local">
-            <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
-            Local-first
-          </span>
-        </div>
-
-        <h1 class="hero-headline fade-in">
-          AI you can<br/>
-          <em>answer for.</em>
-        </h1>
-
-        <p class="hero-sub fade-in">
-          One interface for your email, calendar, files, and client work —
-          connected to AI on your machine. It shares nothing unless you say so.
-        </p>
-
-        <div class="hero-ctas fade-in">
-          <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">Download the app</p>
-          <div class="download-buttons" id="download-buttons">
-            <a class="btn btn-download btn-primary" id="btn-dl-mac"
-               href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.dmg"
-               data-platform="mac">
-              Mac
-            </a>
-            <a class="btn btn-download btn-primary" id="btn-dl-win"
-               href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas-Setup.exe"
-               data-platform="windows">
-              Windows
-            </a>
-            <a class="btn btn-download btn-primary" id="btn-dl-linux"
-               href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.AppImage"
-               data-platform="linux">
-              Linux
-            </a>
-          </div>
-
-          <span class="mobile-download-note">Download on your computer to get started</span>
-          <div class="run-notes" aria-label="How to start the app after downloading">
-            <p class="run-notes-title">After it downloads</p>
-            <ul>
-              <li><strong>Mac</strong> — open <code>MissionCanvas.dmg</code> and drag Mission Canvas into Applications. The app is signed and notarized. If macOS still says it can't be verified, right-click the app and choose <em>Open</em>.</li>
-              <li><strong>Windows</strong> — run <code>MissionCanvas-Setup.exe</code>. The installer is not yet code-signed, so SmartScreen shows "Windows protected your PC": click <em>More info</em>, then <em>Run anyway</em>.</li>
-              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>. On Ubuntu 24.04 the app may quit at once with a "SUID sandbox" error; start it as <code>~/Downloads/MissionCanvas.AppImage --no-sandbox</code>.</li>
-            </ul>
-          </div>
-
-
-          <div class="terminal-install" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; width: 100%; max-width: 520px;">
-            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">For developers — install the CLI</p>
-            <div class="install-cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install-cli.sh | sh" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">macOS / Linux:</span>
-              <code style="font-family: monospace; color: #fff;">curl -fsSL https://missioncanvas.ai/install-cli.sh | sh</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-            <div class="install-cmd" data-cmd="irm https://missioncanvas.ai/install-cli.ps1 | iex" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">Windows:</span>
-              <code style="font-family: monospace; color: #fff;">irm https://missioncanvas.ai/install-cli.ps1 | iex</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-            <div class="install-cmd" data-cmd="docker compose --profile cli run mc" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">Docker:</span>
-              <code style="font-family: monospace; color: #fff;">docker compose --profile cli run mc</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-          </div>
-        </div>
-
+  <section class="sec" id="method">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">02</span><h2>We don't hand you a tool. We redesign the work.</h2></div>
+      <p class="sec-lead">
+        Software alone does not change a company. We come inside, map how it really runs, and
+        rebuild the process around what agents can be trusted to do. Six weeks, not four quarters.
+      </p>
+      <div class="grid g4">
+        <div class="card"><div class="k">01</div><h3>Audit</h3><p>We map processes, tools and data flows, measure where time and accuracy are lost, and find where AI is already being used with no record of what left the building.</p><div class="out">Process map &middot; Ungoverned AI exposure</div></div>
+        <div class="card"><div class="k">02</div><h3>Redesign</h3><p>We redraw the work around what agents do reliably, and delete the steps that existed only to carry information between tools.</p><div class="out">Target operating model</div></div>
+        <div class="card"><div class="k">03</div><h3>Assemble</h3><p>We start from a canvas that already knows your industry, customise it to your business, and build the parts only you need.</p><div class="out">Your system, configured</div></div>
+        <div class="card"><div class="k">04</div><h3>Operate</h3><p>Agents take the repetitive daily work. We measure and tune beside your team, then hand you the keys.</p><div class="out">In production, and yours</div></div>
       </div>
-
-      <!-- Animated product demo -->
-      <div class="pipeline-demo fade-in" aria-hidden="true">
-        <div class="mc-demo-window">
-          <div class="mc-demo-titlebar">
-            <div class="mc-demo-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <span class="mc-demo-title">Mission Canvas</span>
-          </div>
-          <div class="mc-demo-app">
-            <div class="mc-demo-sidebar">
-              <span class="mc-side-icon mc-side-mail"></span>
-              <span class="mc-side-icon mc-side-calendar"></span>
-              <span class="mc-side-icon mc-side-check"></span>
-              <span class="mc-side-icon mc-side-chat"></span>
-            </div>
-            <div class="mc-demo-content" id="mcDemoContent">
-              <div class="mc-demo-workspace">
-                <div class="mc-demo-chips">
-                  <span class="mc-gov-chip mc-chip-amber" id="mcChipOne">MC-LEGAL-004 · Contract Review</span>
-                  <span class="mc-gov-chip mc-chip-green" id="mcChipTwo">LOCAL</span>
-                  <span class="mc-gov-chip mc-chip-red" id="mcChipThree">Privileged — external blocked</span>
-                </div>
-
-                <div class="mc-demo-main">
-                  <div class="mc-demo-response" id="mcResponseArea">
-                    <p><span id="mcResponseText"></span><span class="mc-stream-caret" aria-hidden="true"></span></p>
-                    <div class="mc-demo-proof" id="mcProof">3 sources · 0 external calls · Local model · 2.1s</div>
-                  </div>
-
-                  <div class="mc-demo-sources" id="mcSources">
-                    <div class="mc-sources-title">Sources pulled:</div>
-                    <div class="mc-source-line">
-                      <span class="mc-source-icon"></span>
-                      <span>Henderson_v_Acme_2025.pdf</span>
-                    </div>
-                    <div class="mc-source-line">
-                      <span class="mc-source-icon"></span>
-                      <span>Master_Services_Agreement.docx</span>
-                    </div>
-                    <div class="mc-source-line">
-                      <span class="mc-source-icon mc-source-mail"></span>
-                      <span>Prior correspondence (3 emails)</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="mc-demo-input" id="mcDemoInput">
-                <span class="mc-demo-placeholder" id="mcDemoPlaceholder">Ask Mission Canvas...</span>
-                <span class="mc-demo-query" id="mcDemoQuery"></span>
-                <span class="mc-input-caret" aria-hidden="true"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST BAR -->
-    <section class="trust-bar" aria-label="Trust signals">
-      <div class="container">
-        <div class="trust-items">
-          <div class="trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Network calls blocked at the socket.</span>
-          </div>
-          <div class="trust-divider" aria-hidden="true"></div>
-          <div class="trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>Every route has a record.</span>
-          </div>
-          <div class="trust-divider" aria-hidden="true"></div>
-          <div class="trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Governed pipeline. No shortcuts.</span>
-          </div>
-          <div class="trust-divider" aria-hidden="true"></div>
-          <div class="trust-item">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            <span>No telemetry. No account.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS — the pipeline -->
-    <section class="how-it-works" id="how-it-works" aria-label="How it works">
-      <div class="container">
-        <div class="section-label fade-in">How it works</div>
-        <h2 class="section-headline fade-in">
-          The model is always<br/>the last step.
-        </h2>
-        <p class="section-sub fade-in">
-          Most AI tools send your query straight to a model. MC sorts the work first. Then it gathers evidence, checks the rules, and only then calls a model.
-        </p>
-
-        <div class="pipeline" aria-label="9-step governed pipeline">
-          <div class="pipeline-step fade-in" data-step="0">
-            <div class="step-num">SCAN</div>
-            <div class="step-body">
-              <h3>Check the input</h3>
-              <p>PII and PHI detected and stripped before classification. If the gate is unsure, it closes.</p>
-            </div>
-          </div>
-          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
-
-          <div class="pipeline-step fade-in" data-step="1">
-            <div class="step-num">CLASSIFY</div>
-            <div class="step-body">
-              <h3>Sort the question</h3>
-              <p>329-node ontology. Keyword → BM25 → LLM fallback. Every route gets a score.</p>
-            </div>
-          </div>
-          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
-
-          <div class="pipeline-step fade-in step-highlight" data-step="2">
-            <div class="step-num">GOVERN</div>
-            <div class="step-body">
-              <h3>Enforce the boundary</h3>
-              <p>Sensitive domains block external calls. Not a config flag. A structural gate.</p>
-            </div>
-          </div>
-          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
-
-          <div class="pipeline-step fade-in" data-step="3">
-            <div class="step-num">RETRIEVE</div>
-            <div class="step-body">
-              <h3>Gather the evidence</h3>
-              <p>Knowledge entries pulled and freshness-scored. Stale entries filtered before REASON.</p>
-            </div>
-          </div>
-          <div class="pipeline-arrow fade-in" aria-hidden="true">→</div>
-
-          <div class="pipeline-step fade-in step-terminal" data-step="4">
-            <div class="step-num">REASON</div>
-            <div class="step-body">
-              <h3>Call the model last</h3>
-              <p>Full structured context assembled first. Local or cloud — based on governance, not cost.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="pipeline-footer fade-in">
-          <div class="chip chip-always">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            STORE always fires — every query gets an immutable path record
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- USE CASES — the Harvey moment: you see yourself -->
-    <section class="use-cases" id="use-cases" aria-label="Who uses Mission Canvas">
-      <div class="container">
-        <div class="section-label fade-in">Who it's for</div>
-        <h2 class="section-headline fade-in">
-          Work you cannot paste<br/>into ChatGPT.
-        </h2>
-
-        <div class="cases-grid">
-
-          <div class="case-card fade-in" data-domain="legal">
-            <div class="case-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="case-chips">
-              <span class="chip chip-local chip-sm">LOCAL ONLY</span>
-              <span class="chip chip-node chip-sm">MC-LEGAL-004</span>
-            </div>
-            <h3>Legal</h3>
-            <p>
-              In February 2026 a federal court held that a defendant’s exchanges with a public AI platform were neither privileged nor work product — and expressly left open whether a non-public tool differs. MC routes legal work on your machine. That boundary is code, not a promise.
-            </p>
-            <div class="case-proof">
-              <span class="proof-label">After <em>United States v. Heppner</em> (SDNY, Feb 2026)</span>
-            </div>
-          </div>
-
-          <div class="case-card fade-in" data-domain="healthcare">
-            <div class="case-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <div class="case-chips">
-              <span class="chip chip-local chip-sm">LOCAL ONLY</span>
-              <span class="chip chip-node chip-sm">MC-HC-001</span>
-            </div>
-            <h3>Healthcare</h3>
-            <p>
-              HIPAA 2026 takes effect August 2, 2026. PHI decisions need audit trails. MC records the path for every query — automatically, without configuration.
-            </p>
-            <div class="case-proof">
-              <span class="proof-label">HIPAA 2026 Final Rule — AI audit trails required for PHI decisions</span>
-            </div>
-          </div>
-
-          <div class="case-card fade-in" data-domain="finance">
-            <div class="case-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <div class="case-chips">
-              <span class="chip chip-local chip-sm">FIDUCIARY LENS</span>
-              <span class="chip chip-node chip-sm">MC-FIN-005</span>
-            </div>
-            <h3>Financial services</h3>
-            <p>
-              Fiduciary work starts with the client's facts. MC pulls the client's files and your firm's knowledge before the model reasons.
-            </p>
-            <div class="case-proof">
-              <span class="proof-label">Conflict detection built into the fiduciary lens</span>
-            </div>
-          </div>
-
-          <div class="case-card fade-in" data-domain="personal">
-            <div class="case-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </div>
-            <div class="case-chips">
-              <span class="chip chip-local chip-sm">PERSONAL CANVAS</span>
-              <span class="chip chip-node chip-sm">FILE MAP</span>
-            </div>
-            <h3>Personal work</h3>
-            <p>
-              Write your doctor. MC uses your medical files and your tone. Health data stays on your machine. You do not configure a workflow.
-            </p>
-            <div class="case-proof">
-              <span class="proof-label">Your lens learns from your actual patterns</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- THE TRIANGULATION — the product's core idea -->
-    <section class="triangulation" aria-label="The three-part intelligence system">
-      <div class="container">
-        <div class="tri-layout">
-          <div class="tri-text fade-in">
-            <div class="section-label">The intelligence</div>
-            <h2>Three things that meet at inference.</h2>
-            <p>
-              MC combines your professional context, your personal patterns, and your actual files at the moment of inference. The boundary decides what can leave your machine.
-            </p>
-            <ul class="tri-list" role="list">
-              <li>
-                <span class="tri-icon tri-icon-canvas">⬡</span>
-                <div>
-                  <strong>Canvas</strong>
-                  <span>The rules for your field. Legal, healthcare, personal work. 25 bundled canvases across 33 domains.</span>
-                </div>
-              </li>
-              <li>
-                <span class="tri-icon tri-icon-lens">◎</span>
-                <div>
-                  <strong>Lens</strong>
-                  <span>How you work. Your tone, priorities, and sensitive zones. Grows from real use.</span>
-                </div>
-              </li>
-              <li>
-                <span class="tri-icon tri-icon-files">▦</span>
-                <div>
-                  <strong>File map</strong>
-                  <span>Your folders, not your file contents. MC learns where things live — what should stay put.</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="tri-diagram fade-in" aria-hidden="true">
-            <svg viewBox="0 0 400 360" width="100%" max-width="400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Triangle connecting the three -->
-              <polygon points="200,40 50,300 350,300" stroke="var(--color-border)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
-
-              <!-- Canvas node -->
-              <circle cx="200" cy="40" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
-              <text x="200" y="35" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">CANVAS</text>
-              <text x="200" y="50" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">25 canvases</text>
-
-              <!-- Lens node -->
-              <circle cx="50" cy="300" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
-              <text x="50" y="295" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">LENS</text>
-              <text x="50" y="310" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">your patterns</text>
-
-              <!-- File map node -->
-              <circle cx="350" cy="300" r="36" fill="var(--color-surface)" stroke="var(--color-primary)" stroke-width="1.5"/>
-              <text x="350" y="295" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--color-text-muted)">FILE MAP</text>
-              <text x="350" y="310" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="9" fill="var(--color-text-faint)">your data</text>
-
-              <!-- Center inference point -->
-              <circle cx="200" cy="210" r="24" fill="var(--color-primary)" opacity="0.12"/>
-              <circle cx="200" cy="210" r="8" fill="var(--color-primary)"/>
-              <text x="200" y="248" text-anchor="middle" font-family="Cabinet Grotesk,sans-serif" font-size="10" font-weight="600" fill="var(--color-primary)">INFERENCE</text>
-
-              <!-- Connection lines to center -->
-              <line x1="200" y1="76" x2="200" y2="186" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
-              <line x1="83" y1="276" x2="175" y2="222" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
-              <line x1="317" y1="276" x2="225" y2="222" stroke="var(--color-primary)" stroke-width="1" opacity="0.4" stroke-dasharray="3,3"/>
-
-              <!-- Governed annotation -->
-              <rect x="134" y="136" width="132" height="26" rx="4" fill="var(--color-surface-offset)" stroke="var(--color-border)" stroke-width="1"/>
-              <text x="200" y="153" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--color-text-muted)">governed · local-first</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT YOU SEE -->
-    <section class="governance-chips-demo" aria-label="Governance transparency">
-      <div class="container">
-        <div class="section-label fade-in">What you see</div>
-        <h2 class="section-headline fade-in">Every answer shows its work.</h2>
-        <p class="section-sub fade-in">
-          Every answer carries its route. You see the node, model, sources, and whether anything left your machine. No black box. No guessing.
-        </p>
-
-        <div class="chip-demo-cards fade-in">
-
-          <div class="chip-demo-card">
-            <div class="chip-demo-query">"Draft a response to the Acme escalation using the contract terms from my legal folder."</div>
-            <div class="chip-demo-chips">
-              <span class="chip chip-local">🔒 LOCAL ONLY</span>
-              <span class="chip chip-node">MC-LEGAL-004</span>
-              <span class="chip chip-lens">legal lens</span>
-              <span class="chip chip-sources">3 sources</span>
-            </div>
-            <div class="chip-demo-why">
-              <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Classified as contract review. Client data detected — external routing blocked. Fiduciary lens active. Pulled 3 contract clause entries from knowledge library.</span>
-            </div>
-          </div>
-
-          <div class="chip-demo-card">
-            <div class="chip-demo-query">"What's the HIPAA audit trail requirement for AI-assisted PHI decisions?"</div>
-            <div class="chip-demo-chips">
-              <span class="chip chip-local">🔒 LOCAL ONLY</span>
-              <span class="chip chip-node">MC-HC-002</span>
-              <span class="chip chip-lens">clinical lens</span>
-              <span class="chip chip-sources">5 sources</span>
-            </div>
-            <div class="chip-demo-why">
-              <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Classified as compliance assessment. PHI policy domain — blocks_external enforced. Retrieved HIPAA 2026 final rule (Tier 1 source). Confidence 0.91.</span>
-            </div>
-          </div>
-
-          <div class="chip-demo-card">
-            <div class="chip-demo-query">"What are the current Fed rate expectations for the next two meetings?"</div>
-            <div class="chip-demo-chips">
-              <span class="chip chip-external">⬡ EXTERNAL</span>
-              <span class="chip chip-node">MC-FIN-003</span>
-              <span class="chip chip-lens">research mode</span>
-              <span class="chip chip-sources">4 sources</span>
-            </div>
-            <div class="chip-demo-why">
-              <span class="chip-demo-why-label">mc why</span>
-              <span class="chip-demo-why-text">Public market data query. No sensitive content detected. Routed to external research. Query rebuilt from classification — your words replaced by node semantics.</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- VOICE — Tessitura framework -->
-    <section class="voice-section" id="voice" aria-label="Voice">
-      <div class="container">
-        <div class="open-source-inner fade-in">
-          <div class="os-text">
-            <h2>AI you can talk to.<br/><em>A voice you can customize.</em></h2>
-            <p>
-              Mission Canvas shapes every response to match the professional voice of the person it serves — tone, pace, formality, and domain vocabulary. We call this Tessitura: a voice framework that learns from real use, not a prompt template.
-            </p>
-            <div class="os-ctas">
-              <a href="/apps/" class="btn btn-primary">
-                Download the app
-              </a>
-            </div>
-            <p class="os-stat">
-              Tessitura framework · 56 professional lenses · Voice-first interaction
-            </p>
-          </div>
-          <div class="os-code-block">
-            <div class="code-header">
-              <span class="code-file">tessitura</span>
-              <span class="code-badge">Voice</span>
-            </div>
-            <pre class="code-pre"><code><span class="code-comment"># Same question. Different person.</span>
-<span class="code-comment"># Same facts. Different voice.</span>
-
-<span class="code-kw">lens</span>: litigation_partner
-<span class="code-fn">tone</span>: direct, adversarial-ready
-<span class="code-fn">pace</span>: fast, no hedging
-<span class="code-fn">vocab</span>: "exposure", "position", "remedy"
-
-<span class="code-kw">lens</span>: compliance_officer
-<span class="code-fn">tone</span>: measured, documentation-first
-<span class="code-fn">pace</span>: thorough, caveats included
-<span class="code-fn">vocab</span>: "obligation", "control", "finding"
-
-<span class="code-comment"># The governance is identical.</span>
-<span class="code-comment"># The voice is theirs.</span></code></pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES — consulting offers -->
-    <section class="services" id="services" aria-label="Services">
-      <div class="container">
-        <div class="section-label fade-in">Services</div>
-        <h2 class="section-headline fade-in">
-          We audit your AI exposure<br/>before your regulator does.
-        </h2>
-        <p class="section-sub fade-in">
-          Mission Canvas is a product and a professional service. We run the governed pipeline against your actual workflows and deliver a defensible answer — not a slide deck.
-        </p>
-
-        <div class="cases-grid">
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">1 DAY</span>
-            </div>
-            <h3>AI Safety Workshop</h3>
-            <p>
-              Half-day session for your leadership team. Where your data goes, what your competitors are doing, and what your real exposure looks like. Live demos. Written summary.
-            </p>
-          </div>
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">5–20 DAYS</span>
-            </div>
-            <h3>AI Governance Audit</h3>
-            <p>
-              We classify your workflows, measure grounding integrity, map data exposure, and deliver a board-ready report. Your data never leaves a local machine.
-            </p>
-          </div>
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">5–10 DAYS</span>
-            </div>
-            <h3>Sensitive Data Mapping</h3>
-            <p>
-              We classify your document corpus by sensitivity tier. What's safe for external AI, what must stay local, what should never touch AI at all.
-            </p>
-          </div>
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">5–10 DAYS</span>
-            </div>
-            <h3>AI Policy Development</h3>
-            <p>
-              We write your internal AI usage policy — grounded in your actual workflows, not a template. Written so your General Counsel can adopt it directly.
-            </p>
-          </div>
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">10–15 DAYS</span>
-            </div>
-            <h3>AI Vendor Evaluation</h3>
-            <p>
-              We score AI platforms against your requirements using research across 230+ companies. An honest assessment of what each vendor does vs. what they claim.
-            </p>
-          </div>
-
-          <div class="case-card fade-in">
-            <div class="case-chips">
-              <span class="chip chip-sources chip-sm">ONGOING</span>
-            </div>
-            <h3>Fractional Chief AI Officer</h3>
-            <p>
-              We embed 10–15 hours/week as your AI governance lead. Leadership meetings, initiative reviews, policy ownership, vendor management. A full-time CAIO at a fraction of the cost.
-            </p>
-          </div>
-
-        </div>
-
-        <div style="text-align: center; margin-top: var(--space-10);">
-          <a href="mailto:info@missioncanvas.ai" class="btn btn-primary">Get in touch</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- JOURNEY — from stranger to power user -->
-    <section class="journey" aria-label="User journey">
-      <div class="container">
-        <div class="section-label fade-in">The journey</div>
-        <h2 class="section-headline fade-in">From install to first answer<br/>in five minutes.</h2>
-
-        <div class="journey-steps">
-          <div class="journey-step fade-in">
-            <div class="journey-num">01</div>
-            <div class="journey-content">
-              <h3>Download MC</h3>
-              <p>One download. No account. No email. A local model downloads. Your first canvas loads.</p>
-              <div class="journey-time">2 minutes</div>
-            </div>
-          </div>
-          <div class="journey-step fade-in">
-            <div class="journey-num">02</div>
-            <div class="journey-content">
-              <h3>Ask once</h3>
-              <p>The chips show the route, model, and whether anything left your PC.</p>
-              <div class="journey-time">30 seconds</div>
-            </div>
-          </div>
-          <div class="journey-step fade-in">
-            <div class="journey-num">03</div>
-            <div class="journey-content">
-              <h3>Map your files</h3>
-              <p>MC reads folder names, not file contents. Now it knows where your work lives.</p>
-              <div class="journey-time">5 minutes</div>
-            </div>
-          </div>
-          <div class="journey-step fade-in">
-            <div class="journey-num">04</div>
-            <div class="journey-content">
-              <h3>Your lens grows</h3>
-              <p>After 50 queries, MC knows your domains, patterns, and sensitive zones.</p>
-              <div class="journey-time">Weeks 1–4</div>
-            </div>
-          </div>
-          <div class="journey-step fade-in">
-            <div class="journey-num">05</div>
-            <div class="journey-content">
-              <h3>Use the portal</h3>
-              <p>"Draft a response to Acme using the contract terms in my legal folder." One sentence. MC has the context.</p>
-              <div class="journey-time">Months 2–6</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section class="final-cta" id="final-cta" aria-label="Get started">
-      <div class="container">
-        <div class="final-cta-inner fade-in">
-          <h2>Everything MC knows lives in files you can read, correct, or delete.</h2>
-          <p>
-            Runs on your machine. No account. No telemetry.
-          </p>
-          <div class="final-cta-install">
-            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0 0 var(--space-3) 0;">Download the app</p>
-            <div class="download-buttons" style="justify-content: center;">
-              <a class="btn btn-download btn-primary" id="btn-dl-mac-2"
-                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.dmg"
-                 data-platform="mac">
-                Mac
-              </a>
-              <a class="btn btn-download btn-primary" id="btn-dl-win-2"
-                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas-Setup.exe"
-                 data-platform="windows">
-                Windows
-              </a>
-              <a class="btn btn-download btn-primary" id="btn-dl-linux-2"
-                 href="https://github.com/pretendhome/missioncanvas.ai/releases/download/desktop-v0.3.5-north-star.20260919/MissionCanvas.AppImage"
-                 data-platform="linux">
-                Linux
-              </a>
-            </div>
-            <span class="mobile-download-note">Download on your computer to get started</span>
-          <div class="run-notes" aria-label="How to start the app after downloading">
-            <p class="run-notes-title">After it downloads</p>
-            <ul>
-              <li><strong>Mac</strong> — open <code>MissionCanvas.dmg</code> and drag Mission Canvas into Applications. The app is signed and notarized. If macOS still says it can't be verified, right-click the app and choose <em>Open</em>.</li>
-              <li><strong>Windows</strong> — run <code>MissionCanvas-Setup.exe</code>. The installer is not yet code-signed, so SmartScreen shows "Windows protected your PC": click <em>More info</em>, then <em>Run anyway</em>.</li>
-              <li><strong>Linux</strong> — the AppImage downloads without permission to run, so double-clicking does nothing. In a terminal: <code>chmod +x ~/Downloads/MissionCanvas.AppImage &amp;&amp; ~/Downloads/MissionCanvas.AppImage</code>. On Ubuntu 22.04 or newer, first <code>sudo apt install libfuse2</code>. On Ubuntu 24.04 the app may quit at once with a "SUID sandbox" error; start it as <code>~/Downloads/MissionCanvas.AppImage --no-sandbox</code>.</li>
-            </ul>
-          </div>
-
-          </div>
-
-          <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; width: 100%; max-width: 520px;">
-            <p style="font-family: var(--font-display); font-size: var(--text-lg); font-weight: 700; color: var(--color-primary); margin: 0;">For developers — install the CLI</p>
-            <div class="install-cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install-cli.sh | sh" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">macOS / Linux:</span>
-              <code style="font-family: monospace; color: #fff;">curl -fsSL https://missioncanvas.ai/install-cli.sh | sh</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-            <div class="install-cmd" data-cmd="irm https://missioncanvas.ai/install-cli.ps1 | iex" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">Windows:</span>
-              <code style="font-family: monospace; color: #fff;">irm https://missioncanvas.ai/install-cli.ps1 | iex</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-            <div class="install-cmd" data-cmd="docker compose --profile cli run mc" style="background: rgba(255,255,255,0.05); padding: 0.5rem 1rem; border-radius: 4px; display: flex; gap: 1rem; align-items: center; cursor: pointer;">
-              <span style="font-size: 0.85rem; color: #888;">Docker:</span>
-              <code style="font-family: monospace; color: #fff;">docker compose --profile cli run mc</code>
-              <button class="copy-btn" style="background: #333; color: #fff; border: none; padding: 0.25rem 0.5rem; border-radius: 3px; cursor: pointer;">Copy</button>
-            </div>
-          </div>
-
-          <p class="final-byline">AI that never leaves the room.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <span class="footer-logo">Mission Canvas</span>
-          <span class="footer-tagline">AI for work you cannot leak.</span>
-        </div>
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="/about.html">About</a>
-          <a href="#services">Services</a>
-          <a href="#voice">Voice</a>
-          <a href="mailto:info@missioncanvas.ai">Contact</a>
-        </nav>
-        <div class="footer-dev"><code>Local-first · No account required</code></div>
-        <p class="footer-copy">© 2026 Mission Canvas, Inc.</p>
+      <div class="card" style="margin-top:16px;border-color:var(--line-strong)">
+        <h3>Then it is yours, and you can change it yourself</h3>
+        <p style="max-width:78ch">After six weeks you own what we built. You get a prompt that changes the
+        application in plain language, so you maintain it without us. If something we built breaks, we fix
+        it. New capability is quoted separately. The one rule is that you cannot resell it to another company.</p>
       </div>
     </div>
-  </footer>
+  </section>
 
-  <script src="app.js?v=20260811" defer></script>
+  <hr class="rule" />
+
+  <section class="sec" id="canvases">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Start from a canvas that already knows your industry.</h2></div>
+      <p class="sec-lead">
+        A canvas is a working set of modules for one field, not a subscription. We customise it
+        until it fits your business, and then it stops being ours.
+      </p>
+      <div class="grid g4">
+        <div class="card"><span class="tag now">DEPTH FIRST</span><h3>Construction</h3><p>Compliance review, retrofit documentation, submittals and the paper trail that has to survive an inspection.</p></div>
+        <div class="card"><span class="tag now">SHIPPING</span><h3>Education</h3><p>Two schools running today on their own hardware, with student records that never leave the building.</p></div>
+        <div class="card"><span class="tag now">SHIPPING</span><h3>IT and operations</h3><p>Orders, tickets and stock for a hardware distributor, answered from the company's own records.</p></div>
+        <div class="card"><span class="tag soon">IN PROGRESS</span><h3>Legal, healthcare, logistics</h3><p>Built on the same base, sequenced behind construction rather than sold as equally ready.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="sec" id="agentic">
+    <div class="wrap">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Three businesses. Three applications. One base.</h2></div>
+      <p class="sec-lead">
+        This is the part that is hard to say and easy to show. The same system, customised three
+        ways, running in three unrelated organisations. None of them is using anybody else's app.
+      </p>
+      <div class="proof-row">
+        <div class="proof-card"><span class="tag">OPERATIONS</span><div class="who">Tropical IT</div><div class="what">A hardware distributor's control tower. Orders, customers and stock, asked in plain language and answered from its own records.</div></div>
+        <div class="proof-card"><span class="tag">EDUCATION</span><div class="who">La Scuola</div><div class="what">A school workspace. Observations captured by voice, turned into structured notes teachers can correct.</div></div>
+        <div class="proof-card"><span class="tag">EDUCATION</span><div class="who">Still I Rise</div><div class="what">Student support for an international school network, on their hardware, with nothing uploaded.</div></div>
+      </div>
+      <p style="margin-top:24px"><a href="/apps/">See all of the applications &rarr;</a></p>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="cli">
+        <p class="eyebrow">For developers</p>
+        <h3 style="font-size:24px;margin-top:10px">Install the command line</h3>
+        <p style="margin-top:10px;color:var(--muted);max-width:58ch">The same engine without the window.
+        Point it at a repository or a folder and it answers from what is actually there.</p>
+        <div class="cmd" data-cmd="curl -fsSL https://missioncanvas.ai/install-cli.sh | sh">
+          <span class="os">macOS / Linux</span>
+          <code>curl -fsSL https://missioncanvas.ai/install-cli.sh | sh</code>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="cmd" data-cmd="irm https://missioncanvas.ai/install-cli.ps1 | iex">
+          <span class="os">Windows</span>
+          <code>irm https://missioncanvas.ai/install-cli.ps1 | iex</code>
+          <button class="copy" type="button">Copy</button>
+        </div>
+        <div class="cmd" data-cmd="docker compose --profile cli run mc">
+          <span class="os">Docker</span>
+          <code>docker compose --profile cli run mc</code>
+          <button class="copy" type="button">Copy</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="close">
+    <div class="wrap">
+      <h2 style="font-size:clamp(30px,4.6vw,54px);max-width:18ch">Start it with us, or start it yourself.</h2>
+      <div class="doors">
+        <div class="door lead">
+          <span class="tag">SIX WEEKS</span>
+          <h3>With us</h3>
+          <p>We audit how your company really runs, build the canvas around it, and hand it over as
+          yours. You get a map of your own work in the first week, before committing to anything
+          further.</p>
+          <a class="btn btn-primary" href="mailto:info@missioncanvas.ai?subject=Book%20an%20audit">Book an audit</a>
+        </div>
+        <div class="door">
+          <span class="tag">TONIGHT</span>
+          <h3>By yourself</h3>
+          <p>Download Palette, point it at a folder, and see what it makes of your own documents.
+          Free, local, no account. It is a testing app, not the thing we build for you, and it is
+          the fastest way to judge whether the rest is worth a conversation.</p>
+          <a class="btn btn-ghost" href="#palette">Get Palette</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="brand" style="font-size:15px"><img src="logo-mc.png?v=20260811" alt="" /><span>Mission Canvas</span></div>
+      <p class="foot-note" style="margin-top:12px">
+        &copy; 2026 Mission Canvas &middot; AI you can answer for.<br />
+        Runs on your machine. No account. No telemetry.
+      </p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#how">How it works</a>
+      <a href="#method">Method</a>
+      <a href="#canvases">Canvases</a>
+      <a href="/apps/">Apps</a>
+      <a href="/about.html">About</a>
+      <a href="mailto:info@missioncanvas.ai">info@missioncanvas.ai</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+/* Mark the visitor's own platform. Nothing is rewritten; all three stay available. */
+(function(){
+  var p=((navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'')+' '+(navigator.userAgent||'');
+  var me=/Win/i.test(p)?'windows':(/Mac/i.test(p)&&!/iPhone|iPad/i.test(p))?'mac':/Linux/i.test(p)&&!/Android/i.test(p)?'linux':null;
+  if(!me)return;
+  var b=document.querySelector('.dl [data-platform="'+me+'"]');
+  if(b){b.classList.add('yours');b.setAttribute('aria-describedby','yours-note');}
+})();
+
+/* Copy buttons. */
+document.querySelectorAll('.cmd').forEach(function(row){
+  var btn=row.querySelector('.copy');
+  if(!btn)return;
+  btn.addEventListener('click',function(){
+    var text=row.getAttribute('data-cmd')||'';
+    var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy';},1600);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,function(){});
+    }else{
+      var ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);
+      ta.select();try{document.execCommand('copy');done();}catch(e){}document.body.removeChild(ta);
+    }
+  });
+});
+
+/* The pipeline lights one stage at a time. Stops for reduced-motion. */
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var stages=document.querySelectorAll('#pipe .stage');
+  if(stages.length<2)return;
+  var i=0;
+  setInterval(function(){
+    stages[i].classList.remove('lit');
+    i=(i+1)%stages.length;
+    stages[i].classList.add('lit');
+  },1900);
+})();
+</script>
+
 </body>
 </html>
