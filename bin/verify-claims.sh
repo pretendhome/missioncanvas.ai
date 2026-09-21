@@ -44,10 +44,15 @@ command -v gh >/dev/null || { echo "FAIL: gh is not installed" >&2; exit 1; }
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
 
-ASSET=MissionCanvas.AppImage
+# B1-110: from desktop-v0.3.8 the Linux installer is a .deb; releases up to 0.3.7 carry the AppImage.
+# Ask the release which one it has — never guess from the tag's number.
+NAMES=$(gh api "repos/$REPO/releases?per_page=100" --jq ".[] | select(.tag_name==\"$TAG\") | .assets[].name" 2>/dev/null)
+if grep -q -x "MissionCanvas.deb" <<< "$NAMES"; then ASSET=MissionCanvas.deb
+elif grep -q -x "MissionCanvas.AppImage" <<< "$NAMES"; then ASSET=MissionCanvas.AppImage
+else echo "FAIL: $TAG carries neither MissionCanvas.deb nor MissionCanvas.AppImage — CANNOT TELL, not a pass." >&2; exit 1; fi
 URL="https://github.com/$REPO/releases/download/$TAG/$ASSET"
 
-echo "Downloading $ASSET as an anonymous user would (about 120 MB) ..."
+echo "Downloading $ASSET as an anonymous user would (80-120 MB) ..."
 curl -sL -o "$WORK/$ASSET" "$URL" || { echo "FAIL: download failed" >&2; exit 1; }
 [ -s "$WORK/$ASSET" ] || { echo "FAIL: downloaded file is empty" >&2; exit 1; }
 
@@ -68,9 +73,20 @@ fi
 echo "  digest matches what the release publishes: ${GOT:0:16}..."
 
 echo "Extracting the shipped payload ..."
-chmod +x "$WORK/$ASSET"
-( cd "$WORK" && ./"$ASSET" --appimage-extract >/dev/null 2>&1 ) || true
-PYZ="$WORK/squashfs-root/resources/north-star/mcr.pyz"
+if [ "$ASSET" = "MissionCanvas.deb" ]; then
+  command -v dpkg-deb >/dev/null || { echo "FAIL: dpkg-deb is not installed — cannot open the .deb" >&2; exit 1; }
+  dpkg-deb -x "$WORK/$ASSET" "$WORK/deb-root" || { echo "FAIL: the .deb does not unpack" >&2; exit 1; }
+  PYZ=$(find "$WORK/deb-root/opt" -path '*/resources/north-star/mcr.pyz' -print -quit)
+  # the page promises an install with nothing typed: the packaged post-install must carry what makes that true
+  dpkg-deb -e "$WORK/$ASSET" "$WORK/deb-control"
+  grep -q "userns," "$WORK/deb-control/postinst" && grep -q "chmod 4755" "$WORK/deb-control/postinst" \
+    || { echo "FAIL: the .deb's post-install does not set up the sandbox (B1-110) — it would abort on Ubuntu 24.04." >&2; exit 1; }
+  echo "  the .deb's post-install sets up the sandbox (AppArmor profile + setuid helper)"
+else
+  chmod +x "$WORK/$ASSET"
+  ( cd "$WORK" && ./"$ASSET" --appimage-extract >/dev/null 2>&1 ) || true
+  PYZ="$WORK/squashfs-root/resources/north-star/mcr.pyz"
+fi
 [ -f "$PYZ" ] || { echo "FAIL: mcr.pyz not found in the package — the layout changed." >&2; exit 1; }
 
 # Each entry is: <what the page promises> :: <string that must exist in the payload>
