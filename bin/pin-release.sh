@@ -28,7 +28,7 @@
 set -euo pipefail
 
 REPO="pretendhome/missioncanvas.ai"
-ASSETS=(MissionCanvas.dmg MissionCanvas-Setup.exe MissionCanvas.AppImage)
+ASSETS=(MissionCanvas.dmg MissionCanvas-Setup.exe MissionCanvas.deb)  # B1-110: from desktop-v0.3.8 the Linux installer is a .deb; the AppImage name refused every pin since (measured 2026-09-23: "AppImage -> HTTP 404. Nothing was changed.")
 FILES=(index.html apps/index.html)
 
 cd "$(dirname "$0")/.."
@@ -90,7 +90,7 @@ tag, files = sys.argv[1], sys.argv[2:]
 pat = re.compile(
     r'(https://github\.com/pretendhome/missioncanvas\.ai/releases/download/)'
     r'([^/"\']+)'
-    r'(/MissionCanvas(?:\.dmg|-Setup\.exe|\.AppImage))')
+    r'(/MissionCanvas(?:\.dmg|-Setup\.exe|\.AppImage|\.deb))')
 total = 0
 for f in files:
     p = pathlib.Path(f)
