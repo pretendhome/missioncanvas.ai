@@ -1,0 +1,1192 @@
+# Mission Canvas
+
+> Software built around how your business works, running on your own computers. We audit the workflow, build the application and hand it over. No per-seat fees.
+
+Mission Canvas builds private AI software for small and mid-sized businesses. Each engagement starts with a workflow audit, then the application is built from a working starting point for the industry (a "canvas") and runs on the business's own computers. Licensed per company, with no per-seat fees. Book an audit: https://missioncanvas.ai/audit/
+
+---
+
+Source: https://missioncanvas.ai/
+
+# Software built around your business, on your own computers.
+Companies have two expensive options for AI. We offer a disruptive, affordable third.
+Book an audit
+No contract. Nothing to prepare.
+Who this is for
+
+## Small and mid-sized businesses.
+Owners and operations leads who are tired of typing the same thing into three systems. Pick your industry.
+‹
+- CV-05 In progress Construction & Real Estate Job site, office and fleet in one system.
+- CV-06 In progress Healthcare Patient flow and queues, with sensitive data kept where it belongs.
+- CV-07 In progress Office & Administration Invoices, queries and recurring paperwork, read, checked and filed.
+- CV-08 Everything else If the work runs on documents, records and rules, we can build for it. ›
+Each industry page lists what it handles today. New features are agreed in the audit and built for you, so the
+list is a floor, not a ceiling.
+Real screens, shipped canvases Logistics Today Version 0.1.9 · sample orders Front desk At a glance Current Italian-language build Education Capture an observation Version 0.2.106
+Logistics · Today The morning summary: KPIs with the time they were computed, stale orders, bottlenecks and commitments. Recorded 21 September 2026 on sample orders.
+Front desk · At a glance Calls handled, resolved on their own, transferred to a person, and what still needs review.
+Education · Capture an observation Dictate or type. The fields are suggested, then set by the teacher, and saved on this machine.
+For your business
+
+## Software built around how you already work.
+We audit how the work moves, build from a working start for your industry, and hand it over to run on your computers. Book an audit
+Free for you
+
+## Palette, a free local AI app for your documents.
+Give it one folder. It reads only what you allow, on your computer, and links every line to its source. Get Palette free
+Sound familiar?
+Software shouldn't need a workaround for the workaround.
+Every company has them.
+The spreadsheet that fixes the CRM.
+The manual check that keeps the process from going wrong.
+The person everyone asks because the system doesn't tell them what to do.
+It's easy to call this "just how we work." It isn't. It's what happens when the software stops matching the business.
+You know where the hours go. We build the software around how you actually work, so your team stops making up for it.
+How it works
+
+## From the way you work to software you can run, in four to six weeks.
+01 Audit 02 Redesign 03 Assemble 04 Operate
+
+### Audit
+We sit with your team and map how work really moves: the tools, the files, the handoffs. We measure where time goes. What you get
+Process map · Where the hours go How long it all takes
+Four to six weeks from the audit to handover, depending on what the audit finds.
+
+### Redesign
+We cut the steps that only exist to move information from one system to another. What you get
+The new way of working, on paper How long it all takes
+Four to six weeks from the audit to handover, depending on what the audit finds.
+
+### Assemble
+We start from the working application for your industry, change it to fit, and build the parts only you need. What you get
+Your application, set up How long it all takes
+Four to six weeks from the audit to handover, depending on what the audit finds.
+
+### Operate
+The software takes over repeat work: data entry, reports, filing. We measure it and adjust it with your team. What you get
+Running in your business How long it all takes
+Four to six weeks from the audit to handover, depending on what the audit finds.
+Book an audit No contract. Nothing to prepare.
+
+## Questions.
+What is Mission Canvas?
+Software built around how your business already works, running on your own computers. We audit how the work moves, build the application from a working starting point for your industry, and hand it over to you. Who is it for?
+Small and mid-sized businesses whose work runs on documents, records and rules. That includes construction, education, logistics, front desk and voice, events and venues, with healthcare and office work in progress. How is it different from ChatGPT or other AI chat tools?
+Chat tools answer questions in someone else's cloud. Mission Canvas builds an application around your workflow and runs it on your computers. The AI works inside it, with your rules and records, and an outside model is used only for the work you allow. What happens in the audit?
+We sit with your team and map how the work really moves: the tools, the files, the handoffs. We measure where the time goes. You get a process map and a list of where the hours go. No contract, nothing to prepare. How long does it take?
+Four to six weeks from the audit to handover, depending on what the audit finds.
+Show all 13 questions
+Start with an audit
+
+## Stop working around your software. Build it around your business. Book an audit
+No contract. Nothing to prepare.
+Your company already knows how to work. Your software should too.
+
+---
+
+Source: https://missioncanvas.ai/about
+
+About Mission Canvas
+
+# AI should back up your expertise, not replace it.
+We help businesses see, own and improve the work that matters most, with AI they can answer for.
+
+## The team.
+
+### Jason Covington
+Fractional CFO, CPO and COO practice.
+
+### Mical Neill
+Twelve years in voice and knowledge systems.
+
+### Daniele Mulas
+IT, and making things useful to real people.
+
+### Pierfrancesco Borghero
+Running development teams.
+
+## What we believe.
+
+### Own your workflows. Don’t rent your intelligence.
+What your company knows sits in email, calendars, documents, drives and people’s heads. We connect it on hardware you control.
+
+### You decide what runs where.
+Requests run on your machines. You decide what leaves, which AI models are used, and why.
+
+### Work should be visible.
+Spreadsheets changed finance. Computer-aided design changed engineering. We want you to see how work flows, and improve it.
+
+## What we’re working toward.
+These are outcomes we’re working to prove, not results we claim today.
+
+### Give people their time back
+Cut repetitive work, so attention goes to people, ideas and decisions.
+
+### Make AI understandable
+Systems you can see into, explain and check. No black boxes.
+
+### Connect what you know
+Turn scattered information into something your team can search and share.
+
+### Keep what people know
+Capture how work is done before it leaves with someone who retires.
+
+### AI for everyone
+Let anyone design a workflow, not only developers and data scientists.
+
+### Work better together
+Let teams build, share and improve their workflows together.
+
+### Earn trust
+Privacy, security and human oversight first. Technology should earn trust, not demand it.
+
+## Wherever paperwork piles up.
+Healthcare is where this matters most. Patient information can’t go into a public AI tool. With Mission
+Canvas, sensitive work stays on a local model, and every answer records the path it took.
+The same approach works in education, logistics, legal, financial services, government and manufacturing.
+
+## Your company already knows how to work. Your software should too.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/apps/
+
+Download
+
+# Download the apps.
+Desktop apps for Mac, Windows and Linux. They run on your own computer.
+
+## Palette
+Free. Try it on your own files.
+Mac Windows Linux
+
+## Education
+Education workspace
+Mac Windows Linux
+
+## Logistics
+Operations control tower
+Mac Windows Linux Sample data
+
+## After it downloads.
+- Mac Open the.dmg and drag the app into Applications. Palette is signed and notarized.
+If macOS still says the app can't be verified, right-click it and choose Open.
+- Windows Run the -Setup.exe installer. It is not yet code-signed, so SmartScreen shows
+"Windows protected your PC": click More info, then Run anyway.
+- Linux Palette is a.deb: open it with your software installer, or run
+sudo apt install ~/Downloads/MissionCanvas.deb. The other apps are.AppImage files,
+which download without permission to run, so double-clicking does nothing. In a terminal, chmod +x
+the file, then run it. On Ubuntu 22.04 or newer, first sudo apt install libfuse2. On Ubuntu 24.04 an
+AppImage may quit at once with a "SUID sandbox" error; start it with --no-sandbox.
+For developers
+
+## Install the command line.
+A terminal build for asking questions against a repository or a folder. It ships on its own release train and is
+not the same build as the apps above. Developer docs
+macOS / Linux curl -fsSL https://missioncanvas.ai/install-cli.sh | sh
+Windows irm https://missioncanvas.ai/install-cli.ps1 | iex
+
+---
+
+Source: https://missioncanvas.ai/audit/
+
+No contract · Nothing to prepare
+
+# Book an AI workflow audit for your business.
+One call about how your work really runs. You don't need to prepare anything or send any files. Bring the
+job you'd most like off your plate.
+- A map of how the work runs. Where the job moves between people, paper and systems.
+- Where the hours go. The steps that eat the most time, and which ones software can take off your plate.
+- A clear next step. What we would build first, and a quote for it if you want one.
+Step 1 of 2
+
+## Tell us where to start.
+Your name Work email
+Company Industry Choose one Construction & Real Estate Education Logistics Voice & Front Desk Events & Venues Healthcare Office & Administration Something else What eats the most time in your week? Continue
+Your email is written and ready to send. Pick a time
+This opens an email in your own mail program, already written, for you to send. Nothing is stored on this
+site. How we handle your data.
+
+---
+
+Source: https://missioncanvas.ai/canvases/
+
+Canvases
+
+# Pick your industry.
+Each one starts from a working application for that industry: its documents, its words and its rules, already
+built. We change it to fit you.
+- CV-05 In progress
+
+## Construction & Real Estate
+Run the job, not the paperwork. Job sites · Delivery tickets · Fleet and fuel
+- CV-01
+
+## Education
+A living picture of every student, on your own machines. Student lenses · Observations · Parent summaries
+- CV-02
+
+## Logistics
+Know which order is late before the customer calls. Order tracking · Overnight risk check · Questions from the record
+- CV-03
+
+## Voice & Front Desk
+Every call answered. Every booking on the calendar. AI phone agents · WhatsApp · Booking
+- CV-04
+
+## Events & Venues
+One system from the ticket sale to the gate. Ticketing · Access control · POS · Visitor CRM
+- CV-06 In progress
+
+## Healthcare
+Patient flow without the paperwork. Patient flow · Scheduling · Clinical operations
+- CV-07 In progress
+
+## Office & Administration
+Invoices read, checked and filed. Invoices · Queries · Recurring work
+- CV-08
+
+## Your field
+If the work runs on documents, records and rules, we can build for it. Scoped in the audit · Built for you
+
+## Do what you do best. We'll handle the software.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/construction
+
+Construction and Real Estate
+
+# Construction job costing and fleet software Run the job, not the paperwork.
+Job site, office and fleet in one system, with AI doing the back-office work. Built around how your crew already
+works, running on your own computers.
+Book an audit No contract. Nothing to prepare. Meet Livella
+
+## What it handles today.
+These parts work now. Anything else your business needs is agreed in the audit and built for you. This list is
+the floor, not the ceiling.
+- 01
+
+### Every job site in one record
+Status, crews, documents and progress in one place. Each job’s costs run from estimate to actuals and stay current.
+- 02
+
+### Delivery tickets read by AI
+Inbound and outbound delivery tickets are digitised, read automatically and tied to the right job.
+- 03
+
+### Safety and quality without paper
+Protective equipment is assigned and declarations stay compliant. Concrete pours and material quality are logged to code.
+- 04
+
+### Fleet and fuel
+Equipment records, due dates and job-site assignments. Fuel tracked by machine and by job. Scheduled maintenance and driver contracts linked.
+- 05
+
+### Crew and hiring
+Employee records and roles without spreadsheets. AI screens résumés from application to shortlist.
+- 06
+
+### Office paperwork
+Mileage reimbursements calculated and printed to PDF. Payments to vendors and employees ordered, tracked and approved. Invoices read automatically.
+- 07
+
+### An assistant that knows the business
+Answers questions from the firm’s own data. Field notes can be dictated and transcribed automatically.
+Meet Livella
+
+## Livella
+Job site, office and fleet in one system, with AI doing the back-office work.
+Livella is the construction app we start from: a web app for the office and a field app for the site, with
+unlimited field users.
+Book an audit No contract. Nothing to prepare.
+Runs every day at an Italian construction firm that pays for it and whose own work it was built around.
+
+## Four to six weeks, start to handover.
+What working with us looks like, so you know how much disruption to expect.
+
+### Audit
+We walk through how a job moves from the site to the office: notes, delivery tickets, fuel, costs.
+
+### Redesign
+We cut the steps where someone retypes the same thing into another system.
+
+### Assemble
+We set up Livella around your jobs, your cost codes and your forms.
+
+### Operate
+Your crew uses it on live jobs. We adjust it with you as it runs.
+
+## Your job files stay on your computer.
+- Files are read and organized on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it's logged.
+- You can run local models instead, and send nothing out. How we handle your data
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/education
+
+Canvases CV-01 Education
+
+# Private AI for schools A living picture of every student, on your own machines.
+Say or type what you noticed in under a minute. The right student’s lens updates: strategies that work, accommodations, CEFR milestones. Student data never leaves the school.
+Book an audit No contract. Nothing to prepare.
+
+## What it handles today.
+These parts work now. Anything else your business needs is agreed in the audit and built for you. This list is the floor, not the ceiling.
+- 01
+
+### Student and classroom lenses
+A learning profile for each student and each class that keeps growing across grades and teachers.
+- 02
+
+### Progress notes and IEPs
+Bring in a note that covers several students. Each student gets only their own part, with a confidence badge.
+- 03
+
+### Summaries for parents
+Drafted only from confirmed lens entries. Nothing goes home until every sentence traces back to one.
+- 04
+
+### Exercises from your coursework
+Activities adapted from the school’s own coursework and textbooks, in three tiers.
+
+## See it on a real day.
+A recording of the shipped build, unedited.
+Education · recording ↑ Recorded 21 September 2026 on version 0.2.106, unedited: roster import, a report card into the lenses, an observation, a summary and a three-tier activity. The class is a sample.
+Tested against live data · Runs on your own computers · Handed over in four to six weeks
+Everything it already does: 8 modules, 42 features
+- M-01 Students A lens per student, built from what the school already writes down.
+- M-02 Observe A short note, attached to the right child, in under a minute.
+- M-03 Assess Language work reviewed, not graded by a machine.
+- M-04 Prepare and Plan Lessons from the coursework the teacher already has.
+- M-05 Summaries What goes home is checked before it goes.
+- M-06 Ask Questions answered on the machine, and it says so.
+- M-07 Governance and privacy The verdict is computed from the log, not asserted.
+- M-08 Coordinator views The school, seen across classrooms.
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-02 Logistics
+- CV-03 Voice & Front Desk
+- CV-04 Events & Venues
+- CV-06 Healthcare
+- CV-07 Office & Administration
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/events-venues
+
+Canvases CV-04 Events & Venues
+
+# Ticketing and access control software for venues One system from the ticket sale to the gate.
+Ticketing, check-in, the box office and your visitor list, for events and permanent venues.
+Book an audit No contract. Nothing to prepare.
+
+## What it handles today.
+These parts work now. Anything else your business needs is agreed in the audit and built for you. This list is the floor, not the ceiling.
+- 01
+
+### Tickets
+Issued once, by type, and checked at every gate.
+- 02
+
+### The gate
+A clear yes or no at every scan, with the reason.
+- 03
+
+### The box office
+Online and walk-up sales in one catalogue, and a cash drawer that adds up.
+
+## See it on a real day.
+Interface schematics with illustrative data. Product screenshots will replace them.
+Events & Venues · End-to-end pipeline
+- 01 Configure
+- Tenant
+- Event or venue
+- Checkout
+- Offers
+- Forms
+- Ticket types
+- 02 Sell
+- Storefront · Back office · POS
+- Server-side quote
+- Order · pending
+- Payment
+- Order · processed
+- 03 Fulfil
+- Tickets + QR
+- Email + PDF
+- Contacts · attendees
+- Notifications
+- Statistics
+- 04 Access
+- Checkpoint scan
+- Rule validation
+- Approved / denied + reason
+- Live occupancy
+- 05 Report
+- Gross · tax · fee · net
+- Reconciliation
+- CSV export
+- Audit log Interface schematic · illustrative data ↑ Configuration, sale, fulfilment, access and reporting share one data model. Every state change is an event.
+Tested against live data · Runs on your own computers · Handed over in four to six weeks
+Everything it already does: 15 modules, 80 features
+- M-01 Platform and governance Multi-tenant foundations, licensing and access control.
+- M-02 Events The event as a first-class object, from draft to archive.
+- M-03 Venues and locations Sell on a place, not only on a date.
+- M-04 Catalogue Products, add-ons, stock and tax.
+- M-05 Checkout A configurable point of sale, online or in store.
+- M-06 Form engine Structured data collection, versioned and reusable.
+- M-07 Orders Three channels, one authoritative quote.
+- M-08 Payments Stripe as the source of truth, fees included.
+- M-09 Ticketing Typed tickets, issued once.
+- M-10 Check-in A complete decision at every gate.
+- M-11 POS The box office, with a cash drawer that adds up.
+- M-12 Contacts and CRM A CRM fed by the sale itself.
+- M-13 Profiling Know your visitors without writing code.
+- M-14 Notifications and automations An event bus you can build on.
+- M-15 Tenant administration Everything an operator needs to run their own house.
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-01 Education
+- CV-02 Logistics
+- CV-03 Voice & Front Desk
+- CV-06 Healthcare
+- CV-07 Office & Administration
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/healthcare
+
+Canvases CV-06 Healthcare In progress
+
+# Patient check-in and scheduling software Patient flow without the paperwork.
+Check-in, scheduling and queues, with patient data kept on your own computers.
+Book an audit No contract. Nothing to prepare.
+
+## What it is being built around.
+This canvas is in progress, so these are what it is being built around, not finished features. There are no screenshots yet.
+- 01
+
+### Patient flow
+Who is here, who is next, and where each patient is.
+- 02
+
+### Scheduling
+Appointments, changes and cancellations in one book.
+- 03
+
+### Clinical operations
+The admin around care, with sensitive data kept where it belongs.
+Runs on your own computers · Handed over in four to six weeks
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-01 Education
+- CV-02 Logistics
+- CV-03 Voice & Front Desk
+- CV-04 Events & Venues
+- CV-07 Office & Administration
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/logistics
+
+Canvases CV-02 Logistics
+
+# Order tracking software for small logistics companies Know which order is late before the customer calls.
+Orders, stages and customer updates in one place, checked overnight on your own computers.
+Book an audit No contract. Nothing to prepare.
+
+## What it handles today.
+These parts work now. Anything else your business needs is agreed in the audit and built for you. This list is the floor, not the ceiling.
+- 01
+
+### The order file
+One record per order, from quote to closed, across 14 stages. Your spreadsheet is the import.
+- 02
+
+### The morning list
+Worked out overnight: what stalled, what is at risk, and where the bottleneck is.
+- 03
+
+### Customer updates
+Drafted from the record. A person approves each one before it goes.
+
+## See it on a real day.
+A recording of the shipped build, unedited.
+Logistics · recording ↑ Recorded 21 September 2026 on version 0.1.9, unedited: the morning screen, orders, the dashboard, and questions asked in English and Spanish. The orders are a sample file.
+Tested against live data · Runs on your own computers · Handed over in four to six weeks
+Everything it already does: 8 modules, 35 features
+- M-01 Today The control tower, computed overnight.
+- M-02 Orders One record per order, from quote to closed.
+- M-03 Customers Local-only, by rule.
+- M-04 Dashboard A weekly scorecard the operator can reshape.
+- M-05 Imports Preview writes nothing.
+- M-06 Ask Classified before answered.
+- M-07 Governance and settings Who answered, and from where.
+- M-08 Deliverables Drafted from the record, approved by a person.
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-01 Education
+- CV-03 Voice & Front Desk
+- CV-04 Events & Venues
+- CV-06 Healthcare
+- CV-07 Office & Administration
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/office
+
+Canvases CV-07 Office & Administration In progress
+
+# Invoice processing automation for small businesses Invoices read, checked and filed.
+The repetitive back-office work, done on your own computers.
+Book an audit No contract. Nothing to prepare.
+
+## What it is being built around.
+This canvas is in progress, so these are what it is being built around, not finished features. There are no screenshots yet.
+- 01
+
+### Invoices
+Extracted from what arrives, checked, and filed in the right place.
+- 02
+
+### Queries
+Questions about an invoice or a payment answered from the record.
+- 03
+
+### Recurring work
+The monthly and weekly jobs that follow the same steps every time.
+Runs on your own computers · Handed over in four to six weeks
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-01 Education
+- CV-02 Logistics
+- CV-03 Voice & Front Desk
+- CV-04 Events & Venues
+- CV-06 Healthcare
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/canvases/voice-front-desk
+
+Canvases CV-03 Voice & Front Desk
+
+# AI receptionist for small businesses Every call answered. Every booking on the calendar.
+An agent answers the phone, WhatsApp and email, books and reschedules, and hands over to a person.
+Book an audit No contract. Nothing to prepare.
+
+## What it handles today.
+These parts work now. Anything else your business needs is agreed in the audit and built for you. This list is the floor, not the ceiling.
+- 01
+
+### The appointment book
+Books, reschedules and cancels on your real calendar, and confirms what it did.
+- 02
+
+### Calls a person should take
+A person is always one transfer away, with the conversation so far.
+- 03
+
+### The call record
+Summary, audio and transcript kept for every conversation.
+
+## See it on a real day.
+Screens from the current Italian-language build.
+Voice & Front Desk · The front desk at a glance ↑ Calls handled, resolved autonomously, transferred to a person, and what still needs review.
+Tested against live data · Runs on your own computers · Handed over in four to six weeks
+Everything it already does: 9 modules, 38 features
+- M-01 Channels One agent, reachable the way people already reach you.
+- M-02 Agent behaviour Control without prompt engineering.
+- M-03 Human handover A person is always one transfer away.
+- M-04 Booking tools Real actions on a real calendar.
+- M-05 Knowledge What the business is, written once.
+- M-06 Conversations Nothing the agent says is lost.
+- M-07 Caller context The agent knows who is calling before it speaks.
+- M-08 Platform and security Built to be operated for many customers.
+- M-09 Metering and observability Know what runs, what fails and what it costs.
+
+## Your files stay on your computer.
+- Files are read and organised on a computer you already own. No data migration. No new cloud account.
+- If you use an outside AI model, only what that task needs is sent, and it is logged.
+- You can run local models instead, and send nothing out. How we handle your data Other industries
+- CV-05 Construction & Real Estate
+- CV-01 Education
+- CV-02 Logistics
+- CV-04 Events & Venues
+- CV-06 Healthcare
+- CV-07 Office & Administration
+
+## Show us the job that eats your week.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/docs
+
+Developer docs
+
+# Docs
+The command line is a developer tool under construction, and written documentation for it is not published yet.
+The installer names three commands to start with.
+- mc setup configure models
+- mc run "query" ask something
+- mc health system status
+- Install the command line The two install commands, for macOS, Linux and Windows.
+- Desktop apps Downloads, and what to do after each one downloads.
+- How it works A walkthrough in four steps.
+
+---
+
+Source: https://missioncanvas.ai/faq
+
+Questions
+
+# Asked before every audit.
+If yours is not here, ask it in the audit, or write to us from the audit page.
+
+## The basics
+What is Mission Canvas?
+Software built around how your business already works, running on your own computers. We audit how the work moves, build the application from a working starting point for your industry, and hand it over to you. Who is it for?
+Small and mid-sized businesses whose work runs on documents, records and rules. That includes construction, education, logistics, front desk and voice, events and venues, with healthcare and office work in progress. How is it different from ChatGPT or other AI chat tools?
+Chat tools answer questions in someone else's cloud. Mission Canvas builds an application around your workflow and runs it on your computers. The AI works inside it, with your rules and records, and an outside model is used only for the work you allow. What happens in the audit?
+We sit with your team and map how the work really moves: the tools, the files, the handoffs. We measure where the time goes. You get a process map and a list of where the hours go. No contract, nothing to prepare. How long does it take?
+Four to six weeks from the audit to handover, depending on what the audit finds. What is a canvas?
+A working application for one industry: its workflows, its words and its rules, already built. We start from yours and change it to fit, so you do not pay for what already exists.
+
+## Cost and ownership
+What does it cost?
+One license per company, plus services quoted before you commit. Never per seat, no per-token charges, and no subscription for the application we hand over. Who owns what you build?
+You do. The application is handed over to run on your hardware. What if we stop working together?
+The application keeps running on your machines.
+
+## Your data and your systems
+Does our data leave our computers?
+Your files are read on a computer you already own. Sensitive work stays on local models. Anything sent to an outside model is screened for personal information first, and every decision is logged. You decide what, if anything, goes out. Do we need new hardware?
+No. A workstation or a server you already own is enough. No data migration, no new cloud account. Can we keep the tools we use today?
+Yes. It starts from the files, exports and records you already have. The logistics canvas, for example, imports CSV, Excel, Monday.com and HubSpot. What is Palette?
+Our free desktop app for Mac, Windows and Linux. It runs local AI on your own files, one folder at a time, and every claim in what it writes links back to its source.
+
+## Do what you do best. We'll handle the software.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/how-it-works
+
+How it works
+
+# From scattered files to one picture of your business.
+Four steps turn what your company already has into something AI can work with. All of it on your own computers.
+Book an audit No contract. Nothing to prepare.
+
+## The four steps
+01 Read 02 Sort 03 Connect 04 Work
+
+### Start with what you have.
+Files, exports and records, read on your own machines. Nothing to move, nothing to retype. What you get
+A private index of what your company knows
+
+### Work out what each file is about.
+It finds the people, customers, orders, documents, processes and equipment behind the files. What you get
+The things your business is made of
+
+### See how it all fits together.
+It links those things into one picture of how your company works, so the AI gets the connections, not just loose text. What you get
+One connected map of your company
+
+### Put that knowledge to work.
+AI workers, called agents, use the map inside your walls. If an outside model is needed, only what the task needs is sent. What you get
+Context for agents and for your industry’s application
+Working with us
+
+## Four to six weeks, start to handover.
+We start from a canvas: a working application for your industry, with its workflows, words and
+rules already built. Then we change it to fit you.
+
+### Audit
+We sit with your team and map how work really moves: the tools, the files, the handoffs. We measure where time goes.
+You get Process map · Where the hours go
+
+### Redesign
+We cut the steps that only exist to move information from one system to another.
+You get The new way of working, on paper
+
+### Assemble
+We start from the working application for your industry, change it to fit, and build the parts only you need.
+You get Your application, set up
+
+### Operate
+The software takes over repeat work: data entry, reports, filing. We measure it and adjust it with your team.
+You get Running in your business
+Then the AI goes to work
+
+## Ask it about your work. It answers from your records.
+One real exchange in the shipped Logistics canvas, on sample orders. The AI works inside the application, with your
+rules and your data, and shows where every answer came from.
+01 Ask in plain words "Where is REF-7100?" The answer gives the stage, owner, carrier and tracking number, with the records it came from listed underneath. 02 It keeps the thread "Tell me about them," then "show their late orders." Customer data is marked local-only on every answer. 03 It says no when it should A question it cannot classify gets "unknown", stays on the machine, and is blocked from going to an outside model.
+Logistics · Ask
+Logistics · Ask
+Logistics · Ask
+Version 0.1.9, recorded 21 September 2026 on sample orders.
+Works with what you already have
+- CSV files
+- Excel (XLSX)
+- Monday.com
+- HubSpot
+- Files and exports you already keep
+Imports shown are the Logistics canvas today. Others are agreed in the audit.
+
+## Your company already has the knowledge. Let's put it to work.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/palette
+
+Mission Canvas Palette
+
+# The free local AI app for your documents: Palette
+It asks first. Then it shows its work.
+A free app for your computer. Give it one folder. It lists what is there without opening a file, reads only what
+you allow, and builds a document from the facts you accept. Every line leads back to the sentence it came from.
+Mac Windows Linux
+Palette runs on a computer.
+Send yourself this page
+and open it there.
+Free. No account. Version 0.4.1, released 15 October 2026. Mac is signed and notarised. Windows is not yet
+signed, so SmartScreen will warn you once: what to click, and how to check the file.
+The design we are building toward. The app as it ships today is below, screen by screen.
+See it work · 105 seconds, unedited
+
+## Ask, change, read it back.
+One take on the sample notes: a spoken request finds nineteen facts and the document appears; a spoken change and
+a clicked one each become a new version; then it reads the document aloud in a voice that runs on the machine.
+Recorded 21 September 2026 on a build of 0.3.8 with the two changes that shipped in 0.3.9: the note bar sits at
+the bottom, and spoken requests apply without a confirm card.
+Download the recording, 5 MB
+The rules it keeps · each one can be checked in the app
+Most AI apps tell you what they will do for you. This one is easier to describe by what it will not do without you.
+- 01
+
+### It never goes looking.
+It works on the folders you hand it, one at a time. It does not search the rest of the computer on its own.
+- 02
+
+### It reads nothing until you say so.
+Listing a folder opens no file. Reading starts when you press Grant, and every file it read is listed afterwards.
+- 03
+
+### Nothing in the document is made up.
+Today the document is the facts you accepted, in a fixed layout. If a fact is not in your notes, it is not in the document. Written summaries come next, held to the same rule: every sentence leads back to a source.
+- 04
+
+### Nothing it keeps is hidden.
+On Home, what you asked for is kept and listed on screen in the same turn, and every version of the document is kept. In a matter, your words wait on a card until you keep them.
+- 05
+
+### It does not need a model to work.
+The sample runs with no AI model installed and no key. The app says so on screen.
+- 06
+
+### It keeps a list of what it connects to.
+The app keeps a list of the connections it has made. On a fresh install, after the whole sample, that list reads “none yet”.
+The first five minutes · screens from version 0.3.7, not drawings
+
+## What you will see, in the order you will see it.
+These are the app's own screens, taken from version 0.3.7 running the sample notes. Since then the note bar has
+moved to the bottom, and requests on Home no longer wait on a card. The steps are the same, and they run on your
+own folder.
+- 01 It opens empty, with one button Nothing to set up and no account. “Try it with sample notes” places four invented notes in the app’s own folder, so you can see the whole thing work before it touches anything of yours.
+- 02 It shows you a folder before it reads it Names and counts only. No file is opened to make this list. It says what it would read, what it would skip and why, and waits for you to grant the folder.
+- 03 You say what you want. It asks before keeping anything Type it or hold the mic. It finds the facts in the notes you granted and holds them on a card. On Home in 0.3.9 it keeps them in the same turn and lists what it kept.
+- 04 The document is the facts you accepted Today it is a template, filled in, so there is no sentence in it that nobody wrote. The panel on the right says which model wrote the draft: none.
+- 05 Every line leads back to its sentence Each claim sits beside the words it came from and the file they are in. Nineteen claims, nineteen sources.
+- 06 Click a value to change it Or say the change out loud. It shows the change on a card, you confirm, and the document becomes version 2. Version 1 is kept.
+It opens empty, with one button Nothing to set up and no account. “Try it with sample notes” places four invented notes in the app’s own folder, so you can see the whole thing work before it touches anything of yours. It shows you a folder before it reads it Names and counts only. No file is opened to make this list. It says what it would read, what it would skip and why, and waits for you to grant the folder. You say what you want. It asks before keeping anything Type it or hold the mic. It finds the facts in the notes you granted and holds them on a card. On Home in 0.3.9 it keeps them in the same turn and lists what it kept. The document is the facts you accepted Today it is a template, filled in, so there is no sentence in it that nobody wrote. The panel on the right says which model wrote the draft: none. Every line leads back to its sentence Each claim sits beside the words it came from and the file they are in. Nineteen claims, nineteen sources. Click a value to change it Or say the change out loud. It shows the change on a card, you confirm, and the document becomes version 2. Version 1 is kept.
+What it is for, and what it is not
+
+## Good for
+- A review, brief or summary sheet assembled from scattered notes
+- Finding out where a number in a document came from
+- Seeing what is in a folder before anything is allowed to read it
+- Work where a wrong sentence is expensive
+
+## Not for
+- Searching the web
+- Your inbox or your calendar
+- Booking, buying or doing errands
+- Free writing: emails, essays, posts
+Today It reads plain text:.txt,.md,.csv,.json
+and.ics. PDFs and Office files are listed and skipped, and it tells you so. It is an early build, and it
+is honest about where it stops.
+Install · version 0.4.1 · 15 October 2026
+- Mac
+Open MissionCanvas.dmg and drag the app into Applications. It is signed and notarised. If macOS still says it cannot be verified, right-click the app and choose Open. Download for Mac, 683 MB
+- Windows
+Run MissionCanvas-Setup.exe. The installer is not yet code-signed, so SmartScreen shows “Windows protected your PC”. Click More info, then Run anyway. If you would rather check the file first, its SHA-256 is below. Download for Windows, 637 MB
+- Linux
+Open MissionCanvas.deb with your software installer, or run sudo apt install ~/Downloads/MissionCanvas.deb. Download for Linux, 701 MB
+The files are still named MissionCanvas. They are Palette. SHA-256: check the file you downloaded
+MissionCanvas.dmg
+c40da39e084ee9e389fcc463ede4b50fd0017c21a3c96bf9b5a537f255737559
+MissionCanvas-Setup.exe
+e10eca901181b2165f20c6f348206115edecafa41fd0748166d837683270e7b7
+MissionCanvas.deb
+1b60efe155406e6a0b1d74dd3f03d332eae923d555db25b09d99fc2246024417
+Mac and Linux: shasum -a 256 <file>. Windows: certutil -hashfile <file> SHA256. These
+are the digests GitHub publishes for release desktop-v0.4.1; this page reads them when it is built.
+Price
+
+## Free. No account, no card, no trial clock.
+Who makes it
+
+## Palette is the app. Mission Canvas is the company.
+Mission Canvas builds a business its own application, shaped to the way it works, and hands it over to keep. That
+is a different thing from Palette, and it starts with a conversation.
+Book an audit
+
+## Try it on the sample notes. Then on one folder of your own. Download Palette
+
+---
+
+Source: https://missioncanvas.ai/press
+
+Press and media
+
+# Writing about Mission Canvas?
+Here are the facts, the logo and the person to talk to.
+Contact the team
+
+## About Mission Canvas
+Mission Canvas builds software around how small and mid-sized businesses already work, and runs it on their own
+computers. Each business starts with an audit. Its first canvas is for construction and real estate, with
+Livella for daily reports, documents and job costs. Customers license the software once per company, with no
+per-seat fees.
+Website
+missioncanvas.ai
+
+## Logo
+Use the logo on a light background, with clear space around it. Download the logo (PNG)
+
+## Press releases
+Our first release is on its way. Ask the team for the latest news in the meantime.
+
+---
+
+Source: https://missioncanvas.ai/pricing
+
+Pricing
+
+# One license per company. Never per seat.
+You pay for the software once it fits your business, and for the work to fit it, quoted before you commit.
+Book an audit No contract. Nothing to prepare.
+- 1
+
+## The audit
+Free
+We map how the work runs and where the hours go. You get a process map and a quote for the build.
+- 2
+
+## One license per company
+Quoted after the audit
+For your whole company. Add people without adding fees. Never per seat.
+- 3
+
+## Services, quoted
+Quoted before you commit
+Fitting the application to you, new modules and support, quoted as work, not as another subscription.
+- No per-seat fees
+- No per-token charges from Mission Canvas
+- No subscription for the application we hand over
+- No new cloud account or data migration
+
+## You have two expensive options for AI. Here's a third.
+
+### Build it yourself
+Hire AI engineers and a governance team. Then spend months turning experiments into something your people can use.
+
+### Rent it
+More subscriptions, per seat and per use. Your sensitive work still follows someone else's rules about where it goes.
+
+### Own it
+We build it around how you work, run it on your hardware, and hand it over. A scope and a price, agreed up front.
+Your hardware. Your application. Your call on when an outside AI model is used. If you choose one, its provider
+bills you directly. Actual savings depend on the tools, staff time and outside AI services you choose to
+replace.
+
+## Questions about cost.
+What does it cost?
+One license per company, plus services quoted before you commit. Never per seat, no per-token charges, and no subscription for the application we hand over. Who owns what you build?
+You do. The application is handed over to run on your hardware. What if we stop working together?
+The application keeps running on your machines.
+
+## Get a price for your business.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/privacy
+
+Last updated October 14, 2026 · Draft
+
+# Your data, in plain words.
+Keeping your information on your own computers is the whole idea behind Mission Canvas. Here is exactly what
+this website and our software do with it.
+
+## What this website collects
+- Nothing stored on the site. The audit forms open an email in your own mail program. We only
+receive what you choose to send.
+- No cookies and no tracking. This site sets no cookies and runs no analytics today. If we add
+visitor counts, they will be cookie-free, hosted by us, and listed on this page first.
+- Booking a time. When you pick an audit time, the booking tool
+keeps your name, email and the time you chose so it can send the invite.
+
+## Why we collect it
+Only to set up and run your audit, and to follow up about it. We don't sell it, rent it or use it for
+advertising.
+
+## Your email stays with your email provider
+Mission Canvas does not bring your company's email into an inbox of ours. When your application automates
+email work, it is set up inside the provider you already use: Google Workspace, Microsoft 365, or any IMAP and
+SMTP service. Your correspondence stays inside your own security boundaries.
+
+## How our software handles your business files
+- Your files are read and organized on your own computer.
+- If you use a cloud AI model, only the minimum context for that task is sent to it.
+- You can run local models instead, so nothing is sent at all.
+
+---
+
+Source: https://missioncanvas.ai/security
+
+Your data
+
+# Your files stay on your computers.
+What is read locally, what may leave, and how every decision is recorded. Said plainly, with nothing claimed that is not true today.
+Your data
+
+## Your files stay on your computers.
+The application runs on hardware you control. It checks every request before the AI works on it. Sensitive work
+stays on your machine, and every decision is logged.
+
+### Read
+It reads what you already have.
+Files, exports and records, on your own machines. No migration.
+
+### Sort
+It finds what your business is made of.
+Customers, orders, documents, people, equipment and processes, in whatever format they were left.
+
+### Connect
+It links them into one picture.
+Your files, jobs and costs, connected in one place that stays on your machine.
+
+### Work
+The AI works from that picture.
+Not from a pile of text. Outside models are called only when needed, with the least information possible.
+
+### Runs on your hardware
+A workstation or server you already own. No data migration. No new cloud account.
+
+### Local models first
+The AI runs on your own machine. You choose which work, if any, goes to an outside model.
+
+### Checked before it leaves
+Anything sent outside is screened for personal information first. Every decision is logged.
+
+### Locked by default
+A firewall inside the app controls what can leave. If it cannot be enforced, the app does not start.
+Why this matters now
+In February 2026 a federal court held that a defendant's exchanges with a public AI platform were neither privileged nor work product. United States v. Heppner, S.D.N.Y., February 2026
+A proposed update to the HIPAA Security Rule would require documented evidence behind decisions touching
+protected health information. It is not final. Mission Canvas already records the path of every request,
+with nothing to set up.
+HIPAA Security Rule NPRM, published January 2025; final action not yet taken
+The design is ours and patented: a request is classified before any model runs, and nothing later can reopen that
+decision. We didn't patent the classifier. We patented the rule that makes classifying first mean something.
+
+## Questions about data.
+Does our data leave our computers?
+Your files are read on a computer you already own. Sensitive work stays on local models. Anything sent to an outside model is screened for personal information first, and every decision is logged. You decide what, if anything, goes out. Do we need new hardware?
+No. A workstation or a server you already own is enough. No data migration, no new cloud account. Can we keep the tools we use today?
+Yes. It starts from the files, exports and records you already have. The logistics canvas, for example, imports CSV, Excel, Monday.com and HubSpot.
+For how this website and the audit handle your details, read the privacy page.
+
+## Do what you do best. We'll handle the software.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/what-is-mission-canvas
+
+What is Mission Canvas
+
+# Software built around how your business works.
+Mission Canvas audits how your work moves, builds the application from a working starting point for your
+industry, runs it on your own computers, and hands it over.
+
+## Three parts.
+- 01
+
+### An audit
+We sit with your team and map how the work really moves, and measure where the time goes.
+- 02
+
+### A canvas
+A working application for your industry: its workflows, words and rules, already built. We change it to fit you.
+- 03
+
+### A handover
+It runs on your own computers, under your control. Four to six weeks from audit to handover.
+
+## What it is not.
+
+### Not a chatbot
+The AI works inside an application built around your workflow, with your rules and records.
+
+### Not rented by the seat
+One license per company, plus quoted services. No per-seat or per-token fees.
+
+### Not a report that sits in a drawer
+The audit ends in software your team uses, not a slide deck.
+
+## Who it is for.
+Small and mid-sized businesses whose work runs on documents, records and rules.
+‹
+- CV-05 In progress Construction & Real Estate Job site, office and fleet in one system.
+- CV-01 Education A living picture of every student, built from what teachers notice.
+- CV-02 Logistics Every order, its stage, and who is waiting on it, checked overnight.
+- CV-03 Voice & Front Desk Agents that answer, book and follow up on the channels people use.
+- CV-04 Events & Venues From online checkout to the gate, on one commercial engine.
+- CV-06 In progress Healthcare Live flows and queues, with sensitive data kept where it belongs.
+- CV-07 In progress Office & Administration The repetitive back-office work, extracted, checked and filed.
+- CV-08 Everything else If the work runs on documents, records and rules, we can build for it. ›
+
+## Read next.
+
+### How it works
+The four steps, and what happens to your files.
+
+### Pricing
+How Mission Canvas charges.
+
+### Questions
+What owners ask before an audit.
+
+## Do what you do best. We'll handle the software.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
+
+---
+
+Source: https://missioncanvas.ai/why-mission-canvas
+
+Why Mission Canvas
+
+# Your business already knows what it needs to know.
+It's just scattered across drives, inboxes, spreadsheets, systems and people. We put it in order, on your own
+computers, and build the software that works with it.
+
+## Scattered files
+Years of documents, exports and scans that nobody can search as one.
+
+## Systems that don’t talk
+Accounting, job software, spreadsheets and email each hold a piece. None holds the whole.
+
+## Copying by hand
+People carry information between tools by hand. That is where time and accuracy go.
+
+## How we differ from enterprise AI search.
+Question Enterprise AI search Mission Canvas
+Where your data lives In the vendor’s cloud, or a cloud the vendor runs for you On your own computers
+How you pay Custom enterprise contracts One license per company, plus quoted services. No per-seat fees
+What you get Search and an assistant across the tools you already use Software built around your workflow, then handed over
+Who it is for Large organizations Small and mid-sized businesses, starting with construction
+
+## How Mission Canvas makes money.
+A license per company, plus services quoted before you commit. Never per seat. The whole model, with what each
+part covers, is on the pricing page.
+
+## Built to stay yours.
+
+### Runs on hardware you own
+A workstation or a server you already have. No data migration, no new cloud account.
+
+### Use any model
+Cloud AI models, local models or both. Your files and their structure stay yours either way.
+
+### Yours to keep
+We hand the software over. If we part ways, it keeps running on your machines. Read how we handle your data
+
+## For investors.
+Who buys: owners and operations leads at small and mid-sized businesses, starting with
+construction. How it makes money: a license per company, plus quoted services. Never per seat.
+Deployed
+An international school network runs the system on its real school data.
+25 canvases
+Working starting points across nine industries, seven of them on the home page.
+Patent pending
+Four provisional applications with the US Patent and Trademark Office, in three independent families.
+Eighteen months
+Two founders built and shipped the system before selling anything.
+Tested against live data · Runs on your own computers · Handed over in four to six weeks
+Figures as of October 2026.
+
+## Do what you do best. We'll handle the software.
+Building the tool is a separate job, quoted before you commit. Book an audit
+No contract. Nothing to prepare.
