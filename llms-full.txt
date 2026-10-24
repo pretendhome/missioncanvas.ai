@@ -806,7 +806,7 @@ Mac Windows Linux
 Palette runs on a computer.
 Send yourself this page
 and open it there.
-Free. No account. Version 0.4.1, released 15 October 2026. Mac is signed and notarised. Windows is not yet
+Free. No account. Version 0.4.2, released 24 October 2026. Mac is signed and notarised. Windows is not yet
 signed, so SmartScreen will warn you once: what to click, and how to check the file.
 The design we are building toward. The app as it ships today is below, screen by screen.
 See it work · 105 seconds, unedited
@@ -872,7 +872,7 @@ What it is for, and what it is not
 Today It reads plain text:.txt,.md,.csv,.json
 and.ics. PDFs and Office files are listed and skipped, and it tells you so. It is an early build, and it
 is honest about where it stops.
-Install · version 0.4.1 · 15 October 2026
+Install · version 0.4.2 · 24 October 2026
 - Mac
 Open MissionCanvas.dmg and drag the app into Applications. It is signed and notarised. If macOS still says it cannot be verified, right-click the app and choose Open. Download for Mac, 683 MB
 - Windows
@@ -881,13 +881,13 @@ Run MissionCanvas-Setup.exe. The installer is not yet code-signed, so SmartScree
 Open MissionCanvas.deb with your software installer, or run sudo apt install ~/Downloads/MissionCanvas.deb. Download for Linux, 701 MB
 The files are still named MissionCanvas. They are Palette. SHA-256: check the file you downloaded
 MissionCanvas.dmg
-c40da39e084ee9e389fcc463ede4b50fd0017c21a3c96bf9b5a537f255737559
+55b1076d1e9359065d405d5658c00fa0a630355c87a13542885c87d622702e27
 MissionCanvas-Setup.exe
-e10eca901181b2165f20c6f348206115edecafa41fd0748166d837683270e7b7
+5380141c921d30c0a8762eb8bed5b808850465c40c491b4a3fd0a84dceac271b
 MissionCanvas.deb
-1b60efe155406e6a0b1d74dd3f03d332eae923d555db25b09d99fc2246024417
+75f1bd828b529636c9f709eee9efb53eb4ec787a590c312955ff1be2cca99ed3
 Mac and Linux: shasum -a 256 <file>. Windows: certutil -hashfile <file> SHA256. These
-are the digests GitHub publishes for release desktop-v0.4.1; this page reads them when it is built.
+are the digests GitHub publishes for release desktop-v0.4.2; this page reads them when it is built.
 Price
 
 ## Free. No account, no card, no trial clock.
