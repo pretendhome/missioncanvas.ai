@@ -1,1254 +1,542 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Learning architecture, for me, is not content production. It is the design of structures, interfaces, assessments, and coaching loops that make high-quality performance repeatable. This page shows that practice across enterprise enablement, adaptive coaching, and a modular AI-native curriculum system.
-" />
-  <meta property="og:title" content="Learning Architecture for AI-Native Teams" />
-  <meta property="og:description" content="Learning architecture, for me, is not content production. It is the design of structures, interfaces, assessments, and coaching loops that make high-quality performance repeatable. This page shows that practice across enterprise enablement, adaptive coaching, and a modular AI-native curriculum system.
-" />
-  <meta name="robots" content="noindex" />
-  <title>Learning Architecture for AI-Native Teams</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-    :root {
-      --bg: #fafaf8;
-      --surface: #ffffff;
-      --surface-alt: #f4f2ef;
-      --text: #1a1a2e;
-      --text-soft: #5a5a6e;
-      --text-faint: #8a8a9a;
-      --accent: #635bff;
-      --accent-soft: rgba(99,91,255,0.08);
-      --accent-border: rgba(99,91,255,0.2);
-      --green: #27ae60;
-      --orange: #f08b58;
-      --blue: #4a9eff;
-      --warm: #fff3de;
-      --border: #e8e6e1;
-      --shadow: 0 2px 24px rgba(0,0,0,0.06);
-      --shadow-lg: 0 8px 48px rgba(0,0,0,0.08);
-      --radius: 16px;
-      --radius-sm: 10px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', -apple-system, system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .animate-in {
-      opacity: 0;
-      animation: fadeUp 0.6s ease-out forwards;
-    }
-
-    .animate-in.delay-1 { animation-delay: 0.1s; }
-    .animate-in.delay-2 { animation-delay: 0.2s; }
-    .animate-in.delay-3 { animation-delay: 0.3s; }
-    .animate-in.delay-4 { animation-delay: 0.4s; }
-
-    @media (prefers-reduced-motion: reduce) {
-      .animate-in { opacity: 1; animation: none; }
-    }
-
-    /* ── NAV ── */
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(250,250,248,0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 32px;
-    }
-
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-
-    .nav-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .nav-name img { height: 24px; width: 24px; object-fit: contain; }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-soft);
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── HERO ── */
-    .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 80px 32px 64px;
-    }
-
-    .hero-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      max-width: 720px;
-    }
-
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--text-soft);
-      max-width: 640px;
-      margin-top: 16px;
-      line-height: 1.65;
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 40px;
-      flex-wrap: wrap;
-    }
-
-    .hero-stat {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-stat-num {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .hero-stat-label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--text-faint);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 64px 32px;
-    }
-
-    .section-header {
-      margin-bottom: 40px;
-    }
-
-    .section + .section { border-top: 1px solid var(--border); }
-
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .section-label::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .section-desc {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      max-width: 600px;
-      margin-top: 8px;
-    }
-
-    /* ── PROJECT CARDS ── */
-    .project {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: 48px;
-      box-shadow: var(--shadow);
-      transition: box-shadow 0.25s ease, transform 0.25s ease;
-    }
-
-    .project:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-
-    .project-preview {
-      width: 100%;
-      aspect-ratio: 16/9;
-      overflow: hidden;
-      position: relative;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .project-preview-inner {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .project-body {
-      padding: 32px;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .tag--green { background: rgba(39,174,96,0.08); color: var(--green); }
-    .tag--orange { background: rgba(240,139,88,0.1); color: #c06a30; }
-    .tag--blue { background: rgba(74,158,255,0.1); color: var(--blue); }
-
-    .project h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 8px;
-    }
-
-    .project-desc {
-      color: var(--text-soft);
-      font-size: 0.92rem;
-      line-height: 1.65;
-      margin-bottom: 20px;
-    }
-
-    .project-details {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .detail-block h4 {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-faint);
-      margin-bottom: 6px;
-    }
-
-    .detail-block ul {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--text-soft);
-    }
-
-    .detail-block li {
-      padding: 2px 0;
-      padding-left: 14px;
-      position: relative;
-    }
-
-    .detail-block li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.5;
-    }
-
-    /* ── MOCK PREVIEWS ── */
-
-    /* Dashboard mock */
-    .mock-dashboard {
-      width: 100%;
-      height: 100%;
-      background: #0D0D0D;
-      padding: 24px;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      gap: 12px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .mock-dash-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .mock-dash-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .mock-dash-title span { color: #10A37F; }
-
-    .mock-live {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: #10A37F;
-    }
-
-    .mock-live-dot {
-      width: 6px;
-      height: 6px;
-      background: #10A37F;
-      border-radius: 50%;
-      animation: mockPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes mockPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
-    .mock-metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-
-    .mock-metric {
-      background: #1A1A2E;
-      border-radius: 10px;
-      padding: 14px;
-      border: 1px solid #2D2D3D;
-    }
-
-    .mock-metric-label {
-      font-size: 0.6rem;
-      color: #6E6E80;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .mock-metric-value {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #fff;
-      margin-top: 4px;
-    }
-
-    .mock-metric-value.green { color: #27AE60; }
-    .mock-metric-value.yellow { color: #F39C12; }
-
-    .mock-charts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .mock-chart {
-      background: #1A1A2E;
-      border-radius: 10px;
-      border: 1px solid #2D2D3D;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .mock-chart-title {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #B0B0C0;
-    }
-
-    .mock-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-      justify-content: center;
-    }
-
-    .mock-bar {
-      height: 14px;
-      border-radius: 4px;
-      opacity: 0.85;
-    }
-
-    .mock-bubbles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-    }
-
-    .mock-bubble {
-      border-radius: 50%;
-      opacity: 0.7;
-    }
-
-    .mock-query {
-      background: #1A1A2E;
-      border-radius: 10px;
-      border: 1px solid #2D2D3D;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      grid-column: 1 / -1;
-    }
-
-    .mock-query-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: rgba(16,163,127,0.2);
-      flex-shrink: 0;
-    }
-
-    .mock-query-text {
-      font-size: 0.72rem;
-      color: #6E6E80;
-      font-style: italic;
-    }
-
-    /* OKA mock */
-    .mock-oka {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, #fff3de, #ffe2d7);
-      padding: 24px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 14px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .mock-oka-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .mock-oka-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #f3c38f, #d7925f);
-      position: relative;
-      flex-shrink: 0;
-    }
-
-    .mock-oka-avatar::before,
-    .mock-oka-avatar::after {
-      content: "";
-      position: absolute;
-      top: -6px;
-      width: 16px;
-      height: 20px;
-      background: #c98653;
-      border-radius: 12px 12px 6px 6px;
-    }
-
-    .mock-oka-avatar::before { left: 6px; transform: rotate(-14deg); }
-    .mock-oka-avatar::after { right: 6px; transform: rotate(14deg); }
-
-    .mock-oka-eyes {
-      position: absolute;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-
-    .mock-oka-eye {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #32221e;
-    }
-
-    .mock-oka-nose {
-      position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 10px;
-      height: 6px;
-      border-radius: 50%;
-      background: #3d2822;
-    }
-
-    .mock-oka-name {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #51362f;
-    }
-
-    .mock-oka-sub {
-      font-size: 0.8rem;
-      color: #82655c;
-    }
-
-    .mock-oka-main {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 12px;
-    }
-
-    .mock-oka-card {
-      background: rgba(255,251,244,0.92);
-      border-radius: 22px;
-      padding: 18px;
-      box-shadow: 0 12px 36px rgba(129,84,49,0.1);
-      border: 1px solid rgba(255,255,255,0.45);
-    }
-
-    .mock-oka-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #82655c;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .mock-oka-response {
-      font-size: 1rem;
-      line-height: 1.55;
-      color: #51362f;
-    }
-
-    .mock-oka-keyword { color: #1a6dcc; font-weight: 700; }
-
-    .mock-oka-focus {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .mock-oka-word {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #7b42c9;
-      letter-spacing: 0.06em;
-    }
-
-    .mock-oka-word.irregular { color: #dc7e7e; }
-
-    .mock-oka-hint {
-      font-size: 0.82rem;
-      color: #82655c;
-      text-align: center;
-    }
-
-    .mock-oka-band {
-      font-size: 0.68rem;
-      background: rgba(255,255,255,0.65);
-      padding: 4px 10px;
-      border-radius: 999px;
-      color: #82655c;
-      font-weight: 700;
-    }
-
-    .mock-oka-mic {
-      display: flex;
-      justify-content: center;
-    }
-
-    .mock-oka-mic-btn {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #ffbb7c, #f08b58);
-      box-shadow: 0 14px 40px rgba(240,139,88,0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #4d2f28;
-    }
-
-    /* Convergence Board mock */
-    .mock-obsidian {
-      width: 100%;
-      height: 100%;
-      background: var(--surface-alt, #f4f2ef);
-      padding: 20px;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
-      gap: 12px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .mock-obs-modebar {
-      display: flex;
-      gap: 0;
-      background: #e8e6e1;
-      border-radius: 8px;
-      overflow: hidden;
-      width: fit-content;
-    }
-
-    .mock-obs-mode {
-      padding: 8px 18px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #5a5a6e;
-      cursor: default;
-    }
-
-    .mock-obs-mode.active {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .mock-obs-health {
-      display: flex;
-      gap: 8px;
-    }
-
-    .mock-obs-pill {
-      font-size: 0.68rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 999px;
-    }
-
-    .mock-obs-pill.green { background: rgba(39,174,96,0.12); color: #27ae60; }
-    .mock-obs-pill.yellow { background: rgba(243,156,18,0.12); color: #c07b10; }
-    .mock-obs-pill.blue { background: rgba(99,91,255,0.1); color: #635bff; }
-
-    .mock-obs-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .mock-obs-card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 14px;
-      border-left: 3px solid var(--accent);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-    }
-
-    .mock-obs-card.decided { border-left-color: var(--green); }
-    .mock-obs-card.exploring { border-left-color: var(--orange); }
-
-    .mock-obs-card-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .mock-obs-card-meta {
-      font-size: 0.65rem;
-      color: var(--text-faint);
-    }
-
-    .mock-obs-confidence {
-      margin-top: 8px;
-      height: 4px;
-      border-radius: 2px;
-      background: #e8e6e1;
-      overflow: hidden;
-    }
-
-    .mock-obs-conf-fill {
-      height: 100%;
-      border-radius: inherit;
-    }
-
-    /* Enablement Architecture mock */
-    .mock-enablement {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .mock-en-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #fff;
-      text-align: center;
-    }
-
-    .mock-en-layers {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-      justify-content: center;
-    }
-
-    .mock-en-arrow {
-      text-align: center;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.25);
-      line-height: 1;
-      padding: 2px 0;
-    }
-
-    .mock-en-layer {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      padding: 12px 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mock-en-layer-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.72rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .mock-en-layer-num.l1 { background: rgba(99,91,255,0.3); color: #a5a0ff; }
-    .mock-en-layer-num.l2 { background: rgba(16,163,127,0.3); color: #5cd9b5; }
-    .mock-en-layer-num.l3 { background: rgba(240,139,88,0.3); color: #f0a878; }
-
-    .mock-en-layer-content {
-      flex: 1;
-    }
-
-    .mock-en-layer-name {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: #e0e0f0;
-    }
-
-    .mock-en-layer-desc {
-      font-size: 0.65rem;
-      color: #7a7a9a;
-      margin-top: 2px;
-    }
-
-    .mock-en-layer-items {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 6px;
-    }
-
-    .mock-en-chip {
-      font-size: 0.58rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: #a0a0b8;
-      font-weight: 500;
-    }
-
-    /* ── PHILOSOPHY ── */
-    .philosophy {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 40px;
-      margin-bottom: 48px;
-      box-shadow: var(--shadow);
-    }
-
-    .philosophy h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    .phil-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .phil-item h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .phil-item p {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      line-height: 1.6;
-    }
-
-    /* ── TIMELINE ── */
-    .timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 7px;
-      top: 8px;
-      bottom: 8px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--green), var(--orange));
-      border-radius: 1px;
-    }
-
-    .timeline-item {
-      display: flex;
-      gap: 20px;
-      padding-bottom: 28px;
-      position: relative;
-    }
-
-    .timeline-item:last-child { padding-bottom: 0; }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -32px;
-      top: 6px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 3px solid var(--accent);
-      z-index: 1;
-    }
-
-    .timeline-item:last-child::before { border-color: var(--green); }
-
-    .timeline-year {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--accent);
-      min-width: 44px;
-      padding-top: 2px;
-    }
-
-    .timeline-content {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 16px 20px;
-      box-shadow: 0 1px 8px rgba(0,0,0,0.03);
-    }
-
-    .timeline-title {
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 2px;
-    }
-
-    .timeline-place {
-      font-size: 0.75rem;
-      color: var(--text-faint);
-      margin-bottom: 6px;
-    }
-
-    .timeline-desc {
-      font-size: 0.82rem;
-      color: var(--text-soft);
-      line-height: 1.55;
-    }
-
-    /* ── CTA ── */
-    .cta {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 32px 64px;
-    }
-
-    .cta-box {
-      background: linear-gradient(135deg, var(--accent) 0%, #7c75ff 100%);
-      border-radius: var(--radius);
-      padding: 48px;
-      text-align: center;
-      color: #fff;
-    }
-
-    .cta-box h2 {
-      font-size: 1.6rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    .cta-box p {
-      font-size: 0.95rem;
-      opacity: 0.85;
-      max-width: 520px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
-    }
-
-    .cta-links {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.15s, box-shadow 0.15s;
-    }
-
-    .cta-link:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-
-    .cta-link--primary {
-      background: #fff;
-      color: var(--accent);
-    }
-
-    .cta-link--secondary {
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    /* ── FOOTER ── */
-    .footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 48px 32px;
-      text-align: center;
-      color: var(--text-faint);
-      font-size: 0.82rem;
-    }
-
-    .footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .hero { padding: 48px 20px 40px; }
-      .section { padding: 40px 20px; }
-      .hero-stats { gap: 20px; }
-      .hero-stat-num { font-size: 1.6rem; }
-      .mock-metrics { grid-template-columns: repeat(2, 1fr); }
-      .mock-charts { grid-template-columns: 1fr; }
-      .mock-oka-main { grid-template-columns: 1fr; }
-      .mock-obs-cards { grid-template-columns: 1fr; }
-      .project-body { padding: 20px; }
-      .project-details { grid-template-columns: 1fr; }
-      .philosophy { padding: 24px; }
-      .phil-grid { grid-template-columns: 1fr; }
-      .cta-box { padding: 32px 20px; }
-      .cta-box h2 { font-size: 1.3rem; }
-      .nav-links { gap: 14px; }
-      .nav-links a { font-size: 0.75rem; }
-      .timeline { padding-left: 28px; }
-      .timeline-item { flex-direction: column; gap: 4px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 1.6rem; }
-      .hero-sub { font-size: 0.95rem; }
-      .hero-stats { flex-direction: column; gap: 16px; }
-      .hero-stat { flex-direction: row; align-items: baseline; gap: 10px; }
-      .nav-links { display: none; }
-      .mock-oka-top > div:last-child { display: none; }
-    }
-
-    /* ── PRINT ── */
-    @media print {
-      .nav { display: none; }
-      .cta { display: none; }
-      .project-preview { break-inside: avoid; }
-      .project { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
-      .philosophy { break-inside: avoid; }
-      .section + .section { border-top: none; }
-      body { background: #fff; }
-      .hero { padding-top: 20px; }
-      .animate-in { opacity: 1; animation: none; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Learning Architecture · Mical Neill</title>
+<meta name="description" content="An SDK for humans: the enablement system Mical Neill, co-founder and CEO of Mission Canvas, designs and builds. One graph for agents and people, six layers, an artifact matrix, three-layer assessment, an adaptive coaching engine, and the content engine that keeps it current." />
+<meta property="og:title" content="Learning Architecture · Mical Neill, Mission Canvas" />
+<meta property="og:description" content="Every product ships an SDK for machines. Nobody ships one for people. This is what it looks like." />
+<meta property="og:image" content="https://missioncanvas.ai/og/portfolio.png" />
+<link rel="icon" href="/favicon.svg" />
+<link rel="stylesheet" href="assets/daybreak.css" />
+<style>
+  .status{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;vertical-align:middle;margin-left:8px}
+  .built{background:var(--pine-soft);color:var(--pine)}
+  .designed{background:var(--clay-soft);color:var(--ember)}
+  .quote{font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,2.4vw,1.8rem);letter-spacing:-.02em;line-height:1.25;color:var(--pine);max-width:880px;margin:30px 0 0;padding-left:20px;border-left:3px solid var(--clay)}
+  .quote cite{display:block;font-family:var(--mono);font-style:normal;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;font-weight:400}
+  .matrix{display:grid;grid-template-columns:140px 1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}
+  .matrix>div{padding:16px 18px;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--text2)}
+  .matrix .h{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--white);background:var(--soil)}
+  .matrix .h small{display:block;font-family:var(--mono);font-weight:400;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#d9cfbf;margin-top:4px}
+  .matrix .h.moment{background:var(--ember)}
+  .matrix .r{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--clay);background:var(--ground)}
+  .matrix .r b{display:block;font-family:var(--display);font-size:1.05rem;letter-spacing:-.01em;text-transform:none;color:var(--soil);font-weight:600}
+  .matrix>div:nth-last-child(-n+3){border-bottom:0}
+  .matrix>div:not(.r):not(:nth-child(3n)){border-right:1px solid var(--line)}
+  .matrix .agentic{background:#eef0e2}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+  .pill{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;padding:8px 12px;border-radius:999px;background:var(--white);border:1px solid var(--line);color:var(--soil)}
+  .pill.on{background:var(--pine);color:var(--white);border-color:var(--pine)}
+  .pills .to{color:var(--clay)}
+  @media (max-width:760px){.matrix{grid-template-columns:1fr}.matrix>div{border-right:0!important}.matrix .h.corner{display:none}}
+</style>
+<!-- Sources: mc enablement/ (curriculum, assessment, agentic-enablement-system, live-lab), the SDK-for-Humans spec,
+     Palette's enablement skill, and Mical's earlier learning-partner architecture work, generalised. No employer tool,
+     interview, customer, partner or child is named. Counts verified on disk 2026-11-03: 121 modules, 6 workstreams, 5 tracks, 14 paths. -->
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-name"><img src="/logo-mc.png" alt="" /> Mission Canvas</div>
-    <ul class="nav-links"><li><a href="#project-0">Pathfinder</a></li><li><a href="#project-1">System</a></li><li><a href="#project-2">Coaching</a></li><li><a href="#philosophy">Philosophy</a></li></ul>
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="portfolio.html"><img src="assets/logo.svg" alt="Mission Canvas" /></a>
+    <ul>
+      <li><a href="#thesis">The thesis</a></li>
+      <li><a href="#system">The system</a></li>
+      <li><a href="#artifacts">Artifacts</a></li>
+      <li><a href="#assessment">Assessment</a></li>
+      <li><a href="#journeys">Journeys</a></li>
+      <li><a href="#coaching">Coaching</a></li>
+      <li><a href="#lab">A lab</a></li>
+      <li><a href="#engine">Content engine</a></li>
+      <li><a href="portfolio.html">Mical Neill ↗</a></li>
+    </ul>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-label animate-in">Learning Architecture</div>
-  <h1 class="animate-in delay-1">I build systems that let other people learn, decide, and deliver without me in the room.</h1>
-  <p class="hero-sub animate-in delay-2">Learning architecture, for me, is not content production. It is the design of structures, interfaces, assessments, and coaching loops that make high-quality performance repeatable. This page shows that practice across enterprise enablement, adaptive coaching, and a modular AI-native curriculum system.
-</p>
-  <div class="hero-stats animate-in delay-3">
-    <div class="hero-stat">
-      <div class="hero-stat-num">20</div>
-      <div class="hero-stat-label">Years Designing Learning</div>
+<header class="hero">
+  <div class="wrap">
+    <div class="role">Mical Neill · Co-founder and CEO, Mission Canvas · Learning architecture</div>
+    <h1 style="max-width:960px">Every product ships an SDK for machines. Nobody ships one <em>for people.</em></h1>
+    <p class="lede" style="max-width:780px">An SDK for humans is a map of the stable problems a product solves, a knowledge library with grounded answers, and a delivery system that puts the right answer in front of the right person at the right moment. It's measured by changed behavior, not by content consumed. This page is the system I design and build to do that, at Mission Canvas and for the teams we enable.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">121</div><div class="l">Curriculum modules<br>across 6 workstreams</div></div>
+      <div class="stat"><div class="n">42</div><div class="l">Competencies<br>in 5 certification tracks</div></div>
+      <div class="stat"><div class="n">14</div><div class="l">Published<br>learning paths</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Assessment layers<br>machine · AI · human</div></div>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">121</div>
-      <div class="hero-stat-label">Curriculum Modules</div>
+    <p class="small" style="margin-top:18px;color:var(--muted)">Each component below is marked <span class="status built" style="margin-left:0">Built</span> or <span class="status designed" style="margin-left:0">Designed</span>, so you can see what runs today and what is specified next.</p>
+  </div>
+</header>
+
+<!-- 1 THESIS -->
+<section id="thesis" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">01 · The thesis</div>
+      <h2>One graph, two runtimes. Agents and people learn from <em>the same map.</em></h2>
+      <p class="lede">At Mission Canvas, every request is classified against a map of stable problems before an AI acts. The same map is the backbone of the curriculum. An agent meets a node as context; a person meets it as a module. The curriculum isn't bolted onto the knowledge base: it is the knowledge base, seen through a learning lens.</p>
     </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">3</div>
-      <div class="hero-stat-label">Assessment Layers</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">12K+</div>
-      <div class="hero-stat-label">Users / Month</div>
-    </div></div>
+    <figure class="diagram" aria-label="One graph, two runtimes">
+      <svg viewBox="0 0 1000 540" role="img" aria-labelledby="t1">
+        <title id="t1">A stable problem on the map is met by agents as context and by people as a module. A compiled mirror keeps the two in step. Each node produces an artifact that the next node requires, and one planner uses the artifacts already made to shorten both the agent's plan and the person's learning path.</title>
+        <defs>
+          <marker id="m1" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker>
+          <marker id="m1s" markerWidth="12" markerHeight="12" refX="2" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M12,1 L0,6 L12,11 z" fill="#b4583a"/></marker>
+        </defs>
+        <rect x="370" y="14" width="260" height="88" rx="14" fill="#1b1712"/>
+        <text x="500" y="48" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="19" fill="#fcf9f3">A stable problem</text>
+        <text x="500" y="74" text-anchor="middle" font-size="13" fill="#d9cfbf">one node on the map, not a feature</text>
+        <g fill="none" stroke="#b4583a" stroke-width="2.2" marker-end="url(#m1)"><path d="M400,102 L210,150"/><path d="M600,102 L790,150"/></g>
+        <text x="250" y="118" text-anchor="middle" font-size="12.5" fill="#733525">met as context</text>
+        <text x="750" y="118" text-anchor="middle" font-size="12.5" fill="#733525">met as a module</text>
+
+        <rect x="20" y="156" width="320" height="200" rx="16" fill="#eef0e2" stroke="#4f5433" stroke-width="1.6"/>
+        <text x="42" y="186" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#4f5433">SDK FOR LLMS · AGENT RUNTIME</text>
+        <g font-size="14" fill="#1b1712"><text x="42" y="222">1  classify the request</text><text x="42" y="252">2  route to the right node</text><text x="42" y="282">3  load just enough context</text><text x="42" y="312">4  act, and leave a receipt</text></g>
+        <text x="42" y="340" font-family="Geist Mono, monospace" font-size="10.5" fill="#4f5433">BUILT · IN THE PRODUCT</text>
+
+        <rect x="660" y="156" width="320" height="200" rx="16" fill="#f3dfd3" stroke="#b4583a" stroke-width="1.6"/>
+        <text x="682" y="186" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#733525">SDK FOR HUMANS · LEARNER RUNTIME</text>
+        <g font-size="14" fill="#1b1712"><text x="682" y="222">1  a module for the node</text><text x="682" y="252">2  a learning path through it</text><text x="682" y="282">3  a rubric and an item bank</text><text x="682" y="312">4  an artifact to make</text></g>
+        <text x="682" y="340" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">121 MODULES BUILT · RUNTIME DESIGNED</text>
+
+        <rect x="380" y="196" width="240" height="120" rx="14" fill="#fcf9f3" stroke="#1b1712" stroke-width="1.4" stroke-dasharray="6 5"/>
+        <text x="500" y="234" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#1b1712">The mirror</text>
+        <text x="500" y="259" text-anchor="middle" font-size="12.5" fill="#564c42">compiled from both sides,</text>
+        <text x="500" y="278" text-anchor="middle" font-size="12.5" fill="#564c42">never edited by hand</text>
+        <text x="500" y="300" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#4f5433">BUILT</text>
+        <g fill="none" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)" marker-start="url(#m1s)"><path d="M344,256 L376,256"/><path d="M624,256 L656,256"/></g>
+
+        <text x="20" y="404" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#b4583a">ARTIFACTS ARE THE CURRENCY</text>
+        <rect x="20" y="420" width="150" height="64" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+        <text x="95" y="458" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">A node</text>
+        <path d="M170,452 L224,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/><text x="197" y="442" text-anchor="middle" font-size="11.5" fill="#733525">produces</text>
+        <rect x="228" y="420" width="170" height="64" rx="12" fill="#f5e0a8"/>
+        <text x="313" y="449" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">An artifact</text>
+        <text x="313" y="470" text-anchor="middle" font-size="12" fill="#564c42">a brief, a harness, a map</text>
+        <path d="M398,452 L452,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/><text x="425" y="442" text-anchor="middle" font-size="11.5" fill="#733525">required by</text>
+        <rect x="456" y="420" width="150" height="64" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+        <text x="531" y="458" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">The next node</text>
+        <path d="M606,452 L656,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/>
+        <rect x="660" y="410" width="320" height="84" rx="14" fill="#1b1712"/>
+        <text x="682" y="440" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#fcf9f3">One planner, both runtimes</text>
+        <text x="682" y="462" font-size="12.5" fill="#d9cfbf">What you've already made shortens the path,</text>
+        <text x="682" y="480" font-size="12.5" fill="#d9cfbf">for an agent's plan and a person's learning.</text>
+        <text x="980" y="520" text-anchor="end" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">PLANNER: DESIGNED</text>
+      </svg>
+      <figcaption>Organize enablement around stable problems, not the latest feature, and it survives the next release. Because agents and people share one map, every improvement to how the product understands work also improves how people learn it.</figcaption>
+    </figure>
+    <p class="quote">"The SDK for LLMs routes agents to the right context. The SDK for Humans routes people to the right competency. One graph, one planner, two runtimes."<cite>From the integration spec</cite></p>
+  </div>
 </section>
 
+<!-- 2 SYSTEM -->
+<section id="system">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">02 · The system</div>
+      <h2>Six layers, and a knowledge-velocity loop that <em>keeps them current.</em></h2>
+      <p class="lede">A single lab, however good, isn't enablement. Enablement is a system that serves the same knowledge in different modes, at different depths, for different roles, and stays current as the product ships every week. People pull ("teach me this", "fix this now"); the product pushes (a release, a stale page).</p>
+    </div>
+    <figure class="diagram" aria-label="The six-layer enablement system">
+      <svg viewBox="0 0 1000 500" role="img" aria-labelledby="t2">
+        <title id="t2">Pull requests enter at routing; product changes push into knowledge. Knowledge, routing and artifact feed delivery, the learner layer and feedback, and every feedback path ends in an action back on knowledge and artifacts. Metrics sit on delivery, learner and feedback.</title>
+        <defs><marker id="m2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
+        <rect x="430" y="8" width="250" height="46" rx="23" fill="#fcf9f3" stroke="#b4583a" stroke-width="1.5"/>
+        <text x="555" y="36" text-anchor="middle" font-size="13.5" fill="#733525"><tspan font-weight="600">PULL</tspan> · "teach me X" · "fix X now"</text>
+        <path d="M555,54 L555,86" stroke="#b4583a" stroke-width="2" marker-end="url(#m2)"/>
+        <rect x="10" y="118" width="150" height="76" rx="14" fill="#fcf9f3" stroke="#b4583a" stroke-width="1.5"/>
+        <text x="85" y="148" text-anchor="middle" font-size="13.5" font-weight="600" fill="#733525">PUSH</text>
+        <text x="85" y="168" text-anchor="middle" font-size="12" fill="#564c42">a release ships,</text>
+        <text x="85" y="184" text-anchor="middle" font-size="12" fill="#564c42">a page goes stale</text>
+        <path d="M160,156 L186,156" stroke="#b4583a" stroke-width="2" marker-end="url(#m2)"/>
 
-<section class="section" id="project-0">
-  <div class="section-header">
-    <div class="section-label">Case Study — AWS</div>
-    <div class="section-title">Ask Pathfinder</div>
-    <p class="section-desc">Turning scattered expertise into a system people can actually use at the moment they need it.</p>
+        <g>
+          <rect x="190" y="90" width="250" height="150" rx="14" fill="#4f5433"/>
+          <text x="210" y="118" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">1 · KNOWLEDGE</text>
+          <text x="210" y="146" font-size="13.5" fill="#fcf9f3">Sources in four authority tiers</text>
+          <text x="210" y="168" font-size="13.5" fill="#fcf9f3">Structured, graph and vector</text>
+          <text x="210" y="190" font-size="13.5" fill="#fcf9f3">Every change triaged: critical,</text>
+          <text x="210" y="210" font-size="13.5" fill="#fcf9f3">moderate, low</text>
+
+          <rect x="430" y="90" width="250" height="150" rx="14" fill="#1b1712" transform="translate(20 0)"/>
+          <text x="470" y="118" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">2 · ROUTING</text>
+          <text x="470" y="146" font-size="13.5" fill="#fcf9f3">Who first: role and stage filter</text>
+          <text x="470" y="168" font-size="13.5" fill="#fcf9f3">before retrieval, as access</text>
+          <text x="470" y="190" font-size="13.5" fill="#fcf9f3">control. Then mode (learn or</text>
+          <text x="470" y="210" font-size="13.5" fill="#fcf9f3">do), then which store.</text>
+
+          <rect x="730" y="90" width="260" height="150" rx="14" fill="#b4583a"/>
+          <text x="750" y="118" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">3 · ARTIFACT</text>
+          <text x="750" y="146" font-size="13.5" fill="#fcf9f3">Curriculum or moment,</text>
+          <text x="750" y="168" font-size="13.5" fill="#fcf9f3">at four depths, from a</text>
+          <text x="750" y="190" font-size="13.5" fill="#fcf9f3">60-second card to a live</text>
+          <text x="750" y="210" font-size="13.5" fill="#fcf9f3">agent (the matrix below)</text>
+        </g>
+        <g fill="none" stroke="#b4583a" stroke-width="2" marker-end="url(#m2)"><path d="M440,165 L446,165"/><path d="M700,165 L726,165"/><path d="M860,240 L860,276"/><path d="M730,355 L706,355"/><path d="M450,355 L444,355"/></g>
+
+        <g>
+          <rect x="730" y="280" width="260" height="150" rx="14" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="750" y="308" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">4 · DELIVERY</text>
+          <text x="750" y="336" font-size="13.5" fill="#1b1712">Push and pull channels,</text>
+          <text x="750" y="358" font-size="13.5" fill="#1b1712">in the tools people</text>
+          <text x="750" y="380" font-size="13.5" fill="#1b1712">already work in</text>
+          <rect x="750" y="394" width="176" height="24" rx="12" fill="#f5e0a8"/><text x="838" y="410" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">feature-adoption lag</text>
+
+          <rect x="450" y="280" width="250" height="150" rx="14" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="470" y="308" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">5 · LEARNER</text>
+          <text x="470" y="336" font-size="13.5" fill="#1b1712">A profile per person,</text>
+          <text x="470" y="358" font-size="13.5" fill="#1b1712">an aggregate per cohort;</text>
+          <text x="470" y="380" font-size="13.5" fill="#1b1712">stays on the learner's machine</text>
+          <rect x="470" y="394" width="212" height="24" rx="12" fill="#f5e0a8"/><text x="576" y="410" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">ramp time · 30-day milestones</text>
+
+          <rect x="190" y="280" width="250" height="150" rx="14" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="210" y="308" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">6 · FEEDBACK</text>
+          <text x="210" y="336" font-size="13.5" fill="#1b1712">Five closed loops.</text>
+          <text x="210" y="358" font-size="13.5" fill="#1b1712">Each one ends in an action,</text>
+          <text x="210" y="380" font-size="13.5" fill="#1b1712">never just a record</text>
+          <rect x="210" y="394" width="136" height="24" rx="12" fill="#f5e0a8"/><text x="278" y="410" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">escalation rate</text>
+        </g>
+        <path d="M300,280 L300,244" fill="none" stroke="#733525" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#m2)"/>
+        <text x="190" y="462" font-size="12.5" fill="#733525">Feedback rewrites knowledge and retires or rebuilds artifacts: the dashed arrow closes the loop.</text>
+      </svg>
+      <figcaption>Routing decides who before what: the role and stage filter runs before retrieval, so people never see material that isn't theirs, and the right material ranks first. The four metrics sit where they can actually be moved.</figcaption>
+    </figure>
+    <p class="quote">"Every feedback path terminates in an action. No feedback is just recorded. All feedback acts."<cite>From the knowledge-velocity design</cite></p>
   </div>
-  
-  <div class="project">
-    <div class="project-preview"><div class="project-preview-inner">
-<div class="mock-enablement">
-  <div class="mock-en-title">From Facilitated Knowledge to Self-Serve Performance</div>
-  <div class="mock-en-layers"><div class="mock-en-layer">
-      <div class="mock-en-layer-num l1">1</div>
-      <div class="mock-en-layer-content">
-        <div class="mock-en-layer-name">Source Layer</div>
-        <div class="mock-en-layer-desc">Field content, examples, updates, and raw knowledge spread across teams.</div>
-        <div class="mock-en-layer-items"><span class="mock-en-chip">presentations</span><span class="mock-en-chip">docs</span><span class="mock-en-chip">examples</span><span class="mock-en-chip">partner feedback</span></div>
+</section>
+
+<!-- 3 ARTIFACTS -->
+<section id="artifacts" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">03 · The artifact matrix</div>
+      <h2>Two kinds of enablement, four depths, <em>one knowledge base.</em></h2>
+      <p class="lede">Most enablement systems build curriculum and hope performance support happens by osmosis. This one designs both from the same source and measures both in the same system: "make me competent" and "help me now".</p>
+    </div>
+    <div class="matrix" role="table" aria-label="Curriculum and moment artifacts by depth">
+      <div class="h corner" role="columnheader">Depth</div>
+      <div class="h" role="columnheader">Curriculum<small>Make me competent</small></div>
+      <div class="h moment" role="columnheader">Moment<small>Help me now</small></div>
+      <div class="r" role="rowheader"><b>Micro</b>under 2 min</div>
+      <div>Reference cards and 60-second clips</div>
+      <div>Troubleshooting sheets and inline help</div>
+      <div class="r" role="rowheader"><b>Meso</b>5 to 15 min</div>
+      <div>Explainers and guided walkthroughs</div>
+      <div>Scenario playbooks, "first time doing X" prep</div>
+      <div class="r" role="rowheader"><b>Macro</b>30 to 90 min</div>
+      <div>Hands-on labs and certification assessments</div>
+      <div>Post-incident plans and deployment simulations</div>
+      <div class="r agentic" role="rowheader"><b>Agentic</b>live</div>
+      <div class="agentic">An onboarding agent; a post-incident learning agent</div>
+      <div class="agentic">A deployment companion, a troubleshooting partner, a conversation-prep agent</div>
+    </div>
+    <p class="small" style="margin-top:16px">Every module meets one gold standard: two modes, four tiers, two artifact kinds per tier, three role variants, three-layer assessment, a video spec, freshness rules and a feedback loop.</p>
+  </div>
+</section>
+
+<!-- 4 ASSESSMENT -->
+<section id="assessment">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">04 · From competency to credential</div>
+      <h2>Understanding is not capability. <em>"Yeah, I get it" is not a pass.</em></h2>
+      <p class="lede">Every module is derived from the product's own map of problems, so what people learn is exactly what the system needs them to do. Each one produces a real artifact, and the artifact, not a quiz, is what gets assessed.</p>
+    </div>
+    <div class="flow" aria-label="Competency to credential">
+      <div class="step"><b>Map</b><strong>Competency</strong><span>A stable problem on the map, with its success conditions and failure modes.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Teach</b><strong>Module</strong><span>3–5 objectives, 3–5 rubric dimensions on 4 levels, 2–3 exercises.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step hl"><b>Make</b><strong>Artifact</strong><span>A brief, a taxonomy, a harness, a workflow: the evidence.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Judge</b><strong>Assessment</strong><span>Three layers, below. Mandatory dimensions gate; they never average away.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Prove</b><strong>Credential</strong><span>A tier, issued as a portable, verifiable badge.</span></div>
+    </div>
+
+    <div class="tw" style="margin-top:28px">
+      <table>
+        <tr><th>On the product's map</th><th>Becomes, in the curriculum</th></tr>
+        <tr><td>The problem pattern</td><td>The learning objective</td></tr>
+        <tr><td>What the work intends to do</td><td>The activity</td></tr>
+        <tr><td>The artifacts it produces</td><td>The learner's portfolio</td></tr>
+        <tr><td>Its success conditions</td><td>The rubric dimensions</td></tr>
+        <tr><td>Its failure modes (silent, loud, clustered)</td><td>The exercises</td></tr>
+        <tr><td>Its dependencies</td><td>The prerequisites</td></tr>
+        <tr><td>How reversible a mistake is</td><td>How high the evidence bar is</td></tr>
+      </table>
+    </div>
+
+    <figure class="diagram" style="margin-top:28px" aria-label="Three-layer assessment">
+      <svg viewBox="0 0 1000 270" role="img" aria-labelledby="t4">
+        <title id="t4">An artifact passes automated checks, then an AI rubric scored against exemplars, then human calibration on a fixed sample and on every low-confidence score, and earns a tier.</title>
+        <defs><marker id="m4" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
+        <g fill="none" stroke="#b4583a" stroke-width="2.2" marker-end="url(#m4)"><path d="M168,115 L194,115"/><path d="M386,115 L412,115"/><path d="M604,115 L630,115"/><path d="M822,115 L848,115"/></g>
+        <rect x="10" y="40" width="158" height="150" rx="14" fill="#f5e0a8"/>
+        <text x="89" y="100" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#1b1712">The artifact</text>
+        <text x="89" y="124" text-anchor="middle" font-size="12.5" fill="#564c42">what the learner</text>
+        <text x="89" y="142" text-anchor="middle" font-size="12.5" fill="#564c42">actually made</text>
+        <rect x="198" y="40" width="188" height="150" rx="14" fill="#4f5433"/>
+        <text x="292" y="72" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">LAYER 1</text>
+        <text x="292" y="98" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Automated checks</text>
+        <text x="292" y="124" text-anchor="middle" font-size="12.5" fill="#e8e9d6">structure and</text>
+        <text x="292" y="142" text-anchor="middle" font-size="12.5" fill="#e8e9d6">completeness, every time</text>
+        <rect x="416" y="40" width="188" height="150" rx="14" fill="#b4583a"/>
+        <text x="510" y="72" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">LAYER 2</text>
+        <text x="510" y="98" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">AI rubric</text>
+        <text x="510" y="124" text-anchor="middle" font-size="12.5" fill="#f3dfd3">0–5 per dimension, scored</text>
+        <text x="510" y="142" text-anchor="middle" font-size="12.5" fill="#f3dfd3">against 2–3 exemplars a level</text>
+        <rect x="634" y="40" width="188" height="150" rx="14" fill="#1b1712"/>
+        <text x="728" y="72" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#f5e0a8">LAYER 3</text>
+        <text x="728" y="98" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Human calibration</text>
+        <text x="728" y="124" text-anchor="middle" font-size="12.5" fill="#d9cfbf">10% double-scored, plus</text>
+        <text x="728" y="142" text-anchor="middle" font-size="12.5" fill="#d9cfbf">every borderline score</text>
+        <text x="728" y="170" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#f5e0a8">TARGET: OVER 80% AGREEMENT</text>
+        <rect x="852" y="40" width="138" height="150" rx="14" fill="#fcf9f3" stroke="#4f5433" stroke-width="2"/>
+        <text x="921" y="78" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1" fill="#4f5433">TIER</text>
+        <text x="921" y="108" text-anchor="middle" font-size="12.5" fill="#1b1712">Unvalidated</text>
+        <text x="921" y="132" text-anchor="middle" font-size="12.5" fill="#1b1712">Working</text>
+        <text x="921" y="156" text-anchor="middle" font-size="12.5" font-weight="600" fill="#4f5433">Production</text>
+        <text x="500" y="236" text-anchor="middle" font-size="13" fill="#6f6457">Machines catch what's mechanical, AI scores thinking against real examples, people keep the final word.</text>
+        <text x="500" y="256" text-anchor="middle" font-size="13" fill="#6f6457">Published research puts expert agreement with an AI judge near 64–68%, which is why layer 3 exists.</text>
+      </svg>
+      <figcaption>Working tier: one track, 8–15 competencies and a capstone. Production tier: two or more tracks and an architecture defense. Item banks hold 3–5 anchor items and 15–30 generated items per module, and refresh once too many learners have seen them. Adaptive rules never hide the standard.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 5 JOURNEYS -->
+<section id="journeys" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">05 · Journeys</div>
+      <h2>Placement first, then a path that <em>explains every step.</em></h2>
+      <p class="lede">Four diagnostic gates place each learner at the right stage: foundation, retrieval, orchestration or specialization, with evaluation running through all of them. Every step of a track carries a one-line reason, so the learner knows why it comes where it does.</p>
+    </div>
+    <div class="grid g2">
+      <figure class="diagram" style="margin-top:0" aria-label="Modules by workstream">
+        <svg viewBox="0 0 480 300" role="img" aria-labelledby="t5">
+          <title id="t5">121 modules in six workstreams: Quality and Safety 30, Core Logic 25, Interfaces and Inputs 19, Clarify and Bound 18, Ops and Delivery 17, Adoption and Change 12.</title>
+          <text x="0" y="18" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">121 MODULES · 6 WORKSTREAMS</text>
+          <g font-size="13" fill="#1b1712">
+            <text x="0" y="58">Quality &amp; Safety</text><rect x="160" y="44" width="270" height="20" rx="4" fill="#4f5433"/><text x="438" y="59" font-family="Geist Mono, monospace" font-size="12">30</text>
+            <text x="0" y="98">Core Logic</text><rect x="160" y="84" width="225" height="20" rx="4" fill="#4f5433"/><text x="393" y="99" font-family="Geist Mono, monospace" font-size="12">25</text>
+            <text x="0" y="138">Interfaces &amp; Inputs</text><rect x="160" y="124" width="171" height="20" rx="4" fill="#4f5433"/><text x="339" y="139" font-family="Geist Mono, monospace" font-size="12">19</text>
+            <text x="0" y="178">Clarify &amp; Bound</text><rect x="160" y="164" width="162" height="20" rx="4" fill="#4f5433"/><text x="330" y="179" font-family="Geist Mono, monospace" font-size="12">18</text>
+            <text x="0" y="218">Ops &amp; Delivery</text><rect x="160" y="204" width="153" height="20" rx="4" fill="#4f5433"/><text x="321" y="219" font-family="Geist Mono, monospace" font-size="12">17</text>
+            <text x="0" y="258">Adoption &amp; Change</text><rect x="160" y="244" width="108" height="20" rx="4" fill="#4f5433"/><text x="276" y="259" font-family="Geist Mono, monospace" font-size="12">12</text>
+          </g>
+        </svg>
+        <figcaption>Quality and safety is the largest workstream on purpose: governance is a skill people learn, not a setting someone else configures.</figcaption>
+      </figure>
+      <div class="card">
+        <div class="k">Five certification tracks <span class="status built">Built</span></div>
+        <div class="tw"><table style="margin-top:0">
+          <tr><th>Track</th><th>Modules</th><th>Hours</th></tr>
+          <tr><td>AI Foundations</td><td class="n">12</td><td class="n">70–90</td></tr>
+          <tr><td>RAG Engineer</td><td class="n">10</td><td class="n">65–85</td></tr>
+          <tr><td>Agent Architect</td><td class="n">12</td><td class="n">85–110</td></tr>
+          <tr><td>AI Governance</td><td class="n">10</td><td class="n">70–95</td></tr>
+          <tr><td>AI Operations</td><td class="n">10</td><td class="n">75–100</td></tr>
+        </table></div>
       </div>
-    </div><div class="mock-en-arrow">▼ structure</div><div class="mock-en-layer">
-      <div class="mock-en-layer-num l2">2</div>
-      <div class="mock-en-layer-content">
-        <div class="mock-en-layer-name">Semantic Layer</div>
-        <div class="mock-en-layer-desc">Function-based taxonomy, parent-child relationships, and human-curated metadata.</div>
-        <div class="mock-en-layer-items"><span class="mock-en-chip">taxonomy</span><span class="mock-en-chip">metadata</span><span class="mock-en-chip">freshness rules</span><span class="mock-en-chip">competency signals</span></div>
+    </div>
+    <div class="k" style="margin-top:36px">A worked track: Agent Architect</div>
+    <div class="pills" aria-label="Agent Architect sequence">
+      <span class="pill">Scope</span><span class="to">→</span><span class="pill">Decision log</span><span class="to">→</span><span class="pill on">Evaluation</span><span class="to">→</span><span class="pill">Interface contract</span><span class="to">→</span><span class="pill">Tool constraints</span><span class="to">→</span><span class="pill">Guardrails</span><span class="to">→</span><span class="pill">Workflow</span><span class="to">→</span><span class="pill">State</span><span class="to">→</span><span class="pill">Messaging</span><span class="to">→</span><span class="pill">Recovery</span><span class="to">→</span><span class="pill">Capability boundaries</span><span class="to">→</span><span class="pill">Incident response</span>
+    </div>
+    <div class="rule">Why evaluation comes third: establish how you'll measure an agent before you tune how several of them behave together.</div>
+  </div>
+</section>
+
+<!-- 6 COACHING -->
+<section id="coaching">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">06 · The coaching engine <span class="status built">Built · in Palette</span></div>
+      <h2>An engine and a domain pack, so the same coach can teach <em>anything.</em></h2>
+      <p class="lede">The coach never asks "what do you want to work on?"; it proposes the next useful move. Sessions run 20 to 40 minutes. Behind them is a learner lens with four parts, identity, assessment, goals and state, that the learner owns and can carry anywhere. The assessment shapes the coaching; it's never shown back as a score. The engine went through eight design iterations, and was first shaped on adaptive learning for people with learning differences.</p>
+    </div>
+    <figure class="diagram" aria-label="The coaching loop">
+      <svg viewBox="0 0 1000 470" role="img" aria-labelledby="t6">
+        <title id="t6">Each session: resume, do, check, capture, then advance or hold. The learner lens sits at the centre. Four branches handle being stuck, skipping ahead, going off script and being overwhelmed.</title>
+        <defs><marker id="m6" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
+        <circle cx="500" cy="235" r="165" fill="none" stroke="#e4dac8" stroke-width="2"/>
+        <g fill="none" stroke="#b4583a" stroke-width="2" marker-end="url(#m6)">
+          <path d="M582,92 A165,165 0 0 1 652,170"/><path d="M664,250 A165,165 0 0 1 612,360"/><path d="M560,392 L442,392"/><path d="M388,360 A165,165 0 0 1 336,250"/><path d="M348,170 A165,165 0 0 1 418,92"/>
+        </g>
+        <g font-family="Bricolage, sans-serif" font-weight="600" font-size="16" text-anchor="middle">
+          <rect x="420" y="48" width="160" height="52" rx="12" fill="#4f5433"/><text x="500" y="80" fill="#fcf9f3">1 · Resume</text>
+          <rect x="590" y="176" width="150" height="52" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/><text x="665" y="208" fill="#1b1712">2 · Do</text>
+          <rect x="530" y="366" width="150" height="52" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/><text x="605" y="398" fill="#1b1712">3 · Check</text>
+          <rect x="320" y="366" width="150" height="52" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/><text x="395" y="398" fill="#1b1712">4 · Capture</text>
+          <rect x="250" y="176" width="170" height="52" rx="12" fill="#b4583a"/><text x="335" y="208" fill="#fcf9f3">5 · Advance or hold</text>
+        </g>
+        <circle cx="500" cy="245" r="78" fill="#1b1712"/>
+        <text x="500" y="236" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#fcf9f3">Learner lens</text>
+        <text x="500" y="258" text-anchor="middle" font-size="11.5" fill="#d9cfbf">identity · assessment</text>
+        <text x="500" y="275" text-anchor="middle" font-size="11.5" fill="#d9cfbf">goals · state</text>
+        <g font-size="13" fill="#564c42">
+          <text x="20" y="60" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">WHEN THE LEARNER IS…</text>
+          <text x="20" y="92"><tspan font-weight="600" fill="#1b1712">Stuck:</tspan> diagnose, don't repeat</text>
+          <text x="20" y="118"><tspan font-weight="600" fill="#1b1712">Skipping ahead:</tspan> test, don't refuse</text>
+          <text x="20" y="144"><tspan font-weight="600" fill="#1b1712">Off script:</tspan> follow it if it</text>
+          <text x="20" y="162">serves the goal</text>
+          <text x="20" y="188"><tspan font-weight="600" fill="#1b1712">Overwhelmed:</tspan> the smallest</text>
+          <text x="20" y="206">step that still counts</text>
+          <text x="780" y="60" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">HOW "CHECK" VERIFIES</text>
+          <text x="780" y="92">Show me</text>
+          <text x="780" y="118">Teach it back</text>
+          <text x="780" y="144">Outcome check</text>
+          <text x="780" y="170">Before and after</text>
+          <text x="780" y="196">Trust now, check later</text>
+          <text x="780" y="240" font-size="12.5">Hold is a legitimate</text>
+          <text x="780" y="258" font-size="12.5">outcome, not a failure.</text>
+        </g>
+      </svg>
+      <figcaption>The engine is universal; a domain pack gives it a subject. The universal path is Orient → First use → Retain → Verify → Organize → Extend → Own. Its rules come in three tiers: 13 fixed rules, 12 working assumptions and 12 open experiments.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- 7 A LAB -->
+<section id="lab" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">07 · A lab, end to end</div>
+      <h2>"Connect your first MCP server": 90 minutes, <em>a check at the end of every part.</em></h2>
+      <p class="lede">One macro-depth artifact from the matrix, built for technical field teams. It's the fifth module of a twelve-week ramp in four phases: foundations, extend, deploy, expert. Each section ends with a check, for example: explain the value in two sentences without saying "protocol".</p>
+    </div>
+    <div class="flow" aria-label="Lab sections">
+      <div class="step"><b>10 min · A</b><strong>Why</strong><span>Whiteboard the problem it solves.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>15 min · B</b><strong>Anatomy</strong><span>Read the four parts: tool definition, handler, router, transport.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step hl"><b>30 min · C</b><strong>Build</strong><span>A working server, hands on.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>15 min · D</b><strong>Connect</strong><span>Plug it into a real assistant.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>10 min · E</b><strong>Secure</strong><span>What must be true before a customer uses it.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>10 min · F</b><strong>Sell</strong><span>Role-play the conversation.</span></div>
+    </div>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card"><div class="k">The version ladder</div><h3>Same server, four levels</h3><p>V1 a local, single tool → V2 a managed remote server with sign-in → V3 several tools → V4 delivered by the field to customers. Learners can see where they are and what comes next.</p></div>
+      <div class="card"><div class="k">The live demo</div><h3>One success, then the failures</h3><p>Five failure modes are in the runbook: injection through results, invented tool descriptions, an over-privileged token, no rate limit, silent API drift. Four of the five are invisible until they hurt, so the demo causes them on purpose.</p></div>
+    </div>
+    <p style="margin-top:18px"><a href="lab/" style="font-weight:600;text-decoration:none">See the lab and its readiness guide →</a></p>
+    <p class="quote">"If either signal is flat, the lab needs redesign, not more training."<cite>From the lab's measurement plan</cite></p>
+  </div>
+</section>
+
+<!-- 8 CONTENT ENGINE -->
+<section id="engine">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">08 · The content engine <span class="status built">Built</span></div>
+      <h2>From a signal to a published lesson, <em>in one loop.</em></h2>
+      <p class="lede">Enablement goes stale the week a product ships. The content engine turns a signal (a question asked twice, a release, a failed check) into a short "how to do X" lesson with a learning path that pastes into any AI tool. Then it listens for the next signal.</p>
+    </div>
+    <figure class="diagram" aria-label="The content engine">
+      <svg viewBox="0 0 1000 470" role="img" aria-labelledby="t8">
+        <title id="t8">Signal, classify, research, build, produce, publish, enable, feedback, and back to signal.</title>
+        <circle cx="500" cy="235" r="180" fill="none" stroke="#e4dac8" stroke-width="2"/>
+        <g font-family="Bricolage, sans-serif" font-weight="600" font-size="15" text-anchor="middle">
+          <rect x="425" y="30" width="150" height="50" rx="12" fill="#1b1712"/><text x="500" y="60" fill="#fcf9f3">1 · Signal</text>
+          <rect x="562" y="86" width="150" height="50" rx="12" fill="#4f5433"/><text x="637" y="116" fill="#fcf9f3">2 · Classify</text>
+          <rect x="612" y="210" width="150" height="50" rx="12" fill="#4f5433"/><text x="687" y="240" fill="#fcf9f3">3 · Research</text>
+          <rect x="562" y="334" width="150" height="50" rx="12" fill="#b4583a"/><text x="637" y="364" fill="#fcf9f3">4 · Build</text>
+          <rect x="425" y="390" width="150" height="50" rx="12" fill="#b4583a"/><text x="500" y="420" fill="#fcf9f3">5 · Produce</text>
+          <rect x="288" y="334" width="150" height="50" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/><text x="363" y="364" fill="#1b1712">6 · Publish</text>
+          <rect x="238" y="210" width="150" height="50" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/><text x="313" y="240" fill="#1b1712">7 · Enable</text>
+          <rect x="288" y="86" width="150" height="50" rx="12" fill="#fcf9f3" stroke="#b4583a" stroke-width="1.5"/><text x="363" y="116" fill="#733525">8 · Feedback</text>
+        </g>
+        <text x="500" y="226" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="20" fill="#4f5433">Stays current</text>
+        <text x="500" y="252" text-anchor="middle" font-size="13" fill="#564c42">because it never stops listening</text>
+        <g font-size="13" fill="#564c42">
+          <text x="20" y="60" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">AT EACH STEP</text>
+          <text x="20" y="90">Classify: map it to a competency,</text><text x="20" y="108">or create one</text>
+          <text x="20" y="136">Research: the internal library first</text>
+          <text x="20" y="164">Build: a 5–10 minute "how to do X"</text>
+          <text x="20" y="192">Produce: video at about $4 each</text>
+          <text x="20" y="220">Publish: with a learning path</text>
+          <text x="20" y="248">Enable: paste into any AI tool</text>
+          <text x="790" y="60" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">THE LIFECYCLE</text>
+          <text x="790" y="90">signal</text><text x="790" y="114">→ capability thesis</text><text x="790" y="138">→ proof artifact</text><text x="790" y="162">→ companion artifact</text><text x="790" y="186">→ path</text><text x="790" y="210">→ measured outcome</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<!-- 9 CUSTOMERS + PRINCIPLES -->
+<section id="customers" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">09 · Enabling a customer's team</div>
+      <h2>Orient, map, walk the lifecycle, <em>then do it yourself.</em></h2>
+      <p class="lede">The same architecture, applied when Mission Canvas hands software to a customer's team. For a construction-industry platform, the walkthrough for the people who would demo it to other firms was built in four moves.</p>
+    </div>
+    <div class="flow">
+      <div class="step"><b>Orient</b><strong>Two ideas first</strong><span>Every screen is reachable by an agent, and everything can be fitted to each customer.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Map</b><strong>One page, four phases</strong><span>Win the work → run the contract → run the field → run the company.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Walk</b><strong>One screen, one claim</strong><span>Every screen is titled with the sentence it proves.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step hl"><b>Try</b><strong>Six steps, one job</strong><span>Follow a single job from start to finish, alone.</span></div>
+    </div>
+
+    <div class="k" style="margin-top:48px">Principles</div>
+    <div class="grid g3">
+      <div class="card"><h3>The curriculum is the knowledge base</h3><p>Projected through a learning lens, not bolted on. One source, two kinds of enablement, one measurement system.</p></div>
+      <div class="card"><h3>Behavior, not consumption</h3><p>Success is ramp time, milestones hit and escalations avoided. Views and completions are not outcomes.</p></div>
+      <div class="card"><h3>Evidence has a grade</h3><p>Every claim is marked measured, cited, inferred or "cannot tell". The system says what it doesn't know, and so do its learners.</p></div>
+      <div class="card"><h3>Adaptive never means hidden</h3><p>The path changes as the learner changes; the standard doesn't. The learner can always see why the next step was chosen.</p></div>
+      <div class="card"><h3>Learner records stay local</h3><p>Progress and assessment live on the learner's own machine by default. Cloud scoring happens only when asked for, and with redaction.</p></div>
+      <div class="card"><h3>Builder of builders</h3><p>Design the systems, standards and interfaces that let other people learn and deliver well, without the original expert in the room.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="origin">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Where this comes from</div>
+      <h2>Twenty years of making expertise <em>usable by other people.</em></h2>
+    </div>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-when">2026 –</div><div><h3>Mission Canvas</h3><div class="tl-where">Co-founder and CEO</div><p>The product's map of problems doubles as the curriculum's backbone; Palette ships with the coaching engine built in.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2024 – 2026</div><div><h3>Seller enablement at AWS</h3><div class="tl-where">Amazon Web Services</div><p>Designed a retrieval agent used by more than 12,000 sellers a month. The gain came from redesigning the taxonomy, classifying by function instead of industry, not from changing the model.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2013 – 2021</div><div><h3>Knowledge operations and Alexa</h3><div class="tl-where">Amazon</div><p>Built customer-service knowledge operations in Italy from nothing, then designed knowledge architecture for Alexa's first conversational agents across 13 locales.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2006 – 2013</div><div><h3>Professor</h3><div class="tl-where">Paris</div><p>Rebuilt an English course for publishing students as a working publishing house: learning by making the real artifact, long before it had a name.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <div class="k" style="color:#f5e0a8">Mical Neill · Co-founder and CEO</div>
+        <h2>Mission Canvas: governed AI that runs on your own machines.</h2>
+        <p style="margin-top:14px">The company, how it works, and what's in production are on the main page.</p>
       </div>
-    </div><div class="mock-en-arrow">▼ usable at scale</div><div class="mock-en-layer">
-      <div class="mock-en-layer-num l3">3</div>
-      <div class="mock-en-layer-content">
-        <div class="mock-en-layer-name">Learning Layer</div>
-        <div class="mock-en-layer-desc">Better discovery, reusable templates, and scalable self-serve enablement.</div>
-        <div class="mock-en-layer-items"><span class="mock-en-chip">12K+ users/mo</span><span class="mock-en-chip">25% faster prep</span><span class="mock-en-chip">67% better coverage</span></div>
+      <div class="links">
+        <a href="portfolio.html">Mical Neill, Mission Canvas <span>Main page</span></a>
+        <a href="mailto:mical.neill@missioncanvas.ai">mical.neill@missioncanvas.ai <span>Email</span></a>
+        <a href="https://missioncanvas.ai">missioncanvas.ai <span>Company</span></a>
+        <a href="https://www.linkedin.com/in/mical-neill-79176412/">Mical Neill <span>LinkedIn</span></a>
       </div>
-    </div></div>
-</div>
-</div></div>
-    <div class="project-body">
-      <div class="project-tags"><span class="tag">Enablement</span><span class="tag--green tag">Knowledge Architecture</span><span class="tag--orange tag">Metadata</span><span class="tag--blue tag">Scale</span></div>
-      <h3>Ask Pathfinder — High-Touch Expertise Into Scalable Discovery</h3>
-      <p class="project-desc">At AWS, I helped transform high-touch sales enablement into a structured learning and discovery system. The core move was architectural, not cosmetic: reclassify content by function instead of industry, add parent-child content relationships, and layer human-designed metadata over source materials so people could find what mattered quickly and trust what they found.
-</p>
-      <div class="project-details"><div class="detail-block"><h4>What Changed</h4><ul><li>Industry-based organization became function-based classification</li><li>Content relationships became explicit instead of implied</li><li>Metadata carried human judgment, not just automated tags</li></ul></div><div class="detail-block"><h4>Why It Matters</h4><ul><li>People found relevant guidance faster</li><li>Knowledge transferred across use cases instead of staying siloed</li><li>The system scaled without depending on live facilitation</li></ul></div></div>
-    </div>
-  </div>
-</section>
-<section class="section" id="project-1">
-  <div class="section-header">
-    <div class="section-label">Open System — Palette Enablement</div>
-    <div class="section-title">The SDK for People</div>
-    <p class="section-desc">A modular learning system built to help non-experts build real AI capability through artifacts, not slides.</p>
-  </div>
-  
-  <div class="project">
-    <div class="project-preview"><div class="project-preview-inner">
-<div class="mock-obsidian">
-  <div class="mock-obs-modebar"><div class="mock-obs-mode">Orient</div><div class="mock-obs-mode active">Build</div><div class="mock-obs-mode">Verify</div></div>
-  <div class="mock-obs-health"><div class="mock-obs-pill green">121 modules</div><div class="mock-obs-pill blue">5 journeys</div><div class="mock-obs-pill yellow">Artifact-based</div></div>
-  <div class="mock-obs-cards"><div class="mock-obs-card decided">
-      <div class="mock-obs-card-title">RIU-401 Taxonomy Design</div>
-      <div class="mock-obs-card-meta">structure a domain for retrieval</div>
-      <div class="mock-obs-confidence"><div class="mock-obs-conf-fill" style="width:94%;background:#27ae60;"></div></div>
-    </div><div class="mock-obs-card">
-      <div class="mock-obs-card-title">RIU-021 Eval Harness</div>
-      <div class="mock-obs-card-meta">measure model quality with evidence</div>
-      <div class="mock-obs-confidence"><div class="mock-obs-conf-fill" style="width:83%;background:var(--accent);"></div></div>
-    </div><div class="mock-obs-card exploring">
-      <div class="mock-obs-card-title">RIU-510 Workflow Design</div>
-      <div class="mock-obs-card-meta">route work across agents safely</div>
-      <div class="mock-obs-confidence"><div class="mock-obs-conf-fill" style="width:68%;background:#f08b58;"></div></div>
-    </div><div class="mock-obs-card decided">
-      <div class="mock-obs-card-title">RIU-102 Enablement Pack</div>
-      <div class="mock-obs-card-meta">teach the next person clearly</div>
-      <div class="mock-obs-confidence"><div class="mock-obs-conf-fill" style="width:88%;background:#27ae60;"></div></div>
-    </div></div>
-</div>
-</div></div>
-    <div class="project-body">
-      <div class="project-tags"><span class="tag">Curriculum</span><span class="tag--green tag">Assessment</span><span class="tag--orange tag">AI-Native</span><span class="tag--blue tag">Builder of Builders</span></div>
-      <h3>Enablement System — The SDK for People</h3>
-      <p class="project-desc">This system turns a broad AI capability map into structured learning journeys, hands-on modules, and visible progression. Each module is tied to a competency, each competency produces a real artifact, and each artifact can be evaluated by automated checks, AI rubric scoring, and human calibration. The result is a learning architecture that behaves more like a product system than a course catalog.
-</p>
-      <div class="project-details"><div class="detail-block"><h4>System Design</h4><ul><li>121 modules mapped to explicit competency areas</li><li>5 learning journeys instead of one generic track</li><li>Knowledge library and taxonomy share the same backbone</li></ul></div><div class="detail-block"><h4>Assessment</h4><ul><li>Automated checks verify structure and completeness</li><li>AI rubric scoring evaluates reasoning against exemplars</li><li>Human calibration handles edge cases and final trust</li></ul></div><div class="detail-block"><h4>Why It Works</h4><ul><li>The learner makes real things, not quiz selections</li><li>Progress is visible through artifacts</li><li>Quality scales without flattening judgment</li></ul></div></div>
-    </div>
-  </div>
-</section>
-<section class="section" id="project-2">
-  <div class="section-header">
-    <div class="section-label">Case Study — Coaching Loop</div>
-    <div class="section-title">Adaptive Coaching Loop</div>
-    <p class="section-desc">Learning systems should respond to confusion, confidence, and context, not just deliver the next lesson.</p>
-  </div>
-  
-  <div class="project">
-    <div class="project-preview"><div class="project-preview-inner">
-<div class="mock-oka">
-  <div class="mock-oka-top">
-    <div class="mock-oka-avatar"><div class="mock-oka-eyes"><div class="mock-oka-eye"></div><div class="mock-oka-eye"></div></div><div class="mock-oka-nose"></div></div>
-    <div><div class="mock-oka-name">Oka</div><div class="mock-oka-sub">Adaptive learning companion</div></div>
-  </div>
-  <div class="mock-oka-main">
-    <div class="mock-oka-card">
-      <div class="mock-oka-label">Oka says</div>
-      <div class="mock-oka-response">You do not need to know the jargon yet. Let’s start with the part you can already name.</div>
-    </div>
-    <div class="mock-oka-card mock-oka-focus">
-      <div class="mock-oka-band">State: orienting</div>
-      <div class="mock-oka-word">next step</div>
-      <div class="mock-oka-hint">profile → converge → try one artifact → verify → adapt</div>
-    </div>
-  </div>
-  <div class="mock-oka-mic"><div class="mock-oka-mic-btn">Talk</div></div>
-</div>
-</div></div>
-    <div class="project-body">
-      <div class="project-tags"><span class="tag">Coaching</span><span class="tag--green tag">Adaptive UX</span><span class="tag--orange tag">Plain Language</span><span class="tag--blue tag">Governance</span></div>
-      <h3>Adaptive Coaching — A Knowledge Companion You Can Ask</h3>
-      <p class="project-desc">This is a conversational companion built on top of a structured knowledge base &mdash; like Ask Pathfinder, but for any domain. You ask it how to build something, and it routes your question through a taxonomy of 121 modules, retrieves the relevant knowledge entries, and walks you through the answer with citations. It adapts to your level: if you're stuck, it simplifies. If you're skipping ahead, it fills gaps. If you're overwhelmed, it narrows scope. The coaching loop responds to real learner states, not a fixed curriculum sequence.
-</p>
-      <div class="project-details"><div class="detail-block"><h4>How It Works</h4><ul><li>You ask a question in plain language</li><li>The system classifies it against a 121-node taxonomy</li><li>Retrieves sourced knowledge entries (176 entries, 565 citations)</li><li>Responds with a guided answer + what to try next</li></ul></div><div class="detail-block"><h4>Adaptive Behavior</h4><ul><li>Stuck: simplifies, offers a smaller starting point</li><li>Skipping ahead: fills prerequisite gaps before advancing</li><li>Overwhelmed: narrows to one concrete next step</li><li>Ready: advances to the next module with an artifact to build</li></ul></div><div class="detail-block"><h4>Design Principles</h4><ul><li>Glass-box: the learner can see why the system recommended something</li><li>No jargon without translation</li><li>Works for executives, technical teams, and children</li><li>The system teaches through interaction, not content delivery</li></ul></div></div>
     </div>
   </div>
 </section>
 
-<section class="section" id="philosophy">
-  <div class="section-header">
-    <div class="section-label">Design Philosophy</div>
-    <div class="section-title">How I think about this</div>
-  </div>
-  <div class="philosophy"><div class="phil-grid"><div class="phil-item"><h4>Learning architecture is operating design</h4><p>The goal is not to explain things beautifully in isolation. The goal is to create structures, workflows, and interfaces that help people perform better when the work is real.</p></div><div class="phil-item"><h4>The SDK for people</h4><p>A good learning system gives people reusable primitives: shared language, visible standards, guided sequences, and feedback loops they can use without the original expert present.</p></div><div class="phil-item"><h4>Artifacts beat abstractions</h4><p>If the learner cannot produce something real, the system has not taught enough. Briefs, taxonomies, harnesses, workflows, and enablement packs are the assessment.</p></div><div class="phil-item"><h4>Adaptive does not mean opaque</h4><p>A strong coaching system changes its behavior as the learner changes, but it remains glass-box: the learner can see why the system recommended the next step.</p></div></div></div>
-</section>
-
-<section class="cta">
-  <div class="cta-box">
-    <h2>Want to see the system in action?</h2>
-    <p>Review a learning path, or reach out to discuss learning systems for AI-native organizations.</p>
-    <div class="cta-links"><a href="mailto:sales@missioncanvas.ai" class="cta-link cta-link--primary">sales@missioncanvas.ai</a><a href="https://missioncanvas.ai" class="cta-link cta-link--secondary">missioncanvas.ai</a></div>
-  </div>
-</section>
-
-<footer class="footer">
-  <p>Mission Canvas · San Francisco · <a href="https://missioncanvas.ai">missioncanvas.ai</a></p>
-</footer>
+<footer><div class="wrap"><span>Mission Canvas, Inc. · San Francisco</span><span>Palette™ · patents pending</span></div></footer>
 
 </body>
 </html>

@@ -1,385 +1,409 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex" />
-  <title>Mission Canvas — Voice Agent Design Portfolio</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    :root {
-      --bg: #faf8f5; --surface: #ffffff; --surface-alt: #f4f2ef;
-      --text: #1a1a1a; --text-soft: #5a5a6e; --text-faint: #8a8a9a;
-      --accent: #c4956a; --accent-soft: rgba(196,149,106,0.1); --accent-border: rgba(196,149,106,0.3);
-      --accept: #6366f1; --resolve: #3b82f6; --boundary: #d97706; --confirm: #059669; --close: #7c3aed;
-      --green: #059669; --red: #dc2626; --blue: #3b82f6;
-      --border: #e8e6e1; --shadow: 0 2px 24px rgba(0,0,0,0.06);
-      --radius: 16px; --radius-sm: 10px;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .anim { opacity: 0; animation: fadeUp 0.5s ease-out forwards; }
-    .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.2s; } .d3 { animation-delay: 0.3s; }
-
-    .nav { position: sticky; top: 0; z-index: 100; background: rgba(250,248,245,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0 32px; }
-    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
-    .nav-name { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-    .nav-name img { height: 24px; width: 24px; object-fit: contain; }
-    .nav-links { display: flex; gap: 20px; list-style: none; }
-    .nav-links a { text-decoration: none; color: var(--text-soft); font-size: 0.78rem; font-weight: 500; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.live { color: var(--accent); font-weight: 700; }
-
-    .hero { max-width: 1100px; margin: 0 auto; padding: 72px 32px 56px; }
-    .hero-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; max-width: 700px; }
-    .hero-sub { font-size: 1rem; color: var(--text-soft); max-width: 620px; margin-top: 14px; line-height: 1.6; }
-    .hero-thesis { background: var(--surface); border-left: 3px solid var(--accent); padding: 14px 18px; margin-top: 24px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.88rem; color: var(--text); line-height: 1.55; max-width: 640px; }
-    .hero-thesis strong { color: var(--accent); }
-    .hero-stats { display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap; }
-    .stat-num { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); line-height: 1; }
-    .stat-label { font-size: 0.68rem; font-weight: 500; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; }
-
-    .section { max-width: 1100px; margin: 0 auto; padding: 56px 32px; }
-    .section + .section { border-top: 1px solid var(--border); }
-    .s-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-    .s-title { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
-    .s-desc { font-size: 0.88rem; color: var(--text-soft); max-width: 620px; line-height: 1.6; margin-bottom: 24px; }
-
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; transition: box-shadow 0.2s; }
-    .card:hover { box-shadow: var(--shadow); }
-    .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
-    .card p { font-size: 0.82rem; color: var(--text-soft); line-height: 1.55; }
-    .card-link { display: inline-block; margin-top: 12px; font-size: 0.78rem; font-weight: 600; color: var(--accent); text-decoration: none; }
-    .card-link:hover { text-decoration: underline; }
-    .card-accent { border-left: 3px solid var(--accent); }
-
-    .tag { display: inline-block; font-size: 0.62rem; font-weight: 600; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.04em; background: var(--accent-soft); color: var(--accent); margin-right: 6px; margin-bottom: 6px; }
-    .tag-accept { background: rgba(99,102,241,0.1); color: var(--accept); }
-    .tag-resolve { background: rgba(59,130,246,0.1); color: var(--resolve); }
-    .tag-boundary { background: rgba(217,119,6,0.1); color: var(--boundary); }
-    .tag-confirm { background: rgba(5,150,105,0.1); color: var(--confirm); }
-    .tag-close { background: rgba(124,58,237,0.1); color: var(--close); }
-
-    .states { display: flex; align-items: center; gap: 6px; margin: 16px 0; flex-wrap: wrap; }
-    .state-pill { font-size: 0.6rem; font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
-
-    table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 16px; }
-    th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--border); color: var(--text-faint); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-    td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
-    .num { font-family: 'SF Mono', 'Menlo', monospace; }
-    .good { color: var(--green); font-weight: 600; }
-    .bad { color: var(--red); }
-
-    .timeline { display: grid; gap: 20px; margin-top: 16px; }
-    .tl-item { display: grid; grid-template-columns: 64px 1fr; gap: 16px; }
-    .tl-year { font-size: 0.82rem; font-weight: 700; color: var(--accent); padding-top: 2px; }
-    .tl-title { font-weight: 700; font-size: 0.88rem; }
-    .tl-place { font-size: 0.72rem; color: var(--text-faint); }
-    .tl-desc { font-size: 0.82rem; color: var(--text-soft); margin-top: 4px; line-height: 1.5; }
-
-    .cta-box { max-width: 1100px; margin: 0 auto; padding: 48px 32px; text-align: center; }
-    .cta-box h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
-    .cta-box p { color: var(--text-soft); font-size: 0.88rem; margin-bottom: 20px; }
-    .cta-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .cta-links a { text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 10px 20px; border-radius: var(--radius-sm); transition: all 0.15s; }
-    .cta-primary { background: var(--accent); color: #fff; }
-    .cta-secondary { border: 1px solid var(--border); color: var(--text-soft); }
-
-    .footer { text-align: center; padding: 24px; font-size: 0.72rem; color: var(--text-faint); border-top: 1px solid var(--border); }
-    .footer a { color: var(--text-faint); }
-
-    @media (max-width: 768px) {
-      .nav-links { gap: 12px; }
-      .nav-links a { font-size: 0.7rem; }
-      .hero { padding: 48px 20px 40px; }
-      .section { padding: 40px 20px; }
-      .tl-item { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Mical Neill · Mission Canvas</title>
+<meta name="description" content="Mical Neill, co-founder and CEO of Mission Canvas: governed AI that runs on your own machines. The company, how it works, what is in production, and the record behind it." />
+<meta property="og:title" content="Mical Neill · Co-founder and CEO, Mission Canvas" />
+<meta property="og:description" content="Governed AI that runs on your own machines. The company, how it works, what is in production, and the record behind it." />
+<meta property="og:image" content="https://missioncanvas.ai/og/portfolio.png" />
+<link rel="icon" href="/favicon.svg" />
+<link rel="stylesheet" href="assets/daybreak.css" />
+<!-- Every company fact on this page comes from the Conviction Embed answers of 2026-11-02 (mc-sales investors/conviction-embed/)
+     and the site. No customer is named; no child appears; the patent mechanisms stay at the level of what the customer gets. -->
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="nav-name"><img src="/logo-mc.png" alt="" /> Mission Canvas</div>
-    <ul class="nav-links">
-      <li><a href="#voice-quality">Voice Quality</a></li>
-      <li><a href="#evaluation">Evaluation</a></li>
-      <li><a href="#multilingual">Multilingual</a></li>
-      <li><a href="#enabling-teams">Enabling Teams</a></li>
-      <li><a href="#personas">Personas</a></li>
-      <li><a href="voice-demo/" class="live">Tessitura Demo &rarr;</a></li>
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="https://missioncanvas.ai"><img src="assets/logo.svg" alt="Mission Canvas" /></a>
+    <ul>
+      <li><a href="#company">Company</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#production">In production</a></li>
+      <li><a href="#delivery">Delivery</a></li>
+      <li><a href="#growth">Growth</a></li>
+      <li><a href="#leadership">How I lead</a></li>
+      <li><a href="#record">Record</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-label anim">Voice Agent Design Portfolio</div>
-  <h1 class="anim d1">Every brand has a tessitura. The designer's job is to find it.</h1>
-  <p class="hero-sub anim d2">
-    In vocal performance, <em>tessitura</em> is the range where a voice sounds most natural &mdash; narrower than the full range. I apply this principle to voice agent design: find the brand's tessitura, map conversational states within it, and measure whether the voice stays in range. 12 years at Amazon building knowledge architecture, voice evaluation, and multilingual systems. MA Comparative Linguistics, Paris-Sorbonne.
-  </p>
-  <div class="hero-thesis anim d2">
-    <strong>Core finding:</strong> Current voice agents do length-based pacing &mdash; they know their range but not their tessitura. I designed a <strong>5-state pacing model</strong> where each conversational state sits at a measured point within the brand's emotional range (0.83&ndash;1.30 speedAlpha). The designed agent hit <strong>16% slower empathy pace</strong> with a <strong>400ms pre-pause</strong> &mdash; same voice, same brand, constrained to tessitura.
-  </div>
-  <div class="hero-stats anim d3">
-    <div><div class="stat-num">5</div><div class="stat-label">Pacing States</div></div>
-    <div><div class="stat-num">16%</div><div class="stat-label">Empathy Rate Delta</div></div>
-    <div><div class="stat-num">400ms</div><div class="stat-label">Empathy Pre-Pause</div></div>
-    <div><div class="stat-num">47</div><div class="stat-label">Voices Auditioned</div></div>
-    <div><div class="stat-num">4</div><div class="stat-label">Languages</div></div>
-  </div>
-</section>
-
-<!-- 1. VOICE QUALITY — JD: "Improve breadth and depth of voice quality" -->
-<section class="section" id="voice-quality">
-  <div class="s-label">Voice Quality &mdash; Evaluate, Compare, Iterate</div>
-  <div class="s-title">Finding ACME's Tessitura</div>
-  <p class="s-desc">
-    I evaluated two voice models for a customer support scenario. Both had the same structural failure: the voice left the brand's tessitura on every emotional moment. Short empathy phrases rushed at informational speed. Closing lines spiked +46% in pitch &mdash; a persona break. The model had no signal that the content was emotionally weighted. I found the tessitura, mapped 5 states within it, and measured the improvement.
-  </p>
-
-  <div class="states">
-    <span class="state-pill tag-accept">Acceptance</span>
-    <span style="color:var(--text-faint);">&rarr;</span>
-    <span class="state-pill tag-resolve">Resolution</span>
-    <span style="color:var(--text-faint);">&rarr;</span>
-    <span class="state-pill tag-boundary">Boundary</span>
-    <span style="color:var(--text-faint);">&rarr;</span>
-    <span class="state-pill tag-confirm">Confirmation</span>
-    <span style="color:var(--text-faint);">&rarr;</span>
-    <span class="state-pill tag-close">Close</span>
-  </div>
-
-  <div class="card-grid">
-    <div class="card">
-      <h3>The Problem</h3>
-      <p>Both models showed 0&ndash;7% empathy rate delta (target: &ge;15%). A +46% pitch spike on goodbye broke persona coherence. The model slows for longer sentences, not for emotional content. This is a pacing design problem, not a model quality problem.</p>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="role">Mical Neill · Co-founder and CEO, Mission Canvas</div>
+      <h1>AI people can trust with their <em>real work.</em></h1>
+      <p class="lede">Mission Canvas builds governed AI that runs on a company's own machines. Every request is classified before any model sees it, sensitive work stays local, and every answer comes with a receipt. I lead the company and build the product and its architecture; my co-founder Jason Covington runs go-to-market.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:mical.neill@missioncanvas.ai">mical.neill@missioncanvas.ai</a>
+        <a class="btn ghost" href="https://missioncanvas.ai">missioncanvas.ai</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/mical-neill-79176412/">LinkedIn</a>
+      </div>
     </div>
-    <div class="card">
-      <h3>The Design</h3>
-      <p>5-state pacing model within ACME's tessitura (0.83&ndash;1.30 speedAlpha). Each state is a measured point within the brand's emotional range: Acceptance at the deepest point, Resolution at the center, Boundary firm but still warm, Confirmation slowest for detail capture, Close matching the opening. Going outside that band is the vocal equivalent of straining.</p>
-      <a href="voice-demo/" class="card-link">Play the A/B comparison &rarr;</a>
-    </div>
-    <div class="card">
-      <h3>The TTS Finding</h3>
-      <p>TTS models know their range &mdash; every speed they can produce. They don't know their tessitura &mdash; which speeds serve which emotional moments. In cascade architecture, the text boundary strips paralinguistic intent. Speed parameters are an imprecise proxy. Real tessitura-aware pacing needs SSML-level control or state-aware TTS. That's the engineering gap worth solving.</p>
+    <figure class="photo">
+      <img src="assets/founders.jpg" alt="Jason Covington and Mical Neill on a San Francisco rooftop" width="2217" height="1103" />
+      <figcaption>Jason Covington, COO (left) · Mical Neill, CEO (right) · San Francisco</figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="n">4</div><div class="l">Provisional patents<br>61 claims, 3 families</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Desktop platforms<br>macOS · Windows · Linux</div></div>
+      <div class="stat"><div class="n">312</div><div class="l">Nodes on the map<br>classify every request</div></div>
+      <div class="stat"><div class="n">1,169</div><div class="l">Tests behind the<br>governance runtime</div></div>
     </div>
   </div>
+</header>
 
-  <table style="margin-top:24px;">
-    <tr><th>Metric</th><th>Baseline</th><th>Designed</th><th>Why it matters</th></tr>
-    <tr><td>Empathy pace</td><td class="num">3.4 WPS</td><td class="num good">2.9 WPS</td><td>Empathy sounds felt, not recited</td></tr>
-    <tr><td>Empathy vs non-empathy</td><td class="num">&minus;3%</td><td class="num good">&minus;16%</td><td>Voice changes for emotional state</td></tr>
-    <tr><td>Empathy pre-pause</td><td class="num">~0ms</td><td class="num good">400ms</td><td>Caller feels heard before agent speaks</td></tr>
-    <tr><td>Boundary contrast</td><td class="num">&mdash;</td><td class="num good">+0.4 WPS above empathy</td><td>Honesty register is firmer than empathy</td></tr>
-    <tr><td>Closing pitch delta</td><td class="num bad">+46%</td><td class="num good">Consistent</td><td>Same person says goodbye</td></tr>
-  </table>
-</section>
+<!-- THE COMPANY -->
+<section id="company" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">The company</div>
+      <h2>AI is only useful if you can trust it with your actual information. Today most people <em>can't.</em></h2>
+      <p class="lede">Regulated companies in healthcare, legal, finance and construction want AI on their real work, but they can't send client files, patient records or financials to a cloud model, or prove where the data went once a model has seen it. Everyone else is told to hand over their data, pay a subscription and learn to prompt. Mission Canvas answers both with one product line.</p>
+    </div>
 
-<!-- 2. EVALUATION — JD: "Design and apply effective and repeatable evaluations" -->
-<section class="section" id="evaluation">
-  <div class="s-label">Repeatable Evaluation Frameworks</div>
-  <div class="s-title">Unit Tests for Tessitura</div>
-  <p class="s-desc">
-    Current benchmarks &mdash; tau-Voice, EVA, Scale AI Voice Showdown &mdash; measure task completion, latency, and preference. None measure whether a voice stays within a brand's tessitura across conversational states. My evaluation framework adds that dimension: not just whether the agent resolved the issue, but whether it stayed in range while doing it.
-  </p>
+    <figure class="diagram" aria-label="The Mission Canvas flywheel">
+      <svg viewBox="0 0 1000 430" role="img" aria-labelledby="fw-t">
+        <title id="fw-t">The flywheel: a regulated business brings real work, we build its canvas, the apps go into Palette, and Palette gets better for everyone.</title>
+        <defs><marker id="fa" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
+        <g fill="none" stroke="#b4583a" stroke-width="2.5" marker-end="url(#fa)">
+          <path d="M310,82 L688,82"/><path d="M830,140 L830,282"/><path d="M688,342 L312,342"/><path d="M170,282 L170,140"/>
+        </g>
+        <g>
+          <rect x="40" y="30" width="270" height="110" rx="16" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="62" y="62" font-family="Geist Mono, monospace" font-size="12" fill="#b4583a" letter-spacing="1.5">01 · A REGULATED BUSINESS</text>
+          <text x="62" y="90" font-size="15.5" fill="#1b1712">Brings real work it can't</text>
+          <text x="62" y="112" font-size="15.5" fill="#1b1712">send to a cloud model</text>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Layer 1: Prosodic Metrics</h3>
-      <p>Automated, brand-agnostic. WPS per state, pause duration, pitch delta, brand name articulation, time to first audio. Same measurements work for any brand. Runs on every voice change, prompt change, or model update.</p>
-      <div style="margin-top:8px;"><span class="tag">Automated</span><span class="tag">Brand-Agnostic</span></div>
-    </div>
-    <div class="card">
-      <h3>Layer 2: Interaction Quality</h3>
-      <p>Human-rated 1&ndash;5 across 5 dimensions: emotional acknowledgment (25%), clarity under stress (20%), confidence without coldness (20%), trust during confirmation (20%), closure quality (15%). Dimensions are universal &mdash; calibration changes per brand.</p>
-      <div style="margin-top:8px;"><span class="tag">Human-Rated</span><span class="tag">Universal Dimensions</span></div>
-    </div>
-    <div class="card">
-      <h3>Layer 3: Task Outcome + Sentiment</h3>
-      <p>Binary checklist: customer understands root cause, accepts rescue plan, details confirmed, knows next watchpoint, feels confident at close. Plus closing sentiment delta &mdash; did the customer's emotional state improve? The metric that only emotional pacing can move.</p>
-      <div style="margin-top:8px;"><span class="tag">Binary</span><span class="tag">Per Use Case</span></div>
-    </div>
-  </div>
+          <rect x="690" y="30" width="270" height="110" rx="16" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="712" y="62" font-family="Geist Mono, monospace" font-size="12" fill="#b4583a" letter-spacing="1.5">02 · WE BUILD ITS CANVAS</text>
+          <text x="712" y="90" font-size="15.5" fill="#1b1712">Governed apps for its field,</text>
+          <text x="712" y="112" font-size="15.5" fill="#1b1712">live in weeks, on its machines</text>
 
-  <div class="card card-accent" style="margin-top:20px;">
-    <h3>5 Sim Tests for Tessitura</h3>
-    <p style="margin-bottom:12px;">If I were choosing a brand's voice in Agent Studio, I wouldn't just listen &mdash; I'd define 5 sim tests that tell me whether this voice can stay in the brand's tessitura across emotional states. Then I'd audition voices against those sims, not against my taste. The sim results are the design decision.</p>
-    <table>
-      <tr><th>Sim</th><th>Tests</th><th>Pass Criteria</th></tr>
-      <tr><td>Empathy Detection</td><td>Agent's first response to emotional disclosure</td><td>Acknowledgment state first. Pace &ge;15% slower. Pre-pause exists.</td></tr>
-      <tr><td>Boundary Clarity</td><td>"So you guarantee they'll take it back?"</td><td>Firm, specific language. No false hope. Constraint named directly.</td></tr>
-      <tr><td>Confirmation Capture</td><td>Customer needs to write down date + order number</td><td>Slowest pace. Grouped digits. Offers to repeat.</td></tr>
-      <tr><td>Persona Coherence</td><td>Full scenario, opening to close</td><td>Closing pitch within 10% of mean. No brightness spike.</td></tr>
-      <tr><td>State Transition</td><td>Scenario hitting all 5 states</td><td>Each state has measurably different WPS. Not length-based.</td></tr>
-    </table>
-  </div>
+          <rect x="690" y="285" width="270" height="110" rx="16" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="712" y="317" font-family="Geist Mono, monospace" font-size="12" fill="#b4583a" letter-spacing="1.5">03 · INTO PALETTE</text>
+          <text x="712" y="345" font-size="15.5" fill="#1b1712">Each app joins a Studio in</text>
+          <text x="712" y="367" font-size="15.5" fill="#1b1712">Palette, our app for everyone</text>
 
-  <div class="card-grid" style="margin-top:20px;">
-    <div class="card">
-      <h3>Voice Evaluation Workbench</h3>
-      <p>Interactive tool for comparing and scoring AI agent voices across 4 languages and 3 customer journey stages. Structured rubric, TTFA measurement, exportable scorecards.</p>
-      <a href="voice-workbench/" class="card-link">Try it live &rarr;</a>
-    </div>
-    <div class="card">
-      <h3>Customer Response Signals</h3>
-      <p>V2 of the live bot tracks the other side of the loop: customer word count trajectory, sentiment, and closing sentiment delta. When the signals show the empathy didn't land, the agent stops progressing and recalibrates. Design + measurement in one interface.</p>
-      <a href="#evaluation" class="card-link">Open live demo &rarr;</a>
-    </div>
+          <rect x="40" y="285" width="270" height="110" rx="16" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="62" y="317" font-family="Geist Mono, monospace" font-size="12" fill="#b4583a" letter-spacing="1.5">04 · BETTER FOR EVERYONE</text>
+          <text x="62" y="345" font-size="15.5" fill="#1b1712">The next customer starts</text>
+          <text x="62" y="367" font-size="15.5" fill="#1b1712">from a working app</text>
+        </g>
+        <text x="500" y="200" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="27" fill="#4f5433">Businesses fund the hard engineering.</text>
+        <text x="500" y="236" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="27" fill="#1b1712">Everyone gets the result.</text>
+      </svg>
+      <figcaption>Palette runs on the computer people already own, keeps their data there, and has no per-use fee, so it costs a fraction of cloud AI.</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- 3. MULTILINGUAL — JD: "Operate across many languages" + "Even better: global language families" -->
-<section class="section" id="multilingual">
-  <div class="s-label">Multilingual Voice Design</div>
-  <div class="s-title">Empathy prosody is language-specific</div>
-  <p class="s-desc">
-    The methodology is universal &mdash; the parameters are not. Each locale needs its own pacing profile because emotional expression varies across language families. My comparative linguistics training is specifically about how meaning maps across linguistic systems.
-  </p>
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">How it works</div>
+      <h2>Know what a request is <em>before</em> you let AI act on it.</h2>
+      <p class="lede">At Alexa I learned that the hard part of agents is knowing what a request is before acting on it. Mission Canvas makes that check structural: it is built in, not a setting, and it is patent-pending.</p>
+    </div>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>4 Languages, 3 Countries, 13 Locales</h3>
-      <p>English (native), French (fluent &mdash; 8 years in Paris), Italian (fluent &mdash; 7 years in Milan/Sardinia), Spanish (proficient). Evaluated voice quality across 47 providers and 13 locales at Alexa. MA Comparative Linguistics from Paris-Sorbonne.</p>
+    <div class="flow" aria-label="Ask, classify, keep, prove">
+      <div class="step"><b>01</b><strong>Ask</strong><span>A person asks in plain language, about their own files, email or records.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step hl"><b>02</b><strong>Classify</strong><span>The request is placed on a 312-node map of the work before any model sees it.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>03</b><strong>Keep</strong><span>Sensitive work stays on the machine. Nothing leaves without permission.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>04</b><strong>Prove</strong><span>Every answer carries a receipt: what was used, what was blocked, what left.</span></div>
     </div>
-    <div class="card">
-      <h3>Locale-Specific Pacing</h3>
-      <p>Italian empathy uses longer pauses and wider pitch variation. French empathy uses controlled formality &mdash; slower pace, level contour, precise articulation. Korean has politeness levels affecting the entire speech register. Thai tones carry meaning that English pitch changes don't. Each locale needs its own profile.</p>
-    </div>
-    <div class="card">
-      <h3>The Structural Insight</h3>
-      <p>At Alexa, engineers were building vector databases to fix what was a cultural mapping problem. Italian automotive categories don't map 1:1 to American ones. I fixed the taxonomy, not the model &mdash; one of the biggest quality improvements the system had seen. The same discipline applies to voice: fix the structure, not the model.</p>
-    </div>
-  </div>
 
-  <div class="card-grid" style="margin-top:20px;">
-    <div class="card">
-      <h3>Voice Hub</h3>
-      <p>Multi-agent voice interface with 5 LLM agents routable through voice in 4 languages. Rime TTS, Whisper STT, taxonomy-routed retrieval, sentence-boundary streaming.</p>
-    </div>
-  </div>
-</section>
+    <figure class="diagram" style="margin-top:28px" aria-label="Governance before the model">
+      <svg viewBox="0 0 1000 560" role="img" aria-labelledby="gv-t">
+        <title id="gv-t">Governance before the model. On your machines, a request is checked and classified with no model involved. That classification decides what a model may see, whether anything may leave, and what gets recorded. Most work runs on a local model; an outside model is used only when cleared, with less context. The answer comes back with a receipt, and an improvement loop measures the whole path.</title>
+        <defs>
+          <marker id="ga" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#1b1712"/></marker>
+          <marker id="ge" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#733525"/></marker>
+        </defs>
+        <rect x="10" y="20" width="765" height="420" rx="20" fill="#eef0e2" stroke="#4f5433" stroke-width="2"/>
+        <text x="34" y="52" font-family="Geist Mono, monospace" font-size="12.5" letter-spacing="2" fill="#4f5433">YOUR MACHINES · WHERE THE WORK RUNS</text>
+        <rect x="795" y="20" width="195" height="420" rx="20" fill="#fcf9f3" stroke="#733525" stroke-width="2" stroke-dasharray="9 7"/>
+        <text x="817" y="52" font-family="Geist Mono, monospace" font-size="12.5" letter-spacing="2" fill="#733525">OUTSIDE</text>
 
-<!-- 4. ENABLING TEAMS — JD: "Enable teams to scale voice design effectively" -->
-<section class="section" id="enabling-teams">
-  <div class="s-label">Enabling Teams to Scale</div>
-  <div class="s-title">Builder of builders</div>
-  <p class="s-desc">
-    I build the playbooks, frameworks, and evaluation tools that let others deliver great voice design without me in the room. The system does the teaching &mdash; I design the system.
-  </p>
+        <g font-size="12.5" fill="#1b1712">
+          <rect x="30" y="100" width="122" height="72" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+          <text x="91" y="132" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17">Request</text>
+          <text x="91" y="153" text-anchor="middle" fill="#564c42">a person asks</text>
+        </g>
+        <path d="M152,136 L180,136" stroke="#1b1712" stroke-width="2" marker-end="url(#ga)"/>
+        <rect x="184" y="96" width="176" height="80" rx="12" fill="#4f5433"/>
+        <text x="272" y="128" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Check</text>
+        <text x="272" y="150" text-anchor="middle" font-size="12.5" fill="#e8e9d6">finds sensitive data first</text>
+        <path d="M360,136 L388,136" stroke="#1b1712" stroke-width="2" marker-end="url(#ga)"/>
+        <rect x="392" y="88" width="196" height="96" rx="12" fill="#4f5433"/>
+        <text x="490" y="122" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Classify</text>
+        <text x="490" y="145" text-anchor="middle" font-size="12.5" fill="#e8e9d6">no model involved</text>
+        <text x="490" y="165" text-anchor="middle" font-size="12.5" fill="#e8e9d6">same answer every time</text>
+        <path d="M588,136 L606,136" stroke="#1b1712" stroke-width="2" marker-end="url(#ga)"/>
+        <text x="612" y="86" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1" fill="#6f6457">IT DECIDES</text>
+        <g font-size="12.5" fill="#1b1712">
+          <rect x="610" y="96" width="150" height="30" rx="8" fill="#fcf9f3" stroke="#4f5433"/><text x="685" y="116" text-anchor="middle">what a model may see</text>
+          <rect x="610" y="132" width="150" height="30" rx="8" fill="#fcf9f3" stroke="#4f5433"/><text x="685" y="152" text-anchor="middle">whether it may leave</text>
+          <rect x="610" y="168" width="150" height="30" rx="8" fill="#fcf9f3" stroke="#4f5433"/><text x="685" y="188" text-anchor="middle">what gets recorded</text>
+        </g>
+        <path d="M685,198 L685,240 L490,240 L490,276" fill="none" stroke="#1b1712" stroke-width="2" marker-end="url(#ga)"/>
+        <path d="M685,240 L892,240 L892,276" fill="none" stroke="#733525" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ge)"/>
+        <text x="892" y="232" text-anchor="middle" font-size="12" fill="#733525">only if cleared</text>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Enterprise Enablement at Scale</h3>
-      <p>Built Ask Pathfinder &mdash; knowledge retrieval for 12,000+ users/month. Reclassified taxonomy from industry-based to function-based, improving retrieval accuracy 28% without changing the model. 250+ enablement sessions/year reaching 20,000+ users. +17% engagement, +50% satisfaction, +67% feature adoption.</p>
-    </div>
-    <div class="card">
-      <h3>Learning Architecture</h3>
-      <p>121 curriculum modules across 5 certification tracks. 3-layer assessment pipeline: automated checks catch structural issues, AI rubrics evaluate thinking quality against calibration exemplars, human review handles edge cases. Scales quality without scaling headcount.</p>
-      <a href="learning-architecture-system.html" class="card-link">View case study &rarr;</a>
-    </div>
-    <div class="card">
-      <h3>MCP Integrations Lab</h3>
-      <p>Technical enablement for sales teams on complex AI integrations. Presentation framework, readiness guide, demo prototype with annotated code. Built to be delivered by others, not just by me.</p>
-      <a href="lab/" class="card-link">View presentation &rarr;</a>
-    </div>
-  </div>
-</section>
+        <rect x="392" y="280" width="196" height="80" rx="12" fill="#b4583a"/>
+        <text x="490" y="313" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Local model</text>
+        <text x="490" y="336" text-anchor="middle" font-size="12.5" fill="#f3dfd3">most work stays here</text>
+        <rect x="812" y="280" width="160" height="80" rx="12" fill="#b4583a"/>
+        <text x="892" y="313" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Outside model</text>
+        <text x="892" y="336" text-anchor="middle" font-size="12.5" fill="#f3dfd3">less context, logged</text>
 
-<!-- 5. PERSONAS — JD: "Co-create agent personas and interaction patterns" -->
-<section class="section" id="personas">
-  <div class="s-label">Agent Personas &amp; Interaction Patterns</div>
-  <div class="s-title">Voice design as tessitura design</div>
-  <p class="s-desc">
-    Choosing a voice isn't picking what sounds nicest. It's finding the brand's tessitura &mdash; the narrow range where the voice sounds like itself &mdash; and designing states that stay within it. Each brand has a different tessitura. The methodology is the same.
-  </p>
+        <path d="M392,320 L340,320" stroke="#1b1712" stroke-width="2" marker-end="url(#ga)"/>
+        <rect x="30" y="280" width="306" height="80" rx="12" fill="#1b1712"/>
+        <text x="183" y="313" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Answer + receipt</text>
+        <text x="183" y="336" text-anchor="middle" font-size="12.5" fill="#d9cfbf">what was used, blocked, and what left</text>
+        <path d="M892,360 L892,404 L183,404 L183,366" fill="none" stroke="#733525" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#ge)"/>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Brand Voice Lens</h3>
-      <p>Translated "Honor the Craft" brand values into measurable voice parameters. Warm but composed (not bubbly). Precise but human (not scripted). Steady under stress (slow down, never speed up). Every pacing choice traces to a brand value &mdash; not taste.</p>
-    </div>
-    <div class="card">
-      <h3>Voice Audition: Finding the Tessitura Match</h3>
-      <p>Does this voice's natural tessitura overlap with the brand's? Can it slow down without sounding sleepy? Be firm without sounding cold? Hold persona from opening to close? Cove passed for ACME because its natural range overlaps with the brand's. A brighter voice could technically hit the same notes &mdash; but it would be singing outside its tessitura.</p>
-    </div>
-    <div class="card">
-      <h3>OKA &mdash; Voice-First Learning</h3>
-      <p>Adaptive learning companion for a child with dyslexia. Voice button with 3 states. Frustration detection triggers automatic simplification. Same design principle: the system responds to emotional state, not just task state. Built with a real child. Tested with a real child.</p>
-    </div>
-  </div>
-
-  <div class="card-grid" style="margin-top:20px;">
-    <div class="card">
-      <h3>Live Bot V1 &mdash; Agent Pacing</h3>
-      <p>Real-time state tracking shows the agent staying within the tessitura as conversation state changes. Metrics panel proves the pacing model is designable and measurable. Tessitura band visualization tracks the voice's position within the brand range.</p>
-      <a href="voice-demo/bot-v1.html" class="card-link">Open live demo &rarr;</a>
-    </div>
-    <div class="card card-accent">
-      <h3>Live Bot V2 &mdash; Customer Response Signals</h3>
-      <p>Adds the other side: tracks customer word count, sentiment, and closing delta. When convergence detection fires, Mirror Sync pulls the voice back toward the center of the tessitura. Not just designing how the agent sounds &mdash; measuring whether the design kept it in range.</p>
-      <a href="voice-demo/bot.html" class="card-link">Open live demo &rarr;</a>
-    </div>
+        <rect x="10" y="462" width="980" height="84" rx="18" fill="#f5e0a8" fill-opacity=".45" stroke="#b4583a" stroke-width="1.5"/>
+        <text x="34" y="496" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#733525">Improvement loop</text>
+        <text x="34" y="524" font-size="13" fill="#564c42">Measures the whole path against reference questions · tells a real defect from a broken measurement · checks nothing got worse</text>
+      </svg>
+      <figcaption>Green steps are deterministic, with no model involved; clay steps are where a model reasons. The dashed line is the only way out of the building, and it opens only when the classification allows it.</figcaption>
+    </figure>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<section class="section" id="philosophy">
-  <div class="s-label">Design Philosophy</div>
-  <div class="s-title">Tessitura, not range</div>
+<!-- IN PRODUCTION -->
+<section id="production" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">In production</div>
+      <h2>A canvas for each industry, each one born inside a <em>real customer's</em> operations.</h2>
+      <p class="lede">A canvas is the set of apps a business runs its work on, set up for that business and handed over. All of them run on Palette, our desktop app for macOS, Windows and Linux.</p>
+    </div>
+    <div class="grid g3">
+      <article class="card media">
+        <img class="fig" src="/figures/construction.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Construction · Livella</div>
+          <h3>Job site, office and fleet in one system</h3>
+          <p>Reads delivery tickets and matches them, keeps pour logs and safety declarations compliant, tracks fleet and fuel by machine and job. Runs every day at a construction firm of about 250 people, from the office to the field crews.</p></div>
+      </article>
+      <article class="card media">
+        <img class="fig" src="/figures/healthcare.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Healthcare</div>
+          <h3>Emergency-room prioritization</h3>
+          <p>Helps staff prioritize emergency-room patients with patient data kept where it belongs. A regional public health authority is rolling it out to about 80 hospital staff.</p></div>
+      </article>
+      <article class="card media">
+        <img class="fig" src="/figures/voice-front-desk.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Voice &amp; Front Desk</div>
+          <h3>AI that answers the phone and WhatsApp</h3>
+          <p>Books, reschedules and follows up, with caller verification. It started in clinics and is used by about 10 small businesses, each with 3 to 10 users.</p></div>
+      </article>
+      <article class="card media">
+        <img class="fig" src="/figures/education.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Education · Lingua Viva</div>
+          <h3>An AI app for teachers</h3>
+          <p>Turns classroom notes into tomorrow's differentiated lesson, with student data kept on the school's own device. Tested at 9 schools in an international school network.</p></div>
+      </article>
+      <article class="card media">
+        <img class="fig" src="/figures/logistics.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Logistics</div>
+          <h3>Order tracking with an overnight risk check</h3>
+          <p>Order tracking for a hardware distributor, with a risk check that runs overnight on its own machines.</p></div>
+      </article>
+      <article class="card media">
+        <img class="fig" src="/figures/office.svg" alt="" loading="lazy" />
+        <div class="body"><div class="k">Palette</div>
+          <h3>The app for everyone</h3>
+          <p>Point it at a folder. It reads only what you allow, on your own computer, and links every line to its source. About 85 downloads since its October 21 launch, with no marketing yet.</p></div>
+      </article>
+    </div>
+    <div class="rule">Real work, running today. We decided to start a company when the product got real customers, not before.</div>
+  </div>
+</section>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Measure tessitura, not aesthetics</h3>
-      <p>"Does it sound good?" is the wrong question. "Did the voice stay within the brand's tessitura across every emotional state, and did that produce a measurable improvement in the customer's ability to trust, understand, and act?" That's voice design. The numbers — 2.9 WPS empathy, 400ms pre-pause, consistent closing — are tessitura measurements.</p>
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">How we deliver</div>
+      <h2>From the way a business works to software it can run, in <em>four to six weeks.</em></h2>
+      <p class="lede">We don't start from zero for each client. We start from the working canvas for the industry, change it to fit, and build only the parts that business needs.</p>
     </div>
-    <div class="card">
-      <h3>Design in code</h3>
-      <p>I don't mock and hand off. I build the system prompt, the pacing model, the evaluation matrix, and the measurement infrastructure. Every artifact in this portfolio is working code. The design judgment IS the implementation.</p>
-    </div>
-    <div class="card">
-      <h3>Tessitura, not range</h3>
-      <p>TTS models optimize for range &mdash; every speed, every pitch they can produce. Voice design optimizes for tessitura &mdash; the narrow band where the brand sounds like itself. Prompting "be warm and empathetic" uses range (0% empathy delta). Designing 5 states within a measured tessitura uses design intelligence (16% empathy delta). Same voice. Different constraint.</p>
-    </div>
-    <div class="card">
-      <h3>Evaluation is design infrastructure</h3>
-      <p>Voice sims are unit tests for agent behavior. My framework adds pacing dimensions &mdash; so you're not just testing whether the agent resolved the issue, you're testing whether the customer felt heard while it happened. The sim results are the design decision.</p>
-    </div>
-    <div class="card">
-      <h3>Empathy prosody is language-specific</h3>
-      <p>Italian uses longer pauses and wider pitch. French uses controlled formality. Korean has politeness levels affecting the entire register. Each locale needs its own pacing profile. The methodology is universal &mdash; the parameters are not.</p>
-    </div>
-    <div class="card">
-      <h3>Craftsmanship at speed</h3>
-      <p>Nothing is perfect, but build something nearly perfect. The 5-state model is a system &mdash; applied to any brand with different parameter values. Ship the architecture, refine the parameters. Speed and craftsmanship are not in tension when the architecture is right.</p>
+    <div class="grid g4">
+      <article class="card media"><img class="art" src="/art/bays/audit.webp" alt="" loading="lazy" /><div class="body"><div class="k">01 · Audit</div><p>Map how work really moves: the tools, the files, the handoffs. Measure where the hours go.</p></div></article>
+      <article class="card media"><img class="art" src="/art/bays/redesign.webp" alt="" loading="lazy" /><div class="body"><div class="k">02 · Redesign</div><p>Cut the steps that only exist to move information from one system to another.</p></div></article>
+      <article class="card media"><img class="art" src="/art/bays/assemble.webp" alt="" loading="lazy" /><div class="body"><div class="k">03 · Assemble</div><p>Start from the industry's working app, change it to fit, build what only this business needs.</p></div></article>
+      <article class="card media"><img class="art" src="/art/bays/operate.webp" alt="" loading="lazy" /><div class="body"><div class="k">04 · Operate</div><p>The software takes over repeat work. We measure it and adjust it with the team.</p></div></article>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section>
-  <div class="cta-box">
-    <h2>Every brand has a tessitura. I find it.</h2>
-    <p>Not aesthetic judgment &mdash; measured range, iterated parameters, proven results. I'd welcome the chance to show how this applies to your platform.</p>
-    <div class="cta-links">
-      <a href="mailto:sales@missioncanvas.ai" class="cta-primary">sales@missioncanvas.ai</a>
-      <a href="https://linkedin.com/in/mical-neill-79176412" class="cta-secondary">LinkedIn</a>
-      <a href="https://missioncanvas.ai" class="cta-secondary">missioncanvas.ai</a>
+<!-- GROWTH -->
+<section id="growth" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">How we grow</div>
+      <h2>We don't need a big sales team to <em>find buyers.</em></h2>
+      <p class="lede">When a company is hiring several AI governance roles at once, it is about to try building something like Mission Canvas on its own. In September, 144 US companies were. So we watch the signal, not the crowd.</p>
+    </div>
+    <div class="flow" aria-label="The hiring-signal engine">
+      <div class="step"><b>Every day</b><strong>Watch</strong><span>Public job postings for AI governance, privacy and compliance roles.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Signal</b><strong>Spot</strong><span>A company hiring several of those roles at once.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Fit</b><strong>Score</strong><span>How well the company fits what we already run in production.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>Person</b><strong>Reach out</strong><span>A seller writes and sends. Agents draft; people send.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step hl"><b>Outcome</b><strong>Proposal</strong><span>Our second enterprise proposal came out of this in three weeks.</span></div>
+    </div>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="card"><div class="k">Partners who multiply</div><h3>One partner, many customers</h3><p>IT providers, compliance consultancies and software platforms each bring many customers with them. By May we aim to sign our first US channel partner.</p></div>
+      <div class="card"><div class="k">Pre-installed</div><h3>A governed workstation on day one</h3><p>New AI computers ship with powerful chips and little software that makes them useful at work. With Palette and a Studio pre-installed, each one is useful the day it arrives.</p></div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <p>Mission Canvas &middot; San Francisco &middot; English (native) &middot; French (fluent) &middot; Italian (fluent) &middot; Spanish (proficient)</p>
-  <p style="margin-top:6px;"><a href="https://missioncanvas.ai">missioncanvas.ai</a></p>
-</footer>
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">How I lead</div>
+      <h2>A lean company, built under the <em>same governance</em> we sell.</h2>
+      <p class="lede">I direct a team of 3 to 11 contract AI engineers, depending on the work, and much of Mission Canvas was built by teams of AI agents I orchestrate. The method is what lets a small team ship like a large one without losing the thread.</p>
+    </div>
+
+    <figure class="diagram" aria-label="How the company builds">
+      <svg viewBox="0 0 1000 300" role="img" aria-labelledby="ld-t">
+        <title id="ld-t">How the company builds: a decision with its success test, split into small pieces, built by engineers and several AI agent teams, checked by an independent reviewer, and shipped only when a person can download it and it works.</title>
+        <defs><marker id="la" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
+        <g fill="none" stroke="#b4583a" stroke-width="2.2" marker-end="url(#la)">
+          <path d="M188,150 L214,150"/><path d="M402,150 L428,150"/><path d="M616,150 L642,150"/><path d="M816,150 L842,150"/>
+        </g>
+        <rect x="10" y="95" width="178" height="110" rx="14" fill="#1b1712"/>
+        <text x="99" y="132" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">The decision</text>
+        <text x="99" y="156" text-anchor="middle" font-size="12.5" fill="#d9cfbf">what done looks like,</text>
+        <text x="99" y="174" text-anchor="middle" font-size="12.5" fill="#d9cfbf">and how we'll know</text>
+
+        <rect x="218" y="95" width="184" height="110" rx="14" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
+        <text x="310" y="132" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#1b1712">Small pieces</text>
+        <text x="310" y="156" text-anchor="middle" font-size="12.5" fill="#564c42">one user-visible piece</text>
+        <text x="310" y="174" text-anchor="middle" font-size="12.5" fill="#564c42">end to end at a time</text>
+
+        <rect x="432" y="40" width="184" height="66" rx="12" fill="#b4583a"/>
+        <text x="524" y="70" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="15.5" fill="#fcf9f3">Engineers</text>
+        <text x="524" y="91" text-anchor="middle" font-size="12" fill="#f3dfd3">3 to 11, by the work</text>
+        <rect x="432" y="117" width="184" height="66" rx="12" fill="#b4583a"/>
+        <text x="524" y="147" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="15.5" fill="#fcf9f3">AI agent teams</text>
+        <text x="524" y="168" text-anchor="middle" font-size="12" fill="#f3dfd3">several models, by design</text>
+        <rect x="432" y="194" width="184" height="66" rx="12" fill="#fcf9f3" stroke="#b4583a" stroke-width="1.5"/>
+        <text x="524" y="224" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="15.5" fill="#733525">Governed</text>
+        <text x="524" y="245" text-anchor="middle" font-size="12" fill="#564c42">same rules as the product</text>
+
+        <rect x="646" y="95" width="170" height="110" rx="14" fill="#4f5433"/>
+        <text x="731" y="132" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="15" fill="#fcf9f3">Independent check</text>
+        <text x="731" y="156" text-anchor="middle" font-size="12.5" fill="#e8e9d6">a separate reviewer</text>
+        <text x="731" y="174" text-anchor="middle" font-size="12.5" fill="#e8e9d6">re-derives the result</text>
+
+        <rect x="846" y="95" width="144" height="110" rx="14" fill="#1b1712"/>
+        <text x="918" y="132" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#fcf9f3">Shipped</text>
+        <text x="918" y="156" text-anchor="middle" font-size="12.5" fill="#d9cfbf">a person downloads</text>
+        <text x="918" y="174" text-anchor="middle" font-size="12.5" fill="#d9cfbf">it and it works</text>
+      </svg>
+      <figcaption>Different models catch different kinds of mistakes, so review is never one model grading itself. "Done" means a person can download it today and it works, not that a test passed.</figcaption>
+    </figure>
+
+    <div class="k" style="margin-top:44px">The improvement loop for the product</div>
+    <div class="flow" aria-label="From a finding to a system part">
+      <div class="step"><b>1</b><strong>Observe</strong><span>A walk-through, a teardown, a usage study, a prospect's question.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>2</b><strong>Job</strong><span>"When …, I want to …, so I can …"</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>3</b><strong>Hypothesis</strong><span>What would change the behaviour.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>4</b><strong>Component</strong><span>One named part of the system.</span></div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step"><b>5</b><strong>Test</strong><span>What would show it worked.</span></div>
+    </div>
+    <div class="rule">No change without a component and a test. A finding that can't name a part of the system is a marketing finding, and it goes to marketing.</div>
+
+    <div class="grid g3" style="margin-top:32px">
+      <div class="card"><h3>Verify, don't assert</h3><p>We only claim what we checked. "Cannot tell" beats a confident guess, in the product's answers and in our own status reports.</p></div>
+      <div class="card"><h3>Fix the class, not the instance</h3><p>A problem that comes back is a structural problem. We close the category with a test that locks it, then move on.</p></div>
+      <div class="card"><h3>The customer's machine is the boundary</h3><p>The product never depends on a cloud model to work. Local first is a design rule, not a pricing tier.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECORD -->
+<section id="record" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">The record</div>
+      <h2>I use communication to <em>make lives better.</em></h2>
+      <p class="lede">The thread through all of it is language, and specifically how words act. J. L. Austin's speech act theory says some words don't just describe the world, they do something in it: "I promise", "I resign", "Book me a table". That turned out to be exactly the problem with AI agents.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-when">2026 –</div><div><h3>Co-founder and CEO</h3><div class="tl-where">Mission Canvas, Inc. · San Francisco · Delaware C corporation, Sept 2026</div><p>Full-time since May 2026, after eighteen months building part-time. Product and architecture, four provisional patents (61 claims), a USPTO allowance for the PALETTE trademark, and Palette shipped on three desktop platforms.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2025 – 2026</div><div><h3>Lingua Viva</h3><div class="tl-where">Founder and builder</div><p>An AI app for teachers that turns classroom notes into differentiated lessons, local-first. Tested at 9 schools in an international school network. The question it hit first, "where is this data allowed to go?", became Mission Canvas.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2024 – 2026</div><div><h3>Seller enablement</h3><div class="tl-where">Amazon Web Services</div><p>Designed a retrieval agent that more than 12,000 sellers use every month. It cut prep time by 25% and raised sales-play coverage by 67%, by redesigning the taxonomy, not the model.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2020 – 2021</div><div><h3>Alexa conversational agents</h3><div class="tl-where">Amazon</div><p>Designed the knowledge architecture behind Alexa's first agents for booking restaurants and buying tickets: 13 locales, 47 data providers, entity resolution over a 25-billion-node knowledge graph. Owned the launch in Italian, French and Spanish, and showed a new language could ship as configuration instead of a rebuild.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2013</div><div><h3>Customer service knowledge operations</h3><div class="tl-where">Amazon Italy · employee #86</div><p>Built knowledge operations from nothing. When the translated knowledge base didn't work, rebuilt it with the associates whose own scripts did: customer success rose 11% in two months, and the approach went on to France and Spain.</p></div></div>
+      <div class="tl-row"><div class="tl-when">2006 – 2013</div><div><h3>Professor</h3><div class="tl-where">Paris</div><p>Rebuilt an English course for publishing students as a working publishing house: query letters, editorial teams, peer judging and a final publisher vote, all in English.</p></div></div>
+      <div class="tl-row"><div class="tl-when">Education</div><div><h3>MA, Comparative Linguistics</h3><div class="tl-where">Paris-Sorbonne · earlier, San Francisco State University</div><p>At San Francisco State, grew the International Education Exchange Council from 1,100 to 1,800 members in a year and became the first student appointed to the faculty board that decides program budgets. English (native), French and Italian (fluent), Spanish (proficient).</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="k">Selected work</div>
+      <h2>Systems that let other people <em>learn, decide and deliver.</em></h2>
+    </div>
+    <div class="grid g2">
+      <article class="card"><div class="k">Case study</div><h3>Learning architecture</h3><p>An SDK for humans: one map for agents and people, six layers, an artifact matrix, three-layer assessment, an adaptive coaching engine, and the content engine that keeps it current.</p><a class="more" href="learning-architecture-system.html">See the system →</a></article>
+      <article class="card"><div class="k">Voice design · live demo</div><h3>Finding a brand's tessitura</h3><p>A five-state pacing model for voice agents. Same voice, same brand: empathy lines 16% slower with a 400 ms pause before them, and a closing that sounds like the same person who said hello.</p><a class="more" href="voice-demo/">Play the comparison →</a></article>
+      <article class="card"><div class="k">Evaluation tool</div><h3>Voice evaluation workbench</h3><p>Compares and scores agent voices across 4 languages and 3 stages of a customer journey, with a structured rubric, time-to-first-audio and exportable scorecards.</p><a class="more" href="voice-workbench/">Try it →</a></article>
+      <article class="card"><div class="k">Enablement</div><h3>MCP integrations lab</h3><p>A 90-minute technical lab for sales teams: build it, connect and break it, secure it, sell it. Built to be delivered by others, not by me.</p><a class="more" href="lab/">See the lab →</a></article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="border-top:0">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <div class="k" style="color:#f5e0a8">Mission Canvas</div>
+        <h2>Governed AI that runs on your own machines.</h2>
+        <p style="margin-top:14px">For the businesses that can't send their data to the cloud, and for everyone who shouldn't have to.</p>
+      </div>
+      <div class="links">
+        <a href="mailto:mical.neill@missioncanvas.ai">mical.neill@missioncanvas.ai <span>Email</span></a>
+        <a href="https://missioncanvas.ai">missioncanvas.ai <span>Company</span></a>
+        <a href="https://www.linkedin.com/in/mical-neill-79176412/">Mical Neill <span>LinkedIn</span></a>
+        <a href="https://github.com/pretendhome">pretendhome <span>GitHub</span></a>
+        <a href="https://www.linkedin.com/in/jasoncovington">Jason Covington, COO <span>Co-founder</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>Mission Canvas, Inc. · San Francisco</span><span>Palette™ · patents pending</span></div></footer>
 
 </body>
 </html>
