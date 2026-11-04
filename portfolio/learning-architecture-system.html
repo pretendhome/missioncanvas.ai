@@ -1,147 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="robots" content="noindex" />
-<title>Learning Architecture · Mical Neill</title>
-<meta name="description" content="An SDK for humans: the enablement system Mical Neill, co-founder and CEO of Mission Canvas, designs and builds. One graph for agents and people, six layers, an artifact matrix, three-layer assessment, an adaptive coaching engine, and the content engine that keeps it current." />
-<meta property="og:title" content="Learning Architecture · Mical Neill, Mission Canvas" />
-<meta property="og:description" content="Every product ships an SDK for machines. Nobody ships one for people. This is what it looks like." />
-<meta property="og:image" content="https://missioncanvas.ai/og/portfolio.png" />
-<link rel="icon" href="/favicon.svg" />
-<link rel="stylesheet" href="assets/daybreak.css" />
-<style>
-  .status{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;vertical-align:middle;margin-left:8px}
-  .built{background:var(--pine-soft);color:var(--pine)}
-  .designed{background:var(--clay-soft);color:var(--ember)}
-  .quote{font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,2.4vw,1.8rem);letter-spacing:-.02em;line-height:1.25;color:var(--pine);max-width:880px;margin:30px 0 0;padding-left:20px;border-left:3px solid var(--clay)}
-  .quote cite{display:block;font-family:var(--mono);font-style:normal;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;font-weight:400}
-  .matrix{display:grid;grid-template-columns:140px 1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}
-  .matrix>div{padding:16px 18px;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--text2)}
-  .matrix .h{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--white);background:var(--soil)}
-  .matrix .h small{display:block;font-family:var(--mono);font-weight:400;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#d9cfbf;margin-top:4px}
-  .matrix .h.moment{background:var(--ember)}
-  .matrix .r{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--clay);background:var(--ground)}
-  .matrix .r b{display:block;font-family:var(--display);font-size:1.05rem;letter-spacing:-.01em;text-transform:none;color:var(--soil);font-weight:600}
-  .matrix>div:nth-last-child(-n+3){border-bottom:0}
-  .matrix>div:not(.r):not(:nth-child(3n)){border-right:1px solid var(--line)}
-  .matrix .agentic{background:#eef0e2}
-  .pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
-  .pill{font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;padding:8px 12px;border-radius:999px;background:var(--white);border:1px solid var(--line);color:var(--soil)}
-  .pill.on{background:var(--pine);color:var(--white);border-color:var(--pine)}
-  .pills .to{color:var(--clay)}
-  @media (max-width:760px){.matrix{grid-template-columns:1fr}.matrix>div{border-right:0!important}.matrix .h.corner{display:none}}
-</style>
-<!-- Sources: mc enablement/ (curriculum, assessment, agentic-enablement-system, live-lab), the SDK-for-Humans spec,
-     Palette's enablement skill, and Mical's earlier learning-partner architecture work, generalised. No employer tool,
-     interview, customer, partner or child is named. Counts verified on disk 2026-11-03: 121 modules, 6 workstreams, 5 tracks, 14 paths. -->
-</head>
-<body>
-
-<nav class="nav" aria-label="Sections">
-  <div class="wrap">
-    <a class="brand" href="portfolio.html"><img src="assets/logo.svg" alt="Mission Canvas" /></a>
-    <ul>
-      <li><a href="#thesis">The thesis</a></li>
-      <li><a href="#system">The system</a></li>
-      <li><a href="#artifacts">Artifacts</a></li>
-      <li><a href="#assessment">Assessment</a></li>
-      <li><a href="#journeys">Journeys</a></li>
-      <li><a href="#coaching">Coaching</a></li>
-      <li><a href="#lab">A lab</a></li>
-      <li><a href="#engine">Content engine</a></li>
-      <li><a href="portfolio.html">Mical Neill ↗</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="role">Mical Neill · Co-founder and CEO, Mission Canvas · Learning architecture</div>
-    <h1 style="max-width:960px">Every product ships an SDK for machines. Nobody ships one <em>for people.</em></h1>
-    <p class="lede" style="max-width:780px">An SDK for humans is a map of the stable problems a product solves, a knowledge library with grounded answers, and a delivery system that puts the right answer in front of the right person at the right moment. It's measured by changed behavior, not by content consumed. This page is the system I design and build to do that, at Mission Canvas and for the teams we enable.</p>
-    <div class="stats">
-      <div class="stat"><div class="n">121</div><div class="l">Curriculum modules<br>across 6 workstreams</div></div>
-      <div class="stat"><div class="n">42</div><div class="l">Competencies<br>in 5 certification tracks</div></div>
-      <div class="stat"><div class="n">14</div><div class="l">Published<br>learning paths</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Assessment layers<br>machine · AI · human</div></div>
-    </div>
-    <p class="small" style="margin-top:18px;color:var(--muted)">Each component below is marked <span class="status built" style="margin-left:0">Built</span> or <span class="status designed" style="margin-left:0">Designed</span>, so you can see what runs today and what is specified next.</p>
-  </div>
-</header>
-
-<!-- 1 THESIS -->
-<section id="thesis" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">01 · The thesis</div>
-      <h2>One graph, two runtimes. Agents and people learn from <em>the same map.</em></h2>
-      <p class="lede">At Mission Canvas, every request is classified against a map of stable problems before an AI acts. The same map is the backbone of the curriculum. An agent meets a node as context; a person meets it as a module. The curriculum isn't bolted onto the knowledge base: it is the knowledge base, seen through a learning lens.</p>
-    </div>
-    <figure class="diagram" aria-label="One graph, two runtimes">
-      <svg viewBox="0 0 1000 540" role="img" aria-labelledby="t1">
-        <title id="t1">A stable problem on the map is met by agents as context and by people as a module. A compiled mirror keeps the two in step. Each node produces an artifact that the next node requires, and one planner uses the artifacts already made to shorten both the agent's plan and the person's learning path.</title>
-        <defs>
-          <marker id="m1" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker>
-          <marker id="m1s" markerWidth="12" markerHeight="12" refX="2" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M12,1 L0,6 L12,11 z" fill="#b4583a"/></marker>
-        </defs>
-        <rect x="370" y="14" width="260" height="88" rx="14" fill="#1b1712"/>
-        <text x="500" y="48" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="19" fill="#fcf9f3">A stable problem</text>
-        <text x="500" y="74" text-anchor="middle" font-size="13" fill="#d9cfbf">one node on the map, not a feature</text>
-        <g fill="none" stroke="#b4583a" stroke-width="2.2" marker-end="url(#m1)"><path d="M400,102 L210,150"/><path d="M600,102 L790,150"/></g>
-        <text x="250" y="118" text-anchor="middle" font-size="12.5" fill="#733525">met as context</text>
-        <text x="750" y="118" text-anchor="middle" font-size="12.5" fill="#733525">met as a module</text>
-
-        <rect x="20" y="156" width="320" height="200" rx="16" fill="#eef0e2" stroke="#4f5433" stroke-width="1.6"/>
-        <text x="42" y="186" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#4f5433">SDK FOR LLMS · AGENT RUNTIME</text>
-        <g font-size="14" fill="#1b1712"><text x="42" y="222">1  classify the request</text><text x="42" y="252">2  route to the right node</text><text x="42" y="282">3  load just enough context</text><text x="42" y="312">4  act, and leave a receipt</text></g>
-        <text x="42" y="340" font-family="Geist Mono, monospace" font-size="10.5" fill="#4f5433">BUILT · IN THE PRODUCT</text>
-
-        <rect x="660" y="156" width="320" height="200" rx="16" fill="#f3dfd3" stroke="#b4583a" stroke-width="1.6"/>
-        <text x="682" y="186" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#733525">SDK FOR HUMANS · LEARNER RUNTIME</text>
-        <g font-size="14" fill="#1b1712"><text x="682" y="222">1  a module for the node</text><text x="682" y="252">2  a learning path through it</text><text x="682" y="282">3  a rubric and an item bank</text><text x="682" y="312">4  an artifact to make</text></g>
-        <text x="682" y="340" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">121 MODULES BUILT · RUNTIME DESIGNED</text>
-
-        <rect x="380" y="196" width="240" height="120" rx="14" fill="#fcf9f3" stroke="#1b1712" stroke-width="1.4" stroke-dasharray="6 5"/>
-        <text x="500" y="234" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="17" fill="#1b1712">The mirror</text>
-        <text x="500" y="259" text-anchor="middle" font-size="12.5" fill="#564c42">compiled from both sides,</text>
-        <text x="500" y="278" text-anchor="middle" font-size="12.5" fill="#564c42">never edited by hand</text>
-        <text x="500" y="300" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" fill="#4f5433">BUILT</text>
-        <g fill="none" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)" marker-start="url(#m1s)"><path d="M344,256 L376,256"/><path d="M624,256 L656,256"/></g>
-
-        <text x="20" y="404" font-family="Geist Mono, monospace" font-size="11.5" letter-spacing="1.5" fill="#b4583a">ARTIFACTS ARE THE CURRENCY</text>
-        <rect x="20" y="420" width="150" height="64" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
-        <text x="95" y="458" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">A node</text>
-        <path d="M170,452 L224,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/><text x="197" y="442" text-anchor="middle" font-size="11.5" fill="#733525">produces</text>
-        <rect x="228" y="420" width="170" height="64" rx="12" fill="#f5e0a8"/>
-        <text x="313" y="449" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">An artifact</text>
-        <text x="313" y="470" text-anchor="middle" font-size="12" fill="#564c42">a brief, a harness, a map</text>
-        <path d="M398,452 L452,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/><text x="425" y="442" text-anchor="middle" font-size="11.5" fill="#733525">required by</text>
-        <rect x="456" y="420" width="150" height="64" rx="12" fill="#fcf9f3" stroke="#e4dac8" stroke-width="1.5"/>
-        <text x="531" y="458" text-anchor="middle" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#1b1712">The next node</text>
-        <path d="M606,452 L656,452" stroke="#b4583a" stroke-width="2" marker-end="url(#m1)"/>
-        <rect x="660" y="410" width="320" height="84" rx="14" fill="#1b1712"/>
-        <text x="682" y="440" font-family="Bricolage, sans-serif" font-weight="600" font-size="16" fill="#fcf9f3">One planner, both runtimes</text>
-        <text x="682" y="462" font-size="12.5" fill="#d9cfbf">What you've already made shortens the path,</text>
-        <text x="682" y="480" font-size="12.5" fill="#d9cfbf">for an agent's plan and a person's learning.</text>
-        <text x="980" y="520" text-anchor="end" font-family="Geist Mono, monospace" font-size="10.5" fill="#733525">PLANNER: DESIGNED</text>
-      </svg>
-      <figcaption>Organize enablement around stable problems, not the latest feature, and it survives the next release. Because agents and people share one map, every improvement to how the product understands work also improves how people learn it.</figcaption>
-    </figure>
-    <p class="quote">"The SDK for LLMs routes agents to the right context. The SDK for Humans routes people to the right competency. One graph, one planner, two runtimes."<cite>From the integration spec</cite></p>
-  </div>
-</section>
-
-<!-- 2 SYSTEM -->
-<section id="system">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">02 · The system</div>
-      <h2>Six layers, and a knowledge-velocity loop that <em>keeps them current.</em></h2>
-      <p class="lede">A single lab, however good, isn't enablement. Enablement is a system that serves the same knowledge in different modes, at different depths, for different roles, and stays current as the product ships every week. People pull ("teach me this", "fix this now"); the product pushes (a release, a stale page).</p>
-    </div>
-    <figure class="diagram" aria-label="The six-layer enablement system">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Learning architecture | Mission Canvas</title><meta name="description" content="Learning and performance support organized around useful work."><link rel="stylesheet" href="/portfolio/portfolio.css"></head><body><header><a href="/">Mission Canvas</a><nav aria-label="Portfolio navigation"><a href="/portfolio/">Work samples</a><a href="/portfolio/portfolio.html">Mical Neill</a><a href="/audit">Discuss a workflow</a></nav></header><main><span class="eyebrow">Learning architecture · Mical Neill</span><h1>A completed course is not the same as a completed job.</h1><p class="lead">Start with what someone needs to do. Give them something useful to make. Assess whether it works.</p><section><h2>One job, one useful artifact.</h2><div class="grid"><article><h3>Define the job</h3><p>For example: hand a workflow to a colleague who has never run it. Name the inputs, the output and who checks it.</p></article><article><h3>Make the handover</h3><p>Write the steps, show one worked example and explain what to do when a check fails.</p></article><article><h3>Test the result</h3><p>Can the colleague complete the task without the original expert? The artifact is the evidence.</p></article></div></section><section><h2>“Teach me” and “help me now.”</h2><p>People need a learning path when the task is new. During the work, they may only need a reference card. Both should draw on the same maintained knowledge.</p><table><thead><tr><th>Depth</th><th>Learn the job</th><th>Do the job</th></tr></thead><tbody><tr><td>Quick reference</td><td>A short explanation</td><td>A checklist at the point of need</td></tr><tr><td>Worked example</td><td>A guided walkthrough</td><td>A scenario with a clear next step</td></tr><tr><td>Practice</td><td>A hands-on lab</td><td>A deployment or recovery rehearsal</td></tr></tbody></table></section><section><h2>What you can inspect today</h2><div class="grid"><article><span class="status">Available work sample</span><h3>Integration training walkthrough</h3><p>A slide-based lab introduces common failures and the checks a technical team can practice. Running the exercises requires a separate local setup.</p><a href="/portfolio/lab/">Open the walkthrough →</a></article><article><span class="status">Available work sample</span><h3>Voice evaluation rubric</h3><p>Preset recordings, manual scoring and notes make a judgment inspectable.</p><a href="/portfolio/voice-workbench/">Open the workbench →</a></article><article><span class="status">Designed approach</span><h3>Adaptive paths and coaching</h3><p>Use completed work to choose the next practice task. This page describes the approach; it is not a hosted coaching service.</p></article></div></section><section id="system-map"><span class="status">Design reference</span><h2>Six layers, one feedback loop.</h2><p>Learning needs both a route into the material and a route for correcting it. This diagram describes the system design, not a hosted service.</p><figure tabindex="0" class="diagram" aria-label="The six-layer enablement system">
       <svg viewBox="0 0 1000 500" role="img" aria-labelledby="t2">
         <title id="t2">Pull requests enter at routing; product changes push into knowledge. Knowledge, routing and artifact feed delivery, the learner layer and feedback, and every feedback path ends in an action back on knowledge and artifacts. Metrics sit on delivery, learner and feedback.</title>
         <defs><marker id="m2" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
@@ -203,75 +60,8 @@
         <path d="M300,280 L300,244" fill="none" stroke="#733525" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#m2)"/>
         <text x="190" y="462" font-size="12.5" fill="#733525">Feedback rewrites knowledge and retires or rebuilds artifacts: the dashed arrow closes the loop.</text>
       </svg>
-      <figcaption>Routing decides who before what: the role and stage filter runs before retrieval, so people never see material that isn't theirs, and the right material ranks first. The four metrics sit where they can actually be moved.</figcaption>
-    </figure>
-    <p class="quote">"Every feedback path terminates in an action. No feedback is just recorded. All feedback acts."<cite>From the knowledge-velocity design</cite></p>
-  </div>
-</section>
-
-<!-- 3 ARTIFACTS -->
-<section id="artifacts" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">03 · The artifact matrix</div>
-      <h2>Two kinds of enablement, four depths, <em>one knowledge base.</em></h2>
-      <p class="lede">Most enablement systems build curriculum and hope performance support happens by osmosis. This one designs both from the same source and measures both in the same system: "make me competent" and "help me now".</p>
-    </div>
-    <div class="matrix" role="table" aria-label="Curriculum and moment artifacts by depth">
-      <div class="h corner" role="columnheader">Depth</div>
-      <div class="h" role="columnheader">Curriculum<small>Make me competent</small></div>
-      <div class="h moment" role="columnheader">Moment<small>Help me now</small></div>
-      <div class="r" role="rowheader"><b>Micro</b>under 2 min</div>
-      <div>Reference cards and 60-second clips</div>
-      <div>Troubleshooting sheets and inline help</div>
-      <div class="r" role="rowheader"><b>Meso</b>5 to 15 min</div>
-      <div>Explainers and guided walkthroughs</div>
-      <div>Scenario playbooks, "first time doing X" prep</div>
-      <div class="r" role="rowheader"><b>Macro</b>30 to 90 min</div>
-      <div>Hands-on labs and certification assessments</div>
-      <div>Post-incident plans and deployment simulations</div>
-      <div class="r agentic" role="rowheader"><b>Agentic</b>live</div>
-      <div class="agentic">An onboarding agent; a post-incident learning agent</div>
-      <div class="agentic">A deployment companion, a troubleshooting partner, a conversation-prep agent</div>
-    </div>
-    <p class="small" style="margin-top:16px">Every module meets one gold standard: two modes, four tiers, two artifact kinds per tier, three role variants, three-layer assessment, a video spec, freshness rules and a feedback loop.</p>
-  </div>
-</section>
-
-<!-- 4 ASSESSMENT -->
-<section id="assessment">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">04 · From competency to credential</div>
-      <h2>Understanding is not capability. <em>"Yeah, I get it" is not a pass.</em></h2>
-      <p class="lede">Every module is derived from the product's own map of problems, so what people learn is exactly what the system needs them to do. Each one produces a real artifact, and the artifact, not a quiz, is what gets assessed.</p>
-    </div>
-    <div class="flow" aria-label="Competency to credential">
-      <div class="step"><b>Map</b><strong>Competency</strong><span>A stable problem on the map, with its success conditions and failure modes.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>Teach</b><strong>Module</strong><span>3–5 objectives, 3–5 rubric dimensions on 4 levels, 2–3 exercises.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step hl"><b>Make</b><strong>Artifact</strong><span>A brief, a taxonomy, a harness, a workflow: the evidence.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>Judge</b><strong>Assessment</strong><span>Three layers, below. Mandatory dimensions gate; they never average away.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>Prove</b><strong>Credential</strong><span>A tier, issued as a portable, verifiable badge.</span></div>
-    </div>
-
-    <div class="tw" style="margin-top:28px">
-      <table>
-        <tr><th>On the product's map</th><th>Becomes, in the curriculum</th></tr>
-        <tr><td>The problem pattern</td><td>The learning objective</td></tr>
-        <tr><td>What the work intends to do</td><td>The activity</td></tr>
-        <tr><td>The artifacts it produces</td><td>The learner's portfolio</td></tr>
-        <tr><td>Its success conditions</td><td>The rubric dimensions</td></tr>
-        <tr><td>Its failure modes (silent, loud, clustered)</td><td>The exercises</td></tr>
-        <tr><td>Its dependencies</td><td>The prerequisites</td></tr>
-        <tr><td>How reversible a mistake is</td><td>How high the evidence bar is</td></tr>
-      </table>
-    </div>
-
-    <figure class="diagram" style="margin-top:28px" aria-label="Three-layer assessment">
+      <figcaption>A proposed learning architecture: knowledge, routing, artifacts, delivery, learner state and feedback. Access controls and deployment choices must be implemented and tested for each system.</figcaption>
+    </figure></section><section id="assessment-design"><span class="status">Design reference</span><h2>Check the artifact, then check the judgment.</h2><p>Mechanical checks catch missing pieces. A rubric makes quality explicit. Human calibration tests whether the score deserves trust.</p><figure tabindex="0" class="diagram" style="margin-top:28px" aria-label="Three-layer assessment">
       <svg viewBox="0 0 1000 270" role="img" aria-labelledby="t4">
         <title id="t4">An artifact passes automated checks, then an AI rubric scored against exemplars, then human calibration on a fixed sample and on every low-confidence score, and earns a tier.</title>
         <defs><marker id="m4" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
@@ -302,66 +92,10 @@
         <text x="921" y="132" text-anchor="middle" font-size="12.5" fill="#1b1712">Working</text>
         <text x="921" y="156" text-anchor="middle" font-size="12.5" font-weight="600" fill="#4f5433">Production</text>
         <text x="500" y="236" text-anchor="middle" font-size="13" fill="#6f6457">Machines catch what's mechanical, AI scores thinking against real examples, people keep the final word.</text>
-        <text x="500" y="256" text-anchor="middle" font-size="13" fill="#6f6457">Published research puts expert agreement with an AI judge near 64–68%, which is why layer 3 exists.</text>
+
       </svg>
-      <figcaption>Working tier: one track, 8–15 competencies and a capstone. Production tier: two or more tracks and an architecture defense. Item banks hold 3–5 anchor items and 15–30 generated items per module, and refresh once too many learners have seen them. Adaptive rules never hide the standard.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- 5 JOURNEYS -->
-<section id="journeys" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">05 · Journeys</div>
-      <h2>Placement first, then a path that <em>explains every step.</em></h2>
-      <p class="lede">Four diagnostic gates place each learner at the right stage: foundation, retrieval, orchestration or specialization, with evaluation running through all of them. Every step of a track carries a one-line reason, so the learner knows why it comes where it does.</p>
-    </div>
-    <div class="grid g2">
-      <figure class="diagram" style="margin-top:0" aria-label="Modules by workstream">
-        <svg viewBox="0 0 480 300" role="img" aria-labelledby="t5">
-          <title id="t5">121 modules in six workstreams: Quality and Safety 30, Core Logic 25, Interfaces and Inputs 19, Clarify and Bound 18, Ops and Delivery 17, Adoption and Change 12.</title>
-          <text x="0" y="18" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">121 MODULES · 6 WORKSTREAMS</text>
-          <g font-size="13" fill="#1b1712">
-            <text x="0" y="58">Quality &amp; Safety</text><rect x="160" y="44" width="270" height="20" rx="4" fill="#4f5433"/><text x="438" y="59" font-family="Geist Mono, monospace" font-size="12">30</text>
-            <text x="0" y="98">Core Logic</text><rect x="160" y="84" width="225" height="20" rx="4" fill="#4f5433"/><text x="393" y="99" font-family="Geist Mono, monospace" font-size="12">25</text>
-            <text x="0" y="138">Interfaces &amp; Inputs</text><rect x="160" y="124" width="171" height="20" rx="4" fill="#4f5433"/><text x="339" y="139" font-family="Geist Mono, monospace" font-size="12">19</text>
-            <text x="0" y="178">Clarify &amp; Bound</text><rect x="160" y="164" width="162" height="20" rx="4" fill="#4f5433"/><text x="330" y="179" font-family="Geist Mono, monospace" font-size="12">18</text>
-            <text x="0" y="218">Ops &amp; Delivery</text><rect x="160" y="204" width="153" height="20" rx="4" fill="#4f5433"/><text x="321" y="219" font-family="Geist Mono, monospace" font-size="12">17</text>
-            <text x="0" y="258">Adoption &amp; Change</text><rect x="160" y="244" width="108" height="20" rx="4" fill="#4f5433"/><text x="276" y="259" font-family="Geist Mono, monospace" font-size="12">12</text>
-          </g>
-        </svg>
-        <figcaption>Quality and safety is the largest workstream on purpose: governance is a skill people learn, not a setting someone else configures.</figcaption>
-      </figure>
-      <div class="card">
-        <div class="k">Five certification tracks <span class="status built">Built</span></div>
-        <div class="tw"><table style="margin-top:0">
-          <tr><th>Track</th><th>Modules</th><th>Hours</th></tr>
-          <tr><td>AI Foundations</td><td class="n">12</td><td class="n">70–90</td></tr>
-          <tr><td>RAG Engineer</td><td class="n">10</td><td class="n">65–85</td></tr>
-          <tr><td>Agent Architect</td><td class="n">12</td><td class="n">85–110</td></tr>
-          <tr><td>AI Governance</td><td class="n">10</td><td class="n">70–95</td></tr>
-          <tr><td>AI Operations</td><td class="n">10</td><td class="n">75–100</td></tr>
-        </table></div>
-      </div>
-    </div>
-    <div class="k" style="margin-top:36px">A worked track: Agent Architect</div>
-    <div class="pills" aria-label="Agent Architect sequence">
-      <span class="pill">Scope</span><span class="to">→</span><span class="pill">Decision log</span><span class="to">→</span><span class="pill on">Evaluation</span><span class="to">→</span><span class="pill">Interface contract</span><span class="to">→</span><span class="pill">Tool constraints</span><span class="to">→</span><span class="pill">Guardrails</span><span class="to">→</span><span class="pill">Workflow</span><span class="to">→</span><span class="pill">State</span><span class="to">→</span><span class="pill">Messaging</span><span class="to">→</span><span class="pill">Recovery</span><span class="to">→</span><span class="pill">Capability boundaries</span><span class="to">→</span><span class="pill">Incident response</span>
-    </div>
-    <div class="rule">Why evaluation comes third: establish how you'll measure an agent before you tune how several of them behave together.</div>
-  </div>
-</section>
-
-<!-- 6 COACHING -->
-<section id="coaching">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">06 · The coaching engine <span class="status built">Built · in Palette</span></div>
-      <h2>An engine and a domain pack, so the same coach can teach <em>anything.</em></h2>
-      <p class="lede">The coach never asks "what do you want to work on?"; it proposes the next useful move. Sessions run 20 to 40 minutes. Behind them is a learner lens with four parts, identity, assessment, goals and state, that the learner owns and can carry anywhere. The assessment shapes the coaching; it's never shown back as a score. The engine went through eight design iterations, and was first shaped on adaptive learning for people with learning differences.</p>
-    </div>
-    <figure class="diagram" aria-label="The coaching loop">
+      <figcaption>An example assessment design. Sampling rates and agreement thresholds are proposed settings to validate, not measured results or a certification offer.</figcaption>
+    </figure></section><section id="coaching-design"><span class="status">Design reference</span><h2>Help someone take the next useful step.</h2><p>Being stuck, overwhelmed or ready to skip ahead calls for a different response. Holding at a step can be the right outcome.</p><figure tabindex="0" class="diagram" aria-label="The coaching loop">
       <svg viewBox="0 0 1000 470" role="img" aria-labelledby="t6">
         <title id="t6">Each session: resume, do, check, capture, then advance or hold. The learner lens sits at the centre. Four branches handle being stuck, skipping ahead, going off script and being overwhelmed.</title>
         <defs><marker id="m6" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,1 L12,6 L0,11 z" fill="#b4583a"/></marker></defs>
@@ -398,50 +132,8 @@
           <text x="780" y="258" font-size="12.5">outcome, not a failure.</text>
         </g>
       </svg>
-      <figcaption>The engine is universal; a domain pack gives it a subject. The universal path is Orient → First use → Retain → Verify → Organize → Extend → Own. Its rules come in three tiers: 13 fixed rules, 12 working assumptions and 12 open experiments.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- 7 A LAB -->
-<section id="lab" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">07 · A lab, end to end</div>
-      <h2>"Connect your first MCP server": 90 minutes, <em>a check at the end of every part.</em></h2>
-      <p class="lede">One macro-depth artifact from the matrix, built for technical field teams. It's the fifth module of a twelve-week ramp in four phases: foundations, extend, deploy, expert. Each section ends with a check, for example: explain the value in two sentences without saying "protocol".</p>
-    </div>
-    <div class="flow" aria-label="Lab sections">
-      <div class="step"><b>10 min · A</b><strong>Why</strong><span>Whiteboard the problem it solves.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>15 min · B</b><strong>Anatomy</strong><span>Read the four parts: tool definition, handler, router, transport.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step hl"><b>30 min · C</b><strong>Build</strong><span>A working server, hands on.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>15 min · D</b><strong>Connect</strong><span>Plug it into a real assistant.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>10 min · E</b><strong>Secure</strong><span>What must be true before a customer uses it.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>10 min · F</b><strong>Sell</strong><span>Role-play the conversation.</span></div>
-    </div>
-    <div class="grid g2" style="margin-top:24px">
-      <div class="card"><div class="k">The version ladder</div><h3>Same server, four levels</h3><p>V1 a local, single tool → V2 a managed remote server with sign-in → V3 several tools → V4 delivered by the field to customers. Learners can see where they are and what comes next.</p></div>
-      <div class="card"><div class="k">The live demo</div><h3>One success, then the failures</h3><p>Five failure modes are in the runbook: injection through results, invented tool descriptions, an over-privileged token, no rate limit, silent API drift. Four of the five are invisible until they hurt, so the demo causes them on purpose.</p></div>
-    </div>
-    <p style="margin-top:18px"><a href="lab/" style="font-weight:600;text-decoration:none">See the lab and its readiness guide →</a></p>
-    <p class="quote">"If either signal is flat, the lab needs redesign, not more training."<cite>From the lab's measurement plan</cite></p>
-  </div>
-</section>
-
-<!-- 8 CONTENT ENGINE -->
-<section id="engine">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">08 · The content engine <span class="status built">Built</span></div>
-      <h2>From a signal to a published lesson, <em>in one loop.</em></h2>
-      <p class="lede">Enablement goes stale the week a product ships. The content engine turns a signal (a question asked twice, a release, a failed check) into a short "how to do X" lesson with a learning path that pastes into any AI tool. Then it listens for the next signal.</p>
-    </div>
-    <figure class="diagram" aria-label="The content engine">
+      <figcaption>A coaching design: resume, do, check, capture, then advance or hold. The next step depends on the evidence from the learner’s work.</figcaption>
+    </figure></section><section id="content-cycle"><span class="status">Design reference</span><h2>Keep the material connected to the work.</h2><p>Start from a real signal, check the sources and build an example. Then use the response to decide what needs changing.</p><figure tabindex="0" class="diagram" aria-label="The content engine">
       <svg viewBox="0 0 1000 470" role="img" aria-labelledby="t8">
         <title id="t8">Signal, classify, research, build, produce, publish, enable, feedback, and back to signal.</title>
         <circle cx="500" cy="235" r="180" fill="none" stroke="#e4dac8" stroke-width="2"/>
@@ -462,81 +154,11 @@
           <text x="20" y="90">Classify: map it to a competency,</text><text x="20" y="108">or create one</text>
           <text x="20" y="136">Research: the internal library first</text>
           <text x="20" y="164">Build: a 5–10 minute "how to do X"</text>
-          <text x="20" y="192">Produce: video at about $4 each</text>
+          <text x="20" y="192">Produce: a usable example</text>
           <text x="20" y="220">Publish: with a learning path</text>
           <text x="20" y="248">Enable: paste into any AI tool</text>
           <text x="790" y="60" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.5" fill="#b4583a">THE LIFECYCLE</text>
           <text x="790" y="90">signal</text><text x="790" y="114">→ capability thesis</text><text x="790" y="138">→ proof artifact</text><text x="790" y="162">→ companion artifact</text><text x="790" y="186">→ path</text><text x="790" y="210">→ measured outcome</text>
         </g>
       </svg>
-    </figure>
-  </div>
-</section>
-
-<!-- 9 CUSTOMERS + PRINCIPLES -->
-<section id="customers" class="alt">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">09 · Enabling a customer's team</div>
-      <h2>Orient, map, walk the lifecycle, <em>then do it yourself.</em></h2>
-      <p class="lede">The same architecture, applied when Mission Canvas hands software to a customer's team. For a construction-industry platform, the walkthrough for the people who would demo it to other firms was built in four moves.</p>
-    </div>
-    <div class="flow">
-      <div class="step"><b>Orient</b><strong>Two ideas first</strong><span>Every screen is reachable by an agent, and everything can be fitted to each customer.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>Map</b><strong>One page, four phases</strong><span>Win the work → run the contract → run the field → run the company.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step"><b>Walk</b><strong>One screen, one claim</strong><span>Every screen is titled with the sentence it proves.</span></div>
-      <div class="arrow" aria-hidden="true">→</div>
-      <div class="step hl"><b>Try</b><strong>Six steps, one job</strong><span>Follow a single job from start to finish, alone.</span></div>
-    </div>
-
-    <div class="k" style="margin-top:48px">Principles</div>
-    <div class="grid g3">
-      <div class="card"><h3>The curriculum is the knowledge base</h3><p>Projected through a learning lens, not bolted on. One source, two kinds of enablement, one measurement system.</p></div>
-      <div class="card"><h3>Behavior, not consumption</h3><p>Success is ramp time, milestones hit and escalations avoided. Views and completions are not outcomes.</p></div>
-      <div class="card"><h3>Evidence has a grade</h3><p>Every claim is marked measured, cited, inferred or "cannot tell". The system says what it doesn't know, and so do its learners.</p></div>
-      <div class="card"><h3>Adaptive never means hidden</h3><p>The path changes as the learner changes; the standard doesn't. The learner can always see why the next step was chosen.</p></div>
-      <div class="card"><h3>Learner records stay local</h3><p>Progress and assessment live on the learner's own machine by default. Cloud scoring happens only when asked for, and with redaction.</p></div>
-      <div class="card"><h3>Builder of builders</h3><p>Design the systems, standards and interfaces that let other people learn and deliver well, without the original expert in the room.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="origin">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="k">Where this comes from</div>
-      <h2>Twenty years of making expertise <em>usable by other people.</em></h2>
-    </div>
-    <div class="tl">
-      <div class="tl-row"><div class="tl-when">2026 –</div><div><h3>Mission Canvas</h3><div class="tl-where">Co-founder and CEO</div><p>The product's map of problems doubles as the curriculum's backbone; Palette ships with the coaching engine built in.</p></div></div>
-      <div class="tl-row"><div class="tl-when">2024 – 2026</div><div><h3>Seller enablement at AWS</h3><div class="tl-where">Amazon Web Services</div><p>Designed a retrieval agent used by more than 12,000 sellers a month. The gain came from redesigning the taxonomy, classifying by function instead of industry, not from changing the model.</p></div></div>
-      <div class="tl-row"><div class="tl-when">2013 – 2021</div><div><h3>Knowledge operations and Alexa</h3><div class="tl-where">Amazon</div><p>Built customer-service knowledge operations in Italy from nothing, then designed knowledge architecture for Alexa's first conversational agents across 13 locales.</p></div></div>
-      <div class="tl-row"><div class="tl-when">2006 – 2013</div><div><h3>Professor</h3><div class="tl-where">Paris</div><p>Rebuilt an English course for publishing students as a working publishing house: learning by making the real artifact, long before it had a name.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" style="border-top:0">
-  <div class="wrap">
-    <div class="contact">
-      <div>
-        <div class="k" style="color:#f5e0a8">Mical Neill · Co-founder and CEO</div>
-        <h2>Mission Canvas: governed AI that runs on your own machines.</h2>
-        <p style="margin-top:14px">The company, how it works, and what's in production are on the main page.</p>
-      </div>
-      <div class="links">
-        <a href="portfolio.html">Mical Neill, Mission Canvas <span>Main page</span></a>
-        <a href="mailto:mical.neill@missioncanvas.ai">mical.neill@missioncanvas.ai <span>Email</span></a>
-        <a href="https://missioncanvas.ai">missioncanvas.ai <span>Company</span></a>
-        <a href="https://www.linkedin.com/in/mical-neill-79176412/">Mical Neill <span>LinkedIn</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer><div class="wrap"><span>Mission Canvas, Inc. · San Francisco</span><span>Palette™ · patents pending</span></div></footer>
-
-</body>
-</html>
+    </figure></section><section><h2>Measure what happens after the lesson.</h2><p>Did the person complete the job? Could they explain the result? Did they know when to ask for help? Those are evaluation questions, not claims of measured improvement.</p><p>For a partner delivering software to customers, a usable handover is part of the offer. Start with the job your team needs to explain or support repeatedly.</p><a class="button" href="/audit">Discuss a workflow</a></section></main><footer><p>Software built around how your business works, on your own computers.</p><a href="/portfolio/">Explore the work</a> · <a href="/audit">Discuss a workflow</a></footer></body></html>

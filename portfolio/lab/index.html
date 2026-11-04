@@ -5,30 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <title>MCP Integrations Lab — Technical Enablement</title>
+  <link rel="icon" href="/favicon.svg" />
+  <link rel="stylesheet" href="../assets/sample.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
+    /* Daybreak: the page's own variable names, mapped onto the site's tokens (../assets/sample.css). */
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface-alt: #232733;
-      --text: #e8eaf0;
-      --text-soft: #9ca3b8;
-      --text-faint: #6b7280;
-      --accent: #6366f1;
-      --accent-soft: rgba(99, 102, 241, 0.12);
-      --accent-border: rgba(99, 102, 241, 0.25);
-      --green: #22c55e;
-      --green-soft: rgba(34, 197, 94, 0.12);
-      --amber: #f59e0b;
-      --amber-soft: rgba(245, 158, 11, 0.12);
-      --red: #ef4444;
-      --red-soft: rgba(239, 68, 68, 0.12);
-      --border: #2a2e3a;
-      --radius: 16px;
-      --radius-sm: 10px;
-      --mono: "IBM Plex Mono", monospace;
-      --sans: "Inter", system-ui, sans-serif;
+      --bg: var(--db-ground);
+      --surface: var(--db-white);
+      --surface-alt: var(--db-sand);
+      --text: var(--db-soil);
+      --text-soft: var(--db-text2);
+      --text-faint: var(--db-muted);
+      --accent: var(--db-pine);
+      --accent-soft: var(--db-pine-soft);
+      --accent-border: #c9cbaa;
+      --green: var(--db-pine);
+      --green-soft: var(--db-pine-soft);
+      --amber: var(--db-gold);
+      --amber-soft: var(--db-gold-soft);
+      --red: var(--db-clay);
+      --red-soft: var(--db-clay-soft);
+      --border: var(--db-line);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --mono: var(--db-mono);
+      --sans: var(--db-body);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,8 +44,8 @@
     /* -- Slide system -- */
     .slide {
       display: none;
-      min-height: 100vh;
-      padding: 4rem 3rem;
+      min-height: calc(100vh - 61px);
+      padding: 4rem 32px 6rem;
       max-width: 960px;
       margin: 0 auto;
       flex-direction: column;
@@ -65,21 +66,28 @@
       font-family: var(--mono);
       font-size: 0.75rem;
       padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--text-soft);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid var(--db-cta);
+      border-radius: 999px;
+      background: var(--db-white);
+      color: var(--text);
       cursor: pointer;
-      transition: all 0.15s;
+      box-shadow: var(--db-shadow);
+      transition: background 0.15s;
     }
-    .nav button:hover { background: var(--surface-alt); color: var(--text); }
+    .nav button:hover { background: var(--db-sand); }
+    .nav button:last-child { background: var(--db-cta); color: #fff; }
+    .nav button:last-child:hover { background: var(--db-cta-hover); }
 
     .progress {
       position: fixed;
-      top: 0;
+      top: 61px;
       left: 0;
       height: 3px;
-      background: var(--accent);
+      background: var(--db-clay);
       transition: width 0.3s;
       z-index: 100;
     }
@@ -94,27 +102,30 @@
     }
 
     /* -- Typography -- */
-    h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; line-height: 1.2; }
-    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent); }
-    h3 { font-size: 1.1rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
+    h1, h2, h3 { font-family: var(--db-display); font-weight: 600; color: var(--text); }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.035em; margin-bottom: 0.75rem; line-height: 1.04; }
+    h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.03em; margin-bottom: 0.9rem; line-height: 1.08; }
+    h3 { font-size: 1.15rem; letter-spacing: -0.015em; margin: 1.25rem 0 0.5rem; }
     p { margin-bottom: 0.75rem; color: var(--text-soft); font-size: 1.05rem; }
     strong { color: var(--text); }
 
-    .subtitle { color: var(--text-faint); font-size: 1rem; margin-bottom: 2rem; }
-    .big-number { font-family: var(--mono); font-size: 4rem; font-weight: 800; color: var(--accent); }
+    .subtitle { color: var(--text-soft); font-size: 1.15rem; margin-bottom: 2rem; }
+    .big-number { font-family: var(--db-display); font-size: 4rem; font-weight: 600; letter-spacing: -0.04em; color: var(--accent); }
 
     /* -- Components -- */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.25rem;
+      padding: 1.4rem 1.5rem;
       margin-bottom: 1rem;
+      box-shadow: var(--db-shadow);
     }
-    .card-header { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .card-header { font-family: var(--db-display); font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
 
     .failure {
-      background: var(--red-soft);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-left: 3px solid var(--red);
       padding: 0.75rem 1rem;
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
@@ -125,8 +136,8 @@
       font-size: 0.65rem;
       color: var(--red);
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
+      letter-spacing: 0.12em;
+      font-weight: 500;
       margin-bottom: 0.3rem;
     }
 
@@ -146,9 +157,9 @@
       flex: 1;
       min-width: 120px;
     }
-    .flow-step-name { font-weight: 700; font-size: 0.9rem; }
+    .flow-step-name { font-family: var(--db-display); font-weight: 600; font-size: 0.95rem; }
     .flow-step-time { font-family: var(--mono); font-size: 0.7rem; color: var(--text-faint); margin-top: 0.25rem; }
-    .flow-arrow { color: var(--text-faint); font-size: 1.2rem; flex-shrink: 0; }
+    .flow-arrow { color: var(--db-clay); font-size: 1.2rem; flex-shrink: 0; }
     .flow-step.active-step { border-color: var(--accent); background: var(--accent-soft); }
 
     .curriculum {
@@ -179,7 +190,7 @@
     }
 
     table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.85rem; }
-    th { text-align: left; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); padding: 0.5rem; border-bottom: 1px solid var(--border); }
+    th { text-align: left; font-family: var(--mono); font-weight: 500; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); padding: 0.6rem; border-bottom: 1px solid var(--text); }
     td { padding: 0.5rem; border-bottom: 1px solid var(--border); color: var(--text-soft); }
 
     pre {
@@ -202,7 +213,7 @@
       padding: 1.25rem;
       margin-bottom: 0.75rem;
     }
-    .question-card p { color: var(--text); margin: 0; font-size: 1.1rem; font-style: italic; }
+    .question-card p { color: var(--text); margin: 0; font-size: 1.1rem; }
 
     .badge {
       display: inline-block;
@@ -210,14 +221,14 @@
       font-size: 0.7rem;
       font-weight: 500;
       padding: 0.2rem 0.6rem;
-      border-radius: 6px;
+      border-radius: 999px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
     .badge-accent { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-border); }
-    .badge-green { background: var(--green-soft); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
-    .badge-red { background: var(--red-soft); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
-    .badge-amber { background: var(--amber-soft); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
+    .badge-green { background: var(--green-soft); color: var(--green); border: 1px solid #c9cbaa; }
+    .badge-red { background: var(--red-soft); color: var(--red); border: 1px solid #e6c2b2; }
+    .badge-amber { background: var(--amber-soft); color: var(--amber); border: 1px solid #e8d3a6; }
 
     .kpi-grid {
       display: grid;
@@ -232,9 +243,10 @@
       border-radius: var(--radius-sm);
       padding: 1rem;
       text-align: center;
+      box-shadow: var(--db-shadow);
     }
     .kpi-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
-    .kpi-value { font-family: var(--mono); font-size: 1.1rem; font-weight: 700; margin-top: 0.25rem; }
+    .kpi-value { font-family: var(--db-display); font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; margin-top: 0.25rem; }
     .kpi-dir { font-size: 0.8rem; color: var(--green); }
 
     ul { padding-left: 1.5rem; margin: 0.5rem 0; }
@@ -242,6 +254,10 @@
   </style>
 </head>
 <body>
+<header class="mc-bar"><div class="mc-bar__in">
+  <a class="mc-bar__brand" href="/"><img src="../assets/logo.svg" alt="Mission Canvas" /></a>
+  <nav class="mc-bar__nav" aria-label="Portfolio navigation"><a class="mc-bar__back" href="/portfolio/">&larr; Work samples</a><a class="mc-bar__back" href="/audit">Discuss a workflow</a></nav>
+</div></header>
 
   <div class="progress" id="progress"></div>
   <div class="slide-counter" id="counter"></div>
@@ -251,9 +267,9 @@
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <div class="slide active" id="slide-1">
     <div>
-      <span class="badge badge-accent">Technical Enablement Manager — Assignment</span>
+      <span class="badge badge-accent">Mission Canvas · Training walkthrough</span>
       <h1 style="margin-top: 1rem;">MCP Integrations for Solution Architects</h1>
-      <p class="subtitle">A hands-on lab designed around the 5 things that actually go wrong</p>
+      <p class="subtitle">A hands-on lab designed around the 5 integration failures worth practicing</p>
 
       <div style="margin-top: 2rem;">
         <h3>The thesis</h3>
@@ -265,7 +281,7 @@
 
       <div style="margin-top: 2rem;">
         <h3>What I built</h3>
-        <p>A 90-minute lab where SAs experience the 5 most common MCP failure modes with their own hands — so the first time they see each one is in a safe room, not in front of a customer.</p>
+        <p>A 90-minute lab where SAs experience the 5 common MCP failure modes with their own hands — so the first time they see each one is in a safe room, not in front of a customer.</p>
       </div>
     </div>
   </div>
@@ -295,7 +311,7 @@
 
       <div class="failure">
         <div class="failure-num">Failure Mode 4</div>
-        <strong>It works in Claude but not in Cursor.</strong> Spec drift between hosts. Transport framing varies. Customer uses a host you haven't tested.
+        <strong>It works in one assistant but not another.</strong> Spec drift between hosts. Transport framing varies. Customer uses a host you haven't tested.
       </div>
 
       <div class="failure">
@@ -334,8 +350,8 @@
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
-          <div class="flow-step-name">Sell It</div>
-          <div class="flow-step-time">10 min</div>
+          <div class="flow-step-name">Sell + Debrief</div>
+          <div class="flow-step-time">17 min</div>
         </div>
       </div>
 
@@ -360,7 +376,7 @@
       </div>
 
       <div class="card">
-        <div class="card-header">Sell It (10 min)</div>
+        <div class="card-header">Sell It + Debrief (17 min)</div>
         <p>One scenario done well: technical buyer evaluating MCP vs custom RAG. Peer feedback on 4 criteria. Close: "Name the 5 failure modes."</p>
       </div>
     </div>
@@ -371,8 +387,8 @@
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <div class="slide" id="slide-4">
     <div>
-      <h2>Live Demo</h2>
-      <p>Working MCP server wrapping a search API. 80 lines, Node.js, zero dependencies.</p>
+      <h2>Local demo walkthrough</h2>
+      <p>Local exercise: a search integration with permission-aware results. This page is the walkthrough; it does not run a hosted server.</p>
 
       <div class="card">
         <div class="card-header">Architecture</div>
@@ -388,7 +404,7 @@
       </table>
 
       <p style="margin-top: 1.5rem; font-style: italic; color: var(--text-faint);">
-        → Switch to MCP Inspector for live demo
+        Run the exercise in a separately configured local test environment.
       </p>
     </div>
   </div>
@@ -406,8 +422,8 @@
           <tr><td><strong>1. Tool Description</strong></td><td>LLM ignores the tool — vague description</td><td><span class="badge badge-green">Yes</span></td></tr>
           <tr><td><strong>2. Response Size</strong></td><td>Context overflow — no pageSize limit</td><td><span class="badge badge-green">Yes</span></td></tr>
           <tr><td><strong>3. Authentication</strong></td><td>Admin token in production — permission leak</td><td><span class="badge badge-green">Yes</span></td></tr>
-          <tr><td><strong>4. Host Compatibility</strong></td><td>Works in Claude, breaks in Cursor</td><td><span class="badge badge-green">Yes</span></td></tr>
-          <tr><td><strong>5. Permissions</strong></td><td>Source-system ACL mismatch</td><td><span class="badge badge-red">Escalate</span></td></tr>
+          <tr><td><strong>4. Host Compatibility</strong></td><td>Different behavior across assistants</td><td><span class="badge badge-green">Yes</span></td></tr>
+          <tr><td><strong>5. API Drift</strong></td><td>Changed response format</td><td><span class="badge badge-red">Escalate</span></td></tr>
         </table>
       </div>
 
@@ -415,7 +431,7 @@
         <p style="color: var(--text); font-size: 1.1rem; margin: 0;">
           If SAs can self-resolve layers 1–4, engineering only sees layer 5.
           The exact reduction depends on internal support data — but the structural logic is clear:
-          <strong>most MCP support tickets are field-resolvable with the right diagnostic training.</strong>
+          <strong>the exercise helps distinguish issues the field can resolve from those requiring engineering.</strong>
         </p>
       </div>
     </div>
@@ -508,7 +524,7 @@
   <!-- ═══════════════════════════════════════════════════════════════ -->
   <div class="slide" id="slide-8">
     <div>
-      <h2>Four KPIs This Program Moves</h2>
+      <h2>Four Outcomes to Measure</h2>
 
       <div class="kpi-grid">
         <div class="kpi">
@@ -555,7 +571,7 @@
       <p style="margin-bottom: 1.5rem;">When technical enablement is built as infrastructure, not content:</p>
 
       <div class="question-card">
-        <p>New team members ramp faster — the readiness guide tells them exactly what to know, what to demo, and what to watch for.</p>
+        <p>The goal is to help new team members ramp faster — the readiness guide tells them exactly what to know, what to demo, and what to watch for.</p>
       </div>
 
       <div class="question-card">
