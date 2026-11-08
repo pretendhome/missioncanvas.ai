@@ -29,9 +29,10 @@ set -euo pipefail
 
 REPO="pretendhome/missioncanvas.ai"
 ASSETS=(MissionCanvas.dmg MissionCanvas-Setup.exe MissionCanvas.deb)  # B1-110: from desktop-v0.3.8 the Linux installer is a .deb; the AppImage name refused every pin since (measured 2026-09-23: "AppImage -> HTTP 404. Nothing was changed.")
-FILES=(index.html apps/index.html)
+FILES=(index.html apps/index.html palette/index.html)
 
 cd "$(dirname "$0")/.."
+[ -f palette/index.html ] || { echo "FAIL: palette/index.html is missing; no Palette download page to pin." >&2; exit 1; }
 
 TAG=""; DRY=0
 for arg in "$@"; do
@@ -124,9 +125,25 @@ git push -q origin HEAD:main
 echo "Pushed. Waiting for GitHub Pages to serve $TAG ..."
 
 for i in $(seq 1 24); do
-  body=$(curl -sf -H 'Cache-Control: no-cache' https://missioncanvas.ai/ || true)
-  if grep -q "$TAG" <<< "$body"; then
-    echo "OK: missioncanvas.ai is serving $TAG (after ~$((i*10))s)"
+  body=$(curl -sf -H 'Cache-Control: no-cache' https://missioncanvas.ai/palette/ || true)
+  # Match every complete installer href, not a tag mentioned elsewhere on the
+  # page or a partially updated set of download buttons.
+  if python3 -c '
+from html.parser import HTMLParser
+import sys
+class Links(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.hrefs = set()
+    def handle_starttag(self, tag, attrs):
+        if tag == "a":
+            self.hrefs.update(value for key, value in attrs if key == "href")
+links = Links()
+links.feed(sys.stdin.read())
+repo, tag, *assets = sys.argv[1:]
+expected = {f"https://github.com/{repo}/releases/download/{tag}/{asset}" for asset in assets}
+sys.exit(0 if expected <= links.hrefs else 1)
+' "$REPO" "$TAG" "${ASSETS[@]}" <<< "$body"; then
+    echo "OK: missioncanvas.ai/palette/ is serving $TAG (after ~$((i*10))s)"
     echo
     echo "Now confirm the build still does what the page says:  bin/verify-claims.sh"
     exit 0
