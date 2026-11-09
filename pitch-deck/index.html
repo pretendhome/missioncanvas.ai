@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mission Canvas · Pitch deck · November 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Mission Canvas: governed AI that runs on your own machines. Pitch deck, November 2026.">
+<link rel="canonical" href="https://missioncanvas.ai/pitch-deck/">
+<style>@media screen{html{background:#1b1712;overflow-x:hidden}body{margin:0}.s{margin:0 auto 24px}}</style>
+<script>function fit(){document.body.style.zoom=Math.min(1,window.innerWidth/1920)}addEventListener('resize',fit);addEventListener('DOMContentLoaded',fit)</script>
+
+<style>
+@font-face{font-family:'Bricolage';src:url(assets/bricolage-grotesque-latin-wght-normal.woff2) format('woff2');font-weight:200 800}
+@font-face{font-family:'Geist';src:url(assets/geist-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:'Geist Mono';src:url(assets/geist-mono-latin-wght-normal.woff2) format('woff2');font-weight:100 900}
+:root{--ground:#f5efe4;--sand:#e3e4d0;--white:#fcf9f3;--line:#e4dac8;--soil:#1b1712;--text2:#564c42;--muted:#6f6457;--pine:#4f5433;--ember:#733525;--clay:#b4583a;--apricot:#f5e0a8}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ground)}
+body{font-family:'Geist',system-ui,sans-serif;color:var(--soil);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.s{width:1920px;height:1080px;position:relative;overflow:hidden;page-break-after:always;padding:110px 140px;display:flex;flex-direction:column;
+  background-color:var(--ground);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .25 0 0 0 0 .15 0 0 0 2.2 -1.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='.15'/%3E%3C/svg%3E")}
+.s:last-child{page-break-after:auto}
+.k{font-family:'Geist Mono',monospace;font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:var(--clay);margin-bottom:34px}
+h1,h2{font-family:'Bricolage',sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.02}
+h1{font-size:112px}
+h2{font-size:78px;max-width:1500px}
+h2 em,h1 em{font-style:normal;color:var(--pine)}
+.lede{font-size:36px;line-height:1.4;color:var(--text2);max-width:1400px;margin-top:36px}
+p,li{font-size:30px;line-height:1.45;color:var(--text2)}
+.foot{position:absolute;left:140px;right:140px;bottom:56px;display:flex;justify-content:space-between;align-items:center;font-family:'Geist Mono',monospace;font-size:18px;color:var(--muted);letter-spacing:.06em}
+.foot svg{height:34px;width:auto}
+.grid{display:grid;gap:36px;margin-top:64px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:28px;padding:40px 42px;box-shadow:0 6px 18px rgba(60,38,18,.10)}
+.card h3{font-family:'Bricolage',sans-serif;font-weight:600;font-size:38px;letter-spacing:-.02em;margin-bottom:16px;color:var(--soil)}
+.card p{font-size:26px}
+.num{font-family:'Bricolage',sans-serif;font-weight:600;font-size:84px;letter-spacing:-.04em;color:var(--pine);line-height:1}
+.lab{font-family:'Geist Mono',monospace;font-size:19px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px;line-height:1.35}
+.shot{border-radius:22px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(60,38,18,.55);border:1px solid var(--line)}
+.shot img{display:block;width:100%}
+.art{position:absolute;inset:0;background-size:cover;background-position:center}
+.veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,239,228,.98) 0%,rgba(245,239,228,.95) 55%,rgba(245,239,228,.55) 70%,rgba(245,239,228,0) 88%)}
+.z{position:relative;z-index:1}
+.flow{display:flex;align-items:stretch;gap:22px;margin-top:70px}
+.step{flex:1;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:34px 30px}
+.step b{display:block;font-family:'Geist Mono',monospace;font-size:20px;color:var(--clay);letter-spacing:.1em;margin-bottom:14px}
+.step span{font-size:28px;line-height:1.35;color:var(--soil)}
+.arrow{align-self:center;font-size:44px;color:var(--clay)}
+ul.clean{list-style:none;margin-top:52px}
+ul.clean li{padding:16px 0;border-top:1px solid var(--line);display:flex;gap:30px}
+ul.clean li:last-child{border-bottom:1px solid var(--line)}
+ul.clean li b{font-family:'Bricolage',sans-serif;font-weight:600;color:var(--soil);min-width:330px;font-size:32px}
+.quote{font-family:'Bricolage',sans-serif;font-weight:600;font-size:56px;letter-spacing:-.03em;color:var(--pine);margin-top:56px;max-width:1500px;line-height:1.1}
+.pill{display:inline-block;background:var(--soil);color:var(--white);border-radius:999px;padding:16px 34px;font-size:26px;font-weight:500}
+.cap{font-family:'Geist Mono',monospace;font-size:16px;color:var(--muted);margin-top:14px}
+</style>
+</head>
+<body>
+
+
+<section class="s">
+  <div class="art" style="background-image:url(assets/courtyard-poster.webp)"></div><div class="veil"></div>
+  <div class="z" style="margin-top:auto;margin-bottom:auto">
+    <div style="width:520px;margin-bottom:70px"><img src="assets/logo.svg" alt="Mission Canvas" style="width:100%"></div>
+    <h1>Governed AI that runs<br>on your <em>own machines.</em></h1>
+    <p class="lede" style="max-width:900px">For the businesses that can't send their data to the cloud, and for everyone who shouldn't have to.</p>
+    <p style="margin-top:60px;font-size:26px;color:var(--muted)">Mical Neill, CEO · Jason Covington, COO · San Francisco · November 2026</p>
+  </div>
+</section>
+
+
+<section class="s">
+  <div class="k">The problem</div>
+  <h2>AI is only useful if you can trust it with your real information. Today most people can't.</h2>
+  <div class="grid c2">
+    <div class="card"><h3>Regulated companies</h3><p>Healthcare, legal, finance and construction want AI on their real work. They can't send client files, patient records or financials to a cloud model, or prove where that data went once a model has seen it. So the work that would benefit most stays manual.</p></div>
+    <div class="card"><h3>Everyone else</h3><p>People are told to hand over their personal data, pay a monthly subscription and learn to prompt. That shuts out the people who could gain the most: communities that can't afford cloud AI, elderly people, and anyone who just wants straightforward tasks done privately.</p></div>
+  </div>
+  <div class="foot"><span>Mission Canvas</span><span>2</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">What we build</div>
+  <div style="display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:center;flex:1">
+    <div>
+      <h2 style="font-size:70px">AI apps that run on a company's <em>own machines.</em></h2>
+      <p class="lede" style="font-size:30px">Every request is classified before any model sees it. Sensitive work stays local. Every answer comes with a receipt showing what was used, what was blocked and what left.</p>
+      <p style="margin-top:30px">Customers get <b style="color:var(--soil)">Palette</b>, the app every employee installs, plus a <b style="color:var(--soil)">Studio</b> of ready-built apps for their field. Classifying first is built in, not a setting, and it's patent-pending.</p>
+    </div>
+    <div><div class="shot"><img src="assets/app-review.jpg" alt="Palette working on a compliance review"></div><div class="cap">Palette 0.4.2 on Linux, working through a compliance review (sample data).</div></div>
+  </div>
+  <div class="foot"><span>Mission Canvas</span><span>3</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">How it works</div>
+  <h2>Know what a request <em>is</em> before you let AI act on it.</h2>
+  <div class="flow">
+    <div class="step"><b>01 · ASK</b><span>A person asks in plain words, by voice or text.</span></div><div class="arrow">→</div>
+    <div class="step"><b>02 · CLASSIFY</b><span>A 312-node ontology decides what the request is and what data it touches, before any model runs.</span></div><div class="arrow">→</div>
+    <div class="step"><b>03 · KEEP</b><span>Sensitive work stays on the customer's machine. Nothing leaves without permission.</span></div><div class="arrow">→</div>
+    <div class="step"><b>04 · PROVE</b><span>The answer arrives with a receipt: what was used, what was blocked, what left.</span></div>
+  </div>
+  <p class="lede" style="margin-top:60px">The work runs on hardware the customer already owns, so our cost doesn't rise as they use it more.</p>
+  <div class="foot"><span>Mission Canvas</span><span>4</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">What we've built and shipped</div>
+  <h2>Every app began inside a <em>real customer's</em> operation.</h2>
+  <div class="grid c3" style="gap:30px;margin-top:54px">
+    <div class="card"><h3>Livella · Construction</h3><p>Job site, office and fleet in one system. Delivery tickets read by AI, pour logs and safety declarations to code, fleet and fuel by machine and job. Runs every day at an Italian construction firm.</p></div>
+    <div class="card"><h3>Emergency-room prioritization</h3><p>A regional public health authority in Italy uses it to prioritize emergency-room patients, with patient data kept where it belongs.</p></div>
+    <div class="card"><h3>Voice &amp; Front Desk</h3><p>AI agents that answer the phone and WhatsApp, book, reschedule and follow up, with caller verification. Born in clinics.</p></div>
+  </div>
+  <div class="grid c4" style="gap:30px;margin-top:40px">
+    <div><div class="num">3</div><div class="lab">Desktop platforms<br>macOS · Windows · Linux</div></div>
+    <div><div class="num">1,169</div><div class="lab">Tests behind the<br>governance runtime</div></div>
+    <div><div class="num">4</div><div class="lab">Provisional patents<br>61 claims · 3 families</div></div>
+    <div><div class="num">2</div><div class="lab">Trademarks<br>PALETTE allowed by USPTO</div></div>
+  </div>
+  <div class="foot"><span>Mission Canvas</span><span>5</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">Customers and users</div>
+  <h2>Real work, running today.</h2>
+  <ul class="clean" style="margin-top:44px">
+    <li><b>Construction</b><span>An Italian construction firm with about 250 employees runs its job sites, office and fleet on Livella, from the office staff to the field crews.</span></li>
+    <li><b>Healthcare</b><span>A regional public health authority in Italy is rolling out our emergency-room tool to about 80 hospital staff.</span></li>
+    <li><b>Front desk</b><span>About 10 small businesses, from clinics to service companies, each with 3 to 10 users.</span></li>
+    <li><b>Education</b><span>9 schools in an international school network have tested Lingua Viva, our teacher app, with up to 30 teachers and staff.</span></li>
+    <li><b>Palette</b><span>About 85 downloads of our app for everyone, with no marketing yet.</span></li>
+  </ul>
+  
+  <p class="quote" style="font-size:40px;margin-top:34px">Since July 2026, 15 paying customers have brought in $108,359 in revenue, and our largest is on a recurring monthly contract.</p>
+  <div class="foot"><span>Mission Canvas</span><span>6</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">Why now</div>
+  <h2>AI just became small enough to run on an <em>ordinary laptop.</em></h2>
+  <div class="grid c3">
+    <div class="card"><h3>The technology</h3><p>For the first time, a business can use good AI without sending its data anywhere. A new class of AI computers ships with chips built for it.</p></div>
+    <div class="card"><h3>The pressure</h3><p>Privacy is the top reason companies hold back on AI, and regulation is tightening, including the EU AI Act.</p></div>
+    <div class="card"><div class="num">144</div><div class="lab">US companies hiring AI governance roles in September, to build in-house what we already ship</div></div>
+  </div>
+  <p class="lede">Companies will decide how they use AI in the next year or two. Our solution is built, it ships today, and customers already run their work on it.</p>
+  <div class="foot"><span>Mission Canvas</span><span>7</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">Competition</div>
+  <h2>Every buyer already has an option. We win on the <em>finished job.</em></h2>
+  <div class="grid c4" style="gap:26px;margin-top:44px">
+    <div class="card"><h3>Hosted work agents</h3><p>Easiest to start; the work runs on the vendor's computers.</p></div>
+    <div class="card"><h3>Local agent stacks</h3><p>Data stays local; someone technical has to assemble and run it.</p></div>
+    <div class="card"><h3>Automation tools</h3><p>Good at predictable steps; they stop where judgment and context begin.</p></div>
+    <div class="card"><h3>Specialists &amp; integrators</h3><p>Industry specialists, and integrators who start from zero for every client, so each project is slow and expensive.</p></div>
+  </div>
+  <p class="lede" style="font-size:28px;margin-top:30px">A nontechnical team in a regulated business gets real work done on its own machines, without maintaining an AI stack. Every request is classified before any model sees it, every answer shows its sources, a correction changes the next draft, and nothing goes out unless the right person has authorized it.</p>
+  <div class="foot"><span>Mission Canvas</span><span>8</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">Go to market</div>
+  <h2>We don't need a big sales team to <em>find buyers.</em></h2>
+  <div class="grid c3">
+    <div class="card"><h3>Hiring signals</h3><p>A company hiring several AI governance roles at once is about to build something like Mission Canvas itself. We watch job postings; that produced our second enterprise proposal in three weeks, and it now runs every day.</p></div>
+    <div class="card"><h3>Partners who multiply</h3><p>IT providers, compliance consultancies and software platforms each bring many customers per deal.</p></div>
+    <div class="card"><h3>Pre-installed</h3><p>New AI computers ship with powerful chips but little software for work. With Palette and a Studio pre-installed, each becomes a governed AI workstation on day one.</p></div>
+  </div>
+  <div class="foot"><span>Mission Canvas</span><span>9</span></div>
+</section>
+
+
+<section class="s">
+  <div class="art" style="background-image:url(assets/how-it-works.webp)"></div><div class="veil"></div>
+  <div class="z" style="max-width:900px;margin-top:auto;margin-bottom:auto">
+    <div class="k">The vision</div>
+    <h2 style="font-size:84px">Software that <em>shapes itself</em> to each customer.</h2>
+    <p class="lede" style="font-size:32px">Today every company bends its work around apps someone else designed. Palette works the other way. It reads what the customer already has (documents, email, calendar, Slack, Jira) and builds exactly the interface they need, in real time.</p>
+    <p style="margin-top:28px;font-size:29px">Ask for a weekly client report, a permit checklist or a board update, and Palette creates it from their own material and keeps it current as the work changes. Customers change it themselves, without writing code or learning to prompt, under the same rule as today: checked before any model sees it, nothing leaves without permission.</p>
+  </div>
+  <div class="foot" style="z-index:1"><span>Mission Canvas</span><span>10</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">By May 2027</div>
+  <h2>Palette becomes a <em>paid product</em> in its own right.</h2>
+  <div class="grid c3">
+    <div class="card"><div class="num">01</div><h3 style="margin-top:20px">Commercial Palette</h3><p>A self-serve install anyone can finish alone, sold directly to professionals.</p></div>
+    <div class="card"><div class="num">02</div><h3 style="margin-top:20px">Patents filed</h3><p>Our four provisional patents converted into full applications.</p></div>
+    <div class="card"><div class="num">03</div><h3 style="margin-top:20px">The US</h3><p>Close our priced US proposals, sign our first US channel partner, and bring Livella to US contractors.</p></div>
+  </div>
+  <p class="lede">And we measure weekly active users and governed requests for every Studio, so growth shows week by week.</p>
+  <div class="foot"><span>Mission Canvas</span><span>11</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">Team</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;flex:1">
+    <div>
+      <div class="card" style="margin-bottom:30px"><h3>Mical Neill · CEO</h3><p>Designed the knowledge architecture behind Alexa's first conversational agents for restaurant booking and Ticketmaster: 13 locales, 47 data providers, a 25-billion-node knowledge graph. Owned the Italian, French and Spanish launches. Designed Ask Pathfinder at AWS, used by 12,000+ sellers a month. Comparative linguist.</p></div>
+      <div class="card"><h3>Jason Covington · COO</h3><p>25 years leading product and transformation inside regulated Fortune 500 companies: Microsoft, Genentech, Kaiser Permanente, Boeing. At Genentech, three programs that cut audit and compliance costs by about half.</p></div>
+      <p style="margin-top:30px;font-size:26px">We build lean: a team of 3 to 11 contract AI engineers, and teams of AI agents working under the same governance we sell.</p>
+    </div>
+    <div><div class="shot"><img src="assets/founders.jpg" alt="Jason Covington and Mical Neill"></div><div class="cap">Jason Covington and Mical Neill, San Francisco.</div></div>
+  </div>
+  <div class="foot"><span>Mission Canvas</span><span>12</span></div>
+</section>
+
+
+<section class="s">
+  <div class="k">The round</div>
+  <h2>Our first institutional round.</h2>
+  <p class="lede" style="margin-top:60px">We are raising now. For terms, write to mical.neill@missioncanvas.ai.</p>
+  <p class="lede" style="margin-top:80px">The money goes to the plan for May: Palette as a paid product with a self-serve install, our patents converted into full applications, and Livella for US contractors.</p>
+  <p class="quote" style="font-size:52px">Regulated work is where we prove it. Everyone else is where it grows.</p>
+  <div class="foot"><span>Mission Canvas</span><span>13</span></div>
+</section>
+
+
+<section class="s">
+  <div class="art" style="background-image:url(assets/courtyard-poster.webp)"></div><div class="veil"></div>
+  <div class="z" style="margin-top:auto;margin-bottom:auto">
+    <div style="width:460px;margin-bottom:60px"><img src="assets/logo.svg" alt="Mission Canvas" style="width:100%"></div>
+    <h2>Thank you.</h2>
+    <p class="lede">Mical Neill · mical.neill@missioncanvas.ai<br>Jason Covington · jason.covington@missioncanvas.ai</p>
+    <p style="margin-top:50px"><span class="pill">missioncanvas.ai</span></p>
+  </div>
+</section>
+
+</body>
+</html>
