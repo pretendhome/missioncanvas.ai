@@ -790,7 +790,7 @@ Mac Windows Linux
 Palette runs on a computer.
 Send yourself this page
 and open it there.
-Free. No account. Version 0.4.4, released 8 November 2026. Mac is signed and notarised. The Windows installer is code-signed.
+Free. No account. Version 0.4.5, released 15 November 2026. Mac is signed and notarised. The Windows installer is code-signed.
 Installation and download checks. Windows in this release: create, shape, download and print documents. File and voice-note attachments, local mail/calendar inclusion and saving to a chosen folder are not yet available on Windows.
 The design we are building toward. The app as it ships today is below, screen by screen.
 See it work · 105 seconds, unedited
@@ -856,22 +856,22 @@ What it is for, and what it is not
 Today It reads plain text:.txt,.md,.csv,.json
 and.ics. PDFs and Office files are listed and skipped, and it tells you so. It is an early build, and it
 is honest about where it stops.
-Install · version 0.4.4 · 8 November 2026
+Install · version 0.4.5 · 15 November 2026
 - Mac
 Open MissionCanvas.dmg and drag the app into Applications. It is signed and notarised. If macOS still says it cannot be verified, right-click the app and choose Open. Download for Mac, 683 MB
 - Windows
-Run MissionCanvas-Setup.exe. The installer is code-signed. Its SHA-256 is below so you can check the download. Download for Windows, 637 MB
+Run MissionCanvas-Setup.exe. The installer is code-signed. Its SHA-256 is below so you can check the download. Download for Windows, 638 MB
 - Linux
 Open MissionCanvas.deb with your software installer, or run sudo apt install ~/Downloads/MissionCanvas.deb. Download for Linux, 702 MB
 The files are still named MissionCanvas. They are Palette. SHA-256: check the file you downloaded
 MissionCanvas.dmg
-e50b46615e61e5e374cab47cb4ebd3649575502997f050ec8440610f48c0aa85
+649e0c8b0d54ca9a40837f0a1dfdd2e0aa8bd988e47b0e8bf84c9975ac36b9d4
 MissionCanvas-Setup.exe
-fcc4c139288365bb3714b460a6dabce7fca613960adb7e9de8f5b8117dc06b82
+f28062c44d7e90f61e339b9a9ed826af4bbe87fbbe251b63541df13f5dc4cff5
 MissionCanvas.deb
-37038c44fb85e570bbf5a255a57693d06c98b0923445ffd910e82c424293d77a
+e97ebf3e63782f6175d4784a7dc09b1cc71574979cffe6c5749bdb1fe16039ff
 Mac and Linux: shasum -a 256 <file>. Windows: certutil -hashfile <file> SHA256. These
-are the digests GitHub publishes for release desktop-v0.4.4; this page reads them when it is built.
+are the digests GitHub publishes for release desktop-v0.4.5; this page reads them when it is built.
 Price
 
 ## Free. No account, no card, no trial clock.
