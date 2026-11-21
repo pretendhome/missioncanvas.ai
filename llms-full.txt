@@ -286,28 +286,26 @@ Source: https://missioncanvas.ai/canvases/construction
 
 Construction and Real Estate
 
-# Construction job costing and fleet software Run the job, not the paperwork.
-Start with the paperwork between the site and the office. We scope the workflow, the application and the checks your crew needs before agreeing the delivery.
-Get Started See how we approach the work
+# Did that change order make it into your job costs?
+Keep approved changes, invoices and site records tied to the job. We build the checks around the computers your crew already uses.
+See how it works Book a 15-minute workflow call
+Illustrative workflow
 
-## What we scope together.
-Choose one recurring job. The audit establishes the current workflow, the proposed change and how your team will check the result.
-- 01
+## The change is approved. Can the office find it?
 
-### Site records
-How do crew notes, delivery tickets and progress updates reach the office?
-- 02
+### Today
+A foreman has the approved change in an email. The office has a job-cost export. Someone has to match them before the next cost review.
 
-### Job costs
-Where are committed costs and approved changes checked against the budget?
-- 03
+### What you could build
+A check flags an approved change with no match in the export. The office compares the job number and cost code against the original before updating the record.
 
-### Fleet and equipment
-Who checks maintenance dates, assignments and fuel records?
-- 04
-
-### Office paperwork
-Which invoice, reimbursement or report gets entered more than once?
+## Where does your paperwork get stuck?
+Choose the sticking point to see what to bring to a first review.
+An approved change is missing from job costs
+Bring a sample approved change and a job-cost export. Mark the job and cost code your reviewer would use to match them. Invoices are hard to match to site records
+Start with one sample invoice and its delivery ticket. Identify where the office loses the reference back to the job. Fleet maintenance slips between schedules
+Pick one vehicle and a sample service log. Agree who confirms the next service date and where that date should appear. Job files need to stay on your computers
+Use a sample export on a machine you already own. Review where each step runs and which steps, if any, need an outside service.
 Partner-developed · staging demonstration
 
 ## Start an estimate with reusable assemblies.
@@ -333,8 +331,8 @@ Your crew uses it on live jobs. We adjust it with you as it runs.
 - If you use an outside AI model, only what that task needs is sent, and it's logged.
 - You can run local models instead, and send nothing out. How we handle your data
 
-## Show us the job that eats your week.
-The audit comes first. Building the tool is a separate job, quoted before you commit. Get Started
+## Bring one job you want to fix.
+We’ll talk through what gets lost between the site and the office, and what a first workflow could cover. Book a 15-minute workflow call
 
 ---
 
@@ -755,8 +753,31 @@ The customer owns the application we build and hand over. Use the walkthrough to
 
 Source: https://missioncanvas.ai/for-it-providers/clients-asking-about-ai
 
-# My clients are asking about AI. How can an IT provider help without putting client data into public tools?
-Mission Canvas helps IT providers scope a job that can run on the client’s machines. Pick one job with the client first. Ask which files it uses, who checks the result and whether any part needs an outside service. You can use that conversation to scope a tool that runs on the client’s own machines.
+For managed IT and security providers
+
+# What can you offer clients who ask for private AI?
+Turn a client’s AI request into a service you can scope. You lead the conversation. We help build the workflow.
+Mission Canvas helps IT providers run one recurring job on the client’s machines. Agree which files it uses and who checks the result.
+See how it works Book a 15-minute partner call
+Illustrative workflow
+
+## Take one client request to a scope they can review.
+
+### Today
+An accounting client asks for AI at month-end. Their provider still needs to know which check matters, which files it uses and who signs off.
+
+### What you could build
+The provider can propose a first job: compare two sample ledger exports, point to the difference and have the client’s reviewer check the source rows.
+
+## See how an answer links to its source.
+In Palette, select a claim to see the sentence and file it came from. The screenshot uses sample notes. Watch the Palette walkthrough
+
+## Which job would you start with?
+Choose a job to see what you can test with sample files.
+Accounting: compare ledger exports
+Start with two sample CSVs and one discrepancy the client already knows. Agree who checks the result. Legal: find a clause in a sample file
+Use a fictional text file. Ask for the original sentence a reviewer would check and agree what stays on the workstation. Construction: review a change order
+Use a sample change order and job-cost export. Agree which fields to compare and who confirms the result.
 
 ## A check you can try
 At a client walkthrough, use a fictional service ticket. Ask the reviewer to point to the file behind one answer and identify who could approve an outside connection.
@@ -781,7 +802,10 @@ Start with supported local files and a local model. Agree the allowed connection
 
 ### What can we offer a small-business client asking about AI?
 Offer to walk through a single job together. A scoped review gives the client a written account of the work before they decide whether to commission a build.
-Working with us as a partner Book a call about your workflow
+Working with us as a partner
+
+## What are your clients asking AI to do?
+Bring one recurring task. We’ll talk through the files it uses, where it can run and who checks the result. Book a 15-minute partner call
 
 ---
 
@@ -1188,8 +1212,31 @@ Mission Canvas does not bring your company's email into an inbox of ours. If an 
 
 Source: https://missioncanvas.ai/private-ai-for-confidential-files
 
-# Can a small firm use AI on confidential client files without uploading them anywhere?
-Yes. Mission Canvas builds tools that read the files your firm chooses on its own computers. Start with a sample folder and ask it a question whose answer you already know. Check the source before you try the same job with client material.
+Private AI for small firms
+
+# Can AI check client files without uploads?
+A month-end figure looks off. Trace it to the ledger rows on your firm’s own computers.
+Mission Canvas builds tools that read the files you choose on your own computers. Test a check with sample files first.
+See how it works Book a 15-minute workflow call
+Illustrative workflow
+
+## Follow one number back to the ledger.
+
+### Today
+A total looks wrong. A reviewer opens several exports to find the entries behind it.
+
+### What you could build
+A workflow built for that check points to the rows behind the difference so the reviewer can decide what needs a second look.
+
+## See how an answer links to its source.
+In Palette, select a claim to see the sentence and file it came from. The screenshot uses sample notes. Watch the Palette walkthrough
+
+## Which job would you start with?
+Choose a job to see what you can test with sample files.
+Compare two ledger exports
+Start with two fictional CSV exports. Choose one discrepancy you can reproduce and decide what the reviewer needs to see beside it. Trace a figure to its source
+Pick a figure you already know. Ask the tool to point to the original row and check whether a colleague can verify it independently. Work within a no-upload policy
+Pick a sample folder and a local model. Confirm which files the tool can read and check whether the job needs any outside connection.
 
 ## A check you can try
 Put a made-up job cost in a short text file. Ask where that cost came from and follow the answer back to the file. Would a colleague be able to check the figure without asking you?
@@ -1220,7 +1267,10 @@ Export a sample sheet to CSV and keep the original for comparison. Palette skips
 Start with a fictional client record in a supported format. Agree which fields a reviewer needs to see and what can be shared before trying real financial records.
 
 ### How can a construction consultant review change orders without exposing contract pricing?
-Choose a sample change order in plain text and keep the job on a local model. Check each quoted price against the source before a person approves any sharing. Book a call about your workflow
+Choose a sample change order in plain text and keep the job on a local model. Check each quoted price against the source before a person approves any sharing.
+
+## Which check takes longest at month-end?
+Bring one recurring task. We’ll talk through the files it uses, where it can run and who checks the result. Book a 15-minute workflow call
 
 ---
 
