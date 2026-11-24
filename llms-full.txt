@@ -237,6 +237,24 @@ Source: https://missioncanvas.ai/book
 
 ---
 
+Source: https://missioncanvas.ai/book-andrejs
+
+
+
+---
+
+Source: https://missioncanvas.ai/book-jason
+
+
+
+---
+
+Source: https://missioncanvas.ai/book-mical
+
+
+
+---
+
 Source: https://missioncanvas.ai/canvases/
 
 Canvases
